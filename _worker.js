@@ -1,1 +1,9335 @@
-import{connect as n}from"cloudflare:sockets";const e=new TextDecoder;function t(n){const t=atob(n),o=new Uint8Array(t.length);for(let n=0;n<t.length;n++)o[n]=t.charCodeAt(n);return e.decode(o)}let o="351c9981-04b6-4103-aa4b-864aa9c91469",a="",r="",i=[],s=[],c=!1,l=!1,p=!1,d=!1,u=!0,f="",m="",g="",h="",y=!0,b=!1,x=!1,v="",w=!1,k="https://223.5.5.5/dns-query",C="cloudflare-ech.com",I="",S=t("aHR0cHM6Ly91cmwudjEubWsvc3Vi");const E="https://raw.githubusercontent.com/byJoey/test/refs/heads/main/tist.ini";let $=!0,L=!0,T=!0,R=!1,U=null,N={},M=0;const A=3e4;let P="";const D={wk:"",ev:"yes",et:"no",ex:"no",ech:"no",tp:"",customDNS:"https://223.5.5.5/dns-query",customECHDomain:"cloudflare-ech.com",alpn:"",d:"",p:"",yx:"",yxURL:"",s:"",homepage:"",scu:t("aHR0cHM6Ly91cmwudjEubWsvc3Vi"),ena:"no",epd:"yes",epi:"yes",egi:"yes",ae:"",rm:"",qj:"",dkby:"no",yxby:"",ipv4:"yes",ipv6:"yes",ispMobile:"yes",ispUnicom:"yes",ispTelecom:"yes"};function H(n={}){const e=String(n.EXPIRES_AT||n.expires_at||"").trim();if(!e)return{"已过期":!1};let t;return t=/^\d{10}$/.test(e)?1e3*Number(e):/^\d{13}$/.test(e)?Number(e):Date.parse(e),Number.isFinite(t)?{"已过期":Date.now()>=t,"到期时间":new Date(t).toISOString()}:{"配置错误":!0}}function O(n,e=!1){if(null==n||""===n)return e;if(!0===n||!1===n)return n;const t=String(n).trim().toLowerCase();return"yes"===t||"true"===t||"1"===t||"on"===t||"no"!==t&&"false"!==t&&"0"!==t&&"off"!==t&&e}function F(n,e=!1){return O(n,e)?"yes":"no"}function B(n,e=!1,t=void 0){return O(ee(n,void 0!==t?t:e?"yes":"no"),e)}function z(n,e="",t=void 0){const o=ee(n,void 0!==t?t:e);return null==o?e:String(o)}function j(n){const e={...D,...n};return["ev","et","ex","ech","ena","epd","epi","egi","ipv4","ipv6","ispMobile","ispUnicom","ispTelecom"].forEach(n=>{e[n]=F(e[n],O(D[n]))}),"no"===e.ev&&"no"===e.et&&"no"===e.ex&&(e.ev="yes"),"yes"===e.ech&&(e.dkby="yes"),e}function G(n,...e){if(n)for(const t of e)if(void 0!==n[t]&&null!==n[t]&&""!==n[t])return n[t]}function J(n={}){const e={wk:["wk","WK"],ev:["ev","EV"],et:["et","ET"],ex:["ex","EX"],ech:["ech","ECH"],tp:["tp","TP"],customDNS:["customDNS","CUSTOMDNS","CUSTOM_DNS"],customECHDomain:["customECHDomain","CUSTOMECHDOMAIN","CUSTOM_ECH_DOMAIN"],alpn:["alpn","ALPN"],d:["d","D"],p:["p","P"],yx:["yx","YX"],yxURL:["yxURL","YXURL","YX_URL"],s:["s","S"],homepage:["homepage","HOMEPAGE"],scu:["scu","SCU"],ena:["ena","ENA"],epd:["epd","EPD"],epi:["epi","EPI"],egi:["egi","EGI"],ae:["ae","AE"],rm:["rm","RM"],qj:["qj","QJ"],dkby:["dkby","DKBY"],yxby:["yxby","YXBY"],ipv4:["ipv4","IPV4"],ipv6:["ipv6","IPV6"],ispMobile:["ispMobile","ISPMOBILE","ISP_MOBILE"],ispUnicom:["ispUnicom","ISPUNICOM","ISP_UNICOM"],ispTelecom:["ispTelecom","ISPTELECOM","ISP_TELECOM"]},t={};for(const[o,a]of Object.entries(e)){const e=G(n,...a);void 0!==e&&(t[o]=e)}return t}function Y(n={}){return j({...J(n),...N})}const V={HK:["🇭🇰 香港","HK","Hong Kong"],US:["🇺🇸 美国","US","United States"],SG:["🇸🇬 新加坡","SG","Singapore"],JP:["🇯🇵 日本","JP","Japan"],KR:["🇰🇷 韩国","KR","South Korea"],DE:["🇩🇪 德国","DE","Germany"],SE:["🇸🇪 瑞典","SE","Sweden"],NL:["🇳🇱 荷兰","NL","Netherlands"],FI:["🇫🇮 芬兰","FI","Finland"],GB:["🇬🇧 英国","GB","United Kingdom"],Oracle:["甲骨文","Oracle"],DigitalOcean:["数码海","DigitalOcean"],Vultr:["Vultr","Vultr"],Multacom:["Multacom","Multacom"]},X=t("MTcyLjcxLjIxOC4xOTAsMTYyLjE1OC4yMjguODcsMTYyLjE1OC4xODkuMTM0LDE2Mi4xNTguMjYuNjMsMTYyLjE1OC4yNS44NiwxNjIuMTU4LjI5LjIxNiwxNjIuMTU4LjIxOC4xNjAsMTYyLjE1OC4yMjcuMjE0LDE3Mi42OS4xMTguMTk4LDE3Mi42OS4xMTkuMTUw").split(",");function W(){return{domain:X[Math.floor(Math.random()*X.length)],region:"CF",regionCode:"CF",port:443}}let K=[{domain:t("UHJveHlJUC5ISy5DTUxpdXNzc3MubmV0"),region:"HK",regionCode:"HK",port:443},{domain:t("UHJveHlJUC5VUy5DTUxpdXNzc3MubmV0"),region:"US",regionCode:"US",port:443},{domain:t("UHJveHlJUC5TRy5DTUxpdXNzc3MubmV0"),region:"SG",regionCode:"SG",port:443},{domain:t("UHJveHlJUC5KUC5DTUxpdXNzc3MubmV0"),region:"JP",regionCode:"JP",port:443},{domain:t("UHJveHlJUC5LUi5DTUxpdXNzc3MubmV0"),region:"KR",regionCode:"KR",port:443},{domain:t("UHJveHlJUC5ERS5DTUxpdXNzc3MubmV0"),region:"DE",regionCode:"DE",port:443},{domain:t("UHJveHlJUC5TRS5DTUxpdXNzc3MubmV0"),region:"SE",regionCode:"SE",port:443},{domain:t("UHJveHlJUC5OTC5DTUxpdXNzc3MubmV0"),region:"NL",regionCode:"NL",port:443},{domain:t("UHJveHlJUC5GSS5DTUxpdXNzc3MubmV0"),region:"FI",regionCode:"FI",port:443},{domain:t("UHJveHlJUC5HQi5DTUxpdXNzc3MubmV0"),region:"GB",regionCode:"GB",port:443},{domain:t("UHJveHlJUC5PcmFjbGUuY21saXVzc3NzLm5ldA=="),region:"Oracle",regionCode:"Oracle",port:443},{domain:t("UHJveHlJUC5EaWdpdGFsT2NlYW4uQ01MaXVzc3NzLm5ldA=="),region:"DigitalOcean",regionCode:"DigitalOcean",port:443},{domain:t("UHJveHlJUC5WdWx0ci5DTUxpdXNzc3MubmV0"),region:"Vultr",regionCode:"Vultr",port:443},{domain:t("UHJveHlJUC5NdWx0YWNvbS5DTUxpdXNzc3MubmV0"),region:"Multacom",regionCode:"Multacom",port:443}];const _=[{name:"cloudflare.182682.xyz",domain:"cloudflare.182682.xyz"},{name:"speed.marisalnc.com",domain:"speed.marisalnc.com"},{domain:"freeyx.cloudflare88.eu.org"},{domain:"bestcf.top"},{domain:"cdn.2020111.xyz"},{domain:"cfip.cfcdn.vip"},{domain:"cf.0sm.com"},{domain:"cf.090227.xyz"},{domain:"cf.zhetengsha.eu.org"},{domain:"cloudflare.9jy.cc"},{domain:"cf.zerone-cdn.pp.ua"},{domain:"cfip.1323123.xyz"},{domain:"cnamefuckxxs.yuchen.icu"},{domain:"cloudflare-ip.mofashi.ltd"},{domain:"115155.xyz"},{domain:"cname.xirancdn.us"},{domain:"f3058171cad.002404.xyz"},{domain:"8.889288.xyz"},{domain:"cdn.tzpro.xyz"},{domain:"cf.877771.xyz"},{domain:"xn--b6gac.eu.org"}],Z=atob("aW52YWxpZCBkYXRh"),q=atob("aW52YWxpZCB1c2Vy"),Q=atob("Y29tbWFuZCBpcyBub3Qgc3VwcG9ydGVk"),nn=atob("VURQIHByb3h5IG9ubHkgZW5hYmxlIGZvciBETlMgd2hpY2ggaXMgcG9ydCA1Mw=="),en=atob("aW52YWxpZCBhZGRyZXNzVHlwZQ=="),tn=atob("YWRkcmVzc1ZhbHVlIGlzIGVtcHR5"),on=atob("d2ViU29ja2V0LmVhZHlTdGF0ZSBpcyBub3Qgb3Blbg=="),an=atob("U3RyaW5naWZpZWQgaWRlbnRpZmllciBpcyBpbnZhbGlk"),rn=atob("SW52YWxpZCBTT0NLUyBhZGRyZXNzIGZvcm1hdA=="),sn=atob("bm8gYWNjZXB0YWJsZSBtZXRob2Rz"),cn=atob("c29ja3Mgc2VydmVyIG5lZWRzIGF1dGg="),ln=atob("ZmFpbCB0byBhdXRoIHNvY2tzIHNlcnZlcg=="),pn=atob("ZmFpbCB0byBvcGVuIHNvY2tzIGNvbm5lY3Rpb24="),dn=atob("ZmFpbCB0byBvcGVuIHByb3h5IHR1bm5lbA=="),un=atob("aW52YWxpZCBwcm94eSByZXNwb25zZQ=="),fn=atob("c29ja3M1Oi8v"),mn=atob("c29ja3M6Ly8="),gn=atob("aHR0cDovLw=="),hn=atob("aHR0cHM6Ly8="),yn=atob("Q09OTkVDVA=="),bn=atob("IEhUVFAvMS4x"),xn=atob("SG9zdDog"),vn=atob("UHJveHktQXV0aG9yaXphdGlvbjogQmFzaWMg"),wn=atob("UHJveHktQ29ubmVjdGlvbjogS2VlcC1BbGl2ZQ=="),kn=atob("VXNlci1BZ2VudDogTW96aWxsYS81LjA="),Cn=atob("DQo="),In=atob("SFRUUC8="),Sn="p5",En="pt",$n="pts";let Ln={},Tn=!1;const Rn=1,Un=2,Nn=3,Mn=65536,An=32768,Pn=512,Dn=0,Hn=16384,On=262144,Fn=2,Bn=3500,zn=new TextDecoder,jn=new Map;function Gn(n){return/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i.test(n)}function Jn(n){return!!/^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/.test(n)||(!!/^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/.test(n)||!!/^::1$|^::$|^(?:[0-9a-fA-F]{1,4}:)*::(?:[0-9a-fA-F]{1,4}:)*[0-9a-fA-F]{1,4}$/.test(n))}function Yn(n=!1){const e=void 0!==g&&g&&g.trim();let t=e||n;const o={};return{namer:function(n,e=null){return t||n&&n.includes(".")?e||n:(o[n]||(o[n]=0),o[n]++,`${e||n}-${String(o[n]).padStart(2,"0")}`)},setSkipNumbering:function(n){e||(t=n)}}}function Vn(n){return String(n||"").trim().replace(/^\[([^\]]+)\]$/,"$1")}function Xn(n,e="Node"){let t=String(n||"").trim();return t&&!/^自定义优选-/i.test(t)||(t=e),t=t.replace(/^\[([^\]]+)\]$/,"$1").replace(/^https?:\/\//i,"").replace(/[/?#].*$/,"").replace(/\s+/g,"_"),t||e}function Wn(n){const e=Vn(n?.ip||n?.domain||"");if(e&&e.includes(":")&&/^[0-9a-fA-F:.]+$/.test(e))return"IPv6优选";if(e&&!Jn(e))return"优选域名";const t=Xn(n?.isp||n?.name||"","IPv4优选"),o=Xn(n?.colo||"","");return o?`${t}-${o}`:t}function Kn(n=!1){const e={};return t=>{const o=Wn(t);return n?o:(e[o]=(e[o]||0)+1,`${o}-${String(e[o]).padStart(2,"0")}`)}}function _n(n){const e=String(n||"").trim();return["","h3","h2","http/1.1","h3,h2","h2,http/1.1","h3,h2,http/1.1"].includes(e)?e:""}function Zn(n){const e=_n(I);e&&n.set("alpn",e)}async function qn(n){const e=n.C||n.c;if(e)try{U=e,await Qn()}catch(n){U=null}}async function Qn(n=!1){if(U&&!(!n&&M>0&&Date.now()-M<A))try{let e="";try{e=await U.get("c_ver")||""}catch(n){}if(!n&&e&&e===P&&N&&Object.keys(N).length>0)return void(M=Date.now());const t=await U.get("c");t&&(N=JSON.parse(t)),P=e,M=Date.now()}catch(n){N||(N={})}}async function ne(){if(U)try{const n=JSON.stringify(N);await U.put("c",n);const e=String(Date.now());P=e;try{await U.put("c_ver",e)}catch(n){}M=Date.now()}catch(n){throw n}}function ee(n,e=""){return void 0!==N[n]?N[n]:e}async function te(n,e){N[n]=e,await ne()}async function oe(n,e=443,t=2e3){try{const e=new AbortController,o=setTimeout(()=>e.abort(),t),a=await fetch(`https://${n}`,{method:"HEAD",signal:e.signal,headers:{"User-Agent":"Mozilla/5.0 (compatible; CF-IP-Checker/1.0)"}});return clearTimeout(o),a.status<500}catch(n){return!0}}async function ae(n="",e=u){if(!n||"CF"===n)return W();if(0===K.length)return W();const t=K.map(n=>({...n,available:!0}));if(e&&n){const o=se(n,t,e);if(o.length>0)return o[0]}return t[0]}function re(n){return{US:["SG","JP","KR"],SG:["JP","KR","US"],JP:["SG","KR","US"],KR:["JP","SG","US"],DE:["NL","GB","SE","FI"],SE:["DE","NL","FI","GB"],NL:["DE","GB","SE","FI"],FI:["SE","DE","NL","GB"],GB:["DE","NL","SE","FI"]}[n]||[]}function ie(n){const e=re(n);return[n,...e,...["US","SG","JP","KR","DE","SE","NL","FI","GB"].filter(t=>t!==n&&!e.includes(t))]}function se(n,e,t=u){if(!t||!n)return e;const o=ie(n),a=[];for(const n of o){const t=e.filter(e=>e.regionCode===n);a.push(...t)}return a}function ce(n){if(n.includes("[")&&n.includes("]")){const e=n.match(/^\[([^\]]+)\](?::(\d+))?$/);if(e)return{address:e[1],port:e[2]?parseInt(e[2],10):null}}const e=n.lastIndexOf(":");if(e>0){const t=n.substring(0,e),o=n.substring(e+1),a=parseInt(o,10);if(!t.includes(":")&&!isNaN(a)&&a>0&&a<=65535)return{address:t,port:a}}return{address:n,port:null}}export default{async fetch(n,e,t){try{const E=H(e);if(E.配置错误)return new Response(JSON.stringify({error:"Invalid EXPIRES_AT format",example:"2026-12-31T23:59:59+08:00"}),{status:500,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});if(E.已过期)return new Response(JSON.stringify({error:"Expired",message:"This proxy share has expired.",expiresAt:E.到期时间}),{status:403,headers:{"Content-Type":"application/json; charset=utf-8","Cache-Control":"no-store"}});const U=n.headers.get("Upgrade")===atob("d2Vic29ja2V0"),N="POST"===n.method,M=new URL(n.url),A=M.pathname.split("/").filter(n=>n);if(!U&&!N&&"/"!==M.pathname){const n=(e.u||e.U||"").toLowerCase(),t=(e.d||e.D||"").toLowerCase(),o=A[0]||"",a=t.startsWith("/")?t.substring(1):t;if(o!==n&&a&&o!==a)return new Response("Not Found",{status:404})}await qn(e),o=(e.u||e.U||o).toLowerCase();const P=(e.d||e.D||o).toLowerCase(),O=ee("p",e.p||e.P);let F=!1;const j=ee("wk",e.wk||e.WK);j&&j.trim()?(m=j.trim().toUpperCase(),f=m):O&&O.trim()?(F=!0,f="CUSTOM"):f="CF";const G=z("rm",D.rm,e.rm||e.RM);u=!(G&&"no"===G.toLowerCase());const J=z("p",D.p,e.p||e.P);if(a=J?J.trim():"",r=z("s",D.s,e.s||e.S),r)try{Ln=ot(r),Tn=!0}catch(n){Tn=!1}else Ln={},Tn=!1;const Y=ee("yx",e.yx||e.YX);if(Y)try{const n=Y.split(",").map(n=>n.trim()).filter(n=>n);i=[],s=[],n.forEach(n=>{let e="",t=n;if(n.includes("#")){const o=n.split("#");t=o[0].trim(),e=o[1].trim()}const{address:o,port:a}=ce(t);e||(e="自定义优选-"+o+(a?":"+a:"")),Jn(o)?i.push({ip:o,port:a,isp:e}):s.push({domain:o,port:a,name:e})})}catch(n){i=[],s=[]}const V=(z("qj",D.qj,e.qj||e.QJ)||"").toLowerCase();c="no"===V,l="only"===V;const X=z("dkby",D.dkby,e.dkby||e.DKBY);p=!(!X||"yes"!==X.toLowerCase());const W=z("yxby",D.yxby,e.yxby||e.YXBY);d=!(!W||"yes"!==W.toLowerCase()),y=B("ev",!0,e.ev),b=B("et",!1,e.et),v=z("tp",D.tp,e.tp),x=B("ex",!1,e.ex),S=z("scu",D.scu,e.scu),$=B("epd",!0,e.epd||e.EPD),L=B("epi",!0,e.epi||e.EPI),T=B("egi",!0,e.egi||e.EGI),R=B("ena",!1,e.ena||e.ENA),w=B("ech",!1,e.ech||e.ECH),k=z("customDNS",D.customDNS).trim()||D.customDNS,C=z("customECHDomain",D.customECHDomain).trim()||D.customECHDomain,I=_n(z("alpn",D.alpn,e.alpn||e.ALPN)),w&&(p=!0,"yes"!==ee("dkby","")&&await te("dkby","yes")),y||b||x||(y=!0),g=z("yxURL",D.yxURL,e.yxURL||e.YXURL),h=z("d",D.d,e.d||e.D);const K=new URL(n.url);if(K.pathname.includes("/api/config")){const t=K.pathname.split("/").filter(n=>n),a=t.indexOf("api");if(a>0){const r=t.slice(0,a).join("/");let i=!1;return i=h&&h.trim()?r===(h.trim().startsWith("/")?h.trim().substring(1):h.trim()):Gn(r)&&r===o,i?await Gt(n,e):new Response(JSON.stringify({error:"路径验证失败"}),{status:403,headers:{"Content-Type":"application/json"}})}return new Response(JSON.stringify({error:"无效的API路径"}),{status:404,headers:{"Content-Type":"application/json"}})}if(K.pathname.includes("/api/preferred-ips")){const e=K.pathname.split("/").filter(n=>n),t=e.indexOf("api");if(t>0){const a=e.slice(0,t).join("/");let r=!1;return r=h&&h.trim()?a===(h.trim().startsWith("/")?h.trim().substring(1):h.trim()):Gn(a)&&a===o,r?await Jt(n):new Response(JSON.stringify({error:"路径验证失败"}),{status:403,headers:{"Content-Type":"application/json"}})}return new Response(JSON.stringify({error:"无效的API路径"}),{status:404,headers:{"Content-Type":"application/json"}})}if("POST"===n.method&&x){const{"头":e,"键":a}=gt(o);if(!bt(n,e,a))return new Response("Bad Request",{status:400});const r=await At(n);if(r){t.waitUntil(r.closed);const n={"X-Accel-Buffering":"no","Cache-Control":"no-store",Connection:"keep-alive","User-Agent":"Go-http-client/2.0","Content-Type":"application/grpc"};try{const t=new URL("https://x.invalid/");t.searchParams.set(a,vt(100+Math.floor(901*Math.random()))),n[e]=t.toString()}catch(n){}return new Response(r.readable,{headers:n})}return new Response("Internal Server Error",{status:500})}if(n.headers.get("Upgrade")===atob("d2Vic29ja2V0"))return await Oe(n);if("GET"===n.method){if(K.pathname.endsWith("/region")){const n=K.pathname.split("/").filter(n=>n);if(2===n.length&&"region"===n[1]){const t=n[0];let a=!1;if(a=h&&h.trim()?t===(h.trim().startsWith("/")?h.trim().substring(1):h.trim()):Gn(t)&&t===o,a){const n=ee("p",e.p||e.P),t=ee("wk",e.wk||e.WK);return t&&t.trim()?new Response(JSON.stringify({region:t.trim().toUpperCase(),detectionMethod:"手动指定地区",manualRegion:t.trim().toUpperCase(),timestamp:(new Date).toISOString()}),{headers:{"Content-Type":"application/json"}}):n&&n.trim()?new Response(JSON.stringify({region:"CUSTOM",detectionMethod:"Information",ci:n,timestamp:(new Date).toISOString()}),{headers:{"Content-Type":"application/json"}}):new Response(JSON.stringify({region:"CF",detectionMethod:"Information",timestamp:(new Date).toISOString()}),{headers:{"Content-Type":"application/json"}})}return new Response(JSON.stringify({error:"访问被拒绝",message:"路径验证失败"}),{status:403,headers:{"Content-Type":"application/json"}})}}if(K.pathname.endsWith("/test-api")){const n=K.pathname.split("/").filter(n=>n);if(2===n.length&&"test-api"===n[1]){const e=n[0];let t=!1;if(t=h&&h.trim()?e===(h.trim().startsWith("/")?h.trim().substring(1):h.trim()):Gn(e)&&e===o,!t)return new Response(JSON.stringify({error:"访问被拒绝",message:"路径验证失败"}),{status:403,headers:{"Content-Type":"application/json"}});try{return new Response(JSON.stringify({detectedRegion:"CF",message:"API测试完成",timestamp:(new Date).toISOString()}),{headers:{"Content-Type":"application/json"}})}catch(n){return new Response(JSON.stringify({error:n.message,message:"API测试失败"}),{status:500,headers:{"Content-Type":"application/json"}})}}}if("/"===K.pathname){const t=ee("homepage",e.homepage||e.HOMEPAGE);if(t&&t.trim())try{const e=await fetch(t.trim(),{method:"GET",headers:{"User-Agent":n.headers.get("User-Agent")||"Mozilla/5.0",Accept:n.headers.get("Accept")||"*/*","Accept-Language":n.headers.get("Accept-Language")||"en-US,en;q=0.9"},redirect:"follow"});if(e.ok){const n=e.headers.get("Content-Type")||"text/html; charset=utf-8",t=await e.text();return new Response(t,{status:e.status,headers:{"Content-Type":n,"Cache-Control":"no-cache, no-store, must-revalidate"}})}}catch(n){console.error("获取自定义首页失败:",n)}const o=n.headers.get("Cookie")||"";let a=null;if(o){const n=o.split(";").map(n=>n.trim());for(const e of n)if(e.startsWith("preferredLanguage=")){a=e.split("=")[1];break}}const r="en",i=new Proxy({title:"Terminal v3.0",terminal:"Terminal v3.0",congratulations:"Welcome",enterU:"Enter your UUID",enterD:"Enter your custom path",command:"Command: connect [",uuid:"UUID",path:"PATH",inputU:"Enter your UUID and press Enter...",inputD:"Enter your custom path and press Enter...",connecting:"Connecting...",invading:"Verifying...",success:"Connected successfully. Opening result...",error:"Error: invalid UUID format",reenter:"Please enter a valid UUID"},{get:(n,e)=>n[e]??String(e).replace(/([a-z])([A-Z])/g,"$1 $2").replace(/^./,n=>n.toUpperCase())}),s=`<!DOCTYPE html>\n    <html lang="${r}" dir="ltr">\n    <head>\n        <meta charset="UTF-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <title>${i.title}</title>\n        <style>\n            :root {\n                --cp-bg: #05030e;\n                --cp-bg-2: #0a0820;\n                --cp-cyan: #00f0ff;\n                --cp-cyan-d: #00b8c4;\n                --cp-pink: #ff2bd6;\n                --cp-pink-d: #d1239f;\n                --cp-purple: #a347ff;\n                --cp-yellow: #fff200;\n                --cp-mint: #00ff9d;\n                --cp-red: #ff3860;\n                --cp-text: #e6f5ff;\n                --cp-text-dim: #7aa9c4;\n                --cp-border: rgba(0, 240, 255, 0.55);\n                --cp-grid: rgba(255, 43, 214, 0.16);\n            }\n            * { margin: 0; padding: 0; box-sizing: border-box; }\n            html, body { height: 100%; }\n            body {\n                font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;\n                background: #edf3f8;\n                color: var(--cp-text);\n                min-height: 100vh;\n                overflow-x: hidden;\n                position: relative;\n                display: flex; justify-content: center; align-items: center;\n            }\n            body::before {\n                display: none;\n                content: ""; position: fixed; inset: 0;\n                background-image:\n                    linear-gradient(var(--cp-grid) 1px, transparent 1px),\n                    linear-gradient(90deg, var(--cp-grid) 1px, transparent 1px);\n                background-size: 48px 48px;\n                mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);\n                z-index: -3;\n                animation: cp-grid-slide 18s linear infinite;\n            }\n            body::after {\n                display: none;\n                content: ""; position: fixed; inset: 0;\n                background: repeating-linear-gradient(\n                    180deg,\n                    rgba(255,255,255,0.04) 0,\n                    rgba(255,255,255,0.04) 1px,\n                    transparent 1px,\n                    transparent 3px\n                );\n                pointer-events: none;\n                z-index: 5;\n                mix-blend-mode: overlay;\n                animation: cp-scan-flicker 6s infinite;\n            }\n            @keyframes cp-grid-slide {\n                0% { background-position: 0 0, 0 0; }\n                100% { background-position: 48px 48px, 48px 48px; }\n            }\n            @keyframes cp-scan-flicker {\n                0%, 100% { opacity: 0.6; }\n                50% { opacity: 0.9; }\n            }\n            .matrix-bg {\n                display: none;\n                position: fixed; inset: 0;\n                background:\n                    radial-gradient(circle at 80% 90%, rgba(255,43,214,0.18) 0%, transparent 45%),\n                    radial-gradient(circle at 10% 80%, rgba(0,240,255,0.18) 0%, transparent 45%);\n                z-index: -2;\n                pointer-events: none;\n            }\n            .matrix-rain { display: none; }\n            .matrix-code-rain {\n                display: none;\n                position: fixed; inset: 0;\n                pointer-events: none; z-index: -1;\n                overflow: hidden;\n            }\n            .matrix-column {\n                position: absolute; top: -120%; left: 0;\n                color: var(--cp-cyan);\n                font-family: "JetBrains Mono", "Courier New", monospace;\n                font-size: 14px; line-height: 1.25;\n                text-shadow: 0 0 6px var(--cp-cyan), 0 0 12px rgba(0,240,255,0.5);\n                animation: cp-drop linear infinite;\n            }\n            @keyframes cp-drop {\n                0%   { top: -120%; opacity: 0; }\n                10%  { opacity: 0.85; }\n                90%  { opacity: 0.4; }\n                100% { top: 110vh; opacity: 0; }\n            }\n            .matrix-column:nth-child(odd)  { animation-duration: 12s; }\n            .matrix-column:nth-child(even) { animation-duration: 18s; color: var(--cp-pink); text-shadow: 0 0 6px var(--cp-pink), 0 0 14px rgba(255,43,214,0.5); }\n            .matrix-column:nth-child(3n)   { animation-duration: 20s; color: var(--cp-purple); text-shadow: 0 0 6px var(--cp-purple); }\n            .matrix-column:nth-child(5n)   { animation-duration: 9s; opacity: 0.6; }\n\n            .terminal {\n                width: 92%; max-width: 860px; height: 540px;\n                background:\n                    linear-gradient(180deg, rgba(8,4,28,0.92) 0%, rgba(15,3,40,0.92) 100%);\n                border: 1px solid var(--cp-border);\n                border-radius: 0;\n                box-shadow:\n                    0 0 0 1px rgba(255,43,214,0.25),\n                    0 0 28px rgba(0,240,255,0.35),\n                    0 0 80px rgba(255,43,214,0.18),\n                    inset 0 0 30px rgba(0,240,255,0.06);\n                clip-path: polygon(\n                    0 18px, 18px 0,\n                    calc(100% - 60px) 0, calc(100% - 42px) 18px,\n                    100% 18px, 100% calc(100% - 14px),\n                    calc(100% - 14px) 100%, 42px 100%,\n                    24px calc(100% - 14px), 0 calc(100% - 14px)\n                );\n                position: relative; z-index: 1;\n                overflow: hidden;\n            }\n            .terminal::before {\n                content: ""; position: absolute; inset: 0;\n                background: repeating-linear-gradient(180deg, rgba(0,240,255,0.06) 0 1px, transparent 1px 4px);\n                pointer-events: none;\n                animation: cp-scan-flicker 5s infinite;\n            }\n            .terminal-header {\n                background: linear-gradient(90deg, rgba(255,43,214,0.18), rgba(0,240,255,0.18));\n                padding: 12px 18px;\n                border-bottom: 1px solid rgba(0,240,255,0.5);\n                display: flex; align-items: center; gap: 16px;\n                position: relative;\n            }\n            .terminal-header::after {\n                content: ""; position: absolute; left: 18px; right: 18px; bottom: -1px;\n                height: 1px;\n                background: linear-gradient(90deg, transparent, var(--cp-pink), var(--cp-cyan), transparent);\n                animation: cp-scan-line 4s linear infinite;\n            }\n            @keyframes cp-scan-line {\n                0% { transform: translateX(-30%); opacity: 0.4; }\n                50% { opacity: 1; }\n                100% { transform: translateX(30%); opacity: 0.4; }\n            }\n            .terminal-buttons {\n                display: flex; gap: 8px;\n            }\n            .terminal-button {\n                width: 12px; height: 12px;\n                background: var(--cp-pink);\n                box-shadow: 0 0 8px var(--cp-pink);\n                border: none; transform: rotate(45deg);\n            }\n            .terminal-button:nth-child(2) { background: var(--cp-yellow); box-shadow: 0 0 8px var(--cp-yellow); }\n            .terminal-button:nth-child(3) { background: var(--cp-mint); box-shadow: 0 0 8px var(--cp-mint); }\n            .terminal-title {\n                color: var(--cp-cyan);\n                font-size: 13px; font-weight: 700;\n                letter-spacing: 0.25em;\n                text-transform: uppercase;\n                text-shadow: 0 0 6px var(--cp-cyan);\n            }\n            .terminal-title::before { content: "// "; color: var(--cp-pink); }\n            .terminal-body {\n                padding: 24px; height: calc(100% - 52px);\n                overflow-y: auto; font-size: 14px;\n                line-height: 1.6;\n                position: relative;\n            }\n            .terminal-body::-webkit-scrollbar { width: 6px; }\n            .terminal-body::-webkit-scrollbar-thumb {\n                background: linear-gradient(180deg, var(--cp-pink), var(--cp-cyan));\n            }\n            .terminal-line {\n                margin-bottom: 8px; display: flex; align-items: center; gap: 8px;\n                flex-wrap: wrap;\n            }\n            .terminal-prompt {\n                color: var(--cp-pink);\n                font-weight: 700;\n                text-shadow: 0 0 6px var(--cp-pink);\n                letter-spacing: 0.05em;\n            }\n            .terminal-prompt::before { content: "▍"; color: var(--cp-cyan); margin-right: 4px; }\n            .terminal-input {\n                background: transparent; border: none; outline: none;\n                color: var(--cp-cyan);\n                font-family: inherit;\n                font-size: 14px; flex: 1; min-width: 0;\n                caret-color: var(--cp-pink);\n                text-shadow: 0 0 4px var(--cp-cyan);\n            }\n            .terminal-input::placeholder { color: var(--cp-text-dim); opacity: 0.75; }\n            .terminal-cursor {\n                display: inline-block; width: 9px; height: 16px;\n                background: var(--cp-pink);\n                margin-left: 2px;\n                box-shadow: 0 0 8px var(--cp-pink);\n                animation: cp-blink 1s steps(2, end) infinite;\n            }\n            @keyframes cp-blink {\n                0%, 100% { opacity: 1; }\n                50% { opacity: 0; }\n            }\n            .terminal-output { color: var(--cp-cyan); margin: 4px 0; }\n            .terminal-error  { color: var(--cp-red); margin: 4px 0; text-shadow: 0 0 6px var(--cp-red); }\n            .terminal-success{ color: var(--cp-mint); margin: 4px 0; text-shadow: 0 0 6px var(--cp-mint); }\n\n            .cp-hud {\n                position: fixed; top: 18px; right: 22px;\n                color: var(--cp-cyan);\n                font-family: "JetBrains Mono", monospace;\n                font-size: 11px; letter-spacing: 0.2em;\n                text-transform: uppercase;\n                text-align: right;\n                opacity: 0.85;\n                z-index: 1000;\n            }\n            .cp-hud .cp-hud-label { color: var(--cp-pink); }\n            .cp-hud .cp-hud-line { display: block; }\n            .cp-lang-wrapper {\n                position: fixed; top: 18px; left: 22px; z-index: 1000;\n                display: flex; align-items: center; gap: 10px;\n            }\n            .cp-lang-tag {\n                color: var(--cp-pink); font-size: 11px;\n                letter-spacing: 0.25em; text-transform: uppercase;\n                text-shadow: 0 0 6px var(--cp-pink);\n            }\n            #languageSelector {\n                background: rgba(8,4,28,0.85);\n                border: 1px solid var(--cp-cyan);\n                color: var(--cp-cyan);\n                padding: 6px 12px;\n                font-family: inherit;\n                font-size: 12px;\n                cursor: pointer;\n                letter-spacing: 0.12em;\n                text-shadow: 0 0 6px var(--cp-cyan);\n                box-shadow: 0 0 12px rgba(0,240,255,0.35);\n                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);\n            }\n            #languageSelector option { background: var(--cp-bg-2); color: var(--cp-cyan); }\n\n            \n            .cp-fx-toggle {\n                position: fixed; top: 68px; left: 22px; z-index: 1001;\n                background: rgba(8,4,28,0.85);\n                border: 1px solid var(--cp-mint);\n                color: var(--cp-mint);\n                padding: 6px 12px;\n                font-family: inherit;\n                font-size: 11px;\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                cursor: pointer;\n                text-shadow: 0 0 6px var(--cp-mint);\n                box-shadow: 0 0 10px rgba(0,255,157,0.35);\n                clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);\n                transition: all 0.2s ease;\n                display: inline-flex; align-items: center; gap: 6px;\n            }\n            .cp-fx-toggle:hover { color: var(--cp-pink); border-color: var(--cp-pink); text-shadow: 0 0 8px var(--cp-pink); box-shadow: 0 0 16px rgba(255,43,214,0.55); }\n            .cp-fx-toggle .cp-fx-dot { width: 6px; height: 6px; background: var(--cp-mint); border-radius: 50%; box-shadow: 0 0 8px var(--cp-mint); transition: all 0.2s; }\n            body.fx-off .cp-fx-toggle { color: var(--cp-text-dim); border-color: var(--cp-text-dim); text-shadow: none; box-shadow: none; }\n            body.fx-off .cp-fx-toggle .cp-fx-dot { background: transparent; border: 1px solid var(--cp-text-dim); box-shadow: none; }\n            body.fx-off .matrix-bg,\n            body.fx-off .matrix-code-rain,\n            body.fx-off .matrix-column { display: none !important; }\n            body.fx-off::before,\n            body.fx-off::after { display: none !important; content: none !important; }\n            body.fx-off { background: #edf3f8 !important; }\n            body.fx-off * {\n                animation: none !important;\n                transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s !important;\n            }\n            body.fx-off .cp-glitch::before,\n            body.fx-off .cp-glitch::after { display: none !important; }\n            body.fx-off .terminal-cursor::after { animation: none !important; }\n\n            .cp-glitch {\n                font-family: "JetBrains Mono", monospace;\n                font-weight: 700;\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                color: var(--cp-cyan);\n                text-shadow:\n                    0 0 8px var(--cp-cyan),\n                    -2px 0 var(--cp-pink),\n                    2px 0 var(--cp-mint);\n            }\n            \n            .cp-hud {\n                color: #16324a;\n                opacity: 1;\n                text-shadow: none;\n            }\n            .cp-hud .cp-hud-label { color: #a21caf; }\n            .cp-lang-tag {\n                color: #7e22ce;\n                text-shadow: none;\n            }\n            #languageSelector {\n                background: #ffffff;\n                color: #0f5263;\n                border-color: #0891b2;\n                text-shadow: none;\n                box-shadow: 0 6px 18px rgba(15, 82, 99, 0.16);\n            }\n            .terminal {\n                box-shadow: 0 18px 55px rgba(15, 23, 42, 0.22), 0 0 0 1px rgba(8, 145, 178, 0.15);\n            }\n            @media (max-width: 720px) {\n                .cp-hud { top: 12px; right: 12px; font-size: 9px; letter-spacing: 0.1em; }\n                .cp-lang-wrapper { top: 12px; left: 12px; }\n                .cp-lang-tag { display: none; }\n                #languageSelector { padding: 5px 8px; }\n                .terminal { width: calc(100% - 20px); height: auto; min-height: 500px; margin-top: 72px; }\n            }\n        </style>\n    </head>\n    <body>\n            <div class="cp-hud">\n                <span class="cp-hud-line"><span class="cp-hud-label">SYS::</span> ${i.terminal}</span>\n                <span class="cp-hud-line"><span class="cp-hud-label">NODE::</span> NIGHT_CITY</span>\n                <span class="cp-hud-line"><span class="cp-hud-label">LINK::</span> SECURE / ENC</span>\n            </div>\n            <div class="cp-lang-wrapper">\n                <span class="cp-lang-tag">LANG_</span>\n                <select id="languageSelector" onchange="切换语言(this.value)">\n                    <option value="en" selected>English</option>\n                </select>\n            </div>\n        <div class="terminal">\n            <div class="terminal-header">\n                <div class="terminal-buttons">\n                    <div class="terminal-button"></div>\n                    <div class="terminal-button"></div>\n                    <div class="terminal-button"></div>\n                </div>\n                    <div class="terminal-title cp-glitch">${i.terminal}</div>\n            </div>\n            <div class="terminal-body" id="terminalBody">\n                <div class="terminal-line">\n                    <span class="terminal-prompt">root:~$</span>\n                        <span class="terminal-output">${i.congratulations}</span>\n                </div>\n                <div class="terminal-line">\n                    <span class="terminal-prompt">root:~$</span>\n                        <span class="terminal-output">${h&&h.trim()?i.enterD:i.enterU}</span>\n                </div>\n                <div class="terminal-line">\n                    <span class="terminal-prompt">root:~$</span>\n                        <span class="terminal-output">${i.command}${h&&h.trim()?i.path:i.uuid}]</span>\n                </div>\n                <div class="terminal-line">\n                    <span class="terminal-prompt">root:~$</span>\n                        <input type="text" class="terminal-input" id="uuidInput" placeholder="${h&&h.trim()?i.inputD:i.inputU}" autofocus>\n                    <span class="terminal-cursor"></span>\n                </div>\n            </div>\n        </div>\n        <script>\n\nwindow.应用页面特效 = function () {\n  var 本地值10009 = localStorage.getItem('cp-fx-off') === '1';\n  document.body.classList.toggle('fx-off', 本地值10009);\n  var 本地值10008 = document.getElementById('cpFxLabel');\n  if (本地值10008) 本地值10008.textContent = 本地值10009 ? 'FX: OFF' : 'FX: ON';\n  if (本地值10009) {\n    var 本地值10007 = document.getElementById('matrixCodeRain');\n    if (本地值10007) 本地值10007.innerHTML = '';\n  } else if (typeof 创建矩阵雨 === 'function') {\n    var 结果值 = document.getElementById('matrixCodeRain');\n    if (结果值 && !结果值.firstChild) 创建矩阵雨();\n  }\n};\nwindow.切换页面特效 = function () {\n  var 本地值10006 = localStorage.getItem('cp-fx-off') === '1';\n  localStorage.setItem('cp-fx-off', 本地值10006 ? '0' : '1');\n  window.应用页面特效();\n};\n(function () {\n  if (localStorage.getItem('cp-fx-off') === '1') {\n    document.documentElement.classList.add('fx-off-preload');\n    document.addEventListener('DOMContentLoaded', function () {\n      document.body.classList.add('fx-off');\n    });\n  }\n})();\nfunction 创建矩阵雨() {\n  if (document.body && document.body.classList.contains('fx-off')) return;\n  const 矩阵值 = document.getElementById('matrixCodeRain');\n  if (!矩阵值) return;\n  const 赛博字符列表 = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ$%#@!?<>+=ABCDEF';\n  const 调色板 = ['#00f0ff', '#ff2bd6', '#a347ff', '#00ff9d'];\n  const 列数 = Math.floor(window.innerWidth / 20);\n  for (let 索引值 = 0; 索引值 < 列数; 索引值++) {\n    const 列10005 = document.createElement('div');\n    列10005.className = 'matrix-column';\n    列10005.style.left = 索引值 * 20 + 'px';\n    列10005.style.animationDelay = -Math.random() * 15 + 's';\n    列10005.style.animationDuration = Math.random() * 14 + 8 + 's';\n    列10005.style.fontSize = Math.random() * 4 + 12 + 'px';\n    列10005.style.opacity = (Math.random() * 0.7 + 0.3).toFixed(2);\n    let 文本 = '';\n    const 字符数量 = Math.floor(Math.random() * 30 + 18);\n    for (let 次索引值 = 0; 次索引值 < 字符数量; 次索引值++) {\n      const 字符 = 赛博字符列表[Math.floor(Math.random() * 赛博字符列表.length)];\n      const 值强调 = Math.random() > 0.85;\n      const 颜色 = 值强调 ? 调色板[Math.floor(Math.random() * 调色板.length)] : '';\n      文本 += 颜色 ? '<span style="color:' + 颜色 + ';text-shadow:0 0 8px ' + 颜色 + ';">' + 字符 + '</span><br>' : '<span>' + 字符 + '</span><br>';\n    }\n    列10005.innerHTML = 文本;\n    矩阵值.appendChild(列10005);\n  }\n  setInterval(function () {\n    const 列列表 = 矩阵值.querySelectorAll('.matrix-column');\n    列列表.forEach(function (列) {\n      if (Math.random() > 0.94) {\n        const 字符列表 = 列.querySelectorAll('span');\n        if (字符列表.length > 0) {\n          const 目标 = 字符列表[Math.floor(Math.random() * 字符列表.length)];\n          const 本地值10004 = 目标.style.color;\n          目标.style.color = '#ffffff';\n          目标.style.textShadow = '0 0 10px #ffffff, 0 0 18px #00f0ff';\n          setTimeout(function () {\n            目标.style.color = 本地值10004;\n            目标.style.textShadow = '';\n          }, 200);\n        }\n      }\n    });\n  }, 110);\n}\nfunction 是否有效唯一标识(唯一标识) {\n  const 唯一标识正则 = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;\n  return 唯一标识正则.test(唯一标识);\n}\nfunction 添加终端行(内容, 类型 = 'output') {\n  const 终端主体 = document.getElementById('terminalBody');\n  const 行 = document.createElement('div');\n  行.className = 'terminal-line';\n  const 提示符 = document.createElement('span');\n  提示符.className = 'terminal-prompt';\n  提示符.textContent = 'root:~$';\n  const 输出 = document.createElement('span');\n  输出.className = 'terminal-' + 类型;\n  输出.textContent = 内容;\n  行.appendChild(提示符);\n  行.appendChild(输出);\n  终端主体.appendChild(行);\n  终端主体.scrollTop = 终端主体.scrollHeight;\n}\nfunction 处理唯一标识输入() {\n  const 输入10003 = document.getElementById('uuidInput');\n  const 输入值 = 输入10003.value.trim();\n  const 自定义路径 = '${h}';\n  if (输入值) {\n    添加终端行(atob('Y29ubmVjdCA=') + 输入值, 'output');\n    const 本地值 = {\n      zh: {\n        connecting: '正在连接...',\n        invading: '正在入侵...',\n        success: '连接成功！返回结果...',\n        error: '错误: 无效的UUID格式',\n        reenter: '请重新输入有效的UUID'\n      },\n      fa: {\n        connecting: 'در حال اتصال...',\n        invading: 'در حال نفوذ...',\n        success: 'اتصال موفق! در حال بازگشت نتیجه...',\n        error: 'خطا: فرمت UUID نامعتبر',\n        reenter: 'لطفا UUID معتبر را دوباره وارد کنید'\n      }\n    };\n    const 浏览器语言 = navigator.language || navigator.userLanguage || '';\n    const 是否值 = 浏览器语言.includes('fa') || 浏览器语言.includes('fa-IR');\n    const 翻译值 = 本地值[是否值 ? 'fa' : 'zh'];\n    if (自定义路径) {\n      const 清理输入 = 输入值.startsWith('/') ? 输入值 : '/' + 输入值;\n      添加终端行(翻译值.connecting, 'output');\n      setTimeout(() => {\n        添加终端行(翻译值.success, 'success');\n        setTimeout(() => {\n          window.location.href = 清理输入;\n        }, 1000);\n      }, 500);\n    } else {\n      if (是否有效唯一标识(输入值)) {\n        添加终端行(翻译值.invading, 'output');\n        setTimeout(() => {\n          添加终端行(翻译值.success, 'success');\n          setTimeout(() => {\n            window.location.href = '/' + 输入值;\n          }, 1000);\n        }, 500);\n      } else {\n        添加终端行(翻译值.error, 'error');\n        添加终端行(翻译值.reenter, 'output');\n      }\n    }\n    输入10003.value = '';\n  }\n}\nfunction 切换语言(语言) {\n  localStorage.setItem('preferredLanguage', 语言);\n\n  const 过期日期10002 = new Date();\n  过期日期10002.setFullYear(过期日期10002.getFullYear() + 1);\n  document.cookie = 'preferredLanguage=' + 语言 + '; path=/; expires=' + 过期日期10002.toUTCString() + '; SameSite=Lax';\n\n  window.location.reload();\n}\n\nwindow.addEventListener('DOMContentLoaded', function () {\n  function 获取凭据(名称) {\n    const 值 = '; ' + document.cookie;\n    const 部分列表 = 值.split('; ' + 名称 + '=');\n    if (部分列表.length === 2) return 部分列表.pop().split(';').shift();\n    return null;\n  }\n  const 已保存语言 = localStorage.getItem('preferredLanguage') || 获取凭据('preferredLanguage');\n  const 网址参数 = new URLSearchParams(window.location.search);\n  const 网址语言 = 网址参数.get('lang');\n\n  if (网址语言) {\n    const 当前网址 = new URL(window.location.href);\n    当前网址.searchParams.delete('lang');\n    const 新网址 = 当前网址.toString();\n\n    const 过期日期10001 = new Date();\n    过期日期10001.setFullYear(过期日期10001.getFullYear() + 1);\n    document.cookie = 'preferredLanguage=' + 网址语言 + '; path=/; expires=' + 过期日期10001.toUTCString() + '; SameSite=Lax';\n    localStorage.setItem('preferredLanguage', 网址语言);\n\n    window.history.replaceState({}, '', 新网址);\n  } else if (已保存语言) {\n\n    const 过期日期 = new Date();\n    过期日期.setFullYear(过期日期.getFullYear() + 1);\n    document.cookie = 'preferredLanguage=' + 已保存语言 + '; path=/; expires=' + 过期日期.toUTCString() + '; SameSite=Lax';\n  }\n});\ndocument.addEventListener('DOMContentLoaded', function () {\n  try {\n    创建矩阵雨();\n  } catch (事件值10000) {}\n  const 输入 = document.getElementById('uuidInput');\n  if (输入) {\n    输入.focus();\n    输入.addEventListener('keypress', function (事件值) {\n      if (事件值.key === 'Enter') {\n        处理唯一标识输入();\n      }\n    });\n  }\n});\n<\/script>\n    </body>\n    </html>`;return new Response(s,{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}})}if(h&&h.trim()){const e=h.trim().startsWith("/")?h.trim():"/"+h.trim(),t=e.endsWith("/")&&e.length>1?e.slice(0,-1):e,a=K.pathname.endsWith("/")&&K.pathname.length>1?K.pathname.slice(0,-1):K.pathname;if(a===t)return await at(n,o);if(a===t+"/sub")return await Me(n,o,K);if(K.pathname.length>1&&"/"!==K.pathname&&Gn(K.pathname.replace(/\/$/,"").replace("/sub","").substring(1)))return new Response(JSON.stringify({error:"访问被拒绝",message:"当前 Worker 已启用自定义路径模式，UUID 访问已禁用"}),{status:403,headers:{"Content-Type":"application/json"}})}else{if(K.pathname.length>1&&"/"!==K.pathname&&!K.pathname.includes("/sub")){const e=K.pathname.replace(/\/$/,"").substring(1);if(Gn(e))return e===o?await at(n,e):new Response(JSON.stringify({error:"UUID错误 请注意变量名称是u不是uuid"}),{status:403,headers:{"Content-Type":"application/json"}})}if(K.pathname.includes("/sub")){const e=K.pathname.split("/");if(2===e.length&&"sub"===e[1]){const t=e[0].substring(1);if(Gn(t))return t===o?await Me(n,t,K):new Response(JSON.stringify({error:"UUID错误"}),{status:403,headers:{"Content-Type":"application/json"}})}}}if(K.pathname.toLowerCase().includes(`/${P}`))return await Me(n,o)}return new Response(JSON.stringify({error:"Not Found"}),{status:404,headers:{"Content-Type":"application/json"}})}catch(n){return new Response(n.toString(),{status:500})}}};function le(n){return btoa(n.join("\n"))}function pe(n){try{if(n.startsWith(t("dmxlc3M6Ly8="))){const e=new URL(n),o=decodeURIComponent(e.hash.substring(1)),a=e.username,r=e.hostname,i=parseInt(e.port)||443,s=new URLSearchParams(e.search),c="tls"===s.get("security")||"true"===s.get("tls"),l=s.get("type")||"ws",p=s.get("path")||"/?ed=2048",d=s.get("host")||r,u=s.get("sni")||d,f=s.get("alpn")||"",m=s.get("fp")||s.get("client-fingerprint")||"chrome",g=s.get("ech"),h={name:o,type:t("dmxlc3M="),server:r,port:i,uuid:a,tls:c,network:l,"client-fingerprint":m};if(c&&(h.servername=u,f&&(h.alpn=f.split(",").map(n=>n.trim()).filter(Boolean)),h["skip-cert-verify"]=!1),"ws"===l&&(h["ws-opts"]={path:p,headers:{Host:d}}),g){const n=C||"cloudflare-ech.com";h["ech-opts"]={enable:!0,"query-server-name":n}}return h}if(n.startsWith(t("dHJvamFuOi8v"))){const e=new URL(n),o=decodeURIComponent(e.hash.substring(1)),a=e.username,r=e.hostname,i=parseInt(e.port)||443,s=new URLSearchParams(e.search),c=s.get("type")||"ws",l=s.get("path")||"/?ed=2048",p=s.get("host")||r,d=s.get("sni")||p,u=s.get("alpn")||"",f=s.get("ech"),m={name:o,type:t("dHJvamFu"),server:r,port:i,password:a,network:c,sni:d,"skip-cert-verify":!1};if(u&&(m.alpn=u.split(",").map(n=>n.trim()).filter(Boolean)),"ws"===c&&(m["ws-opts"]={path:l,headers:{Host:p}}),f){const n=C||"cloudflare-ech.com";m["ech-opts"]={enable:!0,"query-server-name":n}}return m}}catch(n){return null}return null}function de(n){return null==n?'""':'"'+String(n).replace(/\\/g,"\\\\").replace(/"/g,'\\"')+'"'}function ue(n){if(!n)return n;const e=String(n);return e.startsWith("[")&&e.endsWith("]")?e.slice(1,-1):e}function fe(n,e={}){const{directFirst:t=!1,extraGroups:o=[]}=e,a=n.length?n.map(n=>`      - ${de(n)}`).join("\n"):"      - DIRECT",r=[];t?r.push('      - "🎯 全球直连"','      - "🚀 节点选择"'):r.push('      - "🚀 节点选择"','      - "🎯 全球直连"');for(const n of o)r.push(`      - ${de(n)}`);return r.push(a),r.join("\n")}function me(n,e={}){const{directFirst:t=!1,extraGroups:o=[],compact:a=!1}=e,r=a?",":", ",i=n.length?n.join(r):"DIRECT",s=[];return t?s.push("🎯 全球直连","🚀 节点选择"):s.push("🚀 节点选择","🎯 全球直连"),s.push(...o),n.length&&s.push(i),s.join(r)}function ge(n){try{if(n.startsWith(t("dmxlc3M6Ly8="))){const e=new URL(n),o=new URLSearchParams(e.search);return{proto:t("dmxlc3M="),name:decodeURIComponent(e.hash.substring(1))||e.hostname+":"+e.port,uuid:e.username,server:ue(e.hostname),port:parseInt(e.port)||443,tls:"tls"===o.get("security")||o.get("security")===t("cmVhbGl0eQ=="),network:o.get("type")||"ws",path:o.get("path")||"/?ed=2048",host:ue(o.get("host")||e.hostname),sni:ue(o.get("sni")||o.get("host")||e.hostname),alpn:(o.get("alpn")||"").split(",").map(n=>n.trim()).filter(Boolean),fp:o.get("fp")||"chrome",flow:o.get("flow")||"",encryption:o.get("encryption")||"none",mode:o.get("mode")||"",ech:o.get("ech")||""}}if(n.startsWith(t("dHJvamFuOi8v"))){const e=new URL(n),o=new URLSearchParams(e.search);return{proto:t("dHJvamFu"),name:decodeURIComponent(e.hash.substring(1))||e.hostname+":"+e.port,password:decodeURIComponent(e.username),server:ue(e.hostname),port:parseInt(e.port)||443,tls:!0,network:o.get("type")||"ws",path:o.get("path")||"/?ed=2048",host:ue(o.get("host")||e.hostname),sni:ue(o.get("sni")||o.get("host")||e.hostname),alpn:(o.get("alpn")||"").split(",").map(n=>n.trim()).filter(Boolean),fp:o.get("fp")||"chrome",ech:o.get("ech")||""}}}catch(n){}return null}function he(n){const e=[],o=ue(n.server),a=ue(n.host)||o,r=ue(n.sni)||a;if(e.push(`  - name: ${de(n.name)}`),e.push(`    type: ${n.proto}`),e.push(`    server: ${de(o)}`),e.push(`    port: ${n.port}`),n.proto===t("dmxlc3M=")?(e.push(`    uuid: ${n.uuid}`),e.push("    udp: true"),e.push("    tls: "+(n.tls?"true":"false")),n.flow&&e.push(`    flow: ${de(n.flow)}`),e.push(`    client-fingerprint: ${de(n.fp||"chrome")}`)):n.proto===t("dHJvamFu")&&(e.push(`    password: ${de(n.password)}`),e.push("    udp: true"),e.push(`    client-fingerprint: ${de(n.fp||"chrome")}`)),n.tls&&(e.push(`    servername: ${de(r)}`),n.alpn&&n.alpn.length&&e.push(`    alpn: [${n.alpn.map(n=>de(n)).join(", ")}]`),e.push("    skip-cert-verify: false")),"ws"===n.network||"xhttp"===n.network?(e.push("    network: ws"),e.push("    ws-opts:"),e.push(`      path: ${de(n.path)}`),e.push("      headers:"),e.push(`        Host: ${de(a)}`)):"grpc"===n.network&&(e.push("    network: grpc"),e.push("    grpc-opts:"),e.push(`      grpc-service-name: ${de(n.path)}`)),n.ech){const n=C||"cloudflare-ech.com";e.push("    ech-opts:"),e.push("      enable: true"),e.push(`      query-server-name: ${de(n)}`)}return e.join("\n")}function ye(n,e={}){const o=n.map(ge).filter(n=>n&&(n.proto===t("dmxlc3M=")||n.proto===t("dHJvamFu"))),a=o.map(n=>n.name),r=["mixed-port: 7890","allow-lan: true","mode: rule","log-level: info","ipv6: true","external-controller: 127.0.0.1:9090","unified-delay: true","tcp-concurrent: true","geodata-mode: true","geo-auto-update: true","geo-update-interval: 24","geox-url:",'  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"','  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"','  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"','  asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"',"sniffer:","  enable: true","  force-dns-mapping: true","  parse-pure-ip: true","  sniff:","    HTTP:","      ports: [80, 8080-8880]","      override-destination: true","    TLS:","      ports: [443, 8443]","    QUIC:","      ports: [443, 8443]","dns:","  enable: true","  listen: 0.0.0.0:1053","  ipv6: true","  enhanced-mode: fake-ip","  fake-ip-range: 198.18.0.1/16","  fake-ip-filter:",'    - "*.lan"','    - "+.local"','    - "+.market.xiaomi.com"','    - "+.msftconnecttest.com"','    - "+.msftncsi.com"','    - "localhost.ptlogin2.qq.com"','    - "+.srv.nintendo.net"','    - "+.stun.playstation.net"','    - "+.xboxlive.com"',"  default-nameserver:","    - 223.5.5.5","    - 119.29.29.29","  nameserver:",`    - ${k||"https://223.5.5.5/dns-query"}`,"    - https://119.29.29.29/dns-query","  fallback:","    - https://1.1.1.1/dns-query","    - https://8.8.8.8/dns-query","  fallback-filter:","    geoip: true","    geoip-code: CN","    ipcidr:","      - 240.0.0.0/4",""],i=["proxies:"];for(const n of o)i.push(he(n));const s=a.length?a.map(n=>`      - ${de(n)}`).join("\n"):"      - DIRECT",c=[t("cHJveHktZ3JvdXBzOg=="),'  - name: "🚀 节点选择"',"    type: select","    proxies:",'      - "🎯 全球直连"',s,'  - name: "🌍 国外媒体"',"    type: select","    proxies:",fe(a),'  - name: "📺 哔哩哔哩"',"    type: select","    proxies:",fe(a,{directFirst:!0}),'  - name: "📹 油管视频"',"    type: select","    proxies:",fe(a,{extraGroups:["🌍 国外媒体"]}),'  - name: "🎬 奈飞视频"',"    type: select","    proxies:",fe(a,{extraGroups:["🌍 国外媒体"]}),'  - name: "📲 电报信息"',"    type: select","    proxies:",fe(a),'  - name: "🌐 谷歌服务"',"    type: select","    proxies:",fe(a),'  - name: "🤖 OpenAI"',"    type: select","    proxies:",fe(a),'  - name: "Ⓜ️ 微软服务"',"    type: select","    proxies:",fe(a,{directFirst:!0}),'  - name: "🍎 苹果服务"',"    type: select","    proxies:",fe(a,{directFirst:!0}),'  - name: "🎯 全球直连"',"    type: select","    proxies:","      - DIRECT",'  - name: "🛑 全球拦截"',"    type: select","    proxies:","      - REJECT","      - DIRECT",'  - name: "🍃 应用净化"',"    type: select","    proxies:","      - REJECT","      - DIRECT",'  - name: "🐟 漏网之鱼"',"    type: select","    proxies:",fe(a),""],l=t("aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0xveWFsc29sZGllci9jbGFzaC1ydWxlc0ByZWxlYXNl"),p=(n,e)=>[`  ${n}:`,"    type: http",`    behavior: ${e}`,`    url: "${l}/${n}.txt"`,`    path: ./rulesets/loyalsoldier/${n}.txt`,"    interval: 86400"].join("\n"),d=["rule-providers:",p("reject","domain"),p("icloud","domain"),p("apple","domain"),p("google","domain"),p(t("cHJveHk="),"domain"),p("direct","domain"),p("private","domain"),p("gfw","domain"),p("greatfire","domain"),p("tld-not-cn","domain"),p("telegramcidr","ipcidr"),p("cncidr","ipcidr"),p("lancidr","ipcidr"),p("applications","classical"),""];return[r.join("\n"),i.join("\n"),"",c.join("\n"),d.join("\n"),["rules:","  - DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连","  - DOMAIN-SUFFIX,local,🎯 全球直连","Information","  - DOMAIN,yacd.haishan.me,🎯 全球直连","  - DOMAIN,yacd.metacubex.one,🎯 全球直连","  - DOMAIN,d.metacubex.one,🎯 全球直连","  - DOMAIN-SUFFIX,googleapis.cn,🌐 谷歌服务","  - DOMAIN-SUFFIX,gstatic.com,🌐 谷歌服务","  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🌐 谷歌服务","  - DOMAIN-SUFFIX,googlevideo.com,📹 油管视频","  - DOMAIN-SUFFIX,googleusercontent.com,🌐 谷歌服务","  - DOMAIN-KEYWORD,youtube,📹 油管视频","  - DOMAIN-SUFFIX,youtube.com,📹 油管视频","  - DOMAIN-SUFFIX,youtu.be,📹 油管视频","  - DOMAIN-KEYWORD,netflix,🎬 奈飞视频","  - DOMAIN-SUFFIX,nflxext.com,🎬 奈飞视频","  - DOMAIN-SUFFIX,nflxso.net,🎬 奈飞视频","  - DOMAIN-SUFFIX,nflxvideo.net,🎬 奈飞视频","  - DOMAIN-SUFFIX,nflximg.com,🎬 奈飞视频","  - DOMAIN-SUFFIX,nflximg.net,🎬 奈飞视频","  - DOMAIN-SUFFIX,netflix.com,🎬 奈飞视频","  - DOMAIN-SUFFIX,netflix.net,🎬 奈飞视频","  - DOMAIN-SUFFIX,bilibili.com,📺 哔哩哔哩","  - DOMAIN-SUFFIX,bilivideo.com,📺 哔哩哔哩","  - DOMAIN-SUFFIX,hdslb.com,📺 哔哩哔哩","  - DOMAIN-KEYWORD,openai,🤖 OpenAI","  - DOMAIN-KEYWORD,chatgpt,🤖 OpenAI","  - DOMAIN-SUFFIX,openai.com,🤖 OpenAI","  - DOMAIN-SUFFIX,chatgpt.com,🤖 OpenAI","  - DOMAIN-SUFFIX,oaistatic.com,🤖 OpenAI","  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 OpenAI","  - DOMAIN-SUFFIX,anthropic.com,🤖 OpenAI","  - DOMAIN-SUFFIX,claude.ai,🤖 OpenAI","  - DOMAIN-SUFFIX,perplexity.ai,🤖 OpenAI","  - DOMAIN-SUFFIX,gemini.google.com,🤖 OpenAI","  - RULE-SET,applications,🎯 全球直连","  - RULE-SET,private,🎯 全球直连","  - RULE-SET,reject,🛑 全球拦截","  - RULE-SET,icloud,🍎 苹果服务","  - RULE-SET,apple,🍎 苹果服务","  - RULE-SET,google,🌐 谷歌服务","Information","  - RULE-SET,gfw,🚀 节点选择","  - RULE-SET,greatfire,🚀 节点选择","  - RULE-SET,tld-not-cn,🚀 节点选择","  - RULE-SET,direct,🎯 全球直连","  - RULE-SET,lancidr,🎯 全球直连,no-resolve","  - RULE-SET,cncidr,🎯 全球直连,no-resolve","  - RULE-SET,telegramcidr,📲 电报信息,no-resolve","  - GEOIP,LAN,🎯 全球直连,no-resolve","  - GEOIP,CN,🎯 全球直连,no-resolve","  - MATCH,🐟 漏网之鱼"].join("\n"),""].join("\n")}function be(n){const e=n.map(ge).filter(n=>n&&(n.proto===t("dmxlc3M=")||n.proto===t("dHJvamFu"))),o=k||"https://223.5.5.5/dns-query",a=e.map(n=>n.name),r=n=>({tag:`geosite-${n}`,type:"remote",format:"binary",url:`https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite/${n}.srs`,download_detour:"direct"}),i=n=>({tag:`geoip-${n}`,type:"remote",format:"binary",url:`https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip/${n}.srs`,download_detour:"direct"}),s={log:{level:"info",timestamp:!0},dns:{servers:[{tag:"remote",address:o,detour:"select"},{tag:"local",address:"223.5.5.5",detour:"direct"},{tag:"fakeip",address:"fakeip"},{tag:"block",address:"rcode://success"}],rules:[{outbound:"any",server:"local"},{rule_set:"geosite-category-ads-all",server:"block"},{rule_set:"geosite-cn",server:"local"},{query_type:["A","AAAA"],server:"fakeip"}],fakeip:{enabled:!0,inet4_range:"198.18.0.0/15",inet6_range:"fc00::/18"},independent_cache:!0,strategy:"ipv4_only"},inbounds:[{type:"mixed",tag:"mixed-in",listen:"127.0.0.1",listen_port:2080,sniff:!0,sniff_override_destination:!0},{type:"tun",tag:"tun-in",interface_name:t("c2luZy1ib3g="),address:["172.19.0.1/30","fdfe:dcba:9876::1/126"],mtu:9e3,auto_route:!0,strict_route:!0,stack:"mixed",sniff:!0,sniff_override_destination:!0}],outbounds:[{type:"selector",tag:"select",outbounds:["direct",...a],default:a[0]||"direct"},{type:"selector",tag:"🌍 国外媒体",outbounds:["select","direct",...a]},{type:"selector",tag:"📲 电报信息",outbounds:["select","direct",...a]},{type:"selector",tag:"🌐 谷歌服务",outbounds:["select","direct",...a]},{type:"selector",tag:"🤖 OpenAI",outbounds:["select","direct",...a]},{type:"selector",tag:"Ⓜ️ 微软服务",outbounds:["direct","select",...a]},{type:"selector",tag:"🍎 苹果服务",outbounds:["direct","select",...a]},{type:"selector",tag:"📺 哔哩哔哩",outbounds:["direct","select",...a]},{type:"selector",tag:"📹 油管视频",outbounds:["select","🌍 国外媒体","direct",...a]},{type:"selector",tag:"🎬 奈飞视频",outbounds:["select","🌍 国外媒体","direct",...a]},{type:"selector",tag:"🎯 全球直连",outbounds:["direct"]},{type:"selector",tag:"🐟 漏网之鱼",outbounds:["select","direct",...a]},...e.map(function(n){const e={type:n.proto,tag:n.name,server:ue(n.server),server_port:n.port};return n.proto===t("dmxlc3M=")?(e.uuid=n.uuid,n.flow&&(e.flow=n.flow)):e.password=n.password,n.tls&&(e.tls={enabled:!0,server_name:n.sni,insecure:!1,utls:{enabled:!0,fingerprint:n.fp||"chrome"}},n.alpn&&n.alpn.length&&(e.tls.alpn=n.alpn),n.ech&&(e.tls.ech={enabled:!0,pq_signature_schemes_enabled:!1,dynamic_record_sizing_disabled:!1})),"ws"===n.network||"xhttp"===n.network?e.transport={type:"ws",path:n.path,headers:{Host:n.host},max_early_data:2048,early_data_header_name:"Sec-WebSocket-Protocol"}:"grpc"===n.network&&(e.transport={type:"grpc",service_name:n.path}),e}),{type:"direct",tag:"direct"},{type:"block",tag:"block"},{type:"dns",tag:"dns-out"}],route:{rule_set:[r("cn"),r("private"),r("apple"),r("apple-cn"),r("microsoft"),r("microsoft@cn"),r("google"),r("telegram"),r("openai"),r("anthropic"),r("youtube"),r("netflix"),r("disney"),r("spotify"),r("tiktok"),r("twitter"),r("facebook"),r("github"),r("geolocation-!cn"),r("category-ads-all"),i("cn"),i("private"),i("telegram")],rules:[{protocol:"dns",outbound:"dns-out"},{ip_is_private:!0,outbound:"direct"},{rule_set:"geosite-category-ads-all",outbound:"block"},{rule_set:"geosite-private",outbound:"direct"},{rule_set:"geosite-apple-cn",outbound:"direct"},{rule_set:"geosite-microsoft@cn",outbound:"direct"},{rule_set:"geosite-apple",outbound:"🍎 苹果服务"},{rule_set:"geosite-microsoft",outbound:"Ⓜ️ 微软服务"},{rule_set:"geosite-openai",outbound:"🤖 OpenAI"},{rule_set:"geosite-anthropic",outbound:"🤖 OpenAI"},{rule_set:"geosite-telegram",outbound:"📲 电报信息"},{rule_set:"geoip-telegram",outbound:"📲 电报信息"},{rule_set:"geosite-google",outbound:"🌐 谷歌服务"},{rule_set:"geosite-youtube",outbound:"🌍 国外媒体"},{rule_set:"geosite-netflix",outbound:"🌍 国外媒体"},{rule_set:"geosite-disney",outbound:"🌍 国外媒体"},{rule_set:"geosite-spotify",outbound:"🌍 国外媒体"},{rule_set:"geosite-tiktok",outbound:"🌍 国外媒体"},{rule_set:"geosite-twitter",outbound:"🌍 国外媒体"},{rule_set:"geosite-facebook",outbound:"🌍 国外媒体"},{rule_set:"geosite-github",outbound:"select"},{rule_set:"geosite-geolocation-!cn",outbound:"select"},{rule_set:"geosite-cn",outbound:"direct"},{rule_set:"geoip-cn",outbound:"direct"},{ip_is_private:!0,outbound:"direct"}],final:"🐟 漏网之鱼",auto_detect_interface:!0},experimental:{cache_file:{enabled:!0,store_fakeip:!0},clash_api:{external_controller:"127.0.0.1:9090"}}};return JSON.stringify(s,null,2)}const xe=t("aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0FDTDRTU1IvQUNMNFNTUkBtYXN0ZXIvQ2xhc2g="),ve=n=>`${xe}/${n}.list`;function we(n){const e=n.map(ge).filter(n=>n&&n.proto===t("dHJvamFu")),o=k||"223.5.5.5",a=e.map(n=>n.name),r=["[General]","loglevel = notify","internet-test-url = http://www.apple.com/library/test/success.html",t("cHJveHktdGVzdC11cmwgPSBodHRwOi8vd3d3LmdzdGF0aWMuY29tL2dlbmVyYXRlXzIwNA=="),"test-timeout = 3",`dns-server = ${o.replace(/^https?:\/\//,"").replace(/\/.*$/,"")}, 119.29.29.29, system`,"encrypted-dns-server = https://223.5.5.5/dns-query, https://1.12.12.12/dns-query","ipv6 = true","allow-wifi-access = false","wifi-access-http-port = 6152",t("d2lmaS1hY2Nlc3Mtc29ja3M1LXBvcnQgPSA2MTUz"),t("c2tpcC1wcm94eSA9IDEyNy4wLjAuMSwgMTkyLjE2OC4wLjAvMTYsIDEwLjAuMC4wLzgsIDE3Mi4xNi4wLjAvMTIsIGxvY2FsaG9zdCwgKi5sb2NhbCwgY2FwdGl2ZS5hcHBsZS5jb20="),"exclude-simple-hostnames = true","show-error-page-for-reject = true","",t("W1Byb3h5XQ==")];for(const n of e){const e=n.sni;r.push(`${n.name} = ${t("dHJvamFu")}, ${n.server}, ${n.port}, password=${n.password}, sni=${e}, ws=true, ws-path=${n.path}, ws-headers=Host:${n.host}, skip-cert-verify=false, tfo=true`)}e.length||r.push("Direct = direct"),r.push(""),r.push(t("W1Byb3h5IEdyb3VwXQ=="));const i=a.length?a.join(", "):"DIRECT";return r.push(`🚀 节点选择 = select, 🎯 全球直连, ${i}`),r.push(`🌍 国外媒体 = select, ${me(a)}`),r.push(`📺 哔哩哔哩 = select, ${me(a,{directFirst:!0})}`),r.push(`📹 油管视频 = select, ${me(a,{extraGroups:["🌍 国外媒体"]})}`),r.push(`🎬 奈飞视频 = select, ${me(a,{extraGroups:["🌍 国外媒体"]})}`),r.push(`📲 电报信息 = select, ${me(a)}`),r.push(`🌐 谷歌服务 = select, ${me(a)}`),r.push(`🤖 OpenAI = select, ${me(a)}`),r.push(`Ⓜ️ 微软服务 = select, ${me(a,{directFirst:!0})}`),r.push(`🍎 苹果服务 = select, ${me(a,{directFirst:!0})}`),r.push("🎯 全球直连 = select, DIRECT"),r.push("🛑 全球拦截 = select, REJECT, DIRECT"),r.push(`🐟 漏网之鱼 = select, ${me(a)}`),r.push(""),r.push("[Rule]"),r.push(`RULE-SET,${ve("LocalAreaNetwork")},🎯 全球直连`),r.push(`RULE-SET,${ve("UnBan")},🎯 全球直连`),r.push(`RULE-SET,${ve("BanAD")},🛑 全球拦截`),r.push(`RULE-SET,${ve("BanProgramAD")},🛑 全球拦截`),r.push(`RULE-SET,${ve("GoogleFCM")},🌐 谷歌服务`),r.push(`RULE-SET,${ve("GoogleCN")},🎯 全球直连`),r.push(`RULE-SET,${ve("SteamCN")},🎯 全球直连`),r.push(`RULE-SET,${ve("Microsoft")},Ⓜ️ 微软服务`),r.push(`RULE-SET,${ve("Apple")},🍎 苹果服务`),r.push(`RULE-SET,${ve("Telegram")},📲 电报信息`),r.push(`RULE-SET,${ve("OpenAi")},🤖 OpenAI`),r.push(`RULE-SET,${ve("Claude")},🤖 OpenAI`),r.push(`RULE-SET,${ve("Copilot")},🤖 OpenAI`),r.push(`RULE-SET,${ve("Netflix")},🌍 国外媒体`),r.push(`RULE-SET,${ve("YouTube")},🌍 国外媒体`),r.push(`RULE-SET,${ve("Disney")},🌍 国外媒体`),r.push(`RULE-SET,${ve("Spotify")},🌍 国外媒体`),r.push(`RULE-SET,${ve("TikTok")},🌍 国外媒体`),r.push(`RULE-SET,${ve("BiliBili")},📺 哔哩哔哩`),r.push(`RULE-SET,${ve(t("UHJveHlNZWRpYQ=="))},🌍 国外媒体`),r.push(`RULE-SET,${ve(t("UHJveHlHRldsaXN0"))},🚀 节点选择`),r.push(`RULE-SET,${ve("ChinaDomain")},🎯 全球直连`),r.push(`RULE-SET,${ve("ChinaCompanyIp")},🎯 全球直连`),r.push(`RULE-SET,${ve("ChinaIp")},🎯 全球直连`),r.push("GEOIP,CN,🎯 全球直连"),r.push("FINAL,🐟 漏网之鱼,dns-failed"),r.join("\n")}function ke(n){const e=n.map(ge).filter(n=>n&&(n.proto===t("dmxlc3M=")||n.proto===t("dHJvamFu"))),o=e.map(n=>n.name),a=["[General]","ip-mode = dual",`dns-server = ${(k||"223.5.5.5").replace(/^https?:\/\//,"").replace(/\/.*$/,"")},119.29.29.29,system`,"doh-server = https://223.5.5.5/dns-query, https://1.12.12.12/dns-query",t("YWxsb3ctdWRwLXByb3h5ID0gdHJ1ZQ=="),"allow-wifi-access = false","sni-sniffing = true",t("c2tpcC1wcm94eSA9IDEyNy4wLjAuMSwxOTIuMTY4LjAuMC8xNiwxMC4wLjAuMC84LDE3Mi4xNi4wLjAvMTIsbG9jYWxob3N0LCoubG9jYWwsY2FwdGl2ZS5hcHBsZS5jb20="),"bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32","",t("W1Byb3h5XQ==")];for(const n of e)if(n.proto===t("dmxlc3M=")){const e=[`${n.server}`,`${n.port}`,"udp=true",`username=${n.uuid}`,"transport=ws",`path=${n.path}`,`host=${n.host}`,"over-tls="+(n.tls?"true":"false")];n.tls&&(e.push(`tls-name=${n.sni}`),n.alpn&&n.alpn.length&&e.push(`alpn=${n.alpn.join(":")}`),e.push("skip-cert-verify=false")),a.push(`${n.name} = ${t("dmxlc3M=")},${e.join(",")}`)}else{const e=[`${n.server}`,`${n.port}`,`password=${n.password}`,"transport=ws",`path=${n.path}`,`host=${n.host}`,"over-tls=true",`tls-name=${n.sni}`];n.alpn&&n.alpn.length&&e.push(`alpn=${n.alpn.join(":")}`),e.push("skip-cert-verify=false"),a.push(`${n.name} = ${t("dHJvamFu")},${e.join(",")}`)}a.push(""),a.push(t("W1Byb3h5IEdyb3VwXQ=="));const r=o.length?o.join(","):"DIRECT";return a.push(`🚀 节点选择 = select,🎯 全球直连,${r}`),a.push(`🌍 国外媒体 = select,${me(o,{compact:!0})}`),a.push(`📺 哔哩哔哩 = select,${me(o,{directFirst:!0,compact:!0})}`),a.push(`📹 油管视频 = select,${me(o,{extraGroups:["🌍 国外媒体"],compact:!0})}`),a.push(`🎬 奈飞视频 = select,${me(o,{extraGroups:["🌍 国外媒体"],compact:!0})}`),a.push(`📲 电报信息 = select,${me(o,{compact:!0})}`),a.push(`🌐 谷歌服务 = select,${me(o,{compact:!0})}`),a.push(`🤖 OpenAI = select,${me(o,{compact:!0})}`),a.push(`Ⓜ️ 微软服务 = select,${me(o,{directFirst:!0,compact:!0})}`),a.push(`🍎 苹果服务 = select,${me(o,{directFirst:!0,compact:!0})}`),a.push("🎯 全球直连 = select,DIRECT"),a.push("🛑 全球拦截 = select,REJECT,DIRECT"),a.push(`🐟 漏网之鱼 = select,${me(o,{compact:!0})}`),a.push(""),a.push("[Remote Rule]"),a.push(`${ve("LocalAreaNetwork")}, policy=🎯 全球直连, tag=局域网, enabled=true`),a.push(`${ve("BanAD")}, policy=🛑 全球拦截, tag=广告拦截, enabled=true`),a.push(`${ve("BanProgramAD")}, policy=🛑 全球拦截, tag=应用广告, enabled=true`),a.push(`${ve("GoogleCN")}, policy=🎯 全球直连, tag=GoogleCN, enabled=true`),a.push(`${ve("SteamCN")}, policy=🎯 全球直连, tag=SteamCN, enabled=true`),a.push(`${ve("Microsoft")}, policy=Ⓜ️ 微软服务, tag=微软, enabled=true`),a.push(`${ve("Apple")}, policy=🍎 苹果服务, tag=苹果, enabled=true`),a.push(`${ve("Telegram")}, policy=📲 电报信息, tag=电报, enabled=true`),a.push(`${ve("OpenAi")}, policy=🤖 OpenAI, tag=OpenAI, enabled=true`),a.push(`${ve("Netflix")}, policy=🌍 国外媒体, tag=Netflix, enabled=true`),a.push(`${ve("YouTube")}, policy=🌍 国外媒体, tag=YouTube, enabled=true`),a.push(`${ve("Disney")}, policy=🌍 国外媒体, tag=Disney, enabled=true`),a.push(`${ve("Spotify")}, policy=🌍 国外媒体, tag=Spotify, enabled=true`),a.push(`${ve("TikTok")}, policy=🌍 国外媒体, tag=TikTok, enabled=true`),a.push(`${ve("BiliBili")}, policy=📺 哔哩哔哩, tag=哔哩哔哩, enabled=true`),a.push(`${ve(t("UHJveHlNZWRpYQ=="))}, policy=🌍 国外媒体, tag=Information, enabled=true`),a.push(`${ve(t("UHJveHlHRldsaXN0"))}, policy=🚀 节点选择, tag=Information, enabled=true`),a.push(`${ve("ChinaDomain")}, policy=🎯 全球直连, tag=中国域名, enabled=true`),a.push(`${ve("ChinaIp")}, policy=🎯 全球直连, tag=中国IP, enabled=true`),a.push(""),a.push("[Rule]"),a.push("GEOIP,CN,🎯 全球直连"),a.push("FINAL,🐟 漏网之鱼"),a.join("\n")}function Ce(n){const e=n.map(ge).filter(n=>n&&(n.proto===t("dmxlc3M=")||n.proto===t("dHJvamFu"))),o=e.map(n=>n.name),a=t("aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL2JsYWNrbWF0cml4Ny9pb3NfcnVsZV9zY3JpcHRAbWFzdGVyL3J1bGUvUXVhbnR1bXVsdFg="),r=["[general]","network_check_url=http://www.gstatic.com/generate_204","server_check_url=http://www.gstatic.com/generate_204","profile_img_url=https://fastly.jsdelivr.net/gh/byJoey/cfnew@main/snippets/logo.png","dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icloud.com, *.icloud.com.cn, *.apple.com, *.weibo.com, *.qq.com","running_mode_trigger=filter","","[dns]",`server=${(k||"223.5.5.5").replace(/^https?:\/\//,"").replace(/\/.*$/,"")}`,"server=119.29.29.29","server=https://223.5.5.5/dns-query","server=https://1.12.12.12/dns-query","","[server_local]"];for(const n of e)if(n.proto===t("dmxlc3M=")){const e=[`${n.server}:${n.port}`,"method=none",`password=${n.uuid}`,"obfs="+(n.tls?"wss":"ws"),`obfs-host=${n.host}`,`obfs-uri=${n.path}`];n.tls&&e.push("tls-verification=true","tls13=true"),e.push(`tag=${n.name}`),r.push(`${t("dmxlc3M=")}=${e.join(", ")}`)}else{const e=[`${n.server}:${n.port}`,`password=${n.password}`,"over-tls=true",`tls-host=${n.sni}`,"obfs=wss",`obfs-host=${n.host}`,`obfs-uri=${n.path}`,"tls-verification=true",`tag=${n.name}`];r.push(`${t("dHJvamFu")}=${e.join(", ")}`)}r.push(""),r.push("[policy]");const i=o.length?o.join(", "):"direct";return r.push(`static=🚀 节点选择, ${i}, direct, img-url=${t("aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0tvb2xzb24vUXVyZUBtYXN0ZXIvSWNvblNldC9Db2xvci9Qcm94eS5wbmc=")}`),r.push(`static=🌍 国外媒体, ${me(o)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png`),r.push(`static=📺 哔哩哔哩, ${me(o,{directFirst:!0})}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png`),r.push(`static=📹 油管视频, ${me(o,{extraGroups:["🌍 国外媒体"]})}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png`),r.push(`static=🎬 奈飞视频, ${me(o,{extraGroups:["🌍 国外媒体"]})}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png`),r.push(`static=📲 电报信息, ${me(o)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png`),r.push(`static=🌐 谷歌服务, ${me(o)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google.png`),r.push(`static=🤖 OpenAI, ${me(o)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ChatGPT.png`),r.push(`static=Ⓜ️ 微软服务, ${me(o,{directFirst:!0})}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png`),r.push(`static=🍎 苹果服务, ${me(o,{directFirst:!0})}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png`),r.push("static=🎯 全球直连, direct, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png"),r.push("static=🛑 全球拦截, reject, direct, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Advertising.png"),r.push(`static=🐟 漏网之鱼, ${me(o)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png`),r.push(""),r.push("[filter_remote]"),r.push(`${a}/Lan/Lan.list, tag=局域网, force-policy=🎯 全球直连, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Advertising/Advertising.list, tag=广告拦截, force-policy=🛑 全球拦截, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Microsoft/Microsoft.list, tag=微软, force-policy=Ⓜ️ 微软服务, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Apple/Apple.list, tag=苹果, force-policy=🍎 苹果服务, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Telegram/Telegram.list, tag=电报, force-policy=📲 电报信息, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Google/Google.list, tag=谷歌, force-policy=🌐 谷歌服务, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/OpenAI/OpenAI.list, tag=OpenAI, force-policy=🤖 OpenAI, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Claude/Claude.list, tag=Claude, force-policy=🤖 OpenAI, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/YouTube/YouTube.list, tag=YouTube, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Netflix/Netflix.list, tag=Netflix, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Disney/Disney.list, tag=Disney, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Spotify/Spotify.list, tag=Spotify, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/TikTok/TikTok.list, tag=TikTok, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/BiliBili/BiliBili.list, tag=哔哩哔哩, force-policy=📺 哔哩哔哩, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/Global/Global.list, tag=全球加速, force-policy=🚀 节点选择, update-interval=86400, opt-parser=false, enabled=true`),r.push(`${a}/ChinaMax/ChinaMax.list, tag=中国直连, force-policy=🎯 全球直连, update-interval=86400, opt-parser=false, enabled=true`),r.push(""),r.push("[filter_local]"),r.push("geoip, cn, 🎯 全球直连"),r.push("final, 🐟 漏网之鱼"),r.join("\n")}async function Ie(n){return ye(n)}function Se(n){return we(n)}function Ee(n){return ke(n)}function $e(n){return Ce(n)}function Le(n){return be(n)}function Te(n){return btoa(n.join("\n"))}function Re(n){return btoa(n.join("\n"))}let Ue="";async function Ne(n){if(!w)return Ue="ECH功能已禁用",null;Ue="";const e=[];try{e.push("尝试使用 Google DNS 查询 cloudflare-ech.com...");const t="https://v.recipes/dns/dns.google/dns-query?name=cloudflare-ech.com&type=65",o=await fetch(t,{headers:{Accept:"application/json"}});if(e.push(`Google DNS 响应状态: ${o.status}`),o.ok){const n=await o.json();if(e.push(`Google DNS 返回数据: ${JSON.stringify(n).substring(0,200)}...`),n.Answer&&n.Answer.length>0){e.push(`找到 ${n.Answer.length} 条答案记录`);for(const t of n.Answer)if(t.data){e.push(`解析答案数据: ${typeof t.data}, 长度: ${String(t.data).length}`);const n="string"==typeof t.data?t.data:JSON.stringify(t.data),o=n.match(/ech=([^\s"']+)/);if(o&&o[1])return Ue=e.join("\\n")+"\\n✅ 成功从 Google DNS 获取 ECH 配置",o[1];if(t.data&&!n.includes("ech="))try{const n=atob(t.data);e.push(`尝试 base64 解码，解码后长度: ${n.length}`);const o=n.match(/ech=([^\s"']+)/);if(o&&o[1])return Ue=e.join("\\n")+"\\n✅ 成功从 Google DNS (base64解码) 获取 ECH 配置",o[1]}catch(n){e.push(`base64 解码失败: ${n.message}`)}}}else e.push("Google DNS 未返回答案记录")}else e.push(`Google DNS 请求失败: ${o.status}`);e.push(`尝试使用 Google DNS 查询目标域名 ${n}...`);const a=`https://v.recipes/dns/dns.google/dns-query?name=${encodeURIComponent(n)}&type=65`,r=await fetch(a,{headers:{Accept:"application/json"}});if(e.push(`Google DNS (目标域名) 响应状态: ${r.status}`),r.ok){const n=await r.json();if(e.push(`Google DNS (目标域名) 返回数据: ${JSON.stringify(n).substring(0,200)}...`),n.Answer&&n.Answer.length>0){e.push(`找到 ${n.Answer.length} 条答案记录`);for(const t of n.Answer)if(t.data){const n=("string"==typeof t.data?t.data:JSON.stringify(t.data)).match(/ech=([^\s"']+)/);if(n&&n[1])return Ue=e.join("\\n")+"\\n✅ 成功从 Google DNS (目标域名) 获取 ECH 配置",n[1];try{const n=atob(t.data).match(/ech=([^\s"']+)/);if(n&&n[1])return Ue=e.join("\\n")+"\\n✅ 成功从 Google DNS (目标域名, base64解码) 获取 ECH 配置",n[1]}catch(n){e.push(`base64 解码失败: ${n.message}`)}}}else e.push("Google DNS (目标域名) 未返回答案记录")}else e.push(`Google DNS (目标域名) 请求失败: ${r.status}`);e.push("尝试使用 Cloudflare DNS 作为备选...");const i="https://cloudflare-dns.com/dns-query?name=cloudflare-ech.com&type=65",s=await fetch(i,{headers:{Accept:"application/dns-json"}});if(e.push(`Cloudflare DNS 响应状态: ${s.status}`),s.ok){const n=await s.json();if(e.push(`Cloudflare DNS 返回数据: ${JSON.stringify(n).substring(0,200)}...`),n.Answer&&n.Answer.length>0){e.push(`找到 ${n.Answer.length} 条答案记录`);for(const t of n.Answer)if(t.data){const n=t.data.match(/ech=([^\s"']+)/);if(n&&n[1])return Ue=e.join("\\n")+"\\n✅ 成功从 Cloudflare DNS 获取 ECH 配置",n[1]}}else e.push("Cloudflare DNS 未返回答案记录")}else e.push(`Cloudflare DNS 请求失败: ${s.status}`);return Ue=e.join("\\n")+"\\n❌ 所有DNS查询均失败，未获取到ECH配置",null}catch(n){return Ue=e.join("\\n")+"\\n❌ 获取ECH配置时发生错误: "+n.message,null}}async function Me(n,e,o=null){o||(o=new URL(n.url));const r=[],c=o.hostname,l=o.searchParams.get("target")||"base64",p=Kn(!1);let u=null;async function m(n){y&&r.push(...Ae(n,e,c,u,!1,p)),b&&r.push(...await Pe(n,e,c,u,!1,p)),x&&r.push(...zt(n,e,c,u,!1,p))}if(w&&(u=`${C||"cloudflare-ech.com"}+${k||"https://223.5.5.5/dns-query"}`),R)if("CUSTOM"===f){const n=[{ip:c,isp:"原生地址"}];await m(n)}else try{const n=[{ip:c,isp:"原生地址"}];await m(n)}catch(n){f||(f="CF");const e=await ae(f);if(e){a=e.domain+":"+e.port;const n=[{ip:e.domain,isp:t("UHJveHlJUC0=")+f}];await m(n)}else{const n=[{ip:c,isp:"原生地址"}];await m(n)}}const h=i.length>0||s.length>0;if(d);else if(h){if(i.length>0&&L&&await m(i),s.length>0&&$){const n=s.map(n=>({ip:n.domain,isp:n.name||n.domain}));await m(n)}}else{if($){const n=_.map(n=>({ip:n.domain,isp:n.name||n.domain}));await m(n)}if(L&&!g)try{const n=await He();n.length>0&&await m(n)}catch(n){f||(f="CF");const e=await ae(f);if(e){a=e.domain+":"+e.port;const n=[{ip:e.domain,isp:t("UHJveHlJUC0=")+f}];await m(n)}}if(T)try{const n=await Ft();n.length>0&&(y&&r.push(...Bt(n,e,c,u,!1,p)),b&&r.push(...await jt(n,e,c,u,!1,p)),x&&r.push(...zt(n,e,c,u,!1,p)))}catch(n){f||(f="CF");const e=await ae(f);if(e){a=e.domain+":"+e.port;const n=[{ip:e.domain,isp:t("UHJveHlJUC0=")+f}];await m(n)}}}if(0===r.length){const n="所有节点获取失败",e=`${atob("dmxlc3M=")}://00000000-0000-0000-0000-000000000000@127.0.0.1:80?encryption=none&security=none&type=ws&host=error.com&path=%2F#${encodeURIComponent(n)}`;r.push(e)}let v,I="text/plain; charset=utf-8";switch(l.toLowerCase()){case atob("Y2xhc2g="):case atob("Y2xhc2hy"):case t("c3Rhc2g="):case"meta":case t("Y2xhc2htZXRh"):v=ye(r),I="text/yaml; charset=utf-8";break;case atob("c3VyZ2U="):case atob("c3VyZ2Uy"):case atob("c3VyZ2Uz"):case atob("c3VyZ2U0"):v=we(r),I="text/plain; charset=utf-8";break;case atob("cXVhbnR1bXVsdA=="):case atob("cXVhbng="):case t("cXVhbng="):v=Ce(r),I="text/plain; charset=utf-8";break;case atob("c3M="):case atob("c3Ny"):case atob("djJyYXk="):v=btoa(r.join("\n"));break;case atob("bG9vbg=="):v=ke(r),I="text/plain; charset=utf-8";break;case atob("c2luZ2JveA=="):case t("c2luZy1ib3g="):case t("c2luZ2JveA=="):v=be(r),I="application/json; charset=utf-8";break;default:v=btoa(r.join("\n"))}const S={"Content-Type":I,"Cache-Control":"no-store, no-cache, must-revalidate, max-age=0"};return w&&(S["X-ECH-Status"]="ENABLED",u&&(S["X-ECH-Config-Length"]=String(u.length))),new Response(v,{headers:S})}function Ae(n,e,t,o=null,a=!1,r=null){const i=[80,8080,8880,2052,2082,2086,2095],s=[443,2053,2083,2087,2096,8443],c=[443],l=p?[]:[80],d=[],u="/?ed=2048",f=atob("dmxlc3M="),m=r||Kn(a);for(const o of n){const n=o.ip.includes(":")?`[${o.ip}]`:o.ip;let a=[];if(o.port){const n=o.port;s.includes(n)?a.push({port:n,tls:!0}):i.includes(n)?p||a.push({port:n,tls:!1}):a.push({port:n,tls:!0})}else c.forEach(n=>{a.push({port:n,tls:!0})}),l.forEach(n=>{a.push({port:n,tls:!1})});for(const{port:r,tls:i}of a){const a=m(o);if(i){const o=new URLSearchParams({encryption:"none",security:"tls",sni:t,fp:w?"chrome":"randomized",type:"ws",host:t,path:u});if(Zn(o),w){const n=k||"https://223.5.5.5/dns-query",e=C||"cloudflare-ech.com";o.set("ech",`${e}+${n}`)}d.push(`${f}://${e}@${n}:${r}?${o.toString()}#${encodeURIComponent(a)}`)}else{const o=new URLSearchParams({encryption:"none",security:"none",type:"ws",host:t,path:u});d.push(`${f}://${e}@${n}:${r}?${o.toString()}#${encodeURIComponent(a)}`)}}}return d}async function Pe(n,e,t,o=null,a=!1,r=null){const i=[80,8080,8880,2052,2082,2086,2095],s=[443,2053,2083,2087,2096,8443],c=[443],l=p?[]:[80],d=[],u="/?ed=2048",f=v||e,m=r||Kn(a);for(const e of n){const n=e.ip.includes(":")?`[${e.ip}]`:e.ip;let o=[];if(e.port){const n=e.port;s.includes(n)?o.push({port:n,tls:!0}):i.includes(n)?p||o.push({port:n,tls:!1}):o.push({port:n,tls:!0})}else c.forEach(n=>{o.push({port:n,tls:!0})}),l.forEach(n=>{o.push({port:n,tls:!1})});for(const{port:a,tls:r}of o){const o=m(e);if(r){const e=new URLSearchParams({security:"tls",sni:t,fp:"chrome",type:"ws",host:t,path:u});if(Zn(e),w){const n=k||"https://223.5.5.5/dns-query",t=C||"cloudflare-ech.com";e.set("ech",`${t}+${n}`)}d.push(`${atob("dHJvamFuOi8v")}${f}@${n}:${a}?${e.toString()}#${encodeURIComponent(o)}`)}else{const e=new URLSearchParams({security:"none",type:"ws",host:t,path:u});d.push(`${atob("dHJvamFuOi8v")}${f}@${n}:${a}?${e.toString()}#${encodeURIComponent(o)}`)}}}return d}async function De(n){const e=await crypto.subtle.digest("MD5",(new TextEncoder).encode(n));return Array.from(new Uint8Array(e)).map(n=>n.toString(16).padStart(2,"0")).join("")}async function He(){const n={ctcc:"电信",cucc:"联通",cmcc:"移动",bgp:"多线",ipv6:"IPv6"},e=""===ee("ipv4","")||"no"!==ee("ipv4","yes"),o=""===ee("ipv6","")||"no"!==ee("ipv6","yes"),a=""===ee("ispMobile","")||"no"!==ee("ispMobile","yes"),r=""===ee("ispUnicom","")||"no"!==ee("ispUnicom","yes"),i=""===ee("ispTelecom","")||"no"!==ee("ispTelecom","yes");try{const s=String(Date.now()),c=await De(t("RGRsVHh0TjBzVU91")),l=await De(c+t("NzBjbG91ZGZsYXJlYXBpa2V5")+s),p=await fetch(`${t("aHR0cHM6Ly9hcGkudW91aW4uY29tL2luZGV4LnBocC9pbmRleC9DbG91ZGZsYXJl")}?key=${l}&time=${s}`,{headers:{"User-Agent":"Mozilla/5.0"}});if(!p.ok)return[];const d=await p.json(),u=d&&d.data;if(!u)return[];const f=[];for(const t of Object.keys(n)){const s="ipv6"===t;if(s&&!o)continue;if(!s&&!e)continue;const c=n[t];if("移动"===c&&!a)continue;if("联通"===c&&!r)continue;if("电信"===c&&!i)continue;const l=u[t],p=l&&Array.isArray(l.info)?l.info:[];for(const n of p){const e=Vn(n&&n.ip);e&&f.push({isp:c,ip:e,colo:""})}}return f}catch(n){}return[]}async function Oe(n){const e=new URL(n.url),a=e.searchParams.get("p")||"",r=(e.searchParams.get("wk")||"").toUpperCase(),i=e.searchParams.get("rm")||"",s=i?"no"!==i.toLowerCase():null,c=e.searchParams.get("s")||"";let l=null;if(c)try{l=ot(c)}catch(n){}let p=f;p&&""!==p?r&&(p=r):p=r||(m&&m.trim()?m.trim().toUpperCase():"CF");const d=new WebSocketPair,[u,g]=Object.values(d);g.accept(),g.binaryType="arraybuffer";let h={socket:null,writer:null,drainUpload:null},x=!1,v=null,w=!1,k=!1;const C=je(Hn,On,1024),I=n.fetcher;function S(){if(!k){k=!0,C.clear(),function(){try{h.writer?.releaseLock()}catch(n){}h.writer=null}();try{h.socket?.close()}catch(n){}Dt(g)}}function E(n){const e=Be(n);return!e.byteLength||(C.sow(e)?(h.drainUpload(),!0):(S(),!1))}async function $(){if(!w&&!k&&h.writer){w=!0;try{for(;!k&&h.writer;){const[n]=C.bundle();if(!n)break;await h.writer.write(n)}}catch(n){S()}finally{w=!1,C.empty||k||!h.writer||queueMicrotask($)}}}h.drainUpload=()=>{w||C.empty||!h.writer||queueMicrotask($)};const L=n.headers.get(atob("c2VjLXdlYnNvY2tldC1wcm90b2NvbA=="))||"";return _e(g,L).pipeTo(new WritableStream({async write(n){if(k)return;const e=Be(n);if(x)return await qe(e,g,null,I);if(h.socket&&h.writer){if(!E(e))throw new Error("upload queue overflow")}else if(v){if(!E(e))throw new Error("upload queue overflow")}else if(!v){if(y&&e.byteLength>=24){const n=Ke(e,o);if(!n.hasError){v=t("dmxlc3M=");const{addressType:o,port:r,hostname:i,rawIndex:c,version:d,isUDP:u}=n;if(u){if(53!==r)throw new Error(nn);x=!0}const f=new Uint8Array([d[0],0]),m=e.subarray(c);return x?qe(m,g,f,I):void await Fe(o,i,r,m,g,f,h,a,p,s,l,I)}}if(b&&e.byteLength>=56){const n=await rt(e,o);if(!n.hasError){v=atob("dHJvamFu");const{addressType:e,port:t,hostname:o,rawClientData:r}=n;return void await Fe(e,o,t,r,g,null,h,a,p,s,l,I)}}throw new Error("Invalid protocol or authentication failed")}}})).catch(n=>{S()}),new Response(null,{status:101,webSocket:u})}async function Fe(n,e,t,o,r,i,s,p="",d="",m=null,g=null,h=null){const y=p||a,b=d||f,x=null!==m?m:u,v=g||Ln,w=!!g||Tn,k=Be(o);async function C(e,t,o=!1){const a=o?await Qe(n,e,t,v,h,k):await Ve(e,t,h,2),r=a.writable.getWriter();return!o&&k.byteLength&&await r.write(k),{remoteSock:a,writer:r}}function I(n,e,t){try{s.writer&&s.writer!==e&&s.writer.releaseLock()}catch(n){}s.socket=n,s.writer=e,s.drainUpload?.(),n.closed.catch(()=>{}).finally(()=>{s.socket===n&&Dt(r)}),Ze(n,r,i,t).finally(()=>{if(s.socket===n){try{e.releaseLock()}catch(n){}s.writer=null}})}async function S(){if(l&&w)Dt(r);else if(c&&w)try{const{remoteSock:n,writer:o}=await C(e,t,!0);return void I(n,o,null)}catch(n){let o,a;if(y&&y.trim()){const n=ce(y);o=n.address,a=n.port||t}else{const n=await ae(b,x);o=n?n.domain:e,a=n?n.port:t}try{const{remoteSock:n,writer:e}=await C(o,a,!1);I(n,e,null)}catch(n){Dt(r)}}else{let n,o;if(y&&y.trim()){const e=ce(y);n=e.address,o=e.port||t}else{const a=await ae(b,x);n=a?a.domain:e,o=a?a.port:t}try{const{remoteSock:e,writer:t}=await C(n,o,w);I(e,t,null)}catch(n){Dt(r)}}}try{const n=!(!l||!w)||!c&&w,{remoteSock:o,writer:a}=await C(e,t,n);I(o,a,()=>{!function(n,e){if(s.socket===n){try{e?.releaseLock()}catch(n){}s.socket=null,s.writer=null}}(o,a),S()})}catch(n){await S()}}function Be(n){return n instanceof Uint8Array?n:n instanceof ArrayBuffer?new Uint8Array(n):ArrayBuffer.isView(n)?new Uint8Array(n.buffer,n.byteOffset,n.byteLength):new Uint8Array(n)}function ze(n,e){const t=Be(n),o=Be(e),a=new Uint8Array(t.byteLength+o.byteLength);return a.set(t),a.set(o,t.byteLength),a}function je(n,e=n,t=Math.max(1,e>>8)){let o=[],a=0,r=0,i=null;function s(){a>32&&2*a>=o.length&&(o=o.slice(a),a=0)}return{get empty(){return a>=o.length},clear(){o=[],a=0,r=0},sow(n){const i=n?.byteLength||0;return!i||!(r+i>e||o.length-a>=t)&&(o.push(n),r+=i,!0)},bundle(e=null){if(e||=function(){if(a>=o.length)return null;const n=o[a];return o[a++]=void 0,r-=n.byteLength,s(),n}(),!e||a>=o.length||e.byteLength>=n)return[e,!1];let t=e.byteLength,c=a;for(;c<o.length;){const e=t+o[c].byteLength;if(e>n)break;t=e,c++}if(c===a)return[e,!1];const l=i||=new Uint8Array(n);l.set(e);let p=e.byteLength;for(;a<c;){const n=o[a];o[a++]=void 0,r-=n.byteLength,l.set(n,p),p+=n.byteLength}return s(),[l.subarray(0,t),!0]}}}function Ge(n){const e=An,t=Pn,o=Math.max(4096,4096);let a=new Uint8Array(e),r=0,i=0,s=!1,c=0,l=0,p=0;function d(){i&&clearTimeout(i),i=0,s=!1,r&&(1===n.readyState&&n.send(a.subarray(0,r).slice()),a=new Uint8Array(e),r=0,p=0)}function u(){i||s||(s=!0,l=c,queueMicrotask(()=>{if(s=!1,r&&!i)return e-r<t?d():void(i=setTimeout(()=>{if(i=0,r)return e-r<t?d():p<2&&(c!==l||r<o)?(p++,l=c,u()):void d()},Math.max(0,1)))}))}return{send(o){const i=Be(o);let s=0;const l=i.byteLength;if(l)for(;s<l;){if(!r&&l-s>=e){const t=Math.min(e,l-s);1===n.readyState&&n.send(s||t!==l?i.subarray(s,s+t):i),s+=t;continue}const o=Math.min(e-r,l-s);a.set(i.subarray(s,s+o),r),r+=o,s+=o,c++,r===e||e-r<t?d():u()}},flush:d}}function Je(e,t,o=null){const a={hostname:e,port:t};return o&&"function"==typeof o.connect?o.connect(a):n(a)}async function Ye(e,t,o=null){try{const n=Je(e,t,o);return n?.opened&&await n.opened,n}catch(a){if(!o)throw a;const r=n({hostname:e,port:t});return r?.opened&&await r.opened,r}}async function Ve(n,e,t=null,o=1){const a=Math.max(1,0|o);if(a<=1)return Ye(n,e,t);const r=Array.from({length:a},()=>Ye(n,e,t)),i=await Promise.any(r);return r.forEach(n=>{n.then(n=>{if(n!==i)try{n.close()}catch(n){}},()=>{})}),i}function Xe(n){if(jn.has(n))return jn.get(n);const e=String(n||"").replace(/-/g,"");if(32!==e.length)return null;const t=new Uint8Array(16);for(let n=0;n<16;n++){const o=Number.parseInt(e.slice(2*n,2*n+2),16);if(Number.isNaN(o))return null;t[n]=o}return jn.size>16&&jn.clear(),jn.set(n,t),t}function We(n,e,t){const o=Xe(t);return!!o&&n[e]===o[0]&&n[e+1]===o[1]&&n[e+2]===o[2]&&n[e+3]===o[3]&&n[e+4]===o[4]&&n[e+5]===o[5]&&n[e+6]===o[6]&&n[e+7]===o[7]&&n[e+8]===o[8]&&n[e+9]===o[9]&&n[e+10]===o[10]&&n[e+11]===o[11]&&n[e+12]===o[12]&&n[e+13]===o[13]&&n[e+14]===o[14]&&n[e+15]===o[15]}function Ke(n,e){const t=Be(n);if(t.byteLength<24)return{hasError:!0,message:Z};const o=t.subarray(0,1);if(!We(t,1,e))return{hasError:!0,message:q};const a=t[17],r=18+a;if(t.byteLength<r+5)return{hasError:!0,message:Z};const i=t[r];let s=!1;if(1===i);else{if(2!==i)return{hasError:!0,message:Q};s=!0}const c=19+a,l=t[c]<<8|t[c+1];let p=c+2,d=0,u=p+1,f="";const m=t[p];switch(m){case 1:if(d=4,t.byteLength<u+d)return{hasError:!0,message:Z};f=`${t[u]}.${t[u+1]}.${t[u+2]}.${t[u+3]}`;break;case 2:if(t.byteLength<u+1)return{hasError:!0,message:Z};if(d=t[u++],t.byteLength<u+d)return{hasError:!0,message:Z};f=zn.decode(t.subarray(u,u+d));break;case 3:if(d=16,t.byteLength<u+d)return{hasError:!0,message:Z};const n=[],e=new DataView(t.buffer,t.byteOffset+u,d);for(let t=0;t<8;t++)n.push(e.getUint16(2*t).toString(16));f=n.join(":");break;default:return{hasError:!0,message:`${en}: ${m}`}}return f?{hasError:!1,addressType:m,port:l,hostname:f,isUDP:s,rawIndex:u+d,version:o}:{hasError:!0,message:`${tn}: ${m}`}}function _e(n,e){let t=!1;return new ReadableStream({start(o){n.addEventListener("message",n=>{t||o.enqueue(Be(n.data))}),n.addEventListener("close",()=>{t||(Dt(n),o.close())}),n.addEventListener("error",n=>o.error(n));const{earlyData:a,error:r}=Pt(e);r?o.error(r):a&&o.enqueue(Be(a))},cancel(){t=!0,Dt(n)}})}async function Ze(n,e,t,o){let a=t,r=!1,i=!1,s=null;o&&(s=setTimeout(()=>{if(!r&&!i){i=!0;try{n.close&&n.close()}catch(n){}o()}},Bn));const c=Ge(e);let l=null,p=!0,d=new ArrayBuffer(Mn);try{try{l=n.readable.getReader({mode:"byob"})}catch(e){p=!1,l=n.readable.getReader()}for(;;){const n=p?await l.read(new Uint8Array(d,0,Mn)):await l.read();if(n.done)break;const t=n.value;let o=Be(t);const i=p&&t?.buffer instanceof ArrayBuffer&&t.buffer.byteLength>=Mn?t.buffer:new ArrayBuffer(Mn);if(o.byteLength){if(r||(r=!0,s&&(clearTimeout(s),s=null)),1!==e.readyState)throw new Error(on);a&&(o=ze(a,o),a=null),o.byteLength>=32768?(c.flush(),e.send(o),p&&(d=new ArrayBuffer(Mn))):(c.send(o.slice()),p&&(d=i))}}c.flush()}catch(n){i||Dt(e)}finally{try{c.flush()}catch(n){}try{l?.releaseLock()}catch(n){}}s&&(clearTimeout(s),s=null),r||i||!o||o()}async function qe(n,e,t,o=null){try{const a=await Ve("8.8.4.4",53,o,1);let r=t;const i=a.writable.getWriter();await i.write(n),i.releaseLock(),await Ze(a,e,r,null)}catch(n){}}async function Qe(n,e,t,o=Ln,a=null,r=null){if(o&&(o.kind===En||o.kind===$n))return et(e,t,o,a,r);const{username:i,password:s,hostname:c,socksPort:l}=o,p=Je(c,l,a),d=p.writable.getWriter();await d.write(new Uint8Array(i?[5,2,0,2]:[5,1,0]));const u=p.readable.getReader();let f=new Uint8Array(0);async function m(n){for(;f.length<n;){const{value:n,done:e}=await u.read();if(e||!n)throw new Error(pn);f=ze(f,n)}return f}function g(n){const e=f.subarray(0,n);return f=f.subarray(n),e}let h=await m(2);if(5!==h[0]||255===h[1])throw new Error(sn);const y=h[1];if(g(2),2===y){if(!i||!s)throw new Error(cn);const n=new TextEncoder,e=new Uint8Array([1,i.length,...n.encode(i),s.length,...n.encode(s)]);if(await d.write(e),h=await m(2),1!==h[0]||0!==h[1])throw new Error(ln);g(2)}const b=(new TextEncoder).encode(nt(e)),x=new Uint8Array([3,b.length,...b]);if(await d.write(new Uint8Array([5,1,0,...x,t>>8,255&t])),h=await m(4),0!==h[1])throw new Error(pn);const v=h[3];let w;if(1===v)w=10;else if(4===v)w=22;else{if(3!==v)throw new Error(un);w=7+(await m(5))[4]}return await m(w),g(w),r&&r.byteLength&&await d.write(r),d.releaseLock(),u.releaseLock(),f.length?tt(p,f):p}function nt(n){const e=String(n||"");return/^\[.*\]$/.test(e)?e.slice(1,-1):e}async function et(e,t,o,a=null,r=null){const{username:i,password:s,hostname:c,socksPort:l,kind:p}=o,d=p===$n?{secureTransport:"on",allowHalfOpen:!1}:void 0,u={hostname:c,port:l},f=a&&"function"==typeof a.connect?void 0===d?a.connect(u):a.connect(u,d):n(u,d);f?.opened&&await f.opened;const m=`${e.includes(":")&&!/^\[.*\]$/.test(e)?`[${e}]`:e}:${t}`;let g=`${yn} ${m}${bn}${Cn}${xn}${m}${Cn}${kn}${Cn}${wn}${Cn}`;i&&(g+=`${vn}${btoa(`${i}:${s||""}`)}${Cn}`),g+=Cn;const h=f.writable.getWriter(),y=f.readable.getReader();try{await h.write((new TextEncoder).encode(g));const n=[13,10,13,10];let e=new Uint8Array(0),t=-1;for(;t<0;){const{value:o,done:a}=await y.read();if(a||!o)throw new Error(dn);e=ze(e,o);for(let o=0;o+3<e.length;o++)if(e[o]===n[0]&&e[o+1]===n[1]&&e[o+2]===n[2]&&e[o+3]===n[3]){t=o+4;break}if(t<0&&e.length>8192)throw new Error(un)}const o=zn.decode(e.subarray(0,Math.min(t,128)));if(!o.startsWith(In))throw new Error(un);const a=Number(o.split(" ")[1]);if(!(a>=200&&a<300))throw new Error(dn);const i=e.subarray(t);return r&&r.byteLength&&await h.write(r),h.releaseLock(),y.releaseLock(),i.byteLength?tt(f,i):f}catch(n){try{h.releaseLock()}catch(n){}try{y.releaseLock()}catch(n){}try{f.close()}catch(n){}throw n}}function tt(n,e){let t=null;return{readable:new ReadableStream({start(o){o.enqueue(e),t=n.readable.getReader()},async pull(n){const{value:e,done:o}=await t.read();o?n.close():n.enqueue(e)},cancel(n){try{t?.cancel(n)}catch(n){}}}),writable:n.writable,closed:n.closed,opened:n.opened,close:()=>n.close()}}function ot(n){let e=String(n||"").trim(),t=Sn;const o=e.toLowerCase();o.startsWith(hn)?(t=$n,e=e.slice(hn.length)):o.startsWith(gn)?(t=En,e=e.slice(gn.length)):o.startsWith(fn)?e=e.slice(fn.length):o.startsWith(mn)&&(e=e.slice(mn.length));const a=e.indexOf("/");if(a>=0&&(e=e.slice(0,a)),!e)throw new Error(rn);let r,i,s,c,[l,p]=e.split("@").reverse();if(p){const n=p.split(":");if(2!==n.length)throw new Error(rn);[r,i]=n}const d=l.split(":"),u=d.pop();if(c=Number(u),isNaN(c)){if(t===Sn)throw new Error(rn);d.push(u),c=t===$n?443:80}if(s=d.join(":"),!s)throw new Error(rn);if(s.includes(":")&&!/^\[.*\]$/.test(s))throw new Error(rn);return{username:r,password:i,hostname:s,socksPort:c,kind:t}}async function at(n,e=null){e||(e=o),new URL(n.url);const a=n.headers.get("Cookie")||"";let r=null;if(a){const n=a.split(";").map(n=>n.trim());for(const e of n)if(e.startsWith("preferredLanguage=")){r=e.split("=")[1];break}}const i=new Proxy({title:"Subscription Center",subtitle:"Multi-client support • Smart routing • One-click generation",selectClient:"[ Select Client ]",systemStatus:"[ System Status ]",configManagement:"[ Configuration ]",relatedLinks:"[ Related Links ]",checking:"Checking...",workerRegion:"Worker Region: ",detectionMethod:"Detection Method: ",proxyIPStatus:"Proxy IP Status: ",currentIP:"Current IP: ",regionMatch:"Region Match: ",selectionLogic:"Selection Logic: ",kvStatusChecking:"Checking KV status...",kvEnabled:"✅ KV storage is enabled",kvDisabled:"⚠️ KV storage is unavailable or not configured",specifyRegion:"Preferred Region (wk):",autoDetect:"Auto Detect",saveRegion:"Save Region",protocolSelection:"Protocol Selection:",enableProtoV:"Enable VLESS",enableProtoT:"Enable Trojan",enableXhttp:"Enable xhttp",altPassword:"Trojan Password (optional):",customPath:"Custom Path (d):",customIP:"Custom Proxy IP (p):",preferredIPs:"Preferred IP List (yx):",preferredIPsURL:"Preferred IP Source URL (yxURL):",latencyTest:"Latency Test",latencyTestIP:"IP / Host:",latencyTestIPPlaceholder:"Enter IPs or hosts separated by commas",latencyTestPort:"Port:",startTest:"Start Test",stopTest:"Stop Test",testResult:"Results:",addToYx:"Add to Preferred List",addSelectedToYx:"Add Selected",selectAll:"Select All",deselectAll:"Clear Selection",testingInProgress:"Testing...",testComplete:"Test Complete",latencyMs:"Latency",timeout:"Timeout",ipSource:"IP Source:",manualInput:"Manual Input",cfRandomIP:"Random Cloudflare IP",urlFetch:"Fetch from URL",randomCount:"Count:",fetchURL:"Source URL:",fetchURLPlaceholder:"Enter a preferred IP source URL",generateIP:"Generate IPs",fetchIP:"Fetch IPs",socks5Config:"Outbound Proxy (s):",customHomepage:"Custom Homepage URL:",customHomepagePlaceholder:"Example: https://example.com",customHomepageHint:"Custom Homepage Hint",saveConfig:"Save Configuration",advancedControl:"Advanced Settings",subscriptionConverter:"Subscription Converter URL:",builtinPreferred:"Built-in Address Types:",enablePreferredDomain:"Enable Preferred Domains",enablePreferredIP:"Enable Preferred IPs",enableNativeAddress:"Enable Native Addresses",enableGitHubPreferred:"Enable Custom Preferred Addresses",allowAPIManagement:"Allow API Management (ae):",regionMatching:"Region Matching (rm):",downgradeControl:"Fallback Control (qj):",tlsControl:"TLS Control (dkby):",preferredControl:"Preferred Address Control (yxby):",saveAdvanced:"Save Advanced Settings",loading:"Loading...",currentConfig:"📍 Current Configuration",refreshConfig:"Refresh",resetConfig:"Reset",subscriptionCopied:"Subscription link copied",autoSubscriptionCopied:"Auto Subscription Copied",altPasswordPlaceholder:"Leave blank to use UUID",altPasswordHint:"Alt Password Hint",protocolHint:"Protocol Hint",enableECH:"Enable ECH (Encrypted Client Hello)",enableECHHint:"Enable ECHHint",customDNS:"Custom DNS Server",customDNSPlaceholder:"Example: https://1.1.1.1/dns-query",customDNSHint:"Custom DNSHint",customECHDomain:"Custom ECH Domain",customECHDomainPlaceholder:"Example: cloudflare-ech.com",customECHDomainHint:"Custom ECHDomain Hint",alpn:"Alpn",alpnDefault:"Alpn Default",alpnHint:"Alpn Hint",saveProtocol:"Save Protocol",subscriptionConverterPlaceholder:"Subscription Converter Placeholder",subscriptionConverterHint:"Subscription Converter Hint",builtinPreferredHint:"Builtin Preferred Hint",apiEnabledDefault:"Api Enabled Default",apiEnabledYes:"Api Enabled Yes",apiEnabledHint:"Api Enabled Hint",regionMatchingDefault:"Region Matching Default",regionMatchingNo:"Region Matching No",regionMatchingHint:"Region Matching Hint",downgradeControlDefault:"Downgrade Control Default",downgradeControlNo:"Downgrade Control No",downgradeControlOnly:"Downgrade Control Only",downgradeControlHint:"Downgrade Control Hint",tlsControlDefault:"Tls Control Default",tlsControlYes:"Tls Control Yes",tlsControlHint:"Tls Control Hint",preferredControlDefault:"Preferred Control Default",preferredControlYes:"Preferred Control Yes",preferredControlHint:"Preferred Control Hint",regionNames:"Region Names",terminal:"Terminal",githubProject:"Github Project",autoDetectClient:"Auto Detect Client",selectionLogicText:"Automatic region priority with fallback",customIPDisabledHint:"Custom IPDisabled Hint",customIPMode:"Custom IPMode",customIPModeDesc:"Custom IPMode Desc",usingCustomProxyIP:"Using Custom Proxy IP",customIPConfig:"Custom IPConfig",customIPModeDisabled:"Custom IPMode Disabled",manualRegion:"Manual Region",manualRegionDesc:"Manual Region Desc",proxyIPAvailable:"Proxy IPAvailable",smartSelection:"Smart Selection",sameRegionIP:"Same Region IP",cloudflareDetection:"Cloudflare Detection",detectionFailed:"Detection Failed",apiTestResult:"Api Test Result",apiTestTime:"Api Test Time",apiTestFailed:"Api Test Failed",unknownError:"Unknown Error",apiTestError:"Api Test Error",kvNotConfigured:"Kv Not Configured",kvNotEnabled:"Kv Not Enabled",kvCheckFailed:"Kv Check Failed",kvCheckFailedStatus:"Kv Check Failed Status",kvCheckFailedError:"Kv Check Failed Error"},{get:(n,e)=>n[e]??String(e).replace(/([a-z])([A-Z])/g,"$1 $2").replace(/^./,n=>n.toUpperCase())}),s=`<!DOCTYPE html>\n    <html lang="en" dir="ltr">\n    <head>\n        <meta charset="UTF-8">\n        <meta name="viewport" content="width=device-width, initial-scale=1.0">\n            <title>${i.title}</title>\n        <style>\n            :root {\n                --cp-bg: #05030e;\n                --cp-bg-2: #0a0820;\n                --cp-bg-3: #110835;\n                --cp-cyan: #00f0ff;\n                --cp-cyan-d: #00b8c4;\n                --cp-pink: #ff2bd6;\n                --cp-pink-d: #d1239f;\n                --cp-purple: #a347ff;\n                --cp-yellow: #fff200;\n                --cp-mint: #00ff9d;\n                --cp-amber: #ffb400;\n                --cp-red: #ff3860;\n                --cp-text: #e6f5ff;\n                --cp-text-dim: #7aa9c4;\n                --cp-border: rgba(0, 240, 255, 0.55);\n                --cp-border-pink: rgba(255, 43, 214, 0.55);\n                --cp-grid: rgba(255, 43, 214, 0.16);\n            }\n            * { margin: 0; padding: 0; box-sizing: border-box; }\n            html, body { min-height: 100%; }\n            body {\n                font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;\n                background: #edf3f8;\n                color: var(--cp-text);\n                min-height: 100vh;\n                overflow-x: hidden;\n                position: relative;\n            }\n            body::before {\n                display: none;\n                content: ""; position: fixed; inset: 0;\n                background-image:\n                    linear-gradient(var(--cp-grid) 1px, transparent 1px),\n                    linear-gradient(90deg, var(--cp-grid) 1px, transparent 1px);\n                background-size: 48px 48px;\n                mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);\n                z-index: -3;\n                animation: cp-grid-slide 22s linear infinite;\n                pointer-events: none;\n            }\n            body::after {\n                display: none;\n                content: ""; position: fixed; inset: 0;\n                background: repeating-linear-gradient(\n                    180deg,\n                    rgba(255,255,255,0.035) 0,\n                    rgba(255,255,255,0.035) 1px,\n                    transparent 1px,\n                    transparent 3px\n                );\n                pointer-events: none;\n                z-index: 6;\n                mix-blend-mode: overlay;\n                animation: cp-scan-flicker 6s infinite;\n            }\n            @keyframes cp-grid-slide {\n                0% { background-position: 0 0, 0 0; }\n                100% { background-position: 48px 48px, 48px 48px; }\n            }\n            @keyframes cp-scan-flicker {\n                0%, 100% { opacity: 0.55; }\n                50% { opacity: 0.85; }\n            }\n            .matrix-bg {\n                display: none;\n                position: fixed; inset: 0;\n                background:\n                    radial-gradient(circle at 85% 15%, rgba(255,43,214,0.18) 0%, transparent 45%),\n                    radial-gradient(circle at 10% 85%, rgba(0,240,255,0.18) 0%, transparent 45%),\n                    radial-gradient(circle at 55% 50%, rgba(163,71,255,0.10) 0%, transparent 60%);\n                z-index: -2;\n                pointer-events: none;\n            }\n            .matrix-rain { display: none; }\n            .matrix-code-rain {\n                display: none;\n                position: fixed; inset: 0;\n                pointer-events: none; z-index: -1;\n                overflow: hidden;\n            }\n            .matrix-column {\n                position: absolute; top: -120%; left: 0;\n                color: var(--cp-cyan);\n                font-family: "JetBrains Mono", "Courier New", monospace;\n                font-size: 14px; line-height: 1.25;\n                text-shadow: 0 0 6px var(--cp-cyan), 0 0 12px rgba(0,240,255,0.5);\n                animation: cp-drop linear infinite;\n            }\n            @keyframes cp-drop {\n                0%   { top: -120%; opacity: 0; }\n                10%  { opacity: 0.85; }\n                90%  { opacity: 0.4; }\n                100% { top: 110vh; opacity: 0; }\n            }\n            .matrix-column:nth-child(odd)  { animation-duration: 12s; }\n            .matrix-column:nth-child(even) { animation-duration: 18s; color: var(--cp-pink); text-shadow: 0 0 6px var(--cp-pink), 0 0 14px rgba(255,43,214,0.5); }\n            .matrix-column:nth-child(3n)   { animation-duration: 20s; color: var(--cp-purple); text-shadow: 0 0 6px var(--cp-purple); }\n            .matrix-column:nth-child(5n)   { animation-duration: 9s; opacity: 0.6; }\n\n            ::selection { background: var(--cp-pink); color: var(--cp-bg); }\n\n            .container {\n                max-width: 1180px;\n                margin: 0 auto;\n                padding: 110px 24px 60px;\n                position: relative;\n                z-index: 1;\n            }\n            .header {\n                text-align: center;\n                margin-bottom: 36px;\n                padding: 28px 24px;\n                position: relative;\n                border: 1px solid var(--cp-border);\n                background: linear-gradient(135deg, rgba(15,3,40,0.6), rgba(40,5,70,0.45));\n                clip-path: polygon(\n                    0 14px, 14px 0,\n                    calc(100% - 80px) 0, calc(100% - 60px) 14px,\n                    100% 14px, 100% calc(100% - 14px),\n                    calc(100% - 14px) 100%, 80px 100%,\n                    60px calc(100% - 14px), 0 calc(100% - 14px)\n                );\n                box-shadow: 0 0 30px rgba(0,240,255,0.25), 0 0 60px rgba(255,43,214,0.18);\n            }\n            .header::before {\n                content: "// SYS_ID / CFNEW / NIGHTCITY.NET";\n                position: absolute; top: 8px; left: 24px;\n                font-size: 10px; letter-spacing: 0.35em;\n                color: var(--cp-pink);\n                text-shadow: 0 0 6px var(--cp-pink);\n            }\n            .header::after {\n                content: "STATUS // ONLINE";\n                position: absolute; top: 8px; right: 84px;\n                font-size: 10px; letter-spacing: 0.35em;\n                color: var(--cp-mint);\n                text-shadow: 0 0 6px var(--cp-mint);\n                white-space: nowrap;\n                z-index: 2;\n            }\n            .title {\n                font-size: clamp(2.2rem, 5vw, 3.4rem);\n                font-weight: 800;\n                margin: 14px 0 8px;\n                color: var(--cp-cyan);\n                letter-spacing: 0.08em;\n                text-transform: uppercase;\n                text-shadow:\n                    0 0 12px var(--cp-cyan),\n                    0 0 28px rgba(0,240,255,0.5),\n                    -2px 0 var(--cp-pink),\n                    2px 0 var(--cp-mint);\n                position: relative;\n                animation: cp-title-flicker 6s infinite;\n            }\n            @keyframes cp-title-flicker {\n                0%, 92%, 100% { opacity: 1; }\n                94%, 96% { opacity: 0.65; }\n            }\n            .subtitle {\n                color: var(--cp-text-dim);\n                margin-bottom: 0;\n                font-size: 0.95rem;\n                letter-spacing: 0.25em;\n                text-transform: uppercase;\n            }\n            .subtitle::before { content: "▸ "; color: var(--cp-pink); }\n\n            .card {\n                background:\n                    linear-gradient(180deg, rgba(8,4,28,0.85) 0%, rgba(15,3,40,0.78) 100%);\n                border: 1px solid var(--cp-border);\n                border-radius: 0;\n                padding: 26px 28px 28px;\n                margin-bottom: 22px;\n                position: relative;\n                backdrop-filter: blur(8px);\n                width: 100%;\n                box-shadow:\n                    0 0 0 1px rgba(255,43,214,0.18),\n                    0 0 22px rgba(0,240,255,0.18),\n                    0 0 60px rgba(255,43,214,0.06),\n                    inset 0 0 24px rgba(0,240,255,0.05);\n                clip-path: polygon(\n                    0 16px, 16px 0,\n                    calc(100% - 56px) 0, calc(100% - 40px) 16px,\n                    100% 16px, 100% calc(100% - 14px),\n                    calc(100% - 14px) 100%, 40px 100%,\n                    24px calc(100% - 14px), 0 calc(100% - 14px)\n                );\n            }\n            .card::after {\n                content: ""; position: absolute; top: 0; left: 0; right: 0;\n                height: 1px;\n                background: linear-gradient(90deg, transparent, var(--cp-pink), var(--cp-cyan), transparent);\n                opacity: 0.7;\n            }\n            .card-title {\n                font-size: 1.1rem;\n                margin: 0 0 20px;\n                color: var(--cp-cyan);\n                letter-spacing: 0.25em;\n                text-transform: uppercase;\n                text-shadow: 0 0 8px var(--cp-cyan);\n                display: flex; align-items: center; gap: 12px;\n                font-weight: 700;\n            }\n            .card-title::before {\n                content: ""; display: inline-block;\n                width: 14px; height: 14px;\n                background: var(--cp-pink);\n                box-shadow: 0 0 10px var(--cp-pink);\n                transform: rotate(45deg);\n            }\n            .card-title::after {\n                content: ""; flex: 1; height: 1px;\n                background: linear-gradient(90deg, var(--cp-cyan), transparent);\n                margin-left: 6px;\n            }\n            h3, h4 {\n                color: var(--cp-cyan);\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                text-shadow: 0 0 6px var(--cp-cyan);\n                font-weight: 700;\n            }\n\n            .client-grid {\n                display: grid;\n                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));\n                gap: 14px;\n                margin: 12px 0 18px;\n            }\n            .client-btn {\n                background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(255,43,214,0.08));\n                border: 1px solid var(--cp-border);\n                padding: 14px 18px;\n                color: var(--cp-cyan);\n                font-family: inherit;\n                font-weight: 700;\n                font-size: 0.85rem;\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                cursor: pointer;\n                transition: all 0.3s ease;\n                text-align: center;\n                position: relative;\n                overflow: hidden;\n                text-shadow: 0 0 6px var(--cp-cyan);\n                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);\n            }\n            .client-btn::before {\n                content: ""; position: absolute; inset: 0; left: -100%;\n                background: linear-gradient(90deg, transparent, rgba(0,240,255,0.35), transparent);\n                transition: left 0.6s ease;\n            }\n            .client-btn:hover::before { left: 100%; }\n            .client-btn:hover {\n                color: var(--cp-pink);\n                border-color: var(--cp-pink);\n                background: linear-gradient(135deg, rgba(255,43,214,0.18), rgba(0,240,255,0.10));\n                box-shadow: 0 0 14px rgba(255,43,214,0.55), 0 0 28px rgba(0,240,255,0.30);\n                transform: translateY(-2px);\n                text-shadow: 0 0 8px var(--cp-pink);\n            }\n\n            #clientSubscriptionUrl,\n            .subscription-url,\n            [class*='subscription-url'],\n            [class*='c3Vic2NyaXB0aW9u'] {\n                background: rgba(0,0,0,0.7) !important;\n                border: 1px dashed var(--cp-pink) !important;\n                padding: 14px 16px !important;\n                word-break: break-all;\n                font-family: inherit;\n                color: var(--cp-mint) !important;\n                margin-top: 18px;\n                box-shadow: inset 0 0 12px rgba(255,43,214,0.18), 0 0 18px rgba(0,255,157,0.18) !important;\n                position: relative;\n                overflow-wrap: break-word;\n                overflow-x: auto;\n                max-width: 100%;\n                font-size: 0.85rem;\n                line-height: 1.6;\n                text-shadow: 0 0 6px var(--cp-mint);\n            }\n            #clientSubscriptionUrl:empty { display: none !important; }\n\n            .cp-hud {\n                position: fixed; top: 18px; right: 22px;\n                color: var(--cp-cyan);\n                font-family: "JetBrains Mono", monospace;\n                font-size: 11px; letter-spacing: 0.2em;\n                text-transform: uppercase;\n                text-align: right;\n                opacity: 0.85;\n                z-index: 1000;\n            }\n            .cp-hud .cp-hud-label { color: var(--cp-pink); }\n            .cp-hud .cp-hud-line { display: block; }\n            .cp-lang-wrapper {\n                position: fixed; top: 18px; left: 22px; z-index: 1000;\n                display: flex; align-items: center; gap: 10px;\n            }\n            .cp-lang-tag {\n                color: var(--cp-pink); font-size: 11px;\n                letter-spacing: 0.25em; text-transform: uppercase;\n                text-shadow: 0 0 6px var(--cp-pink);\n            }\n            #languageSelector {\n                background: rgba(8,4,28,0.85);\n                border: 1px solid var(--cp-cyan);\n                color: var(--cp-cyan);\n                padding: 6px 12px;\n                font-family: inherit;\n                font-size: 12px;\n                cursor: pointer;\n                letter-spacing: 0.12em;\n                text-shadow: 0 0 6px var(--cp-cyan);\n                box-shadow: 0 0 12px rgba(0,240,255,0.35);\n                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);\n            }\n            #languageSelector option { background: var(--cp-bg-2); color: var(--cp-cyan); }\n\n            \n            .cp-fx-toggle {\n                position: fixed; top: 68px; left: 22px; z-index: 1001;\n                background: rgba(8,4,28,0.85);\n                border: 1px solid var(--cp-mint);\n                color: var(--cp-mint);\n                padding: 6px 12px;\n                font-family: inherit;\n                font-size: 11px;\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                cursor: pointer;\n                text-shadow: 0 0 6px var(--cp-mint);\n                box-shadow: 0 0 10px rgba(0,255,157,0.35);\n                clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);\n                transition: all 0.2s ease;\n                display: inline-flex; align-items: center; gap: 6px;\n            }\n            .cp-fx-toggle:hover {\n                color: var(--cp-pink);\n                border-color: var(--cp-pink);\n                text-shadow: 0 0 8px var(--cp-pink);\n                box-shadow: 0 0 16px rgba(255,43,214,0.55);\n            }\n            .cp-fx-toggle .cp-fx-dot {\n                width: 6px; height: 6px;\n                background: var(--cp-mint);\n                border-radius: 50%;\n                box-shadow: 0 0 8px var(--cp-mint);\n                transition: all 0.2s;\n            }\n            body.fx-off .cp-fx-toggle {\n                color: var(--cp-text-dim);\n                border-color: var(--cp-text-dim);\n                text-shadow: none;\n                box-shadow: none;\n            }\n            body.fx-off .cp-fx-toggle .cp-fx-dot {\n                background: transparent;\n                border: 1px solid var(--cp-text-dim);\n                box-shadow: none;\n            }\n            \n            body.fx-off .matrix-bg,\n            body.fx-off .matrix-code-rain,\n            body.fx-off .matrix-column { display: none !important; }\n            body.fx-off::before,\n            body.fx-off::after { display: none !important; content: none !important; }\n            body.fx-off { background: #edf3f8 !important; }\n            body.fx-off * {\n                animation: none !important;\n                transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s !important;\n            }\n            body.fx-off .cp-glitch::before,\n            body.fx-off .cp-glitch::after { display: none !important; }\n            body.fx-off .terminal-cursor::after,\n            body.fx-off .cp-fab-save .cp-fab-dot { animation: none !important; }\n            body.fx-off .cp-fab-save:hover { transform: none !important; }\n            body.fx-off .cp-action-bar.cp-dirty::before { animation: none !important; }\n            body.fx-off .header::before { display: none !important; }\n            body.fx-off .card { backdrop-filter: none !important; }\n            body.fx-off select, body.fx-off input, body.fx-off textarea { backdrop-filter: none !important; }\n\n            \n            #systemStatus {\n                background: linear-gradient(135deg, rgba(0,240,255,0.05), rgba(255,43,214,0.05)) !important;\n                border: 1px solid var(--cp-border) !important;\n                padding: 18px 20px !important;\n                margin: 14px 0 0 !important;\n                box-shadow: inset 0 0 16px rgba(0,240,255,0.12) !important;\n                position: relative;\n                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);\n            }\n            #systemStatus > div {\n                color: var(--cp-text) !important;\n                text-shadow: none !important;\n                font-family: inherit !important;\n                margin: 6px 0 !important;\n                font-size: 0.85rem !important;\n                letter-spacing: 0.05em;\n            }\n            #systemStatus > div:first-child {\n                color: var(--cp-pink) !important;\n                font-weight: 700 !important;\n                letter-spacing: 0.25em !important;\n                text-shadow: 0 0 6px var(--cp-pink) !important;\n                margin-bottom: 14px !important;\n                text-transform: uppercase;\n            }\n\n            \n            input[type="text"], input[type="number"], input[type="password"],\n            select, textarea {\n                background: rgba(0,0,0,0.6) !important;\n                border: 1px solid var(--cp-border) !important;\n                color: var(--cp-cyan) !important;\n                font-family: inherit !important;\n                font-size: 13px !important;\n                padding: 10px 12px !important;\n                outline: none;\n                transition: border-color 0.2s, box-shadow 0.2s;\n                box-shadow: inset 0 0 8px rgba(0,240,255,0.08) !important;\n                letter-spacing: 0.04em;\n            }\n            input::placeholder { color: var(--cp-text-dim) !important; opacity: 0.7; }\n            input:focus, select:focus, textarea:focus {\n                border-color: var(--cp-pink) !important;\n                box-shadow: 0 0 0 1px var(--cp-pink), 0 0 14px rgba(255,43,214,0.4) !important;\n            }\n            select option { background: var(--cp-bg-2); color: var(--cp-cyan); }\n            input[type="checkbox"], input[type="radio"] {\n                accent-color: var(--cp-pink);\n            }\n\n            label {\n                color: var(--cp-cyan) !important;\n                letter-spacing: 0.05em;\n                text-shadow: 0 0 4px rgba(0,240,255,0.4);\n            }\n            label[style*="font-weight"], label[style*="bold"] {\n                font-weight: 700 !important;\n                color: var(--cp-pink) !important;\n                text-shadow: 0 0 6px var(--cp-pink) !important;\n                letter-spacing: 0.15em !important;\n                text-transform: uppercase;\n                font-size: 0.78rem !important;\n            }\n            small {\n                color: var(--cp-text-dim) !important;\n                font-size: 0.78rem !important;\n                letter-spacing: 0.04em;\n                line-height: 1.5;\n            }\n\n            \n            button, input[type="submit"] {\n                background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(255,43,214,0.15)) !important;\n                border: 1px solid var(--cp-border) !important;\n                color: var(--cp-cyan) !important;\n                font-family: inherit !important;\n                font-weight: 700 !important;\n                cursor: pointer;\n                padding: 10px 18px !important;\n                letter-spacing: 0.18em !important;\n                text-transform: uppercase;\n                font-size: 0.78rem !important;\n                text-shadow: 0 0 6px var(--cp-cyan) !important;\n                transition: all 0.25s ease;\n                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);\n                box-shadow: 0 0 10px rgba(0,240,255,0.25);\n            }\n            button:hover, input[type="submit"]:hover {\n                color: var(--cp-pink) !important;\n                border-color: var(--cp-pink) !important;\n                box-shadow: 0 0 16px rgba(255,43,214,0.45), 0 0 32px rgba(0,240,255,0.20) !important;\n                transform: translateY(-1px);\n                text-shadow: 0 0 8px var(--cp-pink) !important;\n            }\n            button[id*="Reset"], button[onclick*="reset"], button[style*="ff0000"] {\n                color: var(--cp-red) !important;\n                border-color: var(--cp-red) !important;\n                text-shadow: 0 0 6px var(--cp-red) !important;\n                background: linear-gradient(135deg, rgba(255,56,96,0.15), rgba(255,43,214,0.10)) !important;\n            }\n            button[id*="Reset"]:hover, button[onclick*="reset"]:hover, button[style*="ff0000"]:hover {\n                box-shadow: 0 0 16px rgba(255,56,96,0.5) !important;\n            }\n            button[id="stopLatencyTest"] {\n                color: var(--cp-red) !important;\n                border-color: var(--cp-red) !important;\n            }\n\n            \n            .card form > div[style*="background: rgba(15, 3, 40"],\n            .card form > div[style*="background: rgba(20, 5, 50"],\n            div[style*="background: rgba(15, 3, 40"],\n            div[style*="background: rgba(20, 5, 50"] {\n                background: linear-gradient(135deg, rgba(0,240,255,0.04), rgba(255,43,214,0.04)) !important;\n                border: 1px solid var(--cp-border-pink) !important;\n                box-shadow: inset 0 0 12px rgba(255,43,214,0.06) !important;\n                border-radius: 0 !important;\n            }\n\n            \n            #kvStatus, #statusMessage, #currentConfig, #pathTypeInfo {\n                background: rgba(0,0,0,0.55) !important;\n                border: 1px solid var(--cp-border) !important;\n                color: var(--cp-cyan) !important;\n                font-family: inherit !important;\n                box-shadow: inset 0 0 10px rgba(0,240,255,0.10) !important;\n                padding: 12px 14px !important;\n                font-size: 0.85rem !important;\n                letter-spacing: 0.04em;\n            }\n            #pathTypeInfo div:first-child {\n                color: var(--cp-pink) !important;\n                text-shadow: 0 0 6px var(--cp-pink) !important;\n                letter-spacing: 0.2em !important;\n            }\n\n            \n            #latencyResultsList {\n                background: rgba(0,0,0,0.5) !important;\n                border: 1px solid var(--cp-border) !important;\n            }\n            #latencyResultsList > div {\n                border-bottom: 1px dashed rgba(0,240,255,0.18) !important;\n            }\n            #cityFilterContainer {\n                background: rgba(0,0,0,0.55) !important;\n                border: 1px solid var(--cp-border-pink) !important;\n            }\n\n            \n            .card a {\n                color: var(--cp-cyan) !important;\n                text-decoration: none;\n                text-shadow: 0 0 6px var(--cp-cyan);\n                letter-spacing: 0.15em;\n                text-transform: uppercase;\n                font-size: 0.85rem;\n                padding: 4px 0;\n                border-bottom: 1px dashed transparent;\n                transition: all 0.25s;\n            }\n            .card a:hover {\n                color: var(--cp-pink) !important;\n                border-bottom-color: var(--cp-pink);\n                text-shadow: 0 0 8px var(--cp-pink);\n            }\n\n            \n            ::-webkit-scrollbar { width: 8px; height: 8px; }\n            ::-webkit-scrollbar-track { background: rgba(0,0,0,0.4); }\n            ::-webkit-scrollbar-thumb {\n                background: linear-gradient(180deg, var(--cp-pink), var(--cp-cyan));\n            }\n\n            .cp-glitch {\n                position: relative;\n                display: inline-block;\n            }\n\n            \n            .cp-action-bar {\n                position: fixed;\n                right: 22px;\n                bottom: 22px;\n                z-index: 99999;\n                isolation: isolate;\n                display: flex;\n                flex-direction: row-reverse;\n                align-items: center;\n                gap: 10px;\n                padding: 0;\n                background: transparent;\n                border: 0;\n                box-shadow: none;\n                max-width: calc(100vw - 32px);\n                pointer-events: auto;\n            }\n            \n            .cp-fab-save {\n                position: relative;\n                min-width: 188px;\n                padding: 16px 26px !important;\n                font-size: 0.92rem !important;\n                font-weight: 800 !important;\n                letter-spacing: 0.22em !important;\n                text-transform: uppercase;\n                color: var(--cp-pink) !important;\n                background:\n                    linear-gradient(135deg, rgba(255,43,214,0.45) 0%, rgba(0,240,255,0.25) 100%) !important;\n                border: 2px solid var(--cp-pink) !important;\n                text-shadow: 0 0 10px var(--cp-pink) !important;\n                box-shadow:\n                    0 0 0 1px rgba(0,240,255,0.4),\n                    0 0 24px rgba(255,43,214,0.7),\n                    0 0 48px rgba(255,43,214,0.35),\n                    inset 0 0 18px rgba(255,43,214,0.25) !important;\n                clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);\n                cursor: pointer;\n                transition: transform 0.18s ease, box-shadow 0.25s ease;\n                display: inline-flex; align-items: center; gap: 10px;\n                white-space: nowrap;\n                font-family: inherit !important;\n                animation: cp-fab-breathe 3.4s ease-in-out infinite;\n            }\n            @keyframes cp-fab-breathe {\n                0%, 100% {\n                    box-shadow:\n                        0 0 0 1px rgba(0,240,255,0.4),\n                        0 0 24px rgba(255,43,214,0.7),\n                        0 0 48px rgba(255,43,214,0.35),\n                        inset 0 0 18px rgba(255,43,214,0.25);\n                }\n                50% {\n                    box-shadow:\n                        0 0 0 1px rgba(0,240,255,0.55),\n                        0 0 32px rgba(255,43,214,0.9),\n                        0 0 80px rgba(255,43,214,0.45),\n                        inset 0 0 24px rgba(255,43,214,0.4);\n                }\n            }\n            .cp-fab-save:hover {\n                transform: translateY(-3px) scale(1.03);\n                color: #fff !important;\n                text-shadow: 0 0 14px #fff, 0 0 22px var(--cp-pink) !important;\n            }\n            .cp-fab-save .cp-fab-icon {\n                font-size: 1.15em;\n                line-height: 1;\n                color: var(--cp-cyan);\n                text-shadow: 0 0 10px var(--cp-cyan);\n            }\n            .cp-fab-save .cp-fab-dot {\n                width: 8px; height: 8px;\n                background: var(--cp-mint);\n                box-shadow: 0 0 8px var(--cp-mint);\n                transform: rotate(45deg);\n                margin-left: 4px;\n                opacity: 0.5;\n                transition: all 0.2s;\n            }\n            .cp-action-bar.cp-dirty .cp-fab-save {\n                animation: cp-fab-dirty 1.1s ease-in-out infinite;\n                color: #fff !important;\n            }\n            .cp-action-bar.cp-dirty .cp-fab-save .cp-fab-dot {\n                background: var(--cp-pink);\n                box-shadow: 0 0 12px var(--cp-pink), 0 0 24px var(--cp-pink);\n                opacity: 1;\n            }\n            @keyframes cp-fab-dirty {\n                0%, 100% {\n                    box-shadow:\n                        0 0 0 1px var(--cp-pink),\n                        0 0 24px rgba(255,43,214,0.85),\n                        0 0 60px rgba(255,43,214,0.5),\n                        inset 0 0 22px rgba(255,43,214,0.45);\n                    transform: scale(1);\n                }\n                50% {\n                    box-shadow:\n                        0 0 0 2px var(--cp-pink),\n                        0 0 40px rgba(255,43,214,1),\n                        0 0 100px rgba(255,43,214,0.7),\n                        inset 0 0 30px rgba(255,43,214,0.6);\n                    transform: scale(1.04);\n                }\n            }\n            \n            .cp-action-btn {\n                background: rgba(8,4,28,0.85) !important;\n                border: 1px solid var(--cp-border) !important;\n                color: var(--cp-cyan) !important;\n                font-family: inherit !important;\n                font-weight: 700 !important;\n                cursor: pointer;\n                width: 46px; height: 46px;\n                padding: 0 !important;\n                letter-spacing: 0 !important;\n                font-size: 1.05rem !important;\n                text-shadow: 0 0 6px var(--cp-cyan) !important;\n                transition: all 0.25s ease;\n                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);\n                box-shadow: 0 0 10px rgba(0,240,255,0.35);\n                display: inline-flex; align-items: center; justify-content: center;\n                white-space: nowrap;\n                position: relative;\n            }\n            .cp-action-btn .cp-btn-label { display: none; }\n            .cp-action-btn::after {\n                content: attr(data-tip);\n                position: absolute;\n                bottom: 100%; right: 50%;\n                transform: translate(50%, -8px);\n                background: rgba(8,4,28,0.95);\n                color: var(--cp-cyan);\n                font-size: 10px;\n                letter-spacing: 0.18em;\n                text-transform: uppercase;\n                padding: 5px 9px;\n                border: 1px solid var(--cp-border);\n                opacity: 0; pointer-events: none;\n                transition: opacity 0.2s;\n                white-space: nowrap;\n                text-shadow: 0 0 5px var(--cp-cyan);\n                box-shadow: 0 0 10px rgba(0,240,255,0.4);\n            }\n            .cp-action-btn:hover::after { opacity: 1; }\n            .cp-action-btn:hover {\n                color: var(--cp-pink) !important;\n                border-color: var(--cp-pink) !important;\n                box-shadow: 0 0 16px rgba(255,43,214,0.55) !important;\n                transform: translateY(-2px);\n                text-shadow: 0 0 8px var(--cp-pink) !important;\n            }\n            .cp-action-btn-danger {\n                color: var(--cp-red) !important;\n                border-color: var(--cp-red) !important;\n                text-shadow: 0 0 6px var(--cp-red) !important;\n                box-shadow: 0 0 10px rgba(255,56,96,0.45) !important;\n            }\n            .cp-action-btn-danger:hover {\n                color: #fff !important;\n                box-shadow: 0 0 20px rgba(255,56,96,0.85) !important;\n                transform: translateY(-2px);\n            }\n            .cp-action-btn-saving,\n            .cp-fab-save.cp-action-btn-saving {\n                opacity: 0.7;\n                pointer-events: none;\n                animation: cp-pulse-pink 0.9s ease-in-out infinite !important;\n            }\n            @keyframes cp-pulse-pink {\n                0%, 100% { box-shadow: 0 0 12px rgba(255,43,214,0.45); }\n                50%      { box-shadow: 0 0 36px rgba(255,43,214,0.95); }\n            }\n            .container { padding-bottom: 130px; }\n            .cp-action-status {\n                position: fixed;\n                right: 22px;\n                bottom: 86px;\n                z-index: 99998;\n                padding: 9px 16px;\n                background: rgba(8,4,28,0.95);\n                border: 1px solid var(--cp-mint);\n                color: var(--cp-mint);\n                font-size: 0.78rem;\n                letter-spacing: 0.16em;\n                text-transform: uppercase;\n                text-shadow: 0 0 6px var(--cp-mint);\n                box-shadow: 0 0 14px rgba(0,255,157,0.45);\n                clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);\n                opacity: 0;\n                transform: translateY(8px);\n                transition: opacity 0.25s, transform 0.25s;\n                pointer-events: none;\n                white-space: nowrap;\n                max-width: calc(100vw - 44px);\n                overflow: hidden; text-overflow: ellipsis;\n            }\n            .cp-action-status.cp-show { opacity: 1; transform: translateY(0); }\n            .cp-action-status.cp-err {\n                border-color: var(--cp-red);\n                color: var(--cp-red);\n                text-shadow: 0 0 6px var(--cp-red);\n                box-shadow: 0 0 14px rgba(255,56,96,0.55);\n            }\n            \n            .cp-toast-stack {\n                position: fixed;\n                top: 88px;\n                right: 22px;\n                z-index: 100000;\n                display: flex;\n                flex-direction: column;\n                gap: 10px;\n                max-width: min(420px, calc(100vw - 32px));\n                pointer-events: none;\n            }\n            .cp-toast {\n                position: relative;\n                display: flex;\n                align-items: flex-start;\n                gap: 12px;\n                padding: 12px 16px 12px 14px;\n                background: linear-gradient(135deg, rgba(8,4,28,0.96) 0%, rgba(20,5,50,0.92) 100%);\n                border: 1px solid var(--cp-mint);\n                color: var(--cp-mint);\n                font-size: 0.82rem;\n                line-height: 1.45;\n                letter-spacing: 0.06em;\n                text-shadow: 0 0 6px var(--cp-mint);\n                box-shadow:\n                    0 0 0 1px rgba(0,255,157,0.25),\n                    0 0 18px rgba(0,255,157,0.45),\n                    0 8px 28px rgba(0,0,0,0.55);\n                backdrop-filter: blur(8px);\n                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);\n                transform: translateX(120%);\n                opacity: 0;\n                transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;\n                pointer-events: auto;\n                overflow: hidden;\n                word-break: break-all;\n            }\n            .cp-toast.cp-show { transform: translateX(0); opacity: 1; }\n            .cp-toast.cp-hide { transform: translateX(120%); opacity: 0; }\n            .cp-toast::before {\n                content: "";\n                position: absolute;\n                left: 0; top: 0; bottom: 0;\n                width: 3px;\n                background: var(--cp-mint);\n                box-shadow: 0 0 10px var(--cp-mint);\n            }\n            .cp-toast-icon {\n                font-size: 1.1rem;\n                line-height: 1;\n                margin-top: 1px;\n                flex-shrink: 0;\n                color: var(--cp-mint);\n                text-shadow: 0 0 8px var(--cp-mint);\n            }\n            .cp-toast-body { flex: 1; min-width: 0; }\n            .cp-toast-title {\n                font-size: 0.72rem;\n                font-weight: 800;\n                letter-spacing: 0.22em;\n                text-transform: uppercase;\n                opacity: 0.85;\n                margin-bottom: 2px;\n            }\n            .cp-toast-msg { white-space: pre-wrap; }\n            .cp-toast-close {\n                position: absolute;\n                top: 6px; right: 8px;\n                background: transparent;\n                border: 0;\n                color: inherit;\n                font-size: 14px;\n                cursor: pointer;\n                opacity: 0.55;\n                padding: 2px 4px;\n                line-height: 1;\n                transition: opacity 0.2s;\n            }\n            .cp-toast-close:hover { opacity: 1; }\n            .cp-toast::after {\n                content: "";\n                position: absolute;\n                left: 0; bottom: 0;\n                height: 2px;\n                width: 100%;\n                background: linear-gradient(90deg, var(--cp-mint), transparent);\n                box-shadow: 0 0 6px var(--cp-mint);\n                transform-origin: left;\n                animation: cp-toast-bar var(--cp-toast-dur, 3200ms) linear forwards;\n            }\n            @keyframes cp-toast-bar {\n                from { transform: scaleX(1); }\n                to   { transform: scaleX(0); }\n            }\n            .cp-toast.cp-toast-success { border-color: var(--cp-mint); color: var(--cp-mint); text-shadow: 0 0 6px var(--cp-mint); }\n            .cp-toast.cp-toast-success::before,\n            .cp-toast.cp-toast-success::after { background: var(--cp-mint); box-shadow: 0 0 10px var(--cp-mint); }\n            .cp-toast.cp-toast-success .cp-toast-icon { color: var(--cp-mint); text-shadow: 0 0 8px var(--cp-mint); }\n            .cp-toast.cp-toast-info { border-color: var(--cp-cyan); color: var(--cp-cyan); text-shadow: 0 0 6px var(--cp-cyan); box-shadow: 0 0 0 1px rgba(0,240,255,0.25), 0 0 18px rgba(0,240,255,0.45), 0 8px 28px rgba(0,0,0,0.55); }\n            .cp-toast.cp-toast-info::before,\n            .cp-toast.cp-toast-info::after { background: var(--cp-cyan); box-shadow: 0 0 10px var(--cp-cyan); }\n            .cp-toast.cp-toast-info .cp-toast-icon { color: var(--cp-cyan); text-shadow: 0 0 8px var(--cp-cyan); }\n            .cp-toast.cp-toast-warn { border-color: var(--cp-amber); color: var(--cp-amber); text-shadow: 0 0 6px var(--cp-amber); box-shadow: 0 0 0 1px rgba(255,176,46,0.25), 0 0 18px rgba(255,176,46,0.45), 0 8px 28px rgba(0,0,0,0.55); }\n            .cp-toast.cp-toast-warn::before,\n            .cp-toast.cp-toast-warn::after { background: var(--cp-amber); box-shadow: 0 0 10px var(--cp-amber); }\n            .cp-toast.cp-toast-warn .cp-toast-icon { color: var(--cp-amber); text-shadow: 0 0 8px var(--cp-amber); }\n            .cp-toast.cp-toast-error { border-color: var(--cp-red); color: var(--cp-red); text-shadow: 0 0 6px var(--cp-red); box-shadow: 0 0 0 1px rgba(255,56,96,0.30), 0 0 18px rgba(255,56,96,0.55), 0 8px 28px rgba(0,0,0,0.55); }\n            .cp-toast.cp-toast-error::before,\n            .cp-toast.cp-toast-error::after { background: var(--cp-red); box-shadow: 0 0 10px var(--cp-red); }\n            .cp-toast.cp-toast-error .cp-toast-icon { color: var(--cp-red); text-shadow: 0 0 8px var(--cp-red); }\n\n            \n            .cp-action-bar.cp-dirty::before {\n                content: "● UNSAVED";\n                position: absolute;\n                top: -22px; right: 6px;\n                font-size: 9px;\n                letter-spacing: 0.3em;\n                color: var(--cp-pink);\n                text-shadow: 0 0 6px var(--cp-pink);\n                background: rgba(8,4,28,0.92);\n                padding: 3px 8px;\n                border: 1px solid var(--cp-pink);\n                box-shadow: 0 0 10px rgba(255,43,214,0.6);\n                animation: cp-pulse-pink 1.6s ease-in-out infinite;\n            }\n\n            @media (max-width: 720px) {\n                .container { padding: 100px 14px 140px; }\n                .card { padding: 22px 18px; }\n                .header { padding: 22px 18px; }\n                .header::after {\n                    right: 72px;\n                    font-size: 9px;\n                    letter-spacing: 0.18em;\n                }\n                .title { font-size: 2rem; }\n                .cp-hud { font-size: 9px; }\n                .cp-action-bar {\n                    right: 50%;\n                    bottom: 14px;\n                    transform: translateX(50%);\n                    gap: 8px;\n                }\n                .cp-fab-save {\n                    min-width: 0;\n                    padding: 13px 18px !important;\n                    font-size: 0.8rem !important;\n                    letter-spacing: 0.16em !important;\n                }\n                .cp-action-btn { width: 42px; height: 42px; }\n                .cp-action-status { right: 50%; transform: translate(50%, 8px); }\n                .cp-action-status.cp-show { transform: translate(50%, 0); }\n            }\n            @media (max-width: 520px) {\n                .header::before { display: none; }\n            }\n\n            \n            .cp-hud {\n                color: #16324a;\n                opacity: 1;\n                text-shadow: none;\n            }\n            .cp-hud .cp-hud-label { color: #a21caf; }\n            .cp-lang-tag {\n                color: #7e22ce;\n                text-shadow: none;\n            }\n            #languageSelector {\n                background: #ffffff;\n                color: #0f5263;\n                border-color: #0891b2;\n                text-shadow: none;\n                box-shadow: 0 6px 18px rgba(15, 82, 99, 0.16);\n            }\n            .container { max-width: 1120px; }\n            .header,\n            .card {\n                box-shadow: 0 16px 42px rgba(15, 23, 42, 0.16);\n            }\n            .card { margin-bottom: 24px; }\n            @media (max-width: 720px) {\n                .cp-hud { top: 12px; right: 12px; letter-spacing: 0.1em; }\n                .cp-lang-wrapper { top: 12px; left: 12px; }\n                .cp-lang-tag { display: none; }\n                #languageSelector { padding: 5px 8px; }\n                .container { padding-top: 88px; }\n            }\n        </style>\n    </head>\n    <body>\n            <div class="cp-hud">\n                <span class="cp-hud-line"><span class="cp-hud-label">SYS::</span> ${i.terminal}</span>\n                <span class="cp-hud-line"><span class="cp-hud-label">NODE::</span> NIGHT_CITY</span>\n                <span class="cp-hud-line"><span class="cp-hud-label">LINK::</span> SECURE / ENC</span>\n            </div>\n            <div class="cp-lang-wrapper">\n                <span class="cp-lang-tag">LANG_</span>\n                <select id="languageSelector" onchange="切换语言(this.value)">\n                    <option value="en" selected>English</option>\n                </select>\n            </div>\n        <div class="container">\n            <div class="header">\n                    <h1 class="title cp-glitch" data-text="${i.title}">${i.title}</h1>\n                    <p class="subtitle">${i.subtitle}</p>\n            </div>\n            <div class="card">\n                    <h2 class="card-title">${i.selectClient}</h2>\n                <div class="client-grid">\n                    <button class="client-btn" onclick="生成客户端链接(atob('Y2xhc2g='), 'CLASH')">CLASH</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('Y2xhc2g='), 'STASH')">STASH</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('c3VyZ2U='), 'SURGE')">SURGE</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('c2luZ2JveA=='), 'SING-BOX')">SING-BOX</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('bG9vbg=='), 'LOON')">LOON</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('cXVhbng='), 'QUANTUMULT X')">QUANTUMULT X</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'V2RAY')">V2RAY</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'V2RAYNG')">V2RAYNG</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'NEKORAY')">NEKORAY</button>\n                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'Shadowrocket')">Shadowrocket</button>\n                </div>\n                <div class="subscription-url" id="clientSubscriptionUrl"></div>\n            </div>\n            <div class="card">\n                    <h2 class="card-title">${i.systemStatus}</h2>\n                <div id="systemStatus" style="margin: 20px 0; padding: 15px; background: rgba(8, 4, 28, 0.8); border: 2px solid #00f0ff; box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1); position: relative; overflow: hidden;">\n                        <div style="color: #00f0ff; margin-bottom: 15px; font-weight: bold; text-shadow: 0 0 5px #00f0ff;">[ ${i.checking} ]</div>\n                        <div id="regionStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${i.workerRegion}${i.checking}</div>\n                        <div id="geoInfo" style="margin: 8px 0; color: #7aa9c4; font-family: 'Courier New', monospace; font-size: 0.9rem; text-shadow: 0 0 3px #7aa9c4;">${i.detectionMethod}${i.checking}</div>\n                        <div id="backupStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${i.proxyIPStatus}${i.checking}</div>\n                        <div id="currentIP" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${i.currentIP}${i.checking}</div>\n                        <div id="echStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff; font-size: 0.9rem;">ECH Status: ${i.checking}</div>\n                        <div id="regionMatch" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${i.regionMatch}${i.checking}</div>\n                        <div id="selectionLogic" style="margin: 8px 0; color: #7aa9c4; font-family: 'Courier New', monospace; font-size: 0.9rem; text-shadow: 0 0 3px #7aa9c4;">${i.selectionLogic}${i.selectionLogicText}</div>\n                </div>\n            </div>\n            <div class="card" id="configCard" style="display: none;">\n                    <h2 class="card-title">${i.configManagement}</h2>\n                <div id="kvStatus" style="margin-bottom: 20px; padding: 10px; background: rgba(8, 4, 28, 0.8); border: 1px solid #00f0ff; color: #00f0ff;">\n                    ${i.kvStatusChecking}\n                </div>\n                <div id="configContent" style="display: none;">\n                    <form id="regionForm" style="margin-bottom: 20px;">\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.specifyRegion}</label>\n                            <select id="wkRegion" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.autoDetect}</option>\n                                    <option value="HK">${i.regionNames.HK}</option>\n                                    <option value="US">${i.regionNames.US}</option>\n                                    <option value="SG">${i.regionNames.SG}</option>\n                                    <option value="JP">${i.regionNames.JP}</option>\n                                    <option value="KR">${i.regionNames.KR}</option>\n                                    <option value="DE">${i.regionNames.DE}</option>\n                                    <option value="SE">${i.regionNames.SE}</option>\n                                    <option value="NL">${i.regionNames.NL}</option>\n                                    <option value="FI">${i.regionNames.FI}</option>\n                                    <option value="GB">${i.regionNames.GB}</option>\n                            </select>\n                                <small id="wkRegionHint" style="color: #7aa9c4; font-size: 0.85rem; display: none;">⚠️ ${i.customIPDisabledHint}</small>\n                        </div>\n                    </form>\n                    <form id="otherConfigForm" style="margin-bottom: 20px;">\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.protocolSelection}</label>\n                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="ev" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enableProtoV}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="et" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enableProtoT}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="ex" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enableXhttp}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 240, 255, 0.3);">\n                                    <div style="margin-bottom: 10px;">\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ech" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                                <span style="font-size: 1.1rem;">${i.enableECH}</span>\n                                        </label>\n                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px; margin-left: 26px;">${i.enableECHHint}</small>\n                                    </div>\n                                    <div style="margin-top: 15px; margin-bottom: 10px;">\n                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${i.customDNS}</label>\n                                        <input type="text" id="customDNS" placeholder="${i.customDNSPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${i.customDNSHint}</small>\n                                    </div>\n                                    <div style="margin-bottom: 10px;">\n                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${i.customECHDomain}</label>\n                                        <input type="text" id="customECHDomain" placeholder="${i.customECHDomainPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${i.customECHDomainHint}</small>\n                                    </div>\n                                    <div style="margin-bottom: 10px;">\n                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${i.alpn}</label>\n                                        <select id="alpn" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                            <option value="">${i.alpnDefault}</option>\n                                            <option value="h3">h3</option>\n                                            <option value="h2">h2</option>\n                                            <option value="http/1.1">http/1.1</option>\n                                            <option value="h3,h2">h3,h2</option>\n                                            <option value="h2,http/1.1">h2,http/1.1</option>\n                                            <option value="h3,h2,http/1.1">h3,h2,http/1.1</option>\n                                        </select>\n                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${i.alpnHint}</small>\n                                    </div>\n                                </div>\n                                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 240, 255, 0.3);">\n                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${i.altPassword}</label>\n                                        <input type="text" id="tp" placeholder="${i.altPasswordPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${i.altPasswordHint}</small>\n                                </div>\n                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">${i.protocolHint}</small>\n                            </div>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.customHomepage}</label>\n                                <input type="text" id="customHomepage" placeholder="${i.customHomepagePlaceholder}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.customHomepageHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.customPath}</label>\n                                <input type="text" id="customPath" placeholder="例如: /mypath 或留空使用 UUID" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">Custom subscription path. Leave blank to use the UUID.</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.customIP}</label>\n                                <input type="text" id="customIP" placeholder="例如: 1.2.3.4:443" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">Custom Proxy IP address and port.</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.preferredIPs}</label>\n                                <input type="text" id="yx" placeholder="例如: 1.2.3.4:443#日本节点,5.6.7.8:80#美国节点,example.com:8443#新加坡节点" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">格式: IP:端口#节点名称 或 IP:端口 (无#则使用默认名称)。支持多个，用逗号分隔。<span style="color: #ffb400;">API添加的IP会自动显示在这里。</span></small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.preferredIPsURL}</label>\n                                <input type="text" id="yxURL" placeholder="输入优选IP列表来源URL" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">自定义优选IP列表来源URL，留空则使用默认地址</small>\n                        </div>\n                        \n                        <div style="margin-bottom: 20px; padding: 15px; background: rgba(20, 5, 50, 0.6); border: 2px solid #7aa9c4; border-radius: 8px;">\n                            <h4 style="color: #00f0ff; margin: 0 0 15px 0; font-size: 1.1rem; text-shadow: 0 0 5px #00f0ff;">⚡ ${i.latencyTest}</h4>\n                            <div style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;">\n                                <div style="min-width: 120px;">\n                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${i.ipSource}</label>\n                                    <select id="ipSourceSelect" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px; cursor: pointer;">\n                                        <option value="manual">${i.manualInput}</option>\n                                        <option value="cfRandom">${i.cfRandomIP}</option>\n                                        <option value="urlFetch">${i.urlFetch}</option>\n                                    </select>\n                                </div>\n                                <div style="width: 100px;">\n                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${i.latencyTestPort}</label>\n                                    <input type="number" id="latencyTestPort" value="443" min="1" max="65535" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                </div>\n                                <div id="randomCountDiv" style="width: 100px; display: none;">\n                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${i.randomCount}</label>\n                                    <input type="number" id="randomIPCount" value="20" min="1" max="100" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                </div>\n                                <div style="width: 80px;">\n                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">线程</label>\n                                    <input type="number" id="testThreads" value="5" min="1" max="50" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                </div>\n                            </div>\n                            <div id="manualInputDiv" style="margin-bottom: 10px;">\n                                <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${i.latencyTestIP}</label>\n                                <input type="text" id="latencyTestInput" placeholder="${i.latencyTestIPPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                            </div>\n                            <div id="urlFetchDiv" style="margin-bottom: 10px; display: none;">\n                                <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${i.fetchURL}</label>\n                                <div style="display: flex; gap: 8px;">\n                                    <input type="text" id="fetchURLInput" placeholder="${i.fetchURLPlaceholder}" style="flex: 1; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">\n                                    <button type="button" id="fetchIPBtn" style="background: rgba(0, 200, 255, 0.2); border: 1px solid #00aaff; padding: 8px 16px; color: #00aaff; font-family: 'Courier New', monospace; cursor: pointer; white-space: nowrap;">⬇ ${i.fetchIP}</button>\n                                </div>\n                            </div>\n                            <div id="cfRandomDiv" style="margin-bottom: 10px; display: none;">\n                                <button type="button" id="generateCFIPBtn" style="background: rgba(0, 240, 255, 0.15); border: 1px solid #00f0ff; padding: 10px 20px; color: #00f0ff; font-family: 'Courier New', monospace; cursor: pointer; width: 100%; transition: all 0.3s;">🎲 ${i.generateIP}</button>\n                            </div>\n                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">\n                                <button type="button" id="startLatencyTest" style="background: rgba(0, 240, 255, 0.2); border: 1px solid #00f0ff; padding: 8px 16px; color: #00f0ff; font-family: 'Courier New', monospace; cursor: pointer; transition: all 0.3s;">▶ ${i.startTest}</button>\n                                <button type="button" id="stopLatencyTest" style="background: rgba(255, 0, 0, 0.2); border: 1px solid #ff3860; padding: 8px 16px; color: #ff3860; font-family: 'Courier New', monospace; cursor: pointer; display: none; transition: all 0.3s;">⏹ ${i.stopTest}</button>\n                            </div>\n                            <div id="latencyTestStatus" style="color: #7aa9c4; font-size: 0.9rem; margin-bottom: 10px; display: none;"></div>\n                            <div id="latencyTestResults" style="max-height: 250px; overflow-y: auto; display: none;">\n                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">\n                                    <span style="color: #00f0ff; font-weight: bold;">${i.testResult}</span>\n                                    <div style="display: flex; gap: 8px;">\n                                        <button type="button" id="selectAllResults" style="background: transparent; border: 1px solid #7aa9c4; padding: 4px 10px; color: #7aa9c4; font-size: 0.8rem; cursor: pointer;">${i.selectAll}</button>\n                                        <button type="button" id="deselectAllResults" style="background: transparent; border: 1px solid #7aa9c4; padding: 4px 10px; color: #7aa9c4; font-size: 0.8rem; cursor: pointer;">${i.deselectAll}</button>\n                                    </div>\n                                </div>\n                                <div id="cityFilterContainer" style="margin-bottom: 10px; padding: 10px; background: rgba(15, 3, 40, 0.6); border: 1px solid #7aa9c4; border-radius: 4px; display: none;">\n                                    <div style="margin-bottom: 8px;">\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.9rem;">\n                                            <input type="radio" name="cityFilterMode" value="all" checked style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">\n                                            <span>全部城市</span>\n                                        </label>\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.9rem; margin-left: 15px;">\n                                            <input type="radio" name="cityFilterMode" value="fastest10" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">\n                                            <span>只选择最快的10个</span>\n                                        </label>\n                                    </div>\n                                    <div id="cityCheckboxesContainer" style="display: flex; flex-wrap: wrap; gap: 8px; max-height: 80px; overflow-y: auto; padding: 5px;"></div>\n                                </div>\n                                <div id="latencyResultsList" style="background: rgba(0, 0, 0, 0.5); border: 1px solid #004400; border-radius: 4px; padding: 10px;"></div>\n                                <div style="margin-top: 10px; display: flex; gap: 10px;">\n                                    <button type="button" id="overwriteSelectedToYx" style="flex: 1; background: rgba(0, 220, 130, 0.3); border: 1px solid #00f0ff; padding: 10px 20px; color: #00f0ff; font-family: 'Courier New', monospace; font-weight: bold; cursor: pointer; transition: all 0.3s;">覆盖添加</button>\n                                    <button type="button" id="appendSelectedToYx" style="flex: 1; background: rgba(0, 178, 110, 0.3); border: 1px solid #7aa9c4; padding: 10px 20px; color: #7aa9c4; font-family: 'Courier New', monospace; font-weight: bold; cursor: pointer; transition: all 0.3s;">追加添加</button>\n                                </div>\n                            </div>\n                        </div>\n\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.socks5Config}</label>\n                                <input type="text" id="socksConfig" placeholder="Example: user:pass@host:port or http://user:pass@host:port" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">Outbound proxy for all traffic. Without a scheme, SOCKS5 is used.</small>\n                        </div>\n                    </form>\n\n                    <h3 style="color: #00f0ff; margin: 20px 0 15px 0; font-size: 1.2rem;">${i.advancedControl}</h3>\n                    <form id="advancedConfigForm" style="margin-bottom: 20px;">\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.subscriptionConverter}</label>\n                                <input type="text" id="scu" placeholder="${i.subscriptionConverterPlaceholder}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.subscriptionConverterHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.builtinPreferred}</label>\n                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="ena" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enableNativeAddress}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="epd" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enablePreferredDomain}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="epi" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enablePreferredIP}</span>\n                                    </label>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                        <input type="checkbox" id="egi" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1.1rem;">${i.enableGitHubPreferred}</span>\n                                    </label>\n                                </div>\n                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">${i.builtinPreferredHint}</small>\n                            </div>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">优选IP筛选设置</label>\n                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">\n                                <div style="margin-bottom: 15px;">\n                                    <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">IP版本选择</label>\n                                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ipv4Enabled" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1rem;">IPv4</span>\n                                        </label>\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ipv6Enabled" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1rem;">IPv6</span>\n                                        </label>\n                                    </div>\n                                </div>\n                                <div style="margin-bottom: 10px;">\n                                    <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">运营商选择</label>\n                                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ispMobile" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1rem;">移动</span>\n                                        </label>\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ispUnicom" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1rem;">联通</span>\n                                        </label>\n                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">\n                                            <input type="checkbox" id="ispTelecom" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">\n                                            <span style="font-size: 1rem;">电信</span>\n                                        </label>\n                                    </div>\n                                </div>\n                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">选择要使用的IP版本和运营商，未选中的将被过滤</small>\n                            </div>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.allowAPIManagement}</label>\n                            <select id="apiEnabled" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.apiEnabledDefault}</option>\n                                    <option value="yes">${i.apiEnabledYes}</option>\n                            </select>\n                                <small style="color: #ffb400; font-size: 0.85rem;">${i.apiEnabledHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.regionMatching}</label>\n                            <select id="regionMatching" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.regionMatchingDefault}</option>\n                                    <option value="no">${i.regionMatchingNo}</option>\n                            </select>\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.regionMatchingHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.downgradeControl}</label>\n                            <select id="downgradeControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.downgradeControlDefault}</option>\n                                    <option value="no">${i.downgradeControlNo}</option>\n                                    <option value="only">${i.downgradeControlOnly}</option>\n                            </select>\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.downgradeControlHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.tlsControl}</label>\n                            <select id="portControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.tlsControlDefault}</option>\n                                    <option value="yes">${i.tlsControlYes}</option>\n                            </select>\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.tlsControlHint}</small>\n                        </div>\n                        <div style="margin-bottom: 15px;">\n                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${i.preferredControl}</label>\n                            <select id="preferredControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">\n                                    <option value="">${i.preferredControlDefault}</option>\n                                    <option value="yes">${i.preferredControlYes}</option>\n                            </select>\n                                <small style="color: #7aa9c4; font-size: 0.85rem;">${i.preferredControlHint}</small>\n                        </div>\n                    </form>\n                    <div id="currentConfig" style="background: rgba(0, 0, 0, 0.9); border: 1px solid #00f0ff; padding: 15px; margin: 10px 0; font-family: 'Courier New', monospace; color: #00f0ff;">\n                            ${i.loading}\n                    </div>\n                    <div id="pathTypeInfo" style="background: rgba(15, 3, 40, 0.7); border: 1px solid #00f0ff; padding: 15px; margin: 10px 0; font-family: 'Courier New', monospace; color: #00f0ff;">\n                            <div style="font-weight: bold; margin-bottom: 8px; color: #00ff9d; text-shadow: 0 0 5px #00ff9d;">${i.currentConfig}</div>\n                            <div id="pathTypeStatus">${i.checking}</div>\n                    </div>\n                </div>\n                <div id="statusMessage" style="display: none; padding: 10px; margin: 10px 0; border: 1px solid #00f0ff; background: rgba(8, 4, 28, 0.8); color: #00f0ff; text-shadow: 0 0 5px #00f0ff;"></div>\n            </div>\n            \n            <div class="card">\n                    <h2 class="card-title">${i.relatedLinks}</h2>\n                <div style="text-align: center; margin: 20px 0;">\n                        <a href="https://github.com/byJoey/cfnew" target="_blank" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">${i.githubProject}</a>\n                        <a href="https://github.com/byJoey/yx-tools/releases/" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">${i.优选工具}</a>\n                    <a href="https://www.youtube.com/@joeyblog" target="_blank" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">YouTube @joeyblog</a>\n                </div>\n            </div>\n        </div>\n        <div id="cpToastStack" class="cp-toast-stack" aria-live="polite" aria-atomic="false"></div>\n        <div id="cpActionStatus" class="cp-action-status" role="status" aria-live="polite"></div>\n        <div id="cpActionBar" class="cp-action-bar" role="toolbar" aria-label="${i.configManagement}">\n            <button type="button" id="cpBtnSaveAll" class="cp-fab-save" title="保存所有配置 (Ctrl+S)">\n                <span class="cp-fab-icon">▣</span>\n                <span>保 存 全 部</span>\n                <span class="cp-fab-dot" aria-hidden="true"></span>\n            </button>\n            <button type="button" id="cpBtnRefresh" class="cp-action-btn" data-tip="${i.refreshConfig}" aria-label="${i.refreshConfig}">\n                <span aria-hidden="true">↻</span>\n                <span class="cp-btn-label">${i.refreshConfig}</span>\n            </button>\n            <button type="button" id="cpBtnReset" class="cp-action-btn cp-action-btn-danger" data-tip="${i.resetConfig}" aria-label="${i.resetConfig}">\n                <span aria-hidden="true">⌫</span>\n                <span class="cp-btn-label">${i.resetConfig}</span>\n            </button>\n        </div>\n        <script>\n\nvar 订阅转换网址 = "${S}";\n\nvar 远程配置网址 = "${E}";\n\nconst 本地值20215 = {\n  zh: {\n    subscriptionCopied: 'Subscription link copied.',\n    autoSubscriptionCopied: 'Auto-detect subscription link copied. The response format follows the client User-Agent.'\n  },\n  fa: {\n    subscriptionCopied: 'لینک اشتراک کپی شد',\n    autoSubscriptionCopied: 'لینک اشتراک تشخیص خودکار کپی شد، کلاینت هنگام دسترسی بر اساس User-Agent به طور خودکار تشخیص داده و قالب مربوطه را برمی‌گرداند'\n  }\n};\nfunction 获取凭据20214(名称20213) {\n  const 值20212 = '; ' + document.cookie;\n  const 部分列表20211 = 值20212.split('; ' + 名称20213 + '=');\n  if (部分列表20211.length === 2) return 部分列表20211.pop().split(';').shift();\n  return null;\n}\nconst 浏览器语言20210 = navigator.language || navigator.userLanguage || '';\nconst 已保存语言20209 = localStorage.getItem('preferredLanguage') || 获取凭据20214('preferredLanguage');\nlet 是否值20208 = false;\nif (已保存语言20209 === 'fa' || 已保存语言20209 === 'fa-IR') {\n  是否值20208 = true;\n} else if (已保存语言20209 === 'zh' || 已保存语言20209 === 'zh-CN') {\n  是否值20208 = false;\n} else {\n  是否值20208 = 浏览器语言20210.includes('fa') || 浏览器语言20210.includes('fa-IR');\n}\nconst 翻译值20207 = 本地值20215[是否值20208 ? 'fa' : 'zh'];\nfunction 切换语言(语言) {\n  localStorage.setItem('preferredLanguage', 语言);\n\n  const 过期日期20206 = new Date();\n  过期日期20206.setFullYear(过期日期20206.getFullYear() + 1);\n  document.cookie = 'preferredLanguage=' + 语言 + '; path=/; expires=' + 过期日期20206.toUTCString() + '; SameSite=Lax';\n\n  window.location.reload();\n}\n\nwindow.addEventListener('DOMContentLoaded', function () {\n  const 已保存语言20205 = localStorage.getItem('preferredLanguage') || 获取凭据20214('preferredLanguage');\n  const 网址参数 = new URLSearchParams(window.location.search);\n  const 网址语言 = 网址参数.get('lang');\n\n  if (网址语言) {\n    const 当前网址20204 = new URL(window.location.href);\n    当前网址20204.searchParams.delete('lang');\n    const 新网址 = 当前网址20204.toString();\n\n    const 过期日期20203 = new Date();\n    过期日期20203.setFullYear(过期日期20203.getFullYear() + 1);\n    document.cookie = 'preferredLanguage=' + 网址语言 + '; path=/; expires=' + 过期日期20203.toUTCString() + '; SameSite=Lax';\n    localStorage.setItem('preferredLanguage', 网址语言);\n\n    window.history.replaceState({}, '', 新网址);\n  } else if (已保存语言20205) {\n\n    const 过期日期 = new Date();\n    过期日期.setFullYear(过期日期.getFullYear() + 1);\n    document.cookie = 'preferredLanguage=' + 已保存语言20205 + '; path=/; expires=' + 过期日期.toUTCString() + '; SameSite=Lax';\n  }\n});\n\nwindow.显示提示 = function (消息20202, 类型20201, 本地值20200) {\n  本地值20200 = 本地值20200 || {};\n  var 堆栈 = document.getElementById('cpToastStack');\n  if (!堆栈) return;\n  var 类型映射 = {\n    success: '✓',\n    info: '⌬',\n    warn: '⚠',\n    error: '✕'\n  };\n  var 标题映射 = {\n    success: 'SUCCESS',\n    info: 'INFO',\n    warn: 'WARN',\n    error: 'ERROR'\n  };\n  类型20201 = 类型映射[类型20201] ? 类型20201 : 'success';\n  var 持续时间 = 本地值20200.duration || 3200;\n  var 提示 = document.createElement('div');\n  提示.className = 'cp-toast cp-toast-' + 类型20201;\n  提示.style.setProperty('--cp-toast-dur', 持续时间 + 'ms');\n  var 图标 = document.createElement('span');\n  图标.className = 'cp-toast-icon';\n  图标.textContent = 类型映射[类型20201];\n  var 主体 = document.createElement('div');\n  主体.className = 'cp-toast-body';\n  var 标题 = document.createElement('div');\n  标题.className = 'cp-toast-title';\n  标题.textContent = 本地值20200.title || 标题映射[类型20201];\n  var 消息20199 = document.createElement('div');\n  消息20199.className = 'cp-toast-msg';\n  消息20199.textContent = String(消息20202 == null ? '' : 消息20202);\n  主体.appendChild(标题);\n  主体.appendChild(消息20199);\n  var 关闭 = document.createElement('button');\n  关闭.type = 'button';\n  关闭.className = 'cp-toast-close';\n  关闭.setAttribute('aria-label', 'close');\n  关闭.textContent = '✕';\n  提示.appendChild(图标);\n  提示.appendChild(主体);\n  提示.appendChild(关闭);\n  堆栈.appendChild(提示);\n  requestAnimationFrame(function () {\n    提示.classList.add('cp-show');\n  });\n  var 本地值20198 = false;\n  function 关闭提示() {\n    if (本地值20198) return;\n    本地值20198 = true;\n    提示.classList.remove('cp-show');\n    提示.classList.add('cp-hide');\n    setTimeout(function () {\n      if (提示.parentNode) 提示.parentNode.removeChild(提示);\n    }, 400);\n  }\n  关闭.addEventListener('click', 关闭提示);\n  var 计时器 = setTimeout(关闭提示, 持续时间);\n  提示.addEventListener('mouseenter', function () {\n    clearTimeout(计时器);\n  });\n  提示.addEventListener('mouseleave', function () {\n    计时器 = setTimeout(关闭提示, 1200);\n  });\n  return {\n    dismiss: 关闭提示,\n    element: 提示\n  };\n};\nfunction 尝试打开应用(方案网址20197, 回退回调, 超时20196) {\n  超时20196 = 超时20196 || 2500;\n  var 应用已打开 = false;\n  var 回调已执行 = false;\n  var 开始值 = Date.now();\n  var 值值20195 = function () {\n    var 耗时20194 = Date.now() - 开始值;\n    if (耗时20194 < 3000 && !回调已执行) {\n      应用已打开 = true;\n    }\n  };\n  window.addEventListener('blur', 值值20195);\n  var 值值20193 = function () {\n    var 耗时 = Date.now() - 开始值;\n    if (耗时 < 3000 && !回调已执行) {\n      应用已打开 = true;\n    }\n  };\n  document.addEventListener('visibilitychange', 值值20193);\n  var 内嵌框架 = document.createElement('iframe');\n  内嵌框架.style.display = 'none';\n  内嵌框架.style.width = '1px';\n  内嵌框架.style.height = '1px';\n  内嵌框架.src = 方案网址20197;\n  document.body.appendChild(内嵌框架);\n  setTimeout(function () {\n    内嵌框架.parentNode && 内嵌框架.parentNode.removeChild(内嵌框架);\n    window.removeEventListener('blur', 值值20195);\n    document.removeEventListener('visibilitychange', 值值20193);\n    if (!回调已执行) {\n      回调已执行 = true;\n      if (!应用已打开 && 回退回调) {\n        回退回调();\n      }\n    }\n  }, 超时20196);\n}\nfunction 生成客户端链接(客户端类型, 客户端名称) {\n  var 当前网址20192 = window.location.href;\n  var 订阅网址20191 = 当前网址20192 + "/sub";\n  var 方案网址 = '';\n  var 显示名称 = 客户端名称 || '';\n  var 最终网址 = 订阅网址20191;\n  if (客户端类型 === atob('djJyYXk=')) {\n    最终网址 = 订阅网址20191;\n    var 网址值20190 = document.getElementById("clientSubscriptionUrl");\n    网址值20190.textContent = 最终网址;\n    网址值20190.style.display = "block";\n    网址值20190.style.overflowWrap = "break-word";\n    网址值20190.style.wordBreak = "break-all";\n    网址值20190.style.overflowX = "auto";\n    网址值20190.style.maxWidth = "100%";\n    网址值20190.style.boxSizing = "border-box";\n    if (客户端名称 === 'V2RAY') {\n      navigator.clipboard.writeText(最终网址).then(function () {\n        显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n      });\n    } else if (客户端名称 === 'Shadowrocket') {\n      方案网址 = '${t("c2hhZG93cm9ja2V0Oi8vYWRkLw==")}' + encodeURIComponent(最终网址);\n      尝试打开应用(方案网址, function () {\n        navigator.clipboard.writeText(最终网址).then(function () {\n          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n        });\n      });\n    } else if (客户端名称 === 'V2RAYNG') {\n      方案网址 = '${t("djJyYXluZzovL2luc3RhbGw/dXJsPQ==")}' + encodeURIComponent(最终网址);\n      尝试打开应用(方案网址, function () {\n        navigator.clipboard.writeText(最终网址).then(function () {\n          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n        });\n      });\n    } else if (客户端名称 === 'NEKORAY') {\n      方案网址 = '${t("bmVrb3JheTovL2luc3RhbGwtY29uZmlnP3VybD0=")}' + encodeURIComponent(最终网址);\n      尝试打开应用(方案网址, function () {\n        navigator.clipboard.writeText(最终网址).then(function () {\n          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n        });\n      });\n    }\n  } else {\n\n    最终网址 = 订阅网址20191 + (订阅网址20191.includes('?') ? '&' : '?') + "target=" + 客户端类型;\n    var 网址值20190 = document.getElementById("clientSubscriptionUrl");\n    网址值20190.textContent = 最终网址;\n    网址值20190.style.display = "block";\n    网址值20190.style.overflowWrap = "break-word";\n    网址值20190.style.wordBreak = "break-all";\n    网址值20190.style.overflowX = "auto";\n    网址值20190.style.maxWidth = "100%";\n    网址值20190.style.boxSizing = "border-box";\n    if (客户端类型 === atob('Y2xhc2g=')) {\n      if (客户端名称 === 'STASH') {\n        方案网址 = '${t("c3Rhc2g6Ly9pbnN0YWxsP3VybD0=")}' + encodeURIComponent(最终网址);\n        显示名称 = 'STASH';\n      } else {\n        方案网址 = '${t("Y2xhc2g6Ly9pbnN0YWxsLWNvbmZpZz91cmw9")}' + encodeURIComponent(最终网址);\n        显示名称 = 'CLASH';\n      }\n    } else if (客户端类型 === atob('c3VyZ2U=')) {\n      方案网址 = '${t("c3VyZ2U6Ly8vaW5zdGFsbC1jb25maWc/dXJsPQ==")}' + encodeURIComponent(最终网址);\n      显示名称 = 'SURGE';\n    } else if (客户端类型 === atob('c2luZ2JveA==')) {\n      方案网址 = '${t("c2luZy1ib3g6Ly9pbnN0YWxsLWNvbmZpZz91cmw9")}' + encodeURIComponent(最终网址);\n      显示名称 = 'SING-BOX';\n    } else if (客户端类型 === atob('bG9vbg==')) {\n      方案网址 = '${t("bG9vbjovL2luc3RhbGw/dXJsPQ==")}' + encodeURIComponent(最终网址);\n      显示名称 = 'LOON';\n    } else if (客户端类型 === atob('cXVhbng=')) {\n      方案网址 = '${t("cXVhbnR1bXVsdC14Oi8vaW5zdGFsbC1jb25maWc/dXJsPQ==")}' + encodeURIComponent(最终网址);\n      显示名称 = 'QUANTUMULT X';\n    }\n    if (方案网址) {\n      尝试打开应用(方案网址, function () {\n        navigator.clipboard.writeText(最终网址).then(function () {\n          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n        });\n      });\n    } else {\n      navigator.clipboard.writeText(最终网址).then(function () {\n        显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');\n      });\n    }\n  }\n}\n\nwindow.应用页面特效 = function () {\n  var 本地值20189 = localStorage.getItem('cp-fx-off') === '1';\n  document.body.classList.toggle('fx-off', 本地值20189);\n  var 本地值20188 = document.getElementById('cpFxLabel');\n  if (本地值20188) 本地值20188.textContent = 本地值20189 ? 'FX: OFF' : 'FX: ON';\n  if (本地值20189) {\n    var 本地值20187 = document.getElementById('matrixCodeRain');\n    if (本地值20187) 本地值20187.innerHTML = '';\n  } else if (typeof 创建矩阵雨 === 'function') {\n    var 结果值 = document.getElementById('matrixCodeRain');\n    if (结果值 && !结果值.firstChild) 创建矩阵雨();\n  }\n};\nwindow.切换页面特效 = function () {\n  var 本地值20186 = localStorage.getItem('cp-fx-off') === '1';\n  localStorage.setItem('cp-fx-off', 本地值20186 ? '0' : '1');\n  window.应用页面特效();\n};\n(function () {\n  if (localStorage.getItem('cp-fx-off') === '1') {\n    document.addEventListener('DOMContentLoaded', function () {\n      document.body.classList.add('fx-off');\n      var 本地值20185 = document.getElementById('cpFxLabel');\n      if (本地值20185) 本地值20185.textContent = 'FX: OFF';\n    });\n  }\n})();\nfunction 创建矩阵雨() {\n  if (document.body && document.body.classList.contains('fx-off')) return;\n  const 矩阵值 = document.getElementById('matrixCodeRain');\n  if (!矩阵值) return;\n  const 赛博字符列表 = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ$%#@!?<>+=ABCDEF';\n  const 调色板 = ['#00f0ff', '#ff2bd6', '#a347ff', '#00ff9d'];\n  const 列数 = Math.floor(window.innerWidth / 20);\n  for (let 索引值20184 = 0; 索引值20184 < 列数; 索引值20184++) {\n    const 列20183 = document.createElement('div');\n    列20183.className = 'matrix-column';\n    列20183.style.left = 索引值20184 * 20 + 'px';\n    列20183.style.animationDelay = -Math.random() * 15 + 's';\n    列20183.style.animationDuration = Math.random() * 14 + 8 + 's';\n    列20183.style.fontSize = Math.random() * 4 + 12 + 'px';\n    列20183.style.opacity = (Math.random() * 0.7 + 0.3).toFixed(2);\n    let 文本20182 = '';\n    const 字符数量 = Math.floor(Math.random() * 30 + 18);\n    for (let 次索引值 = 0; 次索引值 < 字符数量; 次索引值++) {\n      const 字符 = 赛博字符列表[Math.floor(Math.random() * 赛博字符列表.length)];\n      const 值强调 = Math.random() > 0.85;\n      const 颜色 = 值强调 ? 调色板[Math.floor(Math.random() * 调色板.length)] : '';\n      文本20182 += 颜色 ? '<span style="color:' + 颜色 + ';text-shadow:0 0 8px ' + 颜色 + ';">' + 字符 + '</span><br>' : '<span>' + 字符 + '</span><br>';\n    }\n    列20183.innerHTML = 文本20182;\n    矩阵值.appendChild(列20183);\n  }\n  setInterval(function () {\n    const 列列表 = 矩阵值.querySelectorAll('.matrix-column');\n    列列表.forEach(function (列) {\n      if (Math.random() > 0.94) {\n        const 字符列表 = 列.querySelectorAll('span');\n        if (字符列表.length > 0) {\n          const 目标20181 = 字符列表[Math.floor(Math.random() * 字符列表.length)];\n          const 本地值20180 = 目标20181.style.color;\n          目标20181.style.color = '#ffffff';\n          目标20181.style.textShadow = '0 0 10px #ffffff, 0 0 18px #00f0ff';\n          setTimeout(function () {\n            目标20181.style.color = 本地值20180;\n            目标20181.style.textShadow = '';\n          }, 200);\n        }\n      }\n    });\n  }, 110);\n}\nasync function 检查系统状态() {\n  try {\n    const 云墙状态 = document.getElementById('cfStatus');\n    const 地区状态 = document.getElementById('regionStatus');\n    const 值值20179 = document.getElementById('geoInfo');\n    const 备用状态 = document.getElementById('backupStatus');\n    const 当前地址 = document.getElementById('currentIP');\n    const 地区值 = document.getElementById('regionMatch');\n\n    function 获取凭据20178(名称20177) {\n      const 值20176 = '; ' + document.cookie;\n      const 部分列表20175 = 值20176.split('; ' + 名称20177 + '=');\n      if (部分列表20175.length === 2) return 部分列表20175.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言20174 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言20173 = localStorage.getItem('preferredLanguage') || 获取凭据20178('preferredLanguage');\n    let 是否值20172 = false;\n    if (已保存语言20173 === 'fa' || 已保存语言20173 === 'fa-IR') {\n      是否值20172 = true;\n    } else if (已保存语言20173 === 'zh' || 已保存语言20173 === 'zh-CN') {\n      是否值20172 = false;\n    } else {\n      是否值20172 = 浏览器语言20174.includes('fa') || 浏览器语言20174.includes('fa-IR');\n    }\n    const 本地值20171 = {\n      zh: {\n        workerRegion: 'Worker地区: ',\n        detectionMethod: '检测方式: ',\n        proxyIPStatus: 'Information',\n        currentIP: '当前使用IP: ',\n        regionMatch: '地区匹配: ',\n        regionNames: {\n          'CF': 'Information',\n          'HK': '🇭🇰 香港',\n          'US': '🇺🇸 美国',\n          'SG': '🇸🇬 新加坡',\n          'JP': '🇯🇵 日本',\n          'KR': '🇰🇷 韩国',\n          'DE': '🇩🇪 德国',\n          'SE': '🇸🇪 瑞典',\n          'NL': '🇳🇱 荷兰',\n          'FI': '🇫🇮 芬兰',\n          'GB': '🇬🇧 英国'\n        },\n        customIPMode: 'Information',\n        customIPModeDesc: '自定义IP模式 (已禁用地区匹配)',\n        usingCustomProxyIP: 'Information',\n        customIPConfig: ' (p变量配置)',\n        customIPModeDisabled: '自定义IP模式，地区选择已禁用',\n        manualRegion: '手动指定地区',\n        manualRegionDesc: ' (手动指定)',\n        proxyIPAvailable: 'Information',\n        smartSelection: '智能就近选择中',\n        sameRegionIP: '同地区IP可用 (1个)',\n        cloudflareDetection: 'Information',\n        detectionFailed: '检测失败',\n        unknown: '未知'\n      },\n      fa: {\n        workerRegion: 'منطقه Worker: ',\n        detectionMethod: 'روش تشخیص: ',\n        proxyIPStatus: 'Information',\n        currentIP: 'IP فعلی: ',\n        regionMatch: 'تطبیق منطقه: ',\n        regionNames: {\n          'CF': '🌐 مستقیم رسمی',\n          'HK': '🇭🇰 هنگ کنگ',\n          'US': '🇺🇸 آمریکا',\n          'SG': '🇸🇬 سنگاپور',\n          'JP': '🇯🇵 ژاپن',\n          'KR': '🇰🇷 کره جنوبی',\n          'DE': '🇩🇪 آلمان',\n          'SE': '🇸🇪 سوئد',\n          'NL': '🇳🇱 هلند',\n          'FI': '🇫🇮 فنلاند',\n          'GB': '🇬🇧 بریتانیا'\n        },\n        customIPMode: 'Information',\n        customIPModeDesc: 'حالت IP سفارشی (تطبیق منطقه غیرفعال است)',\n        usingCustomProxyIP: 'Information',\n        customIPConfig: ' (پیکربندی متغیر p)',\n        customIPModeDisabled: 'حالت IP سفارشی، انتخاب منطقه غیرفعال است',\n        manualRegion: 'تعیین منطقه دستی',\n        manualRegionDesc: ' (تعیین دستی)',\n        proxyIPAvailable: 'Information',\n        smartSelection: 'انتخاب هوشمند نزدیک در حال انجام است',\n        sameRegionIP: 'IP هم‌منطقه در دسترس است (1)',\n        cloudflareDetection: 'اتصال مستقیم رسمی',\n        detectionFailed: 'تشخیص ناموفق',\n        unknown: 'ناشناخته'\n      }\n    };\n    const 翻译值20170 = 本地值20171[是否值20172 ? 'fa' : 'zh'];\n    let 值地区20169 = 'US'; // 默认值\n    let 是否自定义地址值 = false;\n    let 是否手动地区值 = false;\n    try {\n      const 响应20168 = await fetch(window.location.pathname + '/region');\n      const 数据20167 = await 响应20168.json();\n      if (数据20167.region === 'CUSTOM') {\n        是否自定义地址值 = true;\n        值地区20169 = 'CUSTOM';\n\n        const 自定义地址值 = 数据20167.ci || 翻译值20170.unknown;\n        值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #ffb400;">⚙️ ' + 翻译值20170.customIPMode + '</span>';\n        地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #ffb400;">🔧 ' + 翻译值20170.customIPModeDesc + '</span>';\n\n        if (备用状态) 备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #ffb400;">🔧 ' + 翻译值20170.usingCustomProxyIP + 自定义地址值 + '</span>';\n        if (当前地址) 当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #ffb400;">✅ ' + 自定义地址值 + 翻译值20170.customIPConfig + '</span>';\n        if (地区值) 地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #ffb400;">⚠️ ' + 翻译值20170.customIPModeDisabled + '</span>';\n        return; // 提前返回，不执行后续的地区匹配逻辑\n      } else if (数据20167.detectionMethod === '手动指定地区' || 数据20167.detectionMethod === 'تعیین منطقه دستی') {\n        是否手动地区值 = true;\n        值地区20169 = 数据20167.region;\n        值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #00b380;">' + 翻译值20170.manualRegion + '</span>';\n        地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #00ff9d;">🎯 ' + 翻译值20170.regionNames[值地区20169] + 翻译值20170.manualRegionDesc + '</span>';\n\n        if (备用状态) 备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.proxyIPAvailable + '</span>';\n        if (当前地址) 当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.smartSelection + '</span>';\n        if (地区值) 地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.sameRegionIP + '</span>';\n        return; // 提前返回，不执行后续的地区匹配逻辑\n      } else if (数据20167.region && 翻译值20170.regionNames[数据20167.region]) {\n        值地区20169 = 数据20167.region;\n      }\n      值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #00ff9d;">' + 翻译值20170.cloudflareDetection + '</span>';\n    } catch (事件值20166) {\n      值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #ff3860;">' + 翻译值20170.detectionFailed + '</span>';\n    }\n    地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.regionNames[值地区20169] + '</span>';\n\n    if (备用状态) {\n      备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.proxyIPAvailable + '</span>';\n    }\n    if (当前地址) {\n      当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.smartSelection + '</span>';\n    }\n    if (地区值) {\n      地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.sameRegionIP + '</span>';\n    }\n  } catch (错误20165) {\n    function 获取凭据20164(名称20163) {\n      const 值20162 = '; ' + document.cookie;\n      const 部分列表20161 = 值20162.split('; ' + 名称20163 + '=');\n      if (部分列表20161.length === 2) return 部分列表20161.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言20160 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言20159 = localStorage.getItem('preferredLanguage') || 获取凭据20164('preferredLanguage');\n    let 是否值20158 = false;\n    if (已保存语言20159 === 'fa' || 已保存语言20159 === 'fa-IR') {\n      是否值20158 = true;\n    } else {\n      是否值20158 = 浏览器语言20160.includes('fa') || 浏览器语言20160.includes('fa-IR');\n    }\n    const 本地值20157 = {\n      zh: {\n        workerRegion: 'Worker地区: ',\n        detectionMethod: '检测方式: ',\n        proxyIPStatus: 'Information',\n        currentIP: '当前使用IP: ',\n        regionMatch: '地区匹配: ',\n        detectionFailed: '检测失败'\n      },\n      fa: {\n        workerRegion: 'منطقه Worker: ',\n        detectionMethod: 'روش تشخیص: ',\n        proxyIPStatus: 'Information',\n        currentIP: 'IP فعلی: ',\n        regionMatch: 'تطبیق منطقه: ',\n        detectionFailed: 'تشخیص ناموفق'\n      }\n    };\n    const 翻译值20156 = 本地值20157[是否值20158 ? 'fa' : 'zh'];\n    document.getElementById('regionStatus').innerHTML = 翻译值20156.workerRegion + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';\n    document.getElementById('geoInfo').innerHTML = 翻译值20156.detectionMethod + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';\n    document.getElementById('backupStatus').innerHTML = 翻译值20156.proxyIPStatus + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';\n    document.getElementById('currentIP').innerHTML = 翻译值20156.currentIP + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';\n    document.getElementById('regionMatch').innerHTML = 翻译值20156.regionMatch + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';\n  }\n}\nasync function 测试接口() {\n  try {\n    function 获取凭据20155(名称20154) {\n      const 值20153 = '; ' + document.cookie;\n      const 部分列表20152 = 值20153.split('; ' + 名称20154 + '=');\n      if (部分列表20152.length === 2) return 部分列表20152.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言20151 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言20150 = localStorage.getItem('preferredLanguage') || 获取凭据20155('preferredLanguage');\n    let 是否值20149 = false;\n    if (已保存语言20150 === 'fa' || 已保存语言20150 === 'fa-IR') {\n      是否值20149 = true;\n    } else {\n      是否值20149 = 浏览器语言20151.includes('fa') || 浏览器语言20151.includes('fa-IR');\n    }\n    const 本地值20148 = {\n      zh: {\n        apiTestResult: 'API检测结果: ',\n        apiTestTime: '检测时间: ',\n        apiTestFailed: 'API检测失败: ',\n        unknownError: '未知错误',\n        apiTestError: 'API测试失败: '\n      },\n      fa: {\n        apiTestResult: 'نتیجه تشخیص API: ',\n        apiTestTime: 'زمان تشخیص: ',\n        apiTestFailed: 'تشخیص API ناموفق: ',\n        unknownError: 'خطای ناشناخته',\n        apiTestError: 'تست API ناموفق: '\n      }\n    };\n    const 翻译值20147 = 本地值20148[是否值20149 ? 'fa' : 'zh'];\n    const 响应20146 = await fetch(window.location.pathname + '/test-api');\n    const 数据20145 = await 响应20146.json();\n    if (数据20145.detectedRegion) {\n      显示提示(翻译值20147.apiTestResult + 数据20145.detectedRegion + '\\n' + 翻译值20147.apiTestTime + 数据20145.timestamp, 'info', {\n        duration: 5000\n      });\n    } else {\n      显示提示(翻译值20147.apiTestFailed + (数据20145.error || 翻译值20147.unknownError), 'error', {\n        duration: 4500\n      });\n    }\n  } catch (错误20144) {\n    function 获取凭据20143(名称20142) {\n      const 值20141 = '; ' + document.cookie;\n      const 部分列表20140 = 值20141.split('; ' + 名称20142 + '=');\n      if (部分列表20140.length === 2) return 部分列表20140.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言20139 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言20138 = localStorage.getItem('preferredLanguage') || 获取凭据20143('preferredLanguage');\n    let 是否值20137 = false;\n    if (已保存语言20138 === 'fa' || 已保存语言20138 === 'fa-IR') {\n      是否值20137 = true;\n    } else {\n      是否值20137 = 浏览器语言20139.includes('fa') || 浏览器语言20139.includes('fa-IR');\n    }\n    const 本地值20136 = {\n      zh: {\n        apiTestError: 'API测试失败: '\n      },\n      fa: {\n        apiTestError: 'تست API ناموفق: '\n      }\n    };\n    const 翻译值20135 = 本地值20136[是否值20137 ? 'fa' : 'zh'];\n    显示提示(翻译值20135.apiTestError + 错误20144.message, 'error', {\n      duration: 4500\n    });\n  }\n}\n\nasync function 检查键值状态() {\n  const 接口网址20134 = window.location.pathname + '/api/config';\n  try {\n    const 响应20133 = await fetch(接口网址20134);\n    function 获取凭据20132(名称20131) {\n      const 值20130 = '; ' + document.cookie;\n      const 部分列表20129 = 值20130.split('; ' + 名称20131 + '=');\n      if (部分列表20129.length === 2) return 部分列表20129.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言20128 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言20127 = localStorage.getItem('preferredLanguage') || 获取凭据20132('preferredLanguage');\n    let 是否值20126 = false;\n    if (已保存语言20127 === 'fa' || 已保存语言20127 === 'fa-IR') {\n      是否值20126 = true;\n    } else {\n      是否值20126 = 浏览器语言20128.includes('fa') || 浏览器语言20128.includes('fa-IR');\n    }\n    const 本地值20125 = {\n      zh: {\n        kvDisabled: '⚠️ KV存储未启用或未配置',\n        kvNotConfigured: 'KV存储未配置，无法使用配置管理功能。\\n\\n请在Cloudflare Workers中:\\n1. 创建KV命名空间\\n2. 绑定环境变量 C\\n3. 重新部署代码',\n        kvNotEnabled: 'KV存储未配置',\n        kvEnabled: '✅ KV存储已启用，可以使用配置管理功能',\n        kvCheckFailed: '⚠️ KV存储检测失败',\n        kvCheckFailedFormat: 'KV存储检测失败: 响应格式错误',\n        kvCheckFailedStatus: 'KV存储检测失败 - 状态码: ',\n        kvCheckFailedError: 'KV存储检测失败 - 错误: '\n      },\n      fa: {\n        kvDisabled: '⚠️ ذخیره‌سازی KV فعال نیست یا پیکربندی نشده است',\n        kvNotConfigured: 'ذخیره‌سازی KV پیکربندی نشده است، نمی‌توانید از عملکرد مدیریت تنظیمات استفاده کنید.\\n\\nلطفا در Cloudflare Workers:\\n1. فضای نام KV ایجاد کنید\\n2. متغیر محیطی C را پیوند دهید\\n3. کد را دوباره مستقر کنید',\n        kvNotEnabled: 'ذخیره‌سازی KV پیکربندی نشده است',\n        kvEnabled: '✅ ذخیره‌سازی KV فعال است، می‌توانید از مدیریت تنظیمات استفاده کنید',\n        kvCheckFailed: '⚠️ بررسی ذخیره‌سازی KV ناموفق',\n        kvCheckFailedFormat: 'بررسی ذخیره‌سازی KV ناموفق: خطای فرمت پاسخ',\n        kvCheckFailedStatus: 'بررسی ذخیره‌سازی KV ناموفق - کد وضعیت: ',\n        kvCheckFailedError: 'بررسی ذخیره‌سازی KV ناموفق - خطا: '\n      }\n    };\n    const 翻译值20124 = 本地值20125[是否值20126 ? 'fa' : 'zh'];\n    if (响应20133.status === 503) {\n\n      document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';\n      document.getElementById('configCard').style.display = 'block';\n      document.getElementById('currentConfig').textContent = 翻译值20124.kvNotConfigured;\n    } else if (响应20133.ok) {\n      try {\n        const 数据20123 = await 响应20133.json();\n\n        if (数据20123 && 数据20123.kvEnabled === true) {\n          document.getElementById('kvStatus').innerHTML = '<span style="color: #00ff9d;">' + 翻译值20124.kvEnabled + '</span>';\n          document.getElementById('configContent').style.display = 'block';\n          document.getElementById('configCard').style.display = 'block';\n          await 加载当前配置();\n        } else {\n          document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';\n          document.getElementById('configCard').style.display = 'block';\n          document.getElementById('currentConfig').textContent = 翻译值20124.kvNotEnabled;\n        }\n      } catch (数据对象错误) {\n        document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvCheckFailed + '</span>';\n        document.getElementById('configCard').style.display = 'block';\n        document.getElementById('currentConfig').textContent = 翻译值20124.kvCheckFailedFormat;\n      }\n    } else {\n      document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';\n      document.getElementById('configCard').style.display = 'block';\n      document.getElementById('currentConfig').textContent = 翻译值20124.kvCheckFailedStatus + 响应20133.status;\n    }\n  } catch (错误20122) {\n    function 获取凭据(名称) {\n      const 值20121 = '; ' + document.cookie;\n      const 部分列表20120 = 值20121.split('; ' + 名称 + '=');\n      if (部分列表20120.length === 2) return 部分列表20120.pop().split(';').shift();\n      return null;\n    }\n    const 浏览器语言 = navigator.language || navigator.userLanguage || '';\n    const 已保存语言 = localStorage.getItem('preferredLanguage') || 获取凭据('preferredLanguage');\n    let 是否值 = false;\n    if (已保存语言 === 'fa' || 已保存语言 === 'fa-IR') {\n      是否值 = true;\n    } else {\n      是否值 = 浏览器语言.includes('fa') || 浏览器语言.includes('fa-IR');\n    }\n    const 本地值20119 = {\n      zh: {\n        kvDisabled: '⚠️ KV存储未启用或未配置',\n        kvCheckFailedError: 'KV存储检测失败 - 错误: '\n      },\n      fa: {\n        kvDisabled: '⚠️ ذخیره‌سازی KV فعال نیست یا پیکربندی نشده است',\n        kvCheckFailedError: 'بررسی ذخیره‌سازی KV ناموفق - خطا: '\n      }\n    };\n    const 翻译值20118 = 本地值20119[是否值 ? 'fa' : 'zh'];\n    document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20118.kvDisabled + '</span>';\n    document.getElementById('configCard').style.display = 'block';\n    document.getElementById('currentConfig').textContent = 翻译值20118.kvCheckFailedError + 错误20122.message;\n  }\n}\nfunction 读取字段值(标识) {\n  const 元素 = document.getElementById(标识);\n  return 元素 ? 元素.value : '';\n}\n\nfunction 写入字段值(标识, 值 = '') {\n  const 元素 = document.getElementById(标识);\n  if (元素) 元素.value = 值 || '';\n}\n\nfunction 是否开关启用(值, 默认启用 = false) {\n  if (值 === undefined || 值 === null || 值 === '') return 默认启用;\n  if (值 === true || 值 === false) return 值;\n  const 文本 = String(值).trim().toLowerCase();\n  if (文本 === 'yes' || 文本 === 'true' || 文本 === '1' || 文本 === 'on') return true;\n  if (文本 === 'no' || 文本 === 'false' || 文本 === '0' || 文本 === 'off') return false;\n  return 默认启用;\n}\n\nfunction 写入开关值(标识, 值, 默认启用 = false) {\n  const 元素 = document.getElementById(标识);\n  if (元素) 元素.checked = 是否开关启用(值, 默认启用);\n}\n\nfunction 读取开关值(标识, 默认启用 = false) {\n  const 元素 = document.getElementById(标识);\n  if (!元素) return 默认启用 ? 'yes' : 'no';\n  return 元素.checked ? 'yes' : 'no';\n}\n\nfunction 同步协议界面状态() {\n  const 明文开关 = document.getElementById('ev');\n  const 木马开关 = document.getElementById('et');\n  const 扩展开关 = document.getElementById('ex');\n  if (明文开关 && 木马开关 && 扩展开关 && !明文开关.checked && !木马开关.checked && !扩展开关.checked) {\n    明文开关.checked = true;\n  }\n}\n\nfunction 同步联动界面状态() {\n  同步协议界面状态();\n  const 加密客户端问候复选框 = document.getElementById('ech');\n  const 端口控制 = document.getElementById('portControl');\n  if (加密客户端问候复选框 && 端口控制 && 加密客户端问候复选框.checked) {\n    端口控制.value = 'yes';\n  }\n  更新路径类型状态(读取字段值('customPath'));\n  更新工作器地区状态();\n}\n\nfunction 应用配置到界面(配置) {\n  写入字段值('wkRegion', 配置.wk);\n  写入开关值('ev', 配置.ev, true);\n  写入开关值('et', 配置.et, false);\n  写入开关值('ex', 配置.ex, false);\n  写入开关值('ech', 配置.ech, false);\n  写入字段值('tp', 配置.tp);\n  写入字段值('customDNS', 配置.customDNS);\n  写入字段值('customECHDomain', 配置.customECHDomain);\n  写入字段值('alpn', 配置.alpn);\n  写入字段值('scu', 配置.scu);\n  写入开关值('ena', 配置.ena, false);\n  写入开关值('epd', 配置.epd, true);\n  写入开关值('epi', 配置.epi, true);\n  写入开关值('egi', 配置.egi, true);\n  写入开关值('ipv4Enabled', 配置.ipv4, true);\n  写入开关值('ipv6Enabled', 配置.ipv6, true);\n  写入开关值('ispMobile', 配置.ispMobile, true);\n  写入开关值('ispUnicom', 配置.ispUnicom, true);\n  写入开关值('ispTelecom', 配置.ispTelecom, true);\n  写入字段值('customPath', 配置.d);\n  写入字段值('customIP', 配置.p);\n  写入字段值('yx', 配置.yx);\n  写入字段值('yxURL', 配置.yxURL);\n  写入字段值('socksConfig', 配置.s);\n  写入字段值('customHomepage', 配置.homepage);\n  写入字段值('apiEnabled', 配置.ae);\n  写入字段值('regionMatching', 配置.rm);\n  写入字段值('downgradeControl', 配置.qj);\n  写入字段值('portControl', 配置.dkby);\n  写入字段值('preferredControl', 配置.yxby);\n  同步联动界面状态();\n}\n\nfunction 收集界面配置() {\n  const 配置 = {\n    wk: 读取字段值('wkRegion'),\n    ev: 读取开关值('ev', true),\n    et: 读取开关值('et', false),\n    ex: 读取开关值('ex', false),\n    ech: 读取开关值('ech', false),\n    tp: 读取字段值('tp'),\n    customDNS: 读取字段值('customDNS'),\n    customECHDomain: 读取字段值('customECHDomain'),\n    alpn: 读取字段值('alpn'),\n    d: 读取字段值('customPath'),\n    p: 读取字段值('customIP'),\n    yx: 读取字段值('yx'),\n    yxURL: 读取字段值('yxURL'),\n    s: 读取字段值('socksConfig'),\n    homepage: 读取字段值('customHomepage'),\n    scu: 读取字段值('scu'),\n    ena: 读取开关值('ena', false),\n    epd: 读取开关值('epd', true),\n    epi: 读取开关值('epi', true),\n    egi: 读取开关值('egi', true),\n    ae: 读取字段值('apiEnabled'),\n    rm: 读取字段值('regionMatching'),\n    qj: 读取字段值('downgradeControl'),\n    dkby: 读取字段值('portControl'),\n    yxby: 读取字段值('preferredControl'),\n    ipv4: 读取开关值('ipv4Enabled', true),\n    ipv6: 读取开关值('ipv6Enabled', true),\n    ispMobile: 读取开关值('ispMobile', true),\n    ispUnicom: 读取开关值('ispUnicom', true),\n    ispTelecom: 读取开关值('ispTelecom', true)\n  };\n  if (配置.ev === 'no' && 配置.et === 'no' && 配置.ex === 'no') {\n    配置.ev = 'yes';\n    写入开关值('ev', 'yes', true);\n  }\n  if (配置.ech === 'yes') {\n    配置.dkby = 'yes';\n    写入字段值('portControl', 'yes');\n  }\n  return 配置;\n}\n\nasync function 加载当前配置() {\n  const 接口网址20117 = window.location.pathname + '/api/config';\n  try {\n    const 响应20116 = await fetch(接口网址20117);\n    if (响应20116.status === 503) {\n      document.getElementById('currentConfig').textContent = 'KV存储未配置，无法加载配置';\n      return;\n    }\n    if (!响应20116.ok) {\n      const 错误文本20115 = await 响应20116.text();\n      document.getElementById('currentConfig').textContent = '加载配置失败: ' + 错误文本20115;\n      return;\n    }\n    const 配置 = await 响应20116.json();\n\n    const 显示配置 = {};\n    for (const [键20114, 值20113] of Object.entries(配置)) {\n      if (键20114 !== 'kvEnabled') {\n        显示配置[键20114] = 值20113;\n      }\n    }\n    let 配置文本 = '当前配置:\\n';\n    if (Object.keys(显示配置).length === 0) {\n      配置文本 += '(暂无配置)';\n    } else {\n      for (const [键, 值20112] of Object.entries(显示配置)) {\n        配置文本 += 键 + ': ' + (值20112 || '(未设置)') + '\\n';\n      }\n    }\n    document.getElementById('currentConfig').textContent = 配置文本;\n\n    应用配置到界面(配置);\n  } catch (错误20111) {\n    document.getElementById('currentConfig').textContent = '加载配置失败: ' + 错误20111.message;\n  }\n}\n\nfunction 更新路径类型状态(自定义路径) {\n  const 路径类型状态 = document.getElementById('pathTypeStatus');\n  const 当前网址20110 = window.location.href;\n  const 路径部分列表 = window.location.pathname.split('/').filter(参数值20109 => 参数值20109);\n  const 当前路径 = 路径部分列表.length > 0 ? 路径部分列表[0] : '';\n  if (自定义路径 && 自定义路径.trim()) {\n\n    路径类型状态.innerHTML = '<div style="color: #00ff9d;">使用类型: <strong>自定义路径 (d)</strong></div>' + '<div style="margin-top: 5px; color: #00f0ff;">当前路径: <span style="color: #ffb400;">' + 自定义路径 + '</span></div>' + '<div style="margin-top: 5px; font-size: 0.9rem; color: #7aa9c4;">访问地址: ' + (当前网址20110.split('/')[0] + '//' + 当前网址20110.split('/')[2]) + 自定义路径 + '/sub</div>';\n  } else {\n\n    路径类型状态.innerHTML = '<div style="color: #00ff9d;">使用类型: <strong>UUID 路径 (u)</strong></div>' + '<div style="margin-top: 5px; color: #00f0ff;">当前路径: <span style="color: #ffb400;">' + (当前路径 || '(UUID)') + '</span></div>' + '<div style="margin-top: 5px; font-size: 0.9rem; color: #7aa9c4;">访问地址: ' + 当前网址20110.split('/sub')[0] + '/sub</div>';\n  }\n}\n\nfunction 更新工作器地区状态() {\n  const 自定义地址输入20108 = document.getElementById('customIP');\n  const 值地区 = document.getElementById('wkRegion');\n  const 值地区值 = document.getElementById('wkRegionHint');\n  if (自定义地址输入20108 && 值地区) {\n    const 是否有自定义地址 = 自定义地址输入20108.value.trim() !== '';\n    值地区.disabled = 是否有自定义地址;\n\n    if (是否有自定义地址) {\n      值地区.style.opacity = '0.5';\n      值地区.style.cursor = 'not-allowed';\n      值地区.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';\n\n      if (值地区值) {\n        值地区值.style.display = 'block';\n        值地区值.style.color = '#ffb400';\n      }\n    } else {\n      值地区.style.opacity = '1';\n      值地区.style.cursor = 'pointer';\n      值地区.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';\n\n      if (值地区值) {\n        值地区值.style.display = 'none';\n      }\n    }\n  }\n}\nasync function 保存配置(配置数据20107) {\n  const 接口网址 = window.location.pathname + '/api/config';\n  try {\n    const 响应20106 = await fetch(接口网址, {\n      method: 'POST',\n      headers: {\n        'Content-Type': 'application/json'\n      },\n      body: JSON.stringify(配置数据20107)\n    });\n    if (响应20106.status === 503) {\n      显示状态('KV存储未配置，无法保存配置。请先在Cloudflare Workers中配置KV存储。', 'error');\n      return;\n    }\n    if (!响应20106.ok) {\n      const 错误文本20105 = await 响应20106.text();\n\n      try {\n        const 错误数据20104 = JSON.parse(错误文本20105);\n        显示状态(错误数据20104.message || '保存失败', 'error');\n      } catch (解析错误20103) {\n\n        显示状态('Save failed: ' + 错误文本20105, 'error');\n      }\n      return;\n    }\n    const 结果20102 = await 响应20106.json();\n    显示状态(结果20102.message, 结果20102.success ? 'success' : 'error');\n    if (结果20102.success) {\n      await 加载当前配置();\n\n      更新工作器地区状态();\n\n      setTimeout(function () {\n        window.location.reload();\n      }, 1500);\n    } else {}\n  } catch (错误20101) {\n    显示状态('Save failed: ' + 错误20101.message, 'error');\n  }\n}\nfunction 显示状态(消息20100, 类型20099) {\n  const 状态值 = document.getElementById('statusMessage');\n  if (状态值) {\n    状态值.textContent = 消息20100;\n    状态值.style.display = 'block';\n    状态值.style.color = 类型20099 === 'success' ? '#00f0ff' : '#ff3860';\n    状态值.style.borderColor = 类型20099 === 'success' ? '#00f0ff' : '#ff3860';\n    setTimeout(function () {\n      状态值.style.display = 'none';\n    }, 3000);\n  }\n\n  if (typeof window.显示操作状态 === 'function') {\n    window.显示操作状态(消息20100, 类型20099 === 'success' ? 'ok' : 'err');\n  }\n}\nasync function 重置全部配置() {\n  if (confirm('Reset all settings? This clears the KV configuration and restores environment-variable defaults.')) {\n    try {\n      const 响应20098 = await fetch(window.location.pathname + '/api/config', {\n        method: 'POST',\n        headers: {\n          'Content-Type': 'application/json'\n        },\n        body: JSON.stringify({\n          wk: '',\n          d: '',\n          p: '',\n          yx: '',\n          yxURL: '',\n          s: '',\n          ae: '',\n          rm: '',\n          qj: '',\n          dkby: '',\n          yxby: '',\n          ev: '',\n          et: '',\n          ex: '',\n          ech: '',\n          tp: '',\n          customDNS: '',\n          customECHDomain: '',\n          scu: '',\n          epd: '',\n          epi: '',\n          egi: '',\n          ipv4: '',\n          ipv6: '',\n          ispMobile: '',\n          ispUnicom: '',\n          ispTelecom: '',\n          homepage: '',\n          alpn: ''\n        })\n      });\n      if (响应20098.status === 503) {\n        显示状态('KV storage is not configured. The settings cannot be reset.', 'error');\n        return;\n      }\n      if (!响应20098.ok) {\n        const 错误文本 = await 响应20098.text();\n\n        try {\n          const 错误数据 = JSON.parse(错误文本);\n          显示状态(错误数据.message || 'Reset failed', 'error');\n        } catch (解析错误) {\n\n          显示状态('Reset failed: ' + 错误文本, 'error');\n        }\n        return;\n      }\n      const 结果20097 = await 响应20098.json();\n      显示状态(结果20097.message || 'Configuration reset', 结果20097.success ? 'success' : 'error');\n      if (结果20097.success) {\n        await 加载当前配置();\n\n        更新工作器地区状态();\n\n        setTimeout(function () {\n          window.location.reload();\n        }, 1500);\n      }\n    } catch (错误20096) {\n      显示状态('Reset failed: ' + 错误20096.message, 'error');\n    }\n  }\n}\nasync function 检查加密问候状态() {\n  const 加密客户端问候状态值 = document.getElementById('echStatus');\n  if (!加密客户端问候状态值) return;\n  try {\n    const 当前网址 = window.location.href;\n    const 订阅网址 = 当前网址 + '/sub';\n    加密客户端问候状态值.innerHTML = 'ECH Status: <span style="color: #ffb400;">Checking...</span>';\n    const 响应20095 = await fetch(订阅网址, {\n      method: 'GET',\n      headers: {\n        'Accept': 'text/plain'\n      }\n    });\n    const 加密客户端问候状态头部 = 响应20095.headers.get('X-ECH-Status');\n    const 加密客户端问候配置长度 = 响应20095.headers.get('X-ECH-Config-Length');\n    if (加密客户端问候状态头部 === 'ENABLED') {\n      加密客户端问候状态值.innerHTML = 'ECH Status: <span style="color: #00ff9d;">✅ Enabled' + (加密客户端问候配置长度 ? ' (Configuration length: ' + 加密客户端问候配置长度 + ')' : '') + '</span>';\n    } else {\n      加密客户端问候状态值.innerHTML = 'ECH Status: <span style="color: #ffb400;">⚠️ Disabled</span>';\n    }\n  } catch (错误20094) {\n    加密客户端问候状态值.innerHTML = 'ECH Status: <span style="color: #ff3860;">❌ Check failed: ' + 错误20094.message + '</span>';\n  }\n}\ndocument.addEventListener('DOMContentLoaded', function () {\n  创建矩阵雨();\n  检查系统状态();\n  检查键值状态();\n  检查加密问候状态();\n\n  const 加密客户端问候复选框 = document.getElementById('ech');\n  const 端口控制 = document.getElementById('portControl');\n  if (加密客户端问候复选框 && 端口控制) {\n    加密客户端问候复选框.addEventListener('change', function () {\n      if (this.checked) {\n\n        端口控制.value = 'yes';\n      }\n      同步联动界面状态();\n    });\n\n    if (加密客户端问候复选框.checked) {\n      端口控制.value = 'yes';\n    }\n  }\n\n  const 自定义地址输入 = document.getElementById('customIP');\n  if (自定义地址输入) {\n    自定义地址输入.addEventListener('input', function () {\n      同步联动界面状态();\n    });\n  }\n\n\n  const 自定义路径输入 = document.getElementById('customPath');\n  if (自定义路径输入) {\n    自定义路径输入.addEventListener('input', function () {\n      同步联动界面状态();\n    });\n  }\n\n  ['ev', 'et', 'ex'].forEach(function (协议标识) {\n    const 协议开关 = document.getElementById(协议标识);\n    if (协议开关) {\n      协议开关.addEventListener('change', function () {\n        同步联动界面状态();\n      });\n    }\n  });\n\n  ['regionForm', 'otherConfigForm', 'advancedConfigForm'].forEach(function (本地值20093) {\n    const 表单值 = document.getElementById(本地值20093);\n    if (表单值) 表单值.addEventListener('submit', function (事件值20092) {\n      事件值20092.preventDefault();\n    });\n  });\n\n  document.querySelectorAll('#configContent input[type="text"], #configContent input[type="number"]').forEach(function (本地值20091) {\n    本地值20091.addEventListener('keydown', function (事件值20090) {\n      if (事件值20090.key === 'Enter') {\n        事件值20090.preventDefault();\n        保存全部配置();\n      }\n    });\n  });\n\n  function 收集全部配置() {\n    return 收集界面配置();\n  }\n  async function 保存全部配置() {\n\n    const 值值20085 = document.getElementById('ev'),\n      值值20084 = document.getElementById('et'),\n      值值20083 = document.getElementById('ex');\n    if (值值20085 && 值值20084 && 值值20083 && !值值20085.checked && !值值20084.checked && !值值20083.checked) {\n      显示操作状态('Enable at least one protocol.', 'err');\n      显示提示('Enable at least one protocol.', 'warn');\n      return;\n    }\n    const 本地值20082 = document.getElementById('cpBtnSaveAll');\n    if (本地值20082) {\n      本地值20082.classList.add('cp-action-btn-saving');\n      本地值20082.disabled = true;\n    }\n    try {\n      await 保存配置(收集全部配置());\n    } finally {\n      if (本地值20082) {\n        本地值20082.classList.remove('cp-action-btn-saving');\n        本地值20082.disabled = false;\n      }\n    }\n  }\n  window.保存全部配置 = 保存全部配置;\n  function 显示操作状态(消息, 类型) {\n    const 本地值20081 = document.getElementById('cpActionStatus');\n    if (!本地值20081) return;\n    本地值20081.textContent = 消息;\n    本地值20081.classList.toggle('cp-err', 类型 === 'err');\n    本地值20081.classList.add('cp-show');\n    clearTimeout(显示操作状态._t);\n    显示操作状态._t = setTimeout(function () {\n      本地值20081.classList.remove('cp-show');\n    }, 2400);\n  }\n  window.显示操作状态 = 显示操作状态;\n\n  const 值操作值 = document.getElementById('cpActionBar');\n  const 值值保存值 = document.getElementById('cpBtnSaveAll');\n  if (值值保存值) 值值保存值.addEventListener('click', async function () {\n    值值保存值.classList.add('cp-action-btn-saving');\n    try {\n      await 保存全部配置();\n      if (值操作值) 值操作值.classList.remove('cp-dirty');\n    } finally {\n      值值保存值.classList.remove('cp-action-btn-saving');\n    }\n  });\n  const 值值值20080 = document.getElementById('cpBtnRefresh');\n  if (值值值20080) 值值值20080.addEventListener('click', async function () {\n    值值值20080.classList.add('cp-action-btn-saving');\n    try {\n      await 加载当前配置();\n      if (值操作值) 值操作值.classList.remove('cp-dirty');\n      显示操作状态('配置已刷新');\n    } finally {\n      值值值20080.classList.remove('cp-action-btn-saving');\n    }\n  });\n  const 值值重置 = document.getElementById('cpBtnReset');\n  if (值值重置) 值值重置.addEventListener('click', 重置全部配置);\n\n  function 标记已修改() {\n    if (值操作值) 值操作值.classList.add('cp-dirty');\n  }\n  const 已修改范围 = document.getElementById('configContent') || document;\n  ['input', 'change'].forEach(function (本地值20079) {\n    已修改范围.addEventListener(本地值20079, function (事件值20078) {\n      const 本地值20077 = 事件值20078.target;\n      if (!本地值20077 || !本地值20077.tagName) return;\n      const 本地值20076 = 本地值20077.tagName.toLowerCase();\n      if (本地值20076 === 'input' || 本地值20076 === 'select' || 本地值20076 === 'textarea') {\n\n        if (本地值20077.id && /^(latencyTestInput|fetchURLInput|latencyTestPort|randomIPCount|testThreads|ipSourceSelect)$/.test(本地值20077.id)) return;\n        标记已修改();\n      }\n    });\n  });\n\n  window.addEventListener('keydown', function (事件值20075) {\n    if ((事件值20075.ctrlKey || 事件值20075.metaKey) && (事件值20075.key === 's' || 事件值20075.key === 'S')) {\n      事件值20075.preventDefault();\n      if (值值保存值 && !值值保存值.classList.contains('cp-action-btn-saving')) {\n        值值保存值.click();\n      }\n    }\n  });\n  let 测试值控制器 = null;\n  let 测试结果列表 = [];\n  const 开始测试值 = document.getElementById('startLatencyTest');\n  const 值测试值 = document.getElementById('stopLatencyTest');\n  const 测试状态 = document.getElementById('latencyTestStatus');\n  const 测试结果列表值 = document.getElementById('latencyTestResults');\n  const 结果列表列表 = document.getElementById('latencyResultsList');\n  const 覆盖已选值 = document.getElementById('overwriteSelectedToYx');\n  const 追加已选值 = document.getElementById('appendSelectedToYx');\n  const 选择值值 = document.getElementById('selectAllResults');\n  const 值值值 = document.getElementById('deselectAllResults');\n  const 地址源选择 = document.getElementById('ipSourceSelect');\n  const 手动输入值 = document.getElementById('manualInputDiv');\n  const 网址获取值 = document.getElementById('urlFetchDiv');\n  const 延迟测试输入 = document.getElementById('latencyTestInput');\n  const 获取网址输入 = document.getElementById('fetchURLInput');\n  const 延迟测试端口 = document.getElementById('latencyTestPort');\n  const 随机地址数量 = document.getElementById('randomIPCount');\n  const 云墙随机值 = document.getElementById('cfRandomDiv');\n  const 随机数量值 = document.getElementById('randomCountDiv');\n  const 生成云墙地址值 = document.getElementById('generateCFIPBtn');\n  const 获取地址值 = document.getElementById('fetchIPBtn');\n  if (延迟测试输入) {\n    const 已保存测试输入 = localStorage.getItem('latencyTestInput');\n    if (已保存测试输入) 延迟测试输入.value = 已保存测试输入;\n    延迟测试输入.addEventListener('input', function () {\n      localStorage.setItem('latencyTestInput', this.value);\n    });\n  }\n  if (获取网址输入) {\n    const 已保存获取网址 = localStorage.getItem('fetchURLInput');\n    if (已保存获取网址) 获取网址输入.value = 已保存获取网址;\n    获取网址输入.addEventListener('input', function () {\n      localStorage.setItem('fetchURLInput', this.value);\n    });\n  }\n  if (延迟测试端口) {\n    const 已保存端口 = localStorage.getItem('latencyTestPort');\n    if (已保存端口) 延迟测试端口.value = 已保存端口;\n    延迟测试端口.addEventListener('input', function () {\n      localStorage.setItem('latencyTestPort', this.value);\n    });\n  }\n  if (随机地址数量) {\n    const 已保存数量 = localStorage.getItem('randomIPCount');\n    if (已保存数量) 随机地址数量.value = 已保存数量;\n    随机地址数量.addEventListener('input', function () {\n      localStorage.setItem('randomIPCount', this.value);\n    });\n\n    if (随机数量值 && 随机数量值.style.display === 'none') {\n      随机地址数量.disabled = true;\n    }\n  }\n  const 测试线程数输入 = document.getElementById('testThreads');\n  if (测试线程数输入) {\n    const 已保存线程数 = localStorage.getItem('testThreads');\n    if (已保存线程数) 测试线程数输入.value = 已保存线程数;\n    测试线程数输入.addEventListener('input', function () {\n      localStorage.setItem('testThreads', this.value);\n    });\n  }\n  if (地址源选择) {\n    const 已保存源 = localStorage.getItem('ipSourceSelect');\n    const 当前源 = 已保存源 || 地址源选择.value || 'manual';\n    if (已保存源) {\n      地址源选择.value = 已保存源;\n    }\n    手动输入值.style.display = 当前源 === 'manual' ? 'block' : 'none';\n    网址获取值.style.display = 当前源 === 'urlFetch' ? 'block' : 'none';\n    云墙随机值.style.display = 当前源 === 'cfRandom' ? 'block' : 'none';\n    随机数量值.style.display = 当前源 === 'cfRandom' ? 'block' : 'none';\n\n    if (随机地址数量) {\n      随机地址数量.disabled = 当前源 !== 'cfRandom';\n    }\n  }\n  const 云墙网段列表 = ['173.245.48.0/20', '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22', '141.101.64.0/18', '108.162.192.0/18', '190.93.240.0/20', '188.114.96.0/20', '197.234.240.0/22', '198.41.128.0/17', '162.158.0.0/15', '104.16.0.0/13', '104.24.0.0/14', '172.64.0.0/13', '131.0.72.0/22'];\n  function 从网段生成随机地址(网段20074) {\n    const [基础地址, 前缀长度] = 网段20074.split('/');\n    const 前缀 = parseInt(前缀长度);\n    const 主机值 = 32 - 前缀;\n    const 地址部分列表 = 基础地址.split('.').map(参数值20073 => parseInt(参数值20073));\n    const 地址值 = 地址部分列表[0] << 24 | 地址部分列表[1] << 16 | 地址部分列表[2] << 8 | 地址部分列表[3];\n    const 随机偏移 = Math.floor(Math.random() * Math.pow(2, 主机值));\n    const 掩码 = 0xFFFFFFFF << 主机值 >>> 0;\n    const 随机地址 = ((地址值 & 掩码) >>> 0) + 随机偏移 >>> 0;\n    return [随机地址 >>> 24 & 0xFF, 随机地址 >>> 16 & 0xFF, 随机地址 >>> 8 & 0xFF, 随机地址 & 0xFF].join('.');\n  }\n  function 生成云墙随机地址(数量20072, 端口20071) {\n    const 地址列表20070 = [];\n    for (let 索引值20069 = 0; 索引值20069 < 数量20072; 索引值20069++) {\n      const 网段 = 云墙网段列表[Math.floor(Math.random() * 云墙网段列表.length)];\n      const 地址20068 = 从网段生成随机地址(网段);\n      地址列表20070.push(地址20068 + ':' + 端口20071);\n    }\n    return 地址列表20070;\n  }\n  if (地址源选择) {\n    地址源选择.addEventListener('change', function () {\n      const 值 = this.value;\n      localStorage.setItem('ipSourceSelect', 值);\n      手动输入值.style.display = 值 === 'manual' ? 'block' : 'none';\n      网址获取值.style.display = 值 === 'urlFetch' ? 'block' : 'none';\n      云墙随机值.style.display = 值 === 'cfRandom' ? 'block' : 'none';\n      随机数量值.style.display = 值 === 'cfRandom' ? 'block' : 'none';\n\n      if (随机地址数量) {\n        随机地址数量.disabled = 值 !== 'cfRandom';\n      }\n    });\n  }\n  if (生成云墙地址值) {\n    生成云墙地址值.addEventListener('click', function () {\n      const 数量 = parseInt(document.getElementById('randomIPCount').value) || 20;\n      const 端口20067 = document.getElementById('latencyTestPort').value || '443';\n      const 地址列表 = 生成云墙随机地址(数量, 端口20067);\n      document.getElementById('latencyTestInput').value = 地址列表.join(',');\n      手动输入值.style.display = 'block';\n      显示状态('已生成 ' + 数量 + ' 个CF随机IP', 'success');\n    });\n  }\n  if (获取地址值) {\n    获取地址值.addEventListener('click', async function () {\n      const 网址输入 = document.getElementById('fetchURLInput');\n      const 获取网址 = 网址输入.value.trim();\n      if (!获取网址) {\n        显示提示('请输入URL', 'warn');\n        return;\n      }\n      获取地址值.disabled = true;\n      获取地址值.textContent = '获取中...';\n      try {\n\n        const 网址列表 = Array.from(new Set(获取网址.split(',').map(网址值20066 => 网址值20066.trim()).filter(网址值20065 => 网址值20065)));\n        const 值项目列表 = [];\n        for (const 网址值 of 网址列表) {\n          const 响应 = await fetch(网址值);\n          if (!响应.ok) {\n            throw new Error('HTTP ' + 响应.status + ' @ ' + 网址值);\n          }\n          const 文本20064 = await 响应.text();\n\n          const 值网址项目列表 = 文本20064.split(/\\r?\\n/).map(行值20063 => 行值20063.trim()).filter(行值20062 => 行值20062 && !行值20062.startsWith('#')).flatMap(行值 => 行值.split(',').map(参数值20061 => 参数值20061.trim()).filter(参数值 => 参数值));\n          值项目列表.push(...值网址项目列表);\n        }\n        if (值项目列表.length > 0) {\n          document.getElementById('latencyTestInput').value = 值项目列表.join(',');\n          手动输入值.style.display = 'block';\n          显示状态('已获取 ' + 值项目列表.length + ' 个IP', 'success');\n        } else {\n          显示状态('未获取到数据', 'error');\n        }\n      } catch (错误20060) {\n        显示状态('获取失败: ' + 错误20060.message, 'error');\n      } finally {\n        获取地址值.disabled = false;\n        获取地址值.textContent = '⬇ 获取IP';\n      }\n    });\n  }\n  if (开始测试值) {\n    开始测试值.addEventListener('click', async function () {\n      const 输入值20059 = document.getElementById('latencyTestInput');\n      const 端口值 = document.getElementById('latencyTestPort');\n      const 线程数值 = document.getElementById('testThreads');\n      const 输入值 = 输入值20059.value.trim();\n      const 默认端口 = 端口值.value || '443';\n      const 线程数 = parseInt(线程数值.value) || 5;\n      if (!输入值) {\n        显示状态('请输入IP或域名', 'error');\n        return;\n      }\n      const 本地值20058 = 输入值.split(',').map(翻译值20057 => 翻译值20057.trim()).filter(翻译值20056 => 翻译值20056);\n      if (本地值20058.length === 0) return;\n      开始测试值.style.display = 'none';\n      值测试值.style.display = 'inline-block';\n      测试状态.style.display = 'block';\n      测试结果列表值.style.display = 'block';\n      结果列表列表.innerHTML = '';\n      测试结果列表 = [];\n      if (城市筛选值) {\n        城市筛选值.style.display = 'none';\n      }\n      测试值控制器 = new AbortController();\n      let 本地值20055 = 0;\n      const 本地值20054 = 本地值20058.length;\n      function 解析目标(目标20053) {\n        let 主机20052 = 目标20053;\n        let 端口20051 = 默认端口;\n        let 节点名称20050 = '';\n        if (目标20053.includes('#')) {\n          const 部分列表20049 = 目标20053.split('#');\n          节点名称20050 = 部分列表20049[1] || '';\n          主机20052 = 部分列表20049[0];\n        }\n        if (主机20052.includes(':') && !主机20052.startsWith('[')) {\n          const 值值20048 = 主机20052.lastIndexOf(':');\n          const 值端口 = 主机20052.substring(值值20048 + 1);\n          if (/^[0-9]+$/.test(值端口)) {\n            端口20051 = 值端口;\n            主机20052 = 主机20052.substring(0, 值值20048);\n          }\n        } else if (主机20052.includes(']:')) {\n          const 部分列表20047 = 主机20052.split(']:');\n          主机20052 = 部分列表20047[0] + ']';\n          端口20051 = 部分列表20047[1];\n        }\n        return {\n          host: 主机20052,\n          port: 端口20051,\n          nodeName: 节点名称20050\n        };\n      }\n      function 渲染结果(结果20046, 索引20045, 值值20044 = true) {\n\n        if (!结果20046.success) {\n          return null;\n        }\n        const 结果项目 = document.createElement('div');\n        结果项目.style.cssText = 'display: flex; align-items: center; padding: 8px; border-bottom: 1px solid #003300; gap: 10px;';\n        结果项目.dataset.index = 索引20045;\n        结果项目.dataset.colo = 结果20046.colo || '';\n        if (!值值20044) {\n          结果项目.style.display = 'none';\n        }\n        const 复选框20043 = document.createElement('input');\n        复选框20043.type = 'checkbox';\n        复选框20043.checked = true;\n        复选框20043.disabled = false;\n        复选框20043.dataset.index = 索引20045;\n        复选框20043.style.cssText = 'width: 18px; height: 18px; cursor: pointer;';\n        const 本地值20042 = document.createElement('div');\n        本地值20042.style.cssText = 'flex: 1; font-family: monospace; font-size: 13px;';\n        const 机房名称20041 = 结果20046.colo ? 获取机房名称(结果20046.colo) : '';\n        const 机房显示 = 机房名称20041 ? ' <span style="color: #00aaff;">[' + 机房名称20041 + ']</span>' : '';\n        本地值20042.innerHTML = '<span style="color: #00f0ff;">' + 结果20046.host + ':' + 结果20046.port + '</span>' + 机房显示 + ' <span style="color: #ffff00;">' + 结果20046.latency + 'ms</span>';\n        结果项目.appendChild(复选框20043);\n        结果项目.appendChild(本地值20042);\n        结果列表列表.appendChild(结果项目);\n        return 结果项目;\n      }\n      async function 测试单项(目标) {\n        if (测试值控制器.signal.aborted) return null;\n        const {\n          host: 主机20040,\n          port: 端口20039,\n          nodeName: 节点名称\n        } = 解析目标(目标);\n        const 结果20038 = await 测试延迟(主机20040, 端口20039, 测试值控制器.signal);\n        结果20038.host = 主机20040;\n        结果20038.port = 端口20039;\n        结果20038.nodeName = 结果20038.success && 结果20038.colo ? 节点名称 || 'CF-' + 结果20038.colo : 节点名称 || 主机20040;\n        return 结果20038;\n      }\n      for (let 索引值20037 = 0; 索引值20037 < 本地值20054; 索引值20037 += 线程数) {\n        if (测试值控制器.signal.aborted) break;\n        const 本地值20036 = 本地值20058.slice(索引值20037, Math.min(索引值20037 + 线程数, 本地值20054));\n        测试状态.textContent = '测试中: ' + (索引值20037 + 1) + '-' + Math.min(索引值20037 + 线程数, 本地值20054) + '/' + 本地值20054 + ' (线程: ' + 线程数 + ')';\n        const 结果列表 = await Promise.all(本地值20036.map(翻译值 => 测试单项(翻译值)));\n        for (const 结果20035 of 结果列表) {\n          if (结果20035) {\n            const 索引20034 = 测试结果列表.length;\n            测试结果列表.push(结果20035);\n            渲染结果(结果20035, 索引20034);\n            本地值20055++;\n          }\n        }\n      }\n      测试状态.textContent = '测试完成: ' + 本地值20055 + '/' + 本地值20054;\n      开始测试值.style.display = 'inline-block';\n      值测试值.style.display = 'none';\n\n      更新城市筛选();\n    });\n  }\n  if (值测试值) {\n    值测试值.addEventListener('click', function () {\n      if (测试值控制器) {\n        测试值控制器.abort();\n      }\n      开始测试值.style.display = 'inline-block';\n      值测试值.style.display = 'none';\n      测试状态.textContent = '测试已停止';\n    });\n  }\n  if (选择值值) {\n    选择值值.addEventListener('click', function () {\n      const 本地值20033 = 结果列表列表.querySelectorAll('input[type="checkbox"]:not(:disabled)');\n      本地值20033.forEach(本地值20032 => 本地值20032.checked = true);\n    });\n  }\n  if (值值值) {\n    值值值.addEventListener('click', function () {\n      const 本地值20031 = 结果列表列表.querySelectorAll('input[type="checkbox"]');\n      本地值20031.forEach(本地值20030 => 本地值20030.checked = false);\n    });\n  }\n\n  function 获取已选项目() {\n    const 本地值20029 = 结果列表列表.querySelectorAll('input[type="checkbox"]:checked');\n    if (本地值20029.length === 0) {\n      显示状态('请至少选择一项', 'error');\n      return null;\n    }\n    const 已选项目列表20028 = [];\n    本地值20029.forEach(本地值20027 => {\n      const 索引20026 = parseInt(本地值20027.dataset.index);\n      const 结果20025 = 测试结果列表[索引20026];\n      if (结果20025 && 结果20025.success) {\n        const 机房名称 = 结果20025.colo ? 获取机房名称(结果20025.colo) : 结果20025.nodeName;\n        const 项目字符串 = 结果20025.host + ':' + 结果20025.port + '#' + 机房名称;\n        已选项目列表20028.push(项目字符串);\n      }\n    });\n    return 已选项目列表20028;\n  }\n\n  if (覆盖已选值) {\n    覆盖已选值.addEventListener('click', async function () {\n      const 已选项目列表20024 = 获取已选项目();\n      if (!已选项目列表20024 || 已选项目列表20024.length === 0) return;\n      const 值输入20023 = document.getElementById('yx');\n      const 新值20022 = 已选项目列表20024.join(',');\n      值输入20023.value = 新值20022;\n      覆盖已选值.disabled = true;\n      追加已选值.disabled = true;\n      覆盖已选值.textContent = '保存中...';\n      try {\n        const 配置数据20021 = {\n          customIP: document.getElementById('customIP').value,\n          yx: 新值20022,\n          yxURL: document.getElementById('yxURL').value,\n          s: document.getElementById('socksConfig').value\n        };\n        await 保存配置(配置数据20021);\n        显示状态('已覆盖 ' + 已选项目列表20024.length + ' 项并已保存', 'success');\n      } catch (错误20020) {\n        显示状态('保存失败: ' + 错误20020.message, 'error');\n      } finally {\n        覆盖已选值.disabled = false;\n        追加已选值.disabled = false;\n        覆盖已选值.textContent = '覆盖添加';\n      }\n    });\n  }\n\n  if (追加已选值) {\n    追加已选值.addEventListener('click', async function () {\n      const 已选项目列表 = 获取已选项目();\n      if (!已选项目列表 || 已选项目列表.length === 0) return;\n      const 值输入 = document.getElementById('yx');\n      const 当前值 = 值输入.value.trim();\n      const 新项目列表 = 已选项目列表.join(',');\n      const 新值 = 当前值 ? 当前值 + ',' + 新项目列表 : 新项目列表;\n      值输入.value = 新值;\n      覆盖已选值.disabled = true;\n      追加已选值.disabled = true;\n      追加已选值.textContent = '保存中...';\n      try {\n        const 配置数据 = {\n          customIP: document.getElementById('customIP').value,\n          yx: 新值,\n          yxURL: document.getElementById('yxURL').value,\n          s: document.getElementById('socksConfig').value\n        };\n        await 保存配置(配置数据);\n        显示状态('已追加 ' + 已选项目列表.length + ' 项并已保存', 'success');\n      } catch (错误20019) {\n        显示状态('保存失败: ' + 错误20019.message, 'error');\n      } finally {\n        覆盖已选值.disabled = false;\n        追加已选值.disabled = false;\n        追加已选值.textContent = '追加添加';\n      }\n    });\n  }\n  function 地址转十六进制(地址) {\n    const 部分列表 = 地址.split('.');\n    if (部分列表.length !== 4) return null;\n    let 十六进制 = '';\n    for (let 索引值 = 0; 索引值 < 4; 索引值++) {\n      const 数字 = parseInt(部分列表[索引值]);\n      if (isNaN(数字) || 数字 < 0 || 数字 > 255) return null;\n      十六进制 += 数字.toString(16).padStart(2, '0');\n    }\n    return 十六进制;\n  }\n  const 机房映射 = {\n    'SJC': '🇺🇸 圣何塞',\n    'LAX': '🇺🇸 洛杉矶',\n    'SEA': '🇺🇸 西雅图',\n    'SFO': '🇺🇸 旧金山',\n    'DFW': '🇺🇸 达拉斯',\n    'ORD': '🇺🇸 芝加哥',\n    'IAD': '🇺🇸 华盛顿',\n    'ATL': '🇺🇸 亚特兰大',\n    'MIA': '🇺🇸 迈阿密',\n    'DEN': '🇺🇸 丹佛',\n    'PHX': '🇺🇸 凤凰城',\n    'BOS': '🇺🇸 波士顿',\n    'EWR': '🇺🇸 纽瓦克',\n    'JFK': '🇺🇸 纽约',\n    'LAS': '🇺🇸 拉斯维加斯',\n    'MSP': '🇺🇸 明尼阿波利斯',\n    'DTW': '🇺🇸 底特律',\n    'PHL': '🇺🇸 费城',\n    'CLT': '🇺🇸 夏洛特',\n    'SLC': '🇺🇸 盐湖城',\n    'PDX': '🇺🇸 波特兰',\n    'SAN': '🇺🇸 圣地亚哥',\n    'TPA': '🇺🇸 坦帕',\n    'IAH': '🇺🇸 休斯顿',\n    'MCO': '🇺🇸 奥兰多',\n    'AUS': '🇺🇸 奥斯汀',\n    'BNA': '🇺🇸 纳什维尔',\n    'RDU': '🇺🇸 罗利',\n    'IND': '🇺🇸 印第安纳波利斯',\n    'CMH': '🇺🇸 哥伦布',\n    'MCI': '🇺🇸 堪萨斯城',\n    'OMA': '🇺🇸 奥马哈',\n    'ABQ': '🇺🇸 阿尔伯克基',\n    'OKC': '🇺🇸 俄克拉荷马城',\n    'MEM': '🇺🇸 孟菲斯',\n    'JAX': '🇺🇸 杰克逊维尔',\n    'RIC': '🇺🇸 里士满',\n    'BUF': '🇺🇸 布法罗',\n    'PIT': '🇺🇸 匹兹堡',\n    'CLE': '🇺🇸 克利夫兰',\n    'CVG': '🇺🇸 辛辛那提',\n    'MKE': '🇺🇸 密尔沃基',\n    'STL': '🇺🇸 圣路易斯',\n    'SAT': '🇺🇸 圣安东尼奥',\n    'HNL': '🇺🇸 檀香山',\n    'ANC': '🇺🇸 安克雷奇',\n    'SMF': '🇺🇸 萨克拉门托',\n    'ONT': '🇺🇸 安大略',\n    'OAK': '🇺🇸 奥克兰',\n    'HKG': '🇭🇰 香港',\n    'TPE': '🇹🇼 台北',\n    'TSA': '🇹🇼 台北松山',\n    'KHH': '🇹🇼 高雄',\n    'NRT': '🇯🇵 东京成田',\n    'HND': '🇯🇵 东京羽田',\n    'KIX': '🇯🇵 大阪关西',\n    'ITM': '🇯🇵 大阪伊丹',\n    'NGO': '🇯🇵 名古屋',\n    'FUK': '🇯🇵 福冈',\n    'CTS': '🇯🇵 札幌',\n    'OKA': '🇯🇵 冲绳',\n    'ICN': '🇰🇷 首尔仁川',\n    'GMP': '🇰🇷 首尔金浦',\n    'PUS': '🇰🇷 釜山',\n    'SIN': '🇸🇬 新加坡',\n    'BKK': '🇹🇭 曼谷',\n    'DMK': '🇹🇭 曼谷廊曼',\n    'KUL': '🇲🇾 吉隆坡',\n    'CGK': '🇮🇩 雅加达',\n    'MNL': '🇵🇭 马尼拉',\n    'CEB': '🇵🇭 宿务',\n    'HAN': '🇻🇳 河内',\n    'SGN': '🇻🇳 胡志明',\n    'DAD': '🇻🇳 岘港',\n    'RGN': '🇲🇲 仰光',\n    'PNH': '🇰🇭 金边',\n    'REP': '🇰🇭 暹粒',\n    'VTE': '🇱🇦 万象',\n    'BOM': '🇮🇳 孟买',\n    'DEL': '🇮🇳 新德里',\n    'MAA': '🇮🇳 金奈',\n    'BLR': '🇮🇳 班加罗尔',\n    'CCU': '🇮🇳 加尔各答',\n    'HYD': '🇮🇳 海得拉巴',\n    'AMD': '🇮🇳 艾哈迈达巴德',\n    'COK': '🇮🇳 科钦',\n    'PNQ': '🇮🇳 浦那',\n    'GOI': '🇮🇳 果阿',\n    'CMB': '🇱🇰 科伦坡',\n    'DAC': '🇧🇩 达卡',\n    'KTM': '🇳🇵 加德满都',\n    'ISB': '🇵🇰 伊斯兰堡',\n    'KHI': '🇵🇰 卡拉奇',\n    'LHE': '🇵🇰 拉合尔',\n    'LHR': '🇬🇧 伦敦希思罗',\n    'LGW': '🇬🇧 伦敦盖特威克',\n    'STN': '🇬🇧 伦敦斯坦斯特德',\n    'LTN': '🇬🇧 伦敦卢顿',\n    'MAN': '🇬🇧 曼彻斯特',\n    'EDI': '🇬🇧 爱丁堡',\n    'BHX': '🇬🇧 伯明翰',\n    'CDG': '🇫🇷 巴黎戴高乐',\n    'ORY': '🇫🇷 巴黎奥利',\n    'MRS': '🇫🇷 马赛',\n    'LYS': '🇫🇷 里昂',\n    'NCE': '🇫🇷 尼斯',\n    'FRA': '🇩🇪 法兰克福',\n    'MUC': '🇩🇪 慕尼黑',\n    'TXL': '🇩🇪 柏林',\n    'BER': '🇩🇪 柏林勃兰登堡',\n    'HAM': '🇩🇪 汉堡',\n    'DUS': '🇩🇪 杜塞尔多夫',\n    'CGN': '🇩🇪 科隆',\n    'STR': '🇩🇪 斯图加特',\n    'AMS': '🇳🇱 阿姆斯特丹',\n    'BRU': '🇧🇪 布鲁塞尔',\n    'LUX': '🇱🇺 卢森堡',\n    'ZRH': '🇨🇭 苏黎世',\n    'GVA': '🇨🇭 日内瓦',\n    'BSL': '🇨🇭 巴塞尔',\n    'VIE': '🇦🇹 维也纳',\n    'PRG': '🇨🇿 布拉格',\n    'BUD': '🇭🇺 布达佩斯',\n    'WAW': '🇵🇱 华沙',\n    'KRK': '🇵🇱 克拉科夫',\n    'MXP': '🇮🇹 米兰马尔彭萨',\n    'LIN': '🇮🇹 米兰利纳特',\n    'FCO': '🇮🇹 罗马',\n    'VCE': '🇮🇹 威尼斯',\n    'NAP': '🇮🇹 那不勒斯',\n    'FLR': '🇮🇹 佛罗伦萨',\n    'BGY': '🇮🇹 贝加莫',\n    'MAD': '🇪🇸 马德里',\n    'BCN': '🇪🇸 巴塞罗那',\n    'PMI': '🇪🇸 帕尔马',\n    'AGP': '🇪🇸 马拉加',\n    'VLC': '🇪🇸 瓦伦西亚',\n    'SVQ': '🇪🇸 塞维利亚',\n    'BIO': '🇪🇸 毕尔巴鄂',\n    'LIS': '🇵🇹 里斯本',\n    'OPO': '🇵🇹 波尔图',\n    'FAO': '🇵🇹 法鲁',\n    'DUB': '🇮🇪 都柏林',\n    'CPH': '🇩🇰 哥本哈根',\n    'ARN': '🇸🇪 斯德哥尔摩',\n    'GOT': '🇸🇪 哥德堡',\n    'OSL': '🇳🇴 奥斯陆',\n    'BGO': '🇳🇴 卑尔根',\n    'HEL': '🇫🇮 赫尔辛基',\n    'RIX': '🇱🇻 里加',\n    'TLL': '🇪🇪 塔林',\n    'VNO': '🇱🇹 维尔纽斯',\n    'ATH': '🇬🇷 雅典',\n    'SKG': '🇬🇷 塞萨洛尼基',\n    'SOF': '🇧🇬 索非亚',\n    'OTP': '🇷🇴 布加勒斯特',\n    'BEG': '🇷🇸 贝尔格莱德',\n    'ZAG': '🇭🇷 萨格勒布',\n    'LJU': '🇸🇮 卢布尔雅那',\n    'KBP': '🇺🇦 基辅',\n    'IEV': '🇺🇦 基辅茹良尼',\n    'ODS': '🇺🇦 敖德萨',\n    'SVO': '🇷🇺 莫斯科谢列梅捷沃',\n    'DME': '🇷🇺 莫斯科多莫杰多沃',\n    'VKO': '🇷🇺 莫斯科伏努科沃',\n    'LED': '🇷🇺 圣彼得堡',\n    'IST': '🇹🇷 伊斯坦布尔',\n    'SAW': '🇹🇷 伊斯坦布尔萨比哈',\n    'ESB': '🇹🇷 安卡拉',\n    'AYT': '🇹🇷 安塔利亚',\n    'ADB': '🇹🇷 伊兹密尔',\n    'TLV': '🇮🇱 特拉维夫',\n    'AMM': '🇯🇴 安曼',\n    'BEY': '🇱🇧 贝鲁特',\n    'BAH': '🇧🇭 巴林',\n    'KWI': '🇰🇼 科威特',\n    'DXB': '🇦🇪 迪拜',\n    'AUH': '🇦🇪 阿布扎比',\n    'SHJ': '🇦🇪 沙迦',\n    'DOH': '🇶🇦 多哈',\n    'MCT': '🇴🇲 马斯喀特',\n    'RUH': '🇸🇦 利雅得',\n    'JED': '🇸🇦 吉达',\n    'DMM': '🇸🇦 达曼',\n    'CAI': '🇪🇬 开罗',\n    'HBE': '🇪🇬 亚历山大',\n    'SSH': '🇪🇬 沙姆沙伊赫',\n    'CMN': '🇲🇦 卡萨布兰卡',\n    'RAK': '🇲🇦 马拉喀什',\n    'TUN': '🇹🇳 突尼斯',\n    'ALG': '🇩🇿 阿尔及尔',\n    'LOS': '🇳🇬 拉各斯',\n    'ABV': '🇳🇬 阿布贾',\n    'ACC': '🇬🇭 阿克拉',\n    'NBO': '🇰🇪 内罗毕',\n    'MBA': '🇰🇪 蒙巴萨',\n    'ADD': '🇪🇹 亚的斯亚贝巴',\n    'DAR': '🇹🇿 达累斯萨拉姆',\n    'JNB': '🇿🇦 约翰内斯堡',\n    'CPT': '🇿🇦 开普敦',\n    'DUR': '🇿🇦 德班',\n    'HRE': '🇿🇼 哈拉雷',\n    'LUN': '🇿🇲 卢萨卡',\n    'MRU': '🇲🇺 毛里求斯',\n    'SEZ': '🇸🇨 塞舌尔',\n    'SYD': '🇦🇺 悉尼',\n    'MEL': '🇦🇺 墨尔本',\n    'BNE': '🇦🇺 布里斯班',\n    'PER': '🇦🇺 珀斯',\n    'ADL': '🇦🇺 阿德莱德',\n    'CBR': '🇦🇺 堪培拉',\n    'OOL': '🇦🇺 黄金海岸',\n    'CNS': '🇦🇺 凯恩斯',\n    'AKL': '🇳🇿 奥克兰',\n    'WLG': '🇳🇿 惠灵顿',\n    'CHC': '🇳🇿 基督城',\n    'ZQN': '🇳🇿 皇后镇',\n    'NAN': '🇫🇯 楠迪',\n    'PPT': '🇵🇫 帕皮提',\n    'GUM': '🇬🇺 关岛',\n    'GRU': '🇧🇷 圣保罗瓜鲁柳斯',\n    'CGH': '🇧🇷 圣保罗孔戈尼亚斯',\n    'GIG': '🇧🇷 里约热内卢',\n    'BSB': '🇧🇷 巴西利亚',\n    'CNF': '🇧🇷 贝洛奥里藏特',\n    'POA': '🇧🇷 阿雷格里港',\n    'CWB': '🇧🇷 库里蒂巴',\n    'FOR': '🇧🇷 福塔莱萨',\n    'REC': '🇧🇷 累西腓',\n    'SSA': '🇧🇷 萨尔瓦多',\n    'EZE': '🇦🇷 布宜诺斯艾利斯',\n    'AEP': '🇦🇷 布宜诺斯艾利斯城',\n    'COR': '🇦🇷 科尔多瓦',\n    'MDZ': '🇦🇷 门多萨',\n    'SCL': '🇨🇱 圣地亚哥',\n    'LIM': '🇵🇪 利马',\n    'BOG': '🇨🇴 波哥大',\n    'MDE': '🇨🇴 麦德林',\n    'CLO': '🇨🇴 卡利',\n    'UIO': '🇪🇨 基多',\n    'GYE': '🇪🇨 瓜亚基尔',\n    'CCS': '🇻🇪 加拉加斯',\n    'MVD': '🇺🇾 蒙得维的亚',\n    'ASU': '🇵🇾 亚松森',\n    'PTY': '🇵🇦 巴拿马城',\n    'SJO': '🇨🇷 圣何塞',\n    'GUA': '🇬🇹 危地马拉城',\n    'SAL': '🇸🇻 圣萨尔瓦多',\n    'TGU': '🇭🇳 特古西加尔巴',\n    'MGA': '🇳🇮 马那瓜',\n    'BZE': '🇧🇿 伯利兹城',\n    'MEX': '🇲🇽 墨西哥城',\n    'GDL': '🇲🇽 瓜达拉哈拉',\n    'MTY': '🇲🇽 蒙特雷',\n    'CUN': '🇲🇽 坎昆',\n    'TIJ': '🇲🇽 蒂华纳',\n    'SJD': '🇲🇽 圣何塞德尔卡沃',\n    'YYZ': '🇨🇦 多伦多',\n    'YVR': '🇨🇦 温哥华',\n    'YUL': '🇨🇦 蒙特利尔',\n    'YYC': '🇨🇦 卡尔加里',\n    'YEG': '🇨🇦 埃德蒙顿',\n    'YOW': '🇨🇦 渥太华',\n    'YWG': '🇨🇦 温尼伯',\n    'YHZ': '🇨🇦 哈利法克斯',\n    'HAV': '🇨🇺 哈瓦那',\n    'SJU': '🇵🇷 圣胡安',\n    'SDQ': '🇩🇴 圣多明各',\n    'PAP': '🇭🇹 太子港',\n    'KIN': '🇯🇲 金斯顿',\n    'NAS': '🇧🇸 拿骚',\n    'MBJ': '🇯🇲 蒙特哥贝'\n  };\n  function 获取机房名称(机房20018) {\n    return 机房映射[机房20018] || 机房20018;\n  }\n\n  const 城市筛选值 = document.getElementById('cityFilterContainer');\n  const 城市值值 = document.getElementById('cityCheckboxesContainer');\n  function 更新城市筛选() {\n    if (!城市筛选值 || !城市值值) return;\n\n    const 城市映射 = new Map();\n    测试结果列表.forEach((结果20017, 索引20016) => {\n      if (结果20017.success && 结果20017.colo) {\n        const 机房20015 = 结果20017.colo;\n        if (!城市映射.has(机房20015)) {\n          城市映射.set(机房20015, {\n            colo: 机房20015,\n            name: 获取机房名称(机房20015),\n            count: 0\n          });\n        }\n        城市映射.get(机房20015).count++;\n      }\n    });\n    if (城市映射.size === 0) {\n      城市筛选值.style.display = 'none';\n      return;\n    }\n    城市筛选值.style.display = 'block';\n    城市值值.innerHTML = '';\n\n    const 城市列表 = Array.from(城市映射.values()).sort((甲值20014, 乙值20013) => 甲值20014.name.localeCompare(乙值20013.name));\n    城市列表.forEach(城市 => {\n      const 标签 = document.createElement('label');\n      标签.style.cssText = 'display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.85rem; padding: 4px 8px; background: rgba(20, 5, 50, 0.4); border: 1px solid #7aa9c4; border-radius: 4px;';\n      const 复选框20012 = document.createElement('input');\n      复选框20012.type = 'checkbox';\n      复选框20012.value = 城市.colo;\n      复选框20012.checked = true;\n      复选框20012.dataset.colo = 城市.colo;\n      复选框20012.style.cssText = 'margin-right: 6px; width: 16px; height: 16px; cursor: pointer;';\n      const 本地值20011 = document.createElement('span');\n      本地值20011.textContent = 城市.name + ' (' + 城市.count + ')';\n      标签.appendChild(复选框20012);\n      标签.appendChild(本地值20011);\n      城市值值.appendChild(标签);\n      复选框20012.addEventListener('change', 按城市筛选结果);\n    });\n\n    const 筛选值值 = document.querySelectorAll('input[name="cityFilterMode"]');\n    筛选值值.forEach(单选框 => {\n      单选框.addEventListener('change', function () {\n        if (this.value === 'all') {\n\n          const 城市值20010 = 城市值值.querySelectorAll('input[type="checkbox"]');\n          城市值20010.forEach(本地值20009 => {\n            本地值20009.checked = true;\n            本地值20009.disabled = false;\n          });\n        }\n        按城市筛选结果();\n      });\n    });\n  }\n  function 按城市筛选结果() {\n    if (!结果列表列表 || !城市值值) return;\n    const 筛选值 = document.querySelector('input[name="cityFilterMode"]:checked')?.value || 'all';\n    const 结果项目列表 = 结果列表列表.querySelectorAll('[data-index]');\n    const 城市值 = 城市值值.querySelectorAll('input[type="checkbox"]');\n    if (筛选值 === 'fastest10') {\n\n      const 值结果列表 = 测试结果列表.map((结果, 索引20008) => ({\n        result: 结果,\n        index: 索引20008\n      })).filter(项目20007 => 项目20007.result.success).sort((甲值, 乙值) => 甲值.result.latency - 乙值.result.latency).slice(0, 10);\n      const 最快索引集合 = new Set(值结果列表.map(项目20006 => 项目20006.index));\n      结果项目列表.forEach(项目20005 => {\n        const 索引 = parseInt(项目20005.dataset.index);\n        const 复选框20004 = 项目20005.querySelector('input[type="checkbox"]');\n        if (最快索引集合.has(索引)) {\n          项目20005.style.display = 'flex';\n          if (复选框20004) 复选框20004.checked = true;\n        } else {\n          项目20005.style.display = 'none';\n          if (复选框20004) 复选框20004.checked = false;\n        }\n      });\n\n      城市值.forEach(本地值20003 => 本地值20003.disabled = true);\n    } else {\n\n      const 已选城市列表 = new Set();\n      城市值.forEach(本地值20002 => {\n        if (本地值20002.checked) {\n          已选城市列表.add(本地值20002.value);\n        }\n      });\n\n      const 值值20001 = 城市值.length > 0 && 已选城市列表.size === 城市值.length;\n      const 值值 = 已选城市列表.size === 0;\n      结果项目列表.forEach(项目 => {\n        const 机房20000 = 项目.dataset.colo || '';\n        const 复选框 = 项目.querySelector('input[type="checkbox"]');\n        if (值值20001 || 值值 || 已选城市列表.has(机房20000)) {\n          项目.style.display = 'flex';\n\n          if (复选框) {\n            if (值值20001) {\n\n              复选框.checked = true;\n            } else if (值值) {\n\n              复选框.checked = false;\n            } else {\n\n              复选框.checked = 已选城市列表.has(机房20000);\n            }\n          }\n        } else {\n          项目.style.display = 'none';\n\n          if (复选框) {\n            复选框.checked = false;\n          }\n        }\n      });\n\n      城市值.forEach(本地值 => 本地值.disabled = false);\n    }\n  }\n  async function 测试延迟(主机, 端口, 信号) {\n    const 超时 = 8000;\n    let 机房 = '';\n    let 测试网址 = '';\n    try {\n      const 控制器 = new AbortController();\n      const 超时标识 = setTimeout(() => 控制器.abort(), 超时);\n      if (信号) {\n        信号.addEventListener('abort', () => 控制器.abort());\n      }\n      const 清理主机 = 主机.replace(/^\\[|\\]$/g, '');\n      const 十六进制地址 = 地址转十六进制(清理主机);\n      const 测试域名 = 十六进制地址 ? 十六进制地址 + '.nip.lfree.org' : 清理主机 + '.nip.lfree.org';\n      测试网址 = 'https://' + 测试域名 + ':' + 端口 + '/';\n      console.log('[LatencyTest] Testing:', 测试网址, 'Original:', 主机 + ':' + 端口, 'HexIP:', 十六进制地址);\n      const 首次开始 = Date.now();\n      const 响应1 = await fetch(测试网址, {\n        signal: 控制器.signal\n      });\n      const 首次值 = Date.now() - 首次开始;\n      if (!响应1.ok) {\n        clearTimeout(超时标识);\n        return {\n          success: false,\n          latency: 首次值,\n          error: 'HTTP ' + 响应1.status + ' ' + 响应1.statusText,\n          colo: '',\n          testUrl: 测试网址\n        };\n      }\n      try {\n        const 文本 = await 响应1.text();\n        console.log('[LatencyTest] Response body:', 文本.substring(0, 200));\n        const 数据 = JSON.parse(文本);\n        if (数据.colo) {\n          机房 = 数据.colo;\n        }\n      } catch (事件值) {\n        console.log('[LatencyTest] Parse error:', 事件值.message);\n      }\n      const 值开始 = Date.now();\n      const 响应2 = await fetch(测试网址, {\n        signal: 控制器.signal\n      });\n      await 响应2.text();\n      const 延迟 = Date.now() - 值开始;\n      clearTimeout(超时标识);\n      console.log('[LatencyTest] First:', 首次值 + 'ms (DNS+TLS+RTT)', 'Second:', 延迟 + 'ms (RTT only)');\n      return {\n        success: true,\n        latency: 延迟,\n        colo: 机房,\n        testUrl: 测试网址\n      };\n    } catch (错误) {\n      const 错误消息 = 错误.name === 'AbortError' ? '超时' : 错误.message;\n      console.log('[LatencyTest] Error:', 错误消息, 'URL:', 测试网址);\n      return {\n        success: false,\n        latency: -1,\n        error: 错误消息,\n        colo: '',\n        testUrl: 测试网址\n      };\n    }\n  }\n});\n<\/script>\n    </body>\n    </html>`;return new Response(s,{status:200,headers:{"Content-Type":"text/html; charset=utf-8"}})}async function rt(n,e){const t=Be(n),o=v||e,a=await it(o);if(t.byteLength<56)return{hasError:!0,message:"invalid "+atob("dHJvamFu")+" data - too short"};if(13!==t[56]||10!==t[57])return{hasError:!0,message:"invalid "+atob("dHJvamFu")+" header format (missing CR LF)"};if(zn.decode(t.subarray(0,56))!==a)return{hasError:!0,message:"invalid "+atob("dHJvamFu")+" password"};const r=t.subarray(58);if(r.byteLength<6)return{hasError:!0,message:atob("aW52YWxpZCBTT0NLUzUgcmVxdWVzdCBkYXRh")};const i=new DataView(r.buffer,r.byteOffset,r.byteLength);if(1!==i.getUint8(0))return{hasError:!0,message:"unsupported command, only TCP (CONNECT) is allowed"};const s=i.getUint8(1);let c=0,l=2,p="";switch(s){case 1:c=4,p=r.subarray(l,l+c).join(".");break;case 3:c=r[l],l+=1,p=zn.decode(r.subarray(l,l+c));break;case 4:c=16;const n=new DataView(r.buffer,r.byteOffset+l,c),e=[];for(let t=0;t<8;t++)e.push(n.getUint16(2*t).toString(16));p=e.join(":");break;default:return{hasError:!0,message:`invalid addressType is ${s}`}}if(!p)return{hasError:!0,message:`address is empty, addressType is ${s}`};const d=l+c;return{hasError:!1,addressRemote:p,addressType:s,port:new DataView(r.buffer,r.byteOffset+d,2).getUint16(0),hostname:p,rawClientData:r.subarray(d+4)}}async function it(n){const e=(new TextEncoder).encode(n),t=[1116352408,1899447441,3049323471,3921009573,961987163,1508970993,2453635748,2870763221,3624381080,310598401,607225278,1426881987,1925078388,2162078206,2614888103,3248222580,3835390401,4022224774,264347078,604807628,770255983,1249150122,1555081692,1996064986,2554220882,2821834349,2952996808,3210313671,3336571891,3584528711,113926993,338241895,666307205,773529912,1294757372,1396182291,1695183700,1986661051,2177026350,2456956037,2730485921,2820302411,3259730800,3345764771,3516065817,3600352804,4094571909,275423344,430227734,506948616,659060556,883997877,958139571,1322822218,1537002063,1747873779,1955562222,2024104815,2227730452,2361852424,2428436474,2756734187,3204031479,3329325298];let o=[3238371032,914150663,812702999,4144912697,4290775857,1750603025,1694076839,3204075428];const a=e.length,r=8*a,i=64*Math.ceil((a+9)/64),s=new Uint8Array(i);s.set(e),s[a]=128;const c=new DataView(s.buffer);c.setUint32(i-4,r,!1);for(let n=0;n<i;n+=64){const e=new Uint32Array(64);for(let t=0;t<16;t++)e[t]=c.getUint32(n+4*t,!1);for(let n=16;n<64;n++){const t=st(e[n-15],7)^st(e[n-15],18)^e[n-15]>>>3,o=st(e[n-2],17)^st(e[n-2],19)^e[n-2]>>>10;e[n]=e[n-16]+t+e[n-7]+o>>>0}let[a,r,i,s,l,p,d,u]=o;for(let n=0;n<64;n++){const o=u+(st(l,6)^st(l,11)^st(l,25))+(l&p^~l&d)+t[n]+e[n]>>>0,c=a&r^a&i^r&i;u=d,d=p,p=l,l=s+o>>>0,s=i,i=r,r=a,a=o+((st(a,2)^st(a,13)^st(a,22))+c>>>0)>>>0}o[0]=o[0]+a>>>0,o[1]=o[1]+r>>>0,o[2]=o[2]+i>>>0,o[3]=o[3]+s>>>0,o[4]=o[4]+l>>>0,o[5]=o[5]+p>>>0,o[6]=o[6]+d>>>0,o[7]=o[7]+u>>>0}const l=[];for(let n=0;n<7;n++)l.push((o[n]>>>24&255).toString(16).padStart(2,"0"),(o[n]>>>16&255).toString(16).padStart(2,"0"),(o[n]>>>8&255).toString(16).padStart(2,"0"),(255&o[n]).toString(16).padStart(2,"0"));return l.join("")}function st(n,e){return n>>>e|n<<32-e}let ct=0;const lt=131072,pt=5e3,dt=45e3,ut=2,ft=32,mt=[13,23,28,28,28,28,28,28,28,24,30,28,28,30,28,28,28,28,28,28,28,28,30,28,28,28,28,28,28,28,28,28,6,10,10,12,13,6,8,11,10,10,8,11,8,6,6,6,5,5,5,6,6,6,6,6,6,6,7,8,15,6,12,10,13,6,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,7,8,7,8,13,19,13,14,6,15,5,6,5,6,5,6,6,6,5,7,7,6,6,6,5,6,7,6,5,5,6,7,7,7,7,7,15,11,14,13,28,20,22,20,20,22,22,22,23,22,23,23,23,23,23,24,23,24,24,22,23,24,23,23,23,23,21,22,23,22,23,23,24,22,21,20,22,22,23,23,21,23,22,22,24,21,22,23,23,21,21,22,21,23,22,23,23,20,22,22,22,23,22,22,23,26,26,20,19,22,23,22,25,26,26,26,27,27,26,24,25,19,21,26,27,27,26,27,24,21,21,26,26,28,27,27,27,20,24,20,21,22,21,21,23,22,22,25,25,24,24,26,23,26,27,26,26,27,27,27,27,27,28,27,27,27,27,27,26,30];function gt(n){return{"头":n.slice(1,7),"键":"_"+n.slice(25,31)}}function ht(n){const e=(new TextEncoder).encode(n);let t=0;for(let n=0;n<e.length;n++)t+=mt[e[n]];return Math.ceil(t/8)}function yt(n,e,t){const o=n.headers.get(e);if(o){try{const n=new URL(o,"https://x.invalid").searchParams.get(t);if(n)return n}catch(n){}return o}try{return new URL(n.url).searchParams.get(t)||""}catch(n){return""}}function bt(n,e,t){const o=yt(n,e,t);if(!o)return!0;const a=ht(o);return a>=98&&a<=1002}const xt="0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";function vt(n){const e=xt.length;let t="";for(let o=0;o<n;o++)t+=xt[Math.floor(Math.random()*e)];return t}function wt(n){return new Promise(e=>setTimeout(e,n))}function kt(n,e){for(let t=0;t<16;t++)if(n[t]!==e[t])return!1;return!0}class Ct{#n;constructor(){this.#n=0}get(){return this.#n}add(n){this.#n+=n}}function It(n,...e){let t=n.length;for(let n of e)t+=n.length;const o=new n.constructor(t);o.set(n,0),t=n.length;for(let n of e)o.set(n,t),t+=n.length;return o}function St(n){n=n.replaceAll("-","");const e=[];for(let t=0;t<16;t++){const o=parseInt(n.substr(2*t,2),16);e.push(o)}return e}function Et(n){return new Uint8Array(new ArrayBuffer(n||lt))}async function $t(n,e){const t=n.getReader({mode:"byob"});try{let n=await t.readAtLeast(18,Et()),o=0,a=0,r=n.value;o+=n.value.length;const i=r[0];if(!kt(r.slice(1,17),St(e)))return"invalid UUID";const s=r[17],c=18+s+1+2+1;if(c+1>o){if(n.done)return"header too short";a=c+1-o,n=await t.readAtLeast(a,Et()),o+=n.value.length,r=It(r,n.value)}const l=r[18+s];if(1!==l)return`unsupported command: ${l}`;const p=(r[c-1-2]<<8)+r[c-1-1],d=r[c-1];let u=-1;if(1===d?u=c+4:3===d?u=c+16:2===d&&(u=c+1+r[c]),u<0)return"read address type failed";if(a=u-o,a>0){if(n.done)return"read address failed";n=await t.readAtLeast(a,Et()),o+=n.value.length,r=It(r,n.value)}let f="";switch(a=c,d){case 1:f=r.slice(a,a+4).join(".");break;case 2:f=(new TextDecoder).decode(r.slice(a+1,a+1+r[a]));break;case 3:f=r.slice(a,a+16).reduce((n,e,t,o)=>t%2?n.concat(((o[t-1]<<8)+e).toString(16)):n,[]).join(":")}return f.length<1?"failed to parse hostname":{hostname:f,port:p,data:r.slice(u),resp:new Uint8Array([i,0]),reader:t,done:n.done}}catch(n){try{t.releaseLock()}catch(n){}throw n}}async function Lt(n,e,t){async function o(t){if(t&&0!==t.length){n.add(t.length);try{await e.write(t)}catch(n){throw n}}}try{await o(t.data);let n=0;for(;!t.done;){const e=await t.reader.read(Et());if(e.done)break;await o(e.value),t.done=e.done,n++,n%10==0&&await wt(0),e.value&&0!==e.value.length||await wt(2)}}catch(n){throw n}}function Tt(n,e){const t=new Ct,o=e.getWriter(),a=(async()=>{try{await Lt(t,o,n)}catch(n){throw n}finally{try{await o.close()}catch(n){}}})();return{counter:t,done:a,abort:()=>{try{o.abort()}catch(n){}}}}function Rt(n,e){const t=new Ct;let o;const a=new Promise((a,r)=>{o=new TransformStream({start(e){t.add(n.length),e.enqueue(n)},transform(n,e){t.add(n.length),e.enqueue(n)},cancel(n){r(`download cancelled: ${n}`)}},null,new ByteLengthQueuingStrategy({highWaterMark:lt}));let i=Date.now();const s=setInterval(()=>{if(Date.now()-i>dt){try{o.writable.abort?.("idle timeout")}catch(n){}clearInterval(s),r("idle timeout")}},5e3),c=e.getReader(),l=o.writable.getWriter();(async()=>{try{let n=0;for(;;){const e=await c.read();if(e.done)break;i=Date.now(),await l.write(e.value),n++,n%5==0&&await wt(0)}await l.close(),a()}catch(n){r(n)}finally{try{c.releaseLock()}catch(n){}try{l.releaseLock()}catch(n){}clearInterval(s)}})()});return{readable:o.readable,counter:t,done:a,abort:()=>{try{o.readable.cancel()}catch(n){}try{o.writable.abort()}catch(n){}}}}function Ut(n,e){const t=Tt(n,e.writable);return{downloader:Rt(n.resp,e.readable),uploader:t,close:()=>{try{e.close()}catch(n){}}}}async function Nt(n,e=null){const t=n.hostname,o=n.port,r=async(n,t)=>Ve(n,t,e,2),i=async(n,t)=>Qe(2,n,t,Ln,e,null),s=async()=>{if(a&&a.trim()){const n=ce(a);return{address:n.address,port:n.port||o}}const n=await ae(f,u);return n?{address:n.domain,port:n.port}:{address:t,port:o}},p=!(!l||!Tn)||!c&&Tn;try{return Ut(n,p?await i(t,o):await r(t,o))}catch(e){if(l&&Tn)return null;try{if(c&&Tn)try{return Ut(n,await i(t,o))}catch(e){const t=await s();return Ut(n,await r(t.address,t.port))}const e=await s();return Ut(n,Tn?await i(e.address,e.port):await r(e.address,e.port))}catch(n){return null}}}async function Mt(n,e,t=null){if(ct>=ft)return new Response("Too many connections",{status:429});ct++;let o=!1;const a=()=>{o||(ct=Math.max(0,ct-1),o=!0)};try{const o=await $t(n,e);if("object"!=typeof o||!o)return null;const r=await Nt(o,t);if(null===r)return null;const i=Promise.race([(async()=>{try{await r.downloader.done}catch(n){}})(),(async()=>{try{await r.uploader.done}catch(n){}})(),wt(dt).then(()=>{})]).finally(()=>{try{r.close()}catch(n){}try{r.downloader.abort()}catch(n){}try{r.uploader.abort()}catch(n){}a()});return{readable:r.downloader.readable,closed:i}}catch(n){return a(),null}}async function At(n){try{return await Mt(n.body,o,n.fetcher)}catch(n){return null}}function Pt(n){if(!n)return{error:null};try{return n=n.replace(/-/g,"+").replace(/_/g,"/"),{earlyData:Uint8Array.from(atob(n),n=>n.charCodeAt(0)).buffer,error:null}}catch(n){return{error:n}}}function Dt(n){try{1!==n.readyState&&2!==n.readyState||n.close()}catch(n){}}const Ht=Array.from({length:256},(n,e)=>(e+256).toString(16).slice(1));function Ot(n,e=0){const t=(Ht[n[e]]+Ht[n[e+1]]+Ht[n[e+2]]+Ht[n[e+3]]+"-"+Ht[n[e+4]]+Ht[n[e+5]]+"-"+Ht[n[e+6]]+Ht[n[e+7]]+"-"+Ht[n[e+8]]+Ht[n[e+9]]+"-"+Ht[n[e+10]]+Ht[n[e+11]]+Ht[n[e+12]]+Ht[n[e+13]]+Ht[n[e+14]]+Ht[n[e+15]]).toLowerCase();if(!Gn(t))throw new TypeError(an);return t}async function Ft(){const n=g;try{const e=n.includes(",")?n.split(",").map(n=>n.trim()).filter(n=>n):[n],t=await Zt(e,"443",5e3);if(t.length>0){const n=[],e=/^(\[[\da-fA-F:]+\]|[\d.]+|[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*)(?::(\d+))?(?:#(.+))?$/;for(const o of t){const t=o.match(e);t&&n.push({ip:Vn(t[1]),port:parseInt(t[2]||"443",10),name:t[3]?.trim()||t[1]})}return n}const o=await fetch(n);if(!o.ok)return[];const a=await o.text(),r=[],i=a.trim().replace(/\r/g,"").split("\n"),s=/^([^:]+):(\d+)#(.*)$/;for(const n of i){const e=n.trim();if(!e)continue;const t=e.match(s);t&&r.push({ip:t[1],port:parseInt(t[2],10),name:t[3].trim()||t[1]})}return r}catch(n){return[]}}function Bt(n,e,t,o=null,a=!1,r=null){const i=[80,8080,8880,2052,2082,2086,2095],s=[443,2053,2083,2087,2096,8443],c=[],l="/?ed=2048",d=atob("dmxlc3M="),u=r||Kn(a);for(const o of n){const n=o.port,a=o.ip.includes(":")?`[${o.ip}]`:o.ip;if(s.includes(n)){const r=u(o);let i=`${d}://${e}@${a}:${n}?encryption=none&security=tls&sni=${t}&fp=${w?"chrome":"randomized"}&type=ws&host=${t}&path=${l}`;I&&(i+=`&alpn=${encodeURIComponent(I)}`),w&&(i+=`&ech=${encodeURIComponent(`${C||"cloudflare-ech.com"}+${k||"https://223.5.5.5/dns-query"}`)}`),i+=`#${encodeURIComponent(r)}`,c.push(i)}else if(i.includes(n)){if(!p){const r=u(o),i=`${d}://${e}@${a}:${n}?encryption=none&security=none&type=ws&host=${t}&path=${l}#${encodeURIComponent(r)}`;c.push(i)}}else{const r=u(o);let i=`${d}://${e}@${a}:${n}?encryption=none&security=tls&sni=${t}&fp=${w?"chrome":"randomized"}&type=ws&host=${t}&path=${l}`;I&&(i+=`&alpn=${encodeURIComponent(I)}`),w&&(i+=`&ech=${encodeURIComponent(`${C||"cloudflare-ech.com"}+${k||"https://223.5.5.5/dns-query"}`)}`),i+=`#${encodeURIComponent(r)}`,c.push(i)}}return c}function zt(n,e,o,a=null,r=!1,i=null){const s=[],c=e.substring(0,8),l=i||Kn(r);for(const a of n){const n=a.ip.includes(":")?`[${a.ip}]`:a.ip,r=a.port||443,i=l(a),p=new URLSearchParams({encryption:"none",security:"tls",sni:o,fp:"chrome",type:"xhttp",host:o,path:`/${c}`,mode:"stream-one"}),{"头":d,"键":u}=gt(e);if(p.set("extra",JSON.stringify({xPaddingObfsMode:!0,xPaddingMethod:"tokenish",xPaddingPlacement:"queryInHeader",xPaddingHeader:d,xPaddingKey:u})),Zn(p),w){const n=k||"https://223.5.5.5/dns-query",e=C||"cloudflare-ech.com";p.set("ech",`${e}+${n}`)}s.push(`${t("dmxlc3M6Ly8=")}${e}@${n}:${r}?${p.toString()}#${encodeURIComponent(i)}`)}return s}async function jt(n,e,t,o=null,a=!1,r=null){const i=[80,8080,8880,2052,2082,2086,2095],s=[443,2053,2083,2087,2096,8443],c=[],l="/?ed=2048",d=v||e,u=r||Kn(a);for(const e of n){const n=e.port,o=e.ip.includes(":")?`[${e.ip}]`:e.ip;if(s.includes(n)){const a=u(e);let r=`${atob("dHJvamFuOi8v")}${d}@${o}:${n}?security=tls&sni=${t}&fp=chrome&type=ws&host=${t}&path=${l}`;I&&(r+=`&alpn=${encodeURIComponent(I)}`),w&&(r+=`&ech=${encodeURIComponent(`${C||"cloudflare-ech.com"}+${k||"https://223.5.5.5/dns-query"}`)}`),r+=`#${encodeURIComponent(a)}`,c.push(r)}else if(i.includes(n)){if(!p){const a=u(e),r=`${atob("dHJvamFuOi8v")}${d}@${o}:${n}?security=none&type=ws&host=${t}&path=${l}#${encodeURIComponent(a)}`;c.push(r)}}else{const a=u(e);let r=`${atob("dHJvamFuOi8v")}${d}@${o}:${n}?security=tls&sni=${t}&fp=chrome&type=ws&host=${t}&path=${l}`;I&&(r+=`&alpn=${encodeURIComponent(I)}`),w&&(r+=`&ech=${encodeURIComponent(`${C||"cloudflare-ech.com"}+${k||"https://223.5.5.5/dns-query"}`)}`),r+=`#${encodeURIComponent(a)}`,c.push(r)}}return c}async function Gt(n,e={}){if("GET"===n.method)return U?new Response(JSON.stringify({...Y(e),kvEnabled:!0}),{headers:{"Content-Type":"application/json"}}):new Response(JSON.stringify({error:"KV存储未配置",kvEnabled:!1}),{status:503,headers:{"Content-Type":"application/json"}});if("POST"===n.method){if(!U)return new Response(JSON.stringify({success:!1,message:"KV存储未配置，无法保存配置"}),{status:503,headers:{"Content-Type":"application/json"}});try{const t=await n.json();for(const[n,e]of Object.entries(t))""===e||null==e?delete N[n]:N[n]=e;return await ne(),Yt(),void 0!==t.yx&&Vt(),new Response(JSON.stringify({success:!0,message:"配置已保存",config:Y(e)}),{headers:{"Content-Type":"application/json"}})}catch(n){return new Response(JSON.stringify({success:!1,message:"保存配置失败: "+n.message}),{status:500,headers:{"Content-Type":"application/json"}})}}return new Response(JSON.stringify({error:"Method not allowed"}),{status:405,headers:{"Content-Type":"application/json"}})}async function Jt(n){if(!U)return new Response(JSON.stringify({success:!1,error:"KV存储未配置",message:"需要配置KV存储才能使用此功能"}),{status:503,headers:{"Content-Type":"application/json"}});if("yes"!==ee("ae",""))return new Response(JSON.stringify({success:!1,error:"API功能未启用",message:'出于安全考虑，优选IP API功能默认关闭。请在配置管理页面开启"允许API管理"选项后使用。'}),{status:403,headers:{"Content-Type":"application/json"}});try{if("GET"===n.method){const n=Xt(ee("yx",""));return new Response(JSON.stringify({success:!0,count:n.length,data:n}),{headers:{"Content-Type":"application/json"}})}if("POST"===n.method){const e=await n.json(),t=Array.isArray(e)?e:[e];if(0===t.length)return new Response(JSON.stringify({success:!1,error:"请求数据为空",message:"请提供IP数据"}),{status:400,headers:{"Content-Type":"application/json"}});let o=Xt(ee("yx",""));const a=[],r=[],i=[];for(const n of t){if(!n.ip){i.push({ip:"未知",reason:"IP地址是必需的"});continue}const e=n.port||443,t=n.name||`API优选-${n.ip}:${e}`;if(!Jn(n.ip)&&!Kt(n.ip)){i.push({ip:n.ip,reason:"无效的IP或域名格式"});continue}if(o.some(t=>t.ip===n.ip&&t.port===e)){r.push({ip:n.ip,port:e,reason:"已存在"});continue}const s={ip:n.ip,port:e,name:t,addedAt:(new Date).toISOString()};o.push(s),a.push(s)}if(a.length>0){const n=Wt(o);await te("yx",n),Vt()}return new Response(JSON.stringify({success:a.length>0,message:`成功添加 ${a.length} 个IP`,added:a.length,skipped:r.length,errors:i.length,data:{addedIPs:a,skippedIPs:r.length>0?r:void 0,errors:i.length>0?i:void 0}}),{headers:{"Content-Type":"application/json"}})}if("DELETE"===n.method){const e=await n.json();if(!0===e.all){const n=Xt(ee("yx","")).length;return await te("yx",""),Vt(),new Response(JSON.stringify({success:!0,message:`已清空所有优选IP，共删除 ${n} 个`,deletedCount:n}),{headers:{"Content-Type":"application/json"}})}if(!e.ip)return new Response(JSON.stringify({success:!1,error:"IP地址是必需的",message:'请提供要删除的ip字段，或使用 {"all": true} 清空所有'}),{status:400,headers:{"Content-Type":"application/json"}});const t=e.port||443;let o=Xt(ee("yx",""));const a=o.length,r=o.filter(n=>!(n.ip===e.ip&&n.port===t));if(r.length===a)return new Response(JSON.stringify({success:!1,error:"优选IP不存在",message:`${e.ip}:${t} 未找到`}),{status:404,headers:{"Content-Type":"application/json"}});const i=Wt(r);return await te("yx",i),Vt(),new Response(JSON.stringify({success:!0,message:"优选IP已删除",deleted:{ip:e.ip,port:t}}),{headers:{"Content-Type":"application/json"}})}return new Response(JSON.stringify({success:!1,error:"不支持的请求方法",message:"支持的方法: GET, POST, DELETE"}),{status:405,headers:{"Content-Type":"application/json"}})}catch(n){return new Response(JSON.stringify({success:!1,error:"处理请求失败",message:n.message}),{status:500,headers:{"Content-Type":"application/json"}})}}function Yt(){const n=Y(),e=n.wk;if(e&&e.trim())m=e.trim().toUpperCase(),f=m;else{const e=n.p;e&&e.trim()?f="CUSTOM":(m="",f="")}u=!(n.rm&&"no"===n.rm.toLowerCase()),y="yes"===n.ev,b="yes"===n.et,x="yes"===n.ex,v=n.tp||"",S=n.scu||D.scu,$="yes"===n.epd,L="yes"===n.epi,T="yes"===n.egi,R="yes"===n.ena,w="yes"===n.ech,k=n.customDNS||D.customDNS,C=n.customECHDomain||D.customECHDomain,I=_n(n.alpn||""),p="yes"===n.dkby||w;const t=(n.qj||"").toLowerCase();if(c="no"===t,l="only"===t,h=n.d||"",g=n.yxURL||"",a=n.p?n.p.trim():"",r=n.s||"",r)try{Ln=ot(r),Tn=!0}catch(n){Tn=!1}else Ln={},Tn=!1;d=!(!n.yxby||"yes"!==n.yxby.toLowerCase())}function Vt(){const n=ee("yx","");if(n)try{const e=n.split(",").map(n=>n.trim()).filter(n=>n);i=[],s=[],e.forEach(n=>{let e="",t=n;if(n.includes("#")){const o=n.split("#");t=o[0].trim(),e=o[1].trim()}const{address:o,port:a}=ce(t);e||(e="自定义优选-"+o+(a?":"+a:"")),Jn(o)?i.push({ip:o,port:a,isp:e}):s.push({domain:o,port:a,name:e})})}catch(n){i=[],s=[]}else i=[],s=[]}function Xt(n){if(!n||!n.trim())return[];const e=n.split(",").map(n=>n.trim()).filter(n=>n),t=[];for(const n of e){let e="",o=n;if(n.includes("#")){const t=n.split("#");o=t[0].trim(),e=t[1].trim()}const{address:a,port:r}=ce(o);e||(e=a+(r?":"+r:"")),t.push({ip:a,port:r||443,name:e,addedAt:(new Date).toISOString()})}return t}function Wt(n){return n&&0!==n.length?n.map(n=>{const e=n.port||443;return`${n.ip}:${e}#${n.name}`}).join(","):""}function Kt(n){return/^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/.test(n)}async function _t(n){var e=n.replace(/[	"'\r\n]+/g,",").replace(/,+/g,",");return","==e.charAt(0)&&(e=e.slice(1)),","==e.charAt(e.length-1)&&(e=e.slice(0,e.length-1)),e.split(",")}async function Zt(n,e="443",t=3e3){if(!n?.length)return[];const o=new Set;return await Promise.allSettled(n.map(async n=>{try{const a=new AbortController,r=setTimeout(()=>a.abort(),t),i=await fetch(n,{signal:a.signal});clearTimeout(r);let s="";try{const n=await i.arrayBuffer(),e=(i.headers.get("content-type")||"").toLowerCase(),t=e.match(/charset=([^\s;]+)/i)?.[1]?.toLowerCase()||"";let o=["utf-8","gb2312"];(t.includes("gb")||t.includes("gbk")||t.includes("gb2312"))&&(o=["gb2312","utf-8"]);let a=!1;for(const e of o)try{const t=new TextDecoder(e).decode(n);if(t&&t.length>0&&!t.includes("�")){s=t,a=!0;break}if(t&&t.length>0)continue}catch(n){continue}if(a||(s=await i.text()),!s||0===s.trim().length)return}catch(n){return}const c=s.trim().split("\n").map(n=>n.trim()).filter(n=>n),l=c.length>1&&c[0].includes(","),p=/^[^\[\]]*:[^\[\]]*:[^\[\]]/;if(l){const t=c[0].split(",").map(n=>n.trim()),a=c.slice(1);if(t.includes("IP地址")&&t.includes("端口")&&t.includes("数据中心")){const n=t.indexOf("IP地址"),e=t.indexOf("端口"),r=t.indexOf("国家")>-1?t.indexOf("国家"):t.indexOf("城市")>-1?t.indexOf("城市"):t.indexOf("数据中心"),i=t.indexOf("TLS");a.forEach(t=>{const a=t.split(",").map(n=>n.trim());if(-1!==i&&"true"!==a[i]?.toLowerCase())return;const s=p.test(a[n])?`[${a[n]}]`:a[n];o.add(`${s}:${a[e]}#${a[r]}`)})}else if(t.some(n=>n.includes("IP"))&&t.some(n=>n.includes("延迟"))&&t.some(n=>n.includes("下载速度"))){const r=t.findIndex(n=>n.includes("IP")),i=t.findIndex(n=>n.includes("延迟")),s=t.findIndex(n=>n.includes("下载速度")),c=new URL(n).searchParams.get("port")||e;a.forEach(n=>{const e=n.split(",").map(n=>n.trim()),t=p.test(e[r])?`[${e[r]}]`:e[r];o.add(`${t}:${c}#CF优选 ${e[i]}ms ${e[s]}MB/s`)})}}else c.forEach(t=>{const a=t.indexOf("#"),[r,i]=a>-1?[t.substring(0,a),t.substring(a)]:[t,""];let s=!1;if(r.startsWith("["))s=/\]:(\d+)$/.test(r);else{const n=r.lastIndexOf(":");s=n>-1&&/^\d+$/.test(r.substring(n+1))}const c=new URL(n).searchParams.get("port")||e;o.add(s?t:`${r}:${c}${i}`)})}catch(n){}})),Array.from(o)}
+// CFnew - 终端 v3.1
+// 版本: v3.1 
+import { connect as 连接 } from 'cloudflare:sockets';
+const 基础64文本解码器 = new TextDecoder();
+function 解码64(文本) {
+  const 二进制 = atob(文本);
+  const 字节 = new Uint8Array(二进制.length);
+  for (let 索引 = 0; 索引 < 二进制.length; 索引++) 字节[索引] = 二进制.charCodeAt(索引);
+  return 基础64文本解码器.decode(字节);
+}
+let 认证令牌 = '351c9981-04b6-4103-aa4b-864aa9c91469';
+let 回退地址 = '';
+let 代理5配置 = '';
+let 自定义优选地址列表 = [];
+let 自定义优选域名列表 = [];
+let 启用代理降级 = false;
+let 仅走代理 = false;
+let 禁用非传输层安全 = false;
+let 禁用优选 = false;
+let 启用地区匹配 = true;
+let 当前工作器地区 = '';
+let 手动工作器地区 = '';
+let 优选地址源 = '';
+let 自定义路径 = '';
+let 启用明文 = true;
+let 启用木马 = false;
+let 启用扩展传输 = false;
+let 传输路径 = '';
+// 启用ECH功能（true启用，false禁用）
+let 启用加密客户端问候 = false;
+// 自定义DNS服务器（默认：https://223.5.5.5/dns-query）
+let 自定义域名系统 = 'https://223.5.5.5/dns-query';
+// 自定义ECH域名（默认：cloudflare-ech.com）
+let 自定义加密客户端问候域名 = 'cloudflare-ech.com';
+let 自定义应用层协议协商 = '';
+let 订阅转换接口 = 解码64('aHR0cHM6Ly91cmwudjEubWsvc3Vi');
+// 远程配置URL（硬编码）
+const 远程配置网址 = 'https://raw.githubusercontent.com/byJoey/test/refs/heads/main/tist.ini';
+let 启用优选域名 = true; // 优选域名默认关闭
+let 启用优选地址 = true;
+let 启用仓库优选 = true;
+let 启用原生地址 = false; // 原生地址默认关闭          
+// 家宽链式：cfnew 自己的节点当前置，落地换成住宅宽带
+let 启用家宽链式 = false;
+
+let 键值存储 = null;
+let 键值配置 = {};
+let 键值配置上次加载 = 0;
+const 键值缓存期限 = 30 * 1000; // 30秒缓存（短窗口内跳过版本检查）
+let 键值配置版本 = '';
+const 配置默认值 = {
+  wk: '',
+  ev: 'yes',
+  et: 'no',
+  ex: 'no',
+  ech: 'no',
+  tp: '',
+  customDNS: 'https://223.5.5.5/dns-query',
+  customECHDomain: 'cloudflare-ech.com',
+  alpn: '',
+  d: '',
+  p: '',
+  yx: '',
+  yxURL: '',
+  s: '',
+  homepage: '',
+  scu: 解码64('aHR0cHM6Ly91cmwudjEubWsvc3Vi'),
+  ena: 'no',
+  epd: 'yes',
+  epi: 'yes',
+  egi: 'yes',
+  ae: '',
+  rm: '',
+  qj: '',
+  dkby: 'no',
+  yxby: '',
+  ipv4: 'yes',
+  ipv6: 'yes',
+  ispMobile: 'yes',
+  ispUnicom: 'yes',
+  ispTelecom: 'yes',
+  jk: 'no'
+};
+
+function 是否开启值(值, 默认启用 = false) {
+  if (值 === undefined || 值 === null || 值 === '') return 默认启用;
+  if (值 === true || 值 === false) return 值;
+  const 文本 = String(值).trim().toLowerCase();
+  if (文本 === 'yes' || 文本 === 'true' || 文本 === '1' || 文本 === 'on') return true;
+  if (文本 === 'no' || 文本 === 'false' || 文本 === '0' || 文本 === 'off') return false;
+  return 默认启用;
+}
+
+function 归一配置开关(值, 默认启用 = false) {
+  return 是否开启值(值, 默认启用) ? 'yes' : 'no';
+}
+
+function 获取配置开关值(键, 默认启用 = false, 备用值 = undefined) {
+  const 默认值 = 备用值 !== undefined ? 备用值 : (默认启用 ? 'yes' : 'no');
+  return 是否开启值(获取配置值(键, 默认值), 默认启用);
+}
+
+function 获取配置文本值(键, 默认值 = '', 备用值 = undefined) {
+  const 值 = 获取配置值(键, 备用值 !== undefined ? 备用值 : 默认值);
+  return 值 === undefined || 值 === null ? 默认值 : String(值);
+}
+
+function 整理有效配置(配置) {
+  const 快照 = {
+    ...配置默认值,
+    ...配置
+  };
+  ['ev', 'et', 'ex', 'ech', 'ena', 'epd', 'epi', 'egi', 'ipv4', 'ipv6', 'ispMobile', 'ispUnicom', 'ispTelecom', 'jk'].forEach(键 => {
+    快照[键] = 归一配置开关(快照[键], 是否开启值(配置默认值[键]));
+  });
+  if (快照.ev === 'no' && 快照.et === 'no' && 快照.ex === 'no') {
+    快照.ev = 'yes';
+  }
+  if (快照.ech === 'yes') {
+    快照.dkby = 'yes';
+  }
+  return 快照;
+}
+
+function 读取环境配置值(环境值, ...名称列表) {
+  if (!环境值) return undefined;
+  for (const 名称 of 名称列表) {
+    if (环境值[名称] !== undefined && 环境值[名称] !== null && 环境值[名称] !== '') {
+      return 环境值[名称];
+    }
+  }
+  return undefined;
+}
+
+function 获取环境配置快照(环境值 = {}) {
+  const 映射 = {
+    wk: ['wk', 'WK'],
+    ev: ['ev', 'EV'],
+    et: ['et', 'ET'],
+    ex: ['ex', 'EX'],
+    ech: ['ech', 'ECH'],
+    tp: ['tp', 'TP'],
+    customDNS: ['customDNS', 'CUSTOMDNS', 'CUSTOM_DNS'],
+    customECHDomain: ['customECHDomain', 'CUSTOMECHDOMAIN', 'CUSTOM_ECH_DOMAIN'],
+    alpn: ['alpn', 'ALPN'],
+    d: ['d', 'D'],
+    p: ['p', 'P'],
+    yx: ['yx', 'YX'],
+    yxURL: ['yxURL', 'YXURL', 'YX_URL'],
+    s: ['s', 'S'],
+    homepage: ['homepage', 'HOMEPAGE'],
+    scu: ['scu', 'SCU'],
+    ena: ['ena', 'ENA'],
+    epd: ['epd', 'EPD'],
+    epi: ['epi', 'EPI'],
+    egi: ['egi', 'EGI'],
+    ae: ['ae', 'AE'],
+    rm: ['rm', 'RM'],
+    qj: ['qj', 'QJ'],
+    dkby: ['dkby', 'DKBY'],
+    yxby: ['yxby', 'YXBY'],
+    ipv4: ['ipv4', 'IPV4'],
+    ipv6: ['ipv6', 'IPV6'],
+    ispMobile: ['ispMobile', 'ISPMOBILE', 'ISP_MOBILE'],
+    ispUnicom: ['ispUnicom', 'ISPUNICOM', 'ISP_UNICOM'],
+    ispTelecom: ['ispTelecom', 'ISPTELECOM', 'ISP_TELECOM'],
+    jk: ['jk', 'JK']
+  };
+  const 快照 = {};
+  for (const [键, 名称列表] of Object.entries(映射)) {
+    const 值 = 读取环境配置值(环境值, ...名称列表);
+    if (值 !== undefined) 快照[键] = 值;
+  }
+  return 快照;
+}
+
+function 获取有效配置快照(环境值 = {}) {
+  return 整理有效配置({
+    ...获取环境配置快照(环境值),
+    ...键值配置
+  });
+}
+const 地区映射 = {
+  'HK': ['🇭🇰 香港', 'HK', 'Hong Kong'],
+  'US': ['🇺🇸 美国', 'US', 'United States'],
+  'SG': ['🇸🇬 新加坡', 'SG', 'Singapore'],
+  'JP': ['🇯🇵 日本', 'JP', 'Japan'],
+  'KR': ['🇰🇷 韩国', 'KR', 'South Korea'],
+  'DE': ['🇩🇪 德国', 'DE', 'Germany'],
+  'SE': ['🇸🇪 瑞典', 'SE', 'Sweden'],
+  'NL': ['🇳🇱 荷兰', 'NL', 'Netherlands'],
+  'FI': ['🇫🇮 芬兰', 'FI', 'Finland'],
+  'GB': ['🇬🇧 英国', 'GB', 'United Kingdom'],
+  'Oracle': ['甲骨文', 'Oracle'],
+  'DigitalOcean': ['数码海', 'DigitalOcean'],
+  'Vultr': ['Vultr', 'Vultr'],
+  'Multacom': ['Multacom', 'Multacom']
+};
+// 官方直连地址池：内置实测可用地址，不依赖任何第三方域名
+// CF 是任播，同一地址在不同位置落到的机房不同，所以不按地区区分
+const 官方直连地址 = 解码64('MTcyLjcxLjIxOC4xOTAsMTYyLjE1OC4yMjguODcsMTYyLjE1OC4xODkuMTM0LDE2Mi4xNTguMjYuNjMsMTYyLjE1OC4yNS44NiwxNjIuMTU4LjI5LjIxNiwxNjIuMTU4LjIxOC4xNjAsMTYyLjE1OC4yMjcuMjE0LDE3Mi42OS4xMTguMTk4LDE3Mi42OS4xMTkuMTUw').split(',');
+function 取官方直连地址() {
+  const 命中 = 官方直连地址[Math.floor(Math.random() * 官方直连地址.length)];
+  return {
+    domain: 命中,
+    region: 'CF',
+    regionCode: 'CF',
+    port: 443
+  };
+}
+let 备用地址列表 = [{
+  domain: 解码64('UHJveHlJUC5ISy5DTUxpdXNzc3MubmV0'),
+  region: 'HK',
+  regionCode: 'HK',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5VUy5DTUxpdXNzc3MubmV0'),
+  region: 'US',
+  regionCode: 'US',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5TRy5DTUxpdXNzc3MubmV0'),
+  region: 'SG',
+  regionCode: 'SG',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5KUC5DTUxpdXNzc3MubmV0'),
+  region: 'JP',
+  regionCode: 'JP',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5LUi5DTUxpdXNzc3MubmV0'),
+  region: 'KR',
+  regionCode: 'KR',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5ERS5DTUxpdXNzc3MubmV0'),
+  region: 'DE',
+  regionCode: 'DE',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5TRS5DTUxpdXNzc3MubmV0'),
+  region: 'SE',
+  regionCode: 'SE',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5OTC5DTUxpdXNzc3MubmV0'),
+  region: 'NL',
+  regionCode: 'NL',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5GSS5DTUxpdXNzc3MubmV0'),
+  region: 'FI',
+  regionCode: 'FI',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5HQi5DTUxpdXNzc3MubmV0'),
+  region: 'GB',
+  regionCode: 'GB',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5PcmFjbGUuY21saXVzc3NzLm5ldA=='),
+  region: 'Oracle',
+  regionCode: 'Oracle',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5EaWdpdGFsT2NlYW4uQ01MaXVzc3NzLm5ldA=='),
+  region: 'DigitalOcean',
+  regionCode: 'DigitalOcean',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5WdWx0ci5DTUxpdXNzc3MubmV0'),
+  region: 'Vultr',
+  regionCode: 'Vultr',
+  port: 443
+}, {
+  domain: 解码64('UHJveHlJUC5NdWx0YWNvbS5DTUxpdXNzc3MubmV0'),
+  region: 'Multacom',
+  regionCode: 'Multacom',
+  port: 443
+}];
+const 直连域名列表 = [{
+  name: "cloudflare.182682.xyz",
+  domain: "cloudflare.182682.xyz"
+}, {
+  name: "speed.marisalnc.com",
+  domain: "speed.marisalnc.com"
+}, {
+  domain: "freeyx.cloudflare88.eu.org"
+}, {
+  domain: "bestcf.top"
+}, {
+  domain: "cdn.2020111.xyz"
+}, {
+  domain: "cfip.cfcdn.vip"
+}, {
+  domain: "cf.0sm.com"
+}, {
+  domain: "cf.090227.xyz"
+}, {
+  domain: "cf.zhetengsha.eu.org"
+}, {
+  domain: "cloudflare.9jy.cc"
+}, {
+  domain: "cf.zerone-cdn.pp.ua"
+}, {
+  domain: "cfip.1323123.xyz"
+}, {
+  domain: "cnamefuckxxs.yuchen.icu"
+}, {
+  domain: "cloudflare-ip.mofashi.ltd"
+}, {
+  domain: "115155.xyz"
+}, {
+  domain: "cname.xirancdn.us"
+}, {
+  domain: "f3058171cad.002404.xyz"
+}, {
+  domain: "8.889288.xyz"
+}, {
+  domain: "cdn.tzpro.xyz"
+}, {
+  domain: "cf.877771.xyz"
+}, {
+  domain: "xn--b6gac.eu.org"
+}];
+const 错误_无效数据 = atob('aW52YWxpZCBkYXRh');
+const 错误_无效用户 = atob('aW52YWxpZCB1c2Vy');
+const 错误_不支持命令 = atob('Y29tbWFuZCBpcyBub3Qgc3VwcG9ydGVk');
+const 错误_仅支持域名系统用户数据报 = atob('VURQIHByb3h5IG9ubHkgZW5hYmxlIGZvciBETlMgd2hpY2ggaXMgcG9ydCA1Mw==');
+const 错误_无效地址类型 = atob('aW52YWxpZCBhZGRyZXNzVHlwZQ==');
+const 错误_空地址 = atob('YWRkcmVzc1ZhbHVlIGlzIGVtcHR5');
+const 错误_网页套接字未打开 = atob('d2ViU29ja2V0LmVhZHlTdGF0ZSBpcyBub3Qgb3Blbg==');
+const 错误_无效标识字符串 = atob('U3RyaW5naWZpZWQgaWRlbnRpZmllciBpcyBpbnZhbGlk');
+const 错误_无效代理地址 = atob('SW52YWxpZCBTT0NLUyBhZGRyZXNzIGZvcm1hdA==');
+const 错误_代理无可用方法 = atob('bm8gYWNjZXB0YWJsZSBtZXRob2Rz');
+const 错误_代理需要认证 = atob('c29ja3Mgc2VydmVyIG5lZWRzIGF1dGg=');
+const 错误_代理认证失败 = atob('ZmFpbCB0byBhdXRoIHNvY2tzIHNlcnZlcg==');
+const 错误_代理连接失败 = atob('ZmFpbCB0byBvcGVuIHNvY2tzIGNvbm5lY3Rpb24=');
+const 错误_代理隧道失败 = atob('ZmFpbCB0byBvcGVuIHByb3h5IHR1bm5lbA==');
+const 错误_代理响应异常 = atob('aW52YWxpZCBwcm94eSByZXNwb25zZQ==');
+const 前缀_套接字5 = atob('c29ja3M1Oi8v');
+const 前缀_套接字 = atob('c29ja3M6Ly8=');
+const 前缀_超文本 = atob('aHR0cDovLw==');
+const 前缀_安全超文本 = atob('aHR0cHM6Ly8=');
+const 文本_连接方法 = atob('Q09OTkVDVA==');
+const 文本_协议版本 = atob('IEhUVFAvMS4x');
+const 文本_主机头 = atob('SG9zdDog');
+const 文本_代理认证头 = atob('UHJveHktQXV0aG9yaXphdGlvbjogQmFzaWMg');
+const 文本_代理保持 = atob('UHJveHktQ29ubmVjdGlvbjogS2VlcC1BbGl2ZQ==');
+const 文本_用户代理头 = atob('VXNlci1BZ2VudDogTW96aWxsYS81LjA=');
+const 文本_换行 = atob('DQo=');
+const 文本_响应前缀 = atob('SFRUUC8=');
+const 代理种类_套接字5 = 'p5';
+const 代理种类_隧道 = 'pt';
+const 代理种类_安全隧道 = 'pts';
+let 已解析代理5配置 = {};
+let 是否代理已启用 = false;
+const 地址类型_四版 = 1;
+const 地址类型_网址 = 2;
+const 地址类型_六版 = 3;
+const 传输块大小 = 64 * 1024;
+const 传输下载包大小 = 32 * 1024;
+const 传输下载尾部 = 512;
+const 传输下载延迟 = 0;
+const 传输上传包大小 = 16 * 1024;
+const 传输上传队列上限 = 256 * 1024;
+const 传输连接竞速数 = 2;
+const 首字节超时 = 3500;
+const 共享解码器 = new TextDecoder();
+const 唯一标识字节缓存 = new Map();
+function 是否有效格式(字符串) {
+  const 用户正则 = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return 用户正则.test(字符串);
+}
+function 是否有效地址(地址792) {
+  const 值4正则 = /^(?:(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.){3}(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$/;
+  if (值4正则.test(地址792)) return true;
+  const 值6正则 = /^(?:[0-9a-fA-F]{1,4}:){7}[0-9a-fA-F]{1,4}$/;
+  if (值6正则.test(地址792)) return true;
+  const 值6值正则 = /^::1$|^::$|^(?:[0-9a-fA-F]{1,4}:)*::(?:[0-9a-fA-F]{1,4}:)*[0-9a-fA-F]{1,4}$/;
+  if (值6值正则.test(地址792)) return true;
+  return false;
+}
+function 创建节点命名器(跳过 = false) {
+  // 如果配置了 yxURL，则跳过编号
+  const 值跳过 = typeof 优选地址源 !== 'undefined' && 优选地址源 && 优选地址源.trim();
+  let 跳过编号791 = 值跳过 || 跳过;
+  const 计数器组790 = {};
+  function 设置跳过编号(本地值789) {
+    if (!值跳过) {
+      跳过编号791 = 本地值789;
+    }
+  }
+  function 处理命名器(基础名称, 节点名称788 = null) {
+    if (跳过编号791 || 基础名称 && 基础名称.includes('.')) {
+      return 节点名称788 || 基础名称;
+    }
+    if (!计数器组790[基础名称]) 计数器组790[基础名称] = 0;
+    计数器组790[基础名称]++;
+    const 索引787 = String(计数器组790[基础名称]).padStart(2, '0');
+    return `${节点名称788 || 基础名称}-${索引787}`;
+  }
+  return {
+    namer: 处理命名器,
+    setSkipNumbering: 设置跳过编号
+  };
+}
+function 规范化节点主机(主机786) {
+  return String(主机786 || '').trim().replace(/^\[([^\]]+)\]$/, '$1');
+}
+function 处理值节点别名部分(值785, 回退 = 'Node') {
+  let 文本784 = String(值785 || '').trim();
+  if (!文本784 || /^自定义优选-/i.test(文本784)) 文本784 = 回退;
+  文本784 = 文本784.replace(/^\[([^\]]+)\]$/, '$1').replace(/^https?:\/\//i, '').replace(/[/?#].*$/, '').replace(/\s+/g, '_');
+  return 文本784 || 回退;
+}
+function 获取值节点别名基础(项目783) {
+  const 主机782 = 规范化节点主机(项目783?.ip || 项目783?.domain || '');
+  if (主机782 && 主机782.includes(':') && /^[0-9a-fA-F:.]+$/.test(主机782)) return 'IPv6优选';
+  if (主机782 && !是否有效地址(主机782)) return '优选域名';
+  const 本地值781 = 处理值节点别名部分(项目783?.isp || 项目783?.name || '', 'IPv4优选');
+  const 机房780 = 处理值节点别名部分(项目783?.colo || '', '');
+  return 机房780 ? `${本地值781}-${机房780}` : 本地值781;
+}
+function 创建值节点命名器(跳过编号779 = false) {
+  const 计数器组 = {};
+  return 项目778 => {
+    const 基础 = 获取值节点别名基础(项目778);
+    if (跳过编号779) return 基础;
+    计数器组[基础] = (计数器组[基础] || 0) + 1;
+    return `${基础}-${String(计数器组[基础]).padStart(2, '0')}`;
+  };
+}
+function 规范化应用层协议协商(值777) {
+  const 本地值776 = ['', 'h3', 'h2', 'http/1.1', 'h3,h2', 'h2,http/1.1', 'h3,h2,http/1.1'];
+  const 应用层协议协商775 = String(值777 || '').trim();
+  return 本地值776.includes(应用层协议协商775) ? 应用层协议协商775 : '';
+}
+function 处理值应用层协议协商值(参数774) {
+  const 应用层协议协商 = 规范化应用层协议协商(自定义应用层协议协商);
+  if (应用层协议协商) 参数774.set('alpn', 应用层协议协商);
+}
+async function 处理值键值值(本地值773) {
+  const 键值绑定 = 本地值773.C || 本地值773.c;
+  if (键值绑定) {
+    try {
+      键值存储 = 键值绑定;
+      await 加载键值配置();
+    } catch (错误772) {
+      键值存储 = null;
+    }
+  } else {}
+}
+async function 加载键值配置(本地值771 = false) {
+  if (!键值存储) {
+    return;
+  }
+
+  // 短窗口内完全信任缓存，避免高频请求时打爆 KV
+  if (!本地值771 && 键值配置上次加载 > 0 && Date.now() - 键值配置上次加载 < 键值缓存期限) {
+    return;
+  }
+  try {
+    // 读取小体积的版本键 c_ver（约 13B），用于跨 isolate 缓存失效
+    let 本地值770 = '';
+    try {
+      本地值770 = (await 键值存储.get('c_ver')) || '';
+    } catch (忽略值769) {}
+
+    // 版本未变化且已有缓存，仅刷新时间戳，跳过完整读取
+    if (!本地值771 && 本地值770 && 本地值770 === 键值配置版本 && 键值配置 && Object.keys(键值配置).length > 0) {
+      键值配置上次加载 = Date.now();
+      return;
+    }
+    const 配置数据 = await 键值存储.get('c');
+    if (配置数据) {
+      键值配置 = JSON.parse(配置数据);
+    }
+    键值配置版本 = 本地值770;
+    键值配置上次加载 = Date.now();
+  } catch (错误768) {
+    // 读取失败时保留现有缓存，避免临时故障导致配置丢失
+    if (!键值配置) 键值配置 = {};
+  }
+}
+async function 保存键值配置() {
+  if (!键值存储) {
+    return;
+  }
+  try {
+    const 配置字符串 = JSON.stringify(键值配置);
+    await 键值存储.put('c', 配置字符串);
+    // 写入版本号，让其它 isolate 在下次请求时能立即看到变更
+    const 新值 = String(Date.now());
+    键值配置版本 = 新值;
+    try {
+      await 键值存储.put('c_ver', 新值);
+    } catch (忽略值767) {}
+    键值配置上次加载 = Date.now();
+  } catch (错误766) {
+    throw 错误766;
+  }
+}
+function 获取配置值(键765, 默认值 = '') {
+  if (键值配置[键765] !== undefined) {
+    return 键值配置[键765];
+  }
+  return 默认值;
+}
+async function 设置配置值(键764, 值763) {
+  键值配置[键764] = 值763;
+  await 保存键值配置();
+}
+async function 检查地址可用性(域名760, 端口759 = 443, 超时758 = 2000) {
+  try {
+    const 控制器757 = new AbortController();
+    const 超时标识756 = setTimeout(() => 控制器757.abort(), 超时758);
+    const 响应755 = await fetch(`https://${域名760}`, {
+      method: 'HEAD',
+      signal: 控制器757.signal,
+      headers: {
+        'User-Agent': 'Mozilla/5.0 (compatible; CF-IP-Checker/1.0)'
+      }
+    });
+    clearTimeout(超时标识756);
+    return 响应755.status < 500;
+  } catch (错误754) {
+    return true;
+  }
+}
+async function 获取值备用地址(工作器地区753 = '', 值地区匹配752 = 启用地区匹配) {
+  // 没指定地区（wk 留空=官方直连）时走内置地址，不依赖第三方域名
+  if (!工作器地区753 || 工作器地区753 === 'CF') {
+    return 取官方直连地址();
+  }
+  if (备用地址列表.length === 0) {
+    return 取官方直连地址();
+  }
+  const 可用地址列表751 = 备用地址列表.map(地址750 => ({
+    ...地址750,
+    available: true
+  }));
+  if (值地区匹配752 && 工作器地区753) {
+    const 值地址列表749 = 获取值地区值(工作器地区753, 可用地址列表751, 值地区匹配752);
+    if (值地址列表749.length > 0) {
+      const 已选地址748 = 值地址列表749[0];
+      return 已选地址748;
+    }
+  }
+  const 已选地址 = 可用地址列表751[0];
+  return 已选地址;
+}
+function 获取值值(地区747) {
+  const 值映射 = {
+    'US': ['SG', 'JP', 'KR'],
+    'SG': ['JP', 'KR', 'US'],
+    'JP': ['SG', 'KR', 'US'],
+    'KR': ['JP', 'SG', 'US'],
+    'DE': ['NL', 'GB', 'SE', 'FI'],
+    'SE': ['DE', 'NL', 'FI', 'GB'],
+    'NL': ['DE', 'GB', 'SE', 'FI'],
+    'FI': ['SE', 'DE', 'NL', 'GB'],
+    'GB': ['DE', 'NL', 'SE', 'FI']
+  };
+  return 值映射[地区747] || [];
+}
+function 获取值值值值(地区746) {
+  const 值值745 = 获取值值(地区746);
+  const 值值744 = ['US', 'SG', 'JP', 'KR', 'DE', 'SE', 'NL', 'FI', 'GB'];
+  return [地区746, ...值值745, ...值值744.filter(结果值743 => 结果值743 !== 地区746 && !值值745.includes(结果值743))];
+}
+function 获取值地区值(工作器地区, 可用地址列表, 值地区匹配 = 启用地区匹配) {
+  if (!值地区匹配 || !工作器地区) {
+    return 可用地址列表;
+  }
+  const 值值742 = 获取值值值值(工作器地区);
+  const 值地址列表741 = [];
+  for (const 地区 of 值值742) {
+    const 地区地址列表 = 可用地址列表.filter(地址740 => 地址740.regionCode === 地区);
+    值地址列表741.push(...地区地址列表);
+  }
+  return 值地址列表741;
+}
+function 解析地址值端口(输入) {
+  if (输入.includes('[') && 输入.includes(']')) {
+    const 本地值739 = 输入.match(/^\[([^\]]+)\](?::(\d+))?$/);
+    if (本地值739) {
+      return {
+        address: 本地值739[1],
+        port: 本地值739[2] ? parseInt(本地值739[2], 10) : null
+      };
+    }
+  }
+  const 值值索引738 = 输入.lastIndexOf(':');
+  if (值值索引738 > 0) {
+    const 地址737 = 输入.substring(0, 值值索引738);
+    const 端口字符串 = 输入.substring(值值索引738 + 1);
+    const 端口736 = parseInt(端口字符串, 10);
+
+    // address 含 ':' 说明是裸 IPv6（如 2001:db8::1），整体当地址，无端口
+    if (!地址737.includes(':') && !isNaN(端口736) && 端口736 > 0 && 端口736 <= 65535) {
+      return {
+        address: 地址737,
+        port: 端口736
+      };
+    }
+  }
+  return {
+    address: 输入,
+    port: null
+  };
+}
+export default {
+  async fetch(请求735, 本地值734, 本地值733) {
+    try {
+      const 是否网页套接字 = 请求735.headers.get('Upgrade') === atob('d2Vic29ja2V0');
+      const 是否值732 = 请求735.method === 'POST';
+      const 请求网址731 = new URL(请求735.url);
+      const 路径值730 = 请求网址731.pathname.split('/').filter(参数值729 => 参数值729);
+      if (!是否网页套接字 && !是否值732 && 请求网址731.pathname !== '/') {
+        const 值值728 = (本地值734.u || 本地值734.U || '').toLowerCase();
+        const 值值727 = (本地值734.d || 本地值734.D || '').toLowerCase();
+        const 首次值 = 路径值730[0] || '';
+        const 清理值 = 值值727.startsWith('/') ? 值值727.substring(1) : 值值727;
+        if (首次值 !== 值值728 && (清理值 ? 首次值 !== 清理值 : false)) {
+          return new Response('Not Found', {
+            status: 404
+          });
+        }
+      }
+      await 处理值键值值(本地值734);
+      认证令牌 = (本地值734.u || 本地值734.U || 认证令牌).toLowerCase();
+      const 值路径 = (本地值734.d || 本地值734.D || 认证令牌).toLowerCase();
+      const 本地值726 = 获取配置值('p', 本地值734.p || 本地值734.P);
+      let 值自定义地址 = false;
+      const 手动地区725 = 获取配置值('wk', 本地值734.wk || 本地值734.WK);
+      if (手动地区725 && 手动地区725.trim()) {
+        手动工作器地区 = 手动地区725.trim().toUpperCase();
+        当前工作器地区 = 手动工作器地区;
+      } else if (本地值726 && 本地值726.trim()) {
+        值自定义地址 = true;
+        当前工作器地区 = 'CUSTOM';
+      } else {
+        // wk 留空 = 官方直连：直接用内置地址，不再探测地区去匹配第三方域名
+        当前工作器地区 = 'CF';
+      }
+      const 地区匹配控制724 = 获取配置文本值('rm', 配置默认值.rm, 本地值734.rm || 本地值734.RM);
+      启用地区匹配 = !(地区匹配控制724 && 地区匹配控制724.toLowerCase() === 'no');
+      const 值回退723 = 获取配置文本值('p', 配置默认值.p, 本地值734.p || 本地值734.P);
+      回退地址 = 值回退723 ? 值回退723.trim() : '';
+      代理5配置 = 获取配置文本值('s', 配置默认值.s, 本地值734.s || 本地值734.S);
+      if (代理5配置) {
+        try {
+          已解析代理5配置 = 解析代理配置(代理5配置);
+          是否代理已启用 = true;
+        } catch (错误722) {
+          是否代理已启用 = false;
+        }
+      } else {
+        已解析代理5配置 = {};
+        是否代理已启用 = false;
+      }
+      const 自定义优选 = 获取配置值('yx', 本地值734.yx || 本地值734.YX);
+      if (自定义优选) {
+        try {
+          const 优选列表721 = 自定义优选.split(',').map(项目720 => 项目720.trim()).filter(项目719 => 项目719);
+          自定义优选地址列表 = [];
+          自定义优选域名列表 = [];
+          优选列表721.forEach(项目718 => {
+            let 节点名称717 = '';
+            let 地址部分716 = 项目718;
+            if (项目718.includes('#')) {
+              const 部分列表715 = 项目718.split('#');
+              地址部分716 = 部分列表715[0].trim();
+              节点名称717 = 部分列表715[1].trim();
+            }
+            const {
+              address: 地址714,
+              port: 端口713
+            } = 解析地址值端口(地址部分716);
+            if (!节点名称717) {
+              节点名称717 = '自定义优选-' + 地址714 + (端口713 ? ':' + 端口713 : '');
+            }
+            if (是否有效地址(地址714)) {
+              自定义优选地址列表.push({
+                ip: 地址714,
+                port: 端口713,
+                isp: 节点名称717
+              });
+            } else {
+              自定义优选域名列表.push({
+                domain: 地址714,
+                port: 端口713,
+                name: 节点名称717
+              });
+            }
+          });
+        } catch (错误712) {
+          自定义优选地址列表 = [];
+          自定义优选域名列表 = [];
+        }
+      }
+      const 值控制711 = 获取配置文本值('qj', 配置默认值.qj, 本地值734.qj || 本地值734.QJ);
+      const 值控制711值 = (值控制711 || '').toLowerCase();
+      启用代理降级 = 值控制711值 === 'no';
+      仅走代理 = 值控制711值 === 'only';
+      const 值控制710 = 获取配置文本值('dkby', 配置默认值.dkby, 本地值734.dkby || 本地值734.DKBY);
+      禁用非传输层安全 = !!(值控制710 && 值控制710.toLowerCase() === 'yes');
+      const 值控制709 = 获取配置文本值('yxby', 配置默认值.yxby, 本地值734.yxby || 本地值734.YXBY);
+      禁用优选 = !!(值控制709 && 值控制709.toLowerCase() === 'yes');
+      启用明文 = 获取配置开关值('ev', true, 本地值734.ev);
+      启用木马 = 获取配置开关值('et', false, 本地值734.et);
+      传输路径 = 获取配置文本值('tp', 配置默认值.tp, 本地值734.tp);
+      启用扩展传输 = 获取配置开关值('ex', false, 本地值734.ex);
+      订阅转换接口 = 获取配置文本值('scu', 配置默认值.scu, 本地值734.scu);
+      启用优选域名 = 获取配置开关值('epd', true, 本地值734.epd || 本地值734.EPD);
+      启用优选地址 = 获取配置开关值('epi', true, 本地值734.epi || 本地值734.EPI);
+      启用仓库优选 = 获取配置开关值('egi', true, 本地值734.egi || 本地值734.EGI);
+      启用原生地址 = 获取配置开关值('ena', false, 本地值734.ena || 本地值734.ENA);
+      启用家宽链式 = 获取配置开关值('jk', false, 本地值734.jk || 本地值734.JK);
+      启用加密客户端问候 = 获取配置开关值('ech', false, 本地值734.ech || 本地值734.ECH);
+
+      // 加载自定义DNS和ECH域名配置
+      自定义域名系统 = 获取配置文本值('customDNS', 配置默认值.customDNS).trim() || 配置默认值.customDNS;
+      自定义加密客户端问候域名 = 获取配置文本值('customECHDomain', 配置默认值.customECHDomain).trim() || 配置默认值.customECHDomain;
+      自定义应用层协议协商 = 规范化应用层协议协商(获取配置文本值('alpn', 配置默认值.alpn, 本地值734.alpn || 本地值734.ALPN));
+
+      // 如果启用了ECH，自动启用仅TLS模式（避免80端口干扰）
+      // ECH需要TLS才能工作，所以必须禁用非TLS节点
+      if (启用加密客户端问候) {
+        禁用非传输层安全 = true;
+        // 检查 KV 中是否有 dkby: yes，没有就直接写入
+        const 当前值 = 获取配置值('dkby', '');
+        if (当前值 !== 'yes') {
+          await 设置配置值('dkby', 'yes');
+        }
+      }
+      if (!启用明文 && !启用木马 && !启用扩展传输) {
+        启用明文 = true;
+      }
+      优选地址源 = 获取配置文本值('yxURL', 配置默认值.yxURL, 本地值734.yxURL || 本地值734.YXURL);
+      自定义路径 = 获取配置文本值('d', 配置默认值.d, 本地值734.d || 本地值734.D);
+      const 网址698 = new URL(请求735.url);
+      if (网址698.pathname.includes('/api/config')) {
+        const 路径部分列表697 = 网址698.pathname.split('/').filter(参数值696 => 参数值696);
+        const 接口索引695 = 路径部分列表697.indexOf('api');
+        if (接口索引695 > 0) {
+          const 路径值694 = 路径部分列表697.slice(0, 接口索引695);
+          const 路径值693 = 路径值694.join('/');
+          let 是否有效692 = false;
+          if (自定义路径 && 自定义路径.trim()) {
+            const 清理自定义路径691 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
+            是否有效692 = 路径值693 === 清理自定义路径691;
+          } else {
+            是否有效692 = 是否有效格式(路径值693) && 路径值693 === 认证令牌;
+          }
+          if (是否有效692) {
+            return await 处理配置接口(请求735, 本地值734);
+          } else {
+            return new Response(JSON.stringify({
+              error: '路径验证失败'
+            }), {
+              status: 403,
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+          }
+        }
+        return new Response(JSON.stringify({
+          error: '无效的API路径'
+        }), {
+          status: 404,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      if (网址698.pathname.includes('/api/preferred-ips')) {
+        const 路径部分列表690 = 网址698.pathname.split('/').filter(参数值689 => 参数值689);
+        const 接口索引 = 路径部分列表690.indexOf('api');
+        if (接口索引 > 0) {
+          const 路径值688 = 路径部分列表690.slice(0, 接口索引);
+          const 路径值687 = 路径值688.join('/');
+          let 是否有效686 = false;
+          if (自定义路径 && 自定义路径.trim()) {
+            const 清理自定义路径685 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
+            是否有效686 = 路径值687 === 清理自定义路径685;
+          } else {
+            是否有效686 = 是否有效格式(路径值687) && 路径值687 === 认证令牌;
+          }
+          if (是否有效686) {
+            return await 处理优选地址列表接口(请求735);
+          } else {
+            return new Response(JSON.stringify({
+              error: '路径验证失败'
+            }), {
+              status: 403,
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            });
+          }
+        }
+        return new Response(JSON.stringify({
+          error: '无效的API路径'
+        }), {
+          status: 404,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      if (请求735.method === 'POST' && 启用扩展传输) {
+        const { 头: 叉填充头, 键: 叉填充键 } = 获取叉HTTP填充标识(认证令牌);
+        if (!校验叉HTTP填充(请求735, 叉填充头, 叉填充键)) {
+          return new Response('Bad Request', {
+            status: 400
+          });
+        }
+        const 结果值684 = await 处理扩展超文本值(请求735);
+        if (结果值684) {
+          本地值733.waitUntil(结果值684.closed);
+          const 响应头684 = {
+            'X-Accel-Buffering': 'no',
+            'Cache-Control': 'no-store',
+            Connection: 'keep-alive',
+            'User-Agent': 'Go-http-client/2.0',
+            'Content-Type': 'application/grpc'
+          };
+          try {
+            const 响应填充 = new URL('https://x.invalid/');
+            响应填充.searchParams.set(叉填充键, 生成叉HTTP填充串(100 + Math.floor(Math.random() * 901)));
+            响应头684[叉填充头] = 响应填充.toString();
+          } catch (忽略684) {}
+          return new Response(结果值684.readable, {
+            headers: 响应头684
+          });
+        }
+        return new Response('Internal Server Error', {
+          status: 500
+        });
+      }
+      if (请求735.headers.get('Upgrade') === atob('d2Vic29ja2V0')) {
+        return await 处理网页套接字请求(请求735);
+      }
+      if (请求735.method === 'GET') {
+        // 处理 /{UUID}/region 或 /{自定义路径}/region
+        if (网址698.pathname.endsWith('/region')) {
+          const 路径部分列表683 = 网址698.pathname.split('/').filter(参数值682 => 参数值682);
+          if (路径部分列表683.length === 2 && 路径部分列表683[1] === 'region') {
+            const 路径值681 = 路径部分列表683[0];
+            let 是否有效680 = false;
+            if (自定义路径 && 自定义路径.trim()) {
+              // 使用自定义路径
+              const 清理自定义路径679 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
+              是否有效680 = 路径值681 === 清理自定义路径679;
+            } else {
+              // 使用UUID路径
+              是否有效680 = 是否有效格式(路径值681) && 路径值681 === 认证令牌;
+            }
+            if (是否有效680) {
+              const 本地值678 = 获取配置值('p', 本地值734.p || 本地值734.P);
+              const 手动地区677 = 获取配置值('wk', 本地值734.wk || 本地值734.WK);
+              if (手动地区677 && 手动地区677.trim()) {
+                return new Response(JSON.stringify({
+                  region: 手动地区677.trim().toUpperCase(),
+                  detectionMethod: '手动指定地区',
+                  manualRegion: 手动地区677.trim().toUpperCase(),
+                  timestamp: new Date().toISOString()
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              } else if (本地值678 && 本地值678.trim()) {
+                return new Response(JSON.stringify({
+                  region: 'CUSTOM',
+                  detectionMethod: 解码64('6Ieq5a6a5LmJUHJveHlJUOaooeW8jw=='),
+                  ci: 本地值678,
+                  timestamp: new Date().toISOString()
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              } else {
+                // wk 留空 = 官方直连，用内置地址而不是探测地区
+                return new Response(JSON.stringify({
+                  region: 'CF',
+                  detectionMethod: 解码64('5a6Y5pa555u06L+e'),
+                  timestamp: new Date().toISOString()
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              }
+            } else {
+              return new Response(JSON.stringify({
+                error: '访问被拒绝',
+                message: '路径验证失败'
+              }), {
+                status: 403,
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+            }
+          }
+        }
+
+        // 处理 /{UUID}/test-api 或 /{自定义路径}/test-api
+        if (网址698.pathname.endsWith('/test-api')) {
+          const 路径部分列表676 = 网址698.pathname.split('/').filter(参数值675 => 参数值675);
+          if (路径部分列表676.length === 2 && 路径部分列表676[1] === 'test-api') {
+            const 路径值 = 路径部分列表676[0];
+            let 是否有效 = false;
+            if (自定义路径 && 自定义路径.trim()) {
+              // 使用自定义路径
+              const 清理自定义路径674 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim().substring(1) : 自定义路径.trim();
+              是否有效 = 路径值 === 清理自定义路径674;
+            } else {
+              // 使用UUID路径
+              是否有效 = 是否有效格式(路径值) && 路径值 === 认证令牌;
+            }
+            if (是否有效) {
+              try {
+                return new Response(JSON.stringify({
+                  detectedRegion: 'CF',
+                  message: 'API测试完成',
+                  timestamp: new Date().toISOString()
+                }), {
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              } catch (错误673) {
+                return new Response(JSON.stringify({
+                  error: 错误673.message,
+                  message: 'API测试失败'
+                }), {
+                  status: 500,
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              }
+            } else {
+              return new Response(JSON.stringify({
+                error: '访问被拒绝',
+                message: '路径验证失败'
+              }), {
+                status: 403,
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+            }
+          }
+        }
+        if (网址698.pathname === '/') {
+          // 检查是否有自定义首页URL配置
+          const 自定义值 = 获取配置值('homepage', 本地值734.homepage || 本地值734.HOMEPAGE);
+          if (自定义值 && 自定义值.trim()) {
+            try {
+              // 从自定义URL获取内容
+              const 值响应 = await fetch(自定义值.trim(), {
+                method: 'GET',
+                headers: {
+                  'User-Agent': 请求735.headers.get('User-Agent') || 'Mozilla/5.0',
+                  'Accept': 请求735.headers.get('Accept') || '*/*',
+                  'Accept-Language': 请求735.headers.get('Accept-Language') || 'en-US,en;q=0.9'
+                },
+                redirect: 'follow'
+              });
+              if (值响应.ok) {
+                // 获取响应内容
+                const 内容类型672 = 值响应.headers.get('Content-Type') || 'text/html; charset=utf-8';
+                const 内容671 = await 值响应.text();
+
+                // 返回自定义首页内容
+                return new Response(内容671, {
+                  status: 值响应.status,
+                  headers: {
+                    'Content-Type': 内容类型672,
+                    'Cache-Control': 'no-cache, no-store, must-revalidate'
+                  }
+                });
+              }
+            } catch (错误670) {
+              // 如果获取失败，继续使用默认终端页面
+              console.error('获取自定义首页失败:', 错误670);
+            }
+          }
+          // 优先检查Cookie中的语言设置
+          const 凭据头部669 = 请求735.headers.get('Cookie') || '';
+          let 语言来源凭据668 = null;
+          if (凭据头部669) {
+            const 本地值667 = 凭据头部669.split(';').map(丙值666 => 丙值666.trim());
+            for (const 凭据665 of 本地值667) {
+              if (凭据665.startsWith('preferredLanguage=')) {
+                语言来源凭据668 = 凭据665.split('=')[1];
+                break;
+              }
+            }
+          }
+          let 是否值664 = false;
+          if (语言来源凭据668 === 'fa' || 语言来源凭据668 === 'fa-IR') {
+            是否值664 = true;
+          } else if (语言来源凭据668 === 'zh' || 语言来源凭据668 === 'zh-CN') {
+            是否值664 = false;
+          } else {
+            // 如果没有Cookie，使用浏览器语言检测
+            const 接受语言663 = 请求735.headers.get('Accept-Language') || '';
+            const 浏览器语言662 = 接受语言663.split(',')[0].split('-')[0].toLowerCase();
+            是否值664 = 浏览器语言662 === 'fa' || 接受语言663.includes('fa-IR') || 接受语言663.includes('fa');
+          }
+          const 语言 = 是否值664 ? 'fa' : 'zh-CN';
+          const 语言值661 = 是否值664 ? 'fa-IR' : 'zh-CN';
+          const 本地值660 = {
+            zh: {
+              title: '终端 v3.1',
+              terminal: '终端 v3.1',
+              congratulations: '恭喜你来到这',
+              enterU: '请输入你U变量的值',
+              enterD: '请输入你D变量的值',
+              command: '命令: connect [',
+              uuid: 'UUID',
+              path: 'PATH',
+              inputU: '输入U变量的内容并且回车...',
+              inputD: '输入D变量的内容并且回车...',
+              connecting: '正在连接...',
+              invading: '正在入侵...',
+              success: '连接成功！返回结果...',
+              error: '错误: 无效的UUID格式',
+              reenter: '请重新输入有效的UUID'
+            },
+            fa: {
+              title: 'ترمینال v3.1',
+              terminal: 'ترمینال v3.1',
+              congratulations: 'تبریک می‌گوییم به شما',
+              enterU: 'لطفا مقدار متغیر U خود را وارد کنید',
+              enterD: 'لطفا مقدار متغیر D خود را وارد کنید',
+              command: 'دستور: connect [',
+              uuid: 'UUID',
+              path: 'PATH',
+              inputU: 'محتویات متغیر U را وارد کرده و Enter را بزنید...',
+              inputD: 'محتویات متغیر D را وارد کرده و Enter را بزنید...',
+              connecting: 'در حال اتصال...',
+              invading: 'در حال نفوذ...',
+              success: 'اتصال موفق! در حال بازگشت نتیجه...',
+              error: 'خطا: فرمت UUID نامعتبر',
+              reenter: 'لطفا UUID معتبر را دوباره وارد کنید'
+            }
+          };
+          const 翻译值659 = 本地值660[是否值664 ? 'fa' : 'zh'];
+          const 终端页面 = `<!DOCTYPE html>
+    <html lang="${语言值661}" dir="${是否值664 ? 'rtl' : 'ltr'}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${翻译值659.title}</title>
+        <style>
+            :root {
+                --cp-bg: #05030e;
+                --cp-bg-2: #0a0820;
+                --cp-cyan: #00f0ff;
+                --cp-cyan-d: #00b8c4;
+                --cp-pink: #ff2bd6;
+                --cp-pink-d: #d1239f;
+                --cp-purple: #a347ff;
+                --cp-yellow: #fff200;
+                --cp-mint: #00ff9d;
+                --cp-red: #ff3860;
+                --cp-text: #e6f5ff;
+                --cp-text-dim: #7aa9c4;
+                --cp-border: rgba(0, 240, 255, 0.55);
+                --cp-grid: rgba(255, 43, 214, 0.16);
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            html, body { height: 100%; }
+            body {
+                font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+                background: radial-gradient(ellipse at 20% 10%, #2a0040 0%, var(--cp-bg) 55%, #000 100%);
+                color: var(--cp-text);
+                min-height: 100vh;
+                overflow-x: hidden;
+                position: relative;
+                display: flex; justify-content: center; align-items: center;
+            }
+            body::before {
+                content: ""; position: fixed; inset: 0;
+                background-image:
+                    linear-gradient(var(--cp-grid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--cp-grid) 1px, transparent 1px);
+                background-size: 48px 48px;
+                mask-image: radial-gradient(ellipse at center, #000 30%, transparent 80%);
+                z-index: -3;
+                animation: cp-grid-slide 18s linear infinite;
+            }
+            body::after {
+                content: ""; position: fixed; inset: 0;
+                background: repeating-linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.04) 0,
+                    rgba(255,255,255,0.04) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+                pointer-events: none;
+                z-index: 5;
+                mix-blend-mode: overlay;
+                animation: cp-scan-flicker 6s infinite;
+            }
+            @keyframes cp-grid-slide {
+                0% { background-position: 0 0, 0 0; }
+                100% { background-position: 48px 48px, 48px 48px; }
+            }
+            @keyframes cp-scan-flicker {
+                0%, 100% { opacity: 0.6; }
+                50% { opacity: 0.9; }
+            }
+            .matrix-bg {
+                position: fixed; inset: 0;
+                background:
+                    radial-gradient(circle at 80% 90%, rgba(255,43,214,0.18) 0%, transparent 45%),
+                    radial-gradient(circle at 10% 80%, rgba(0,240,255,0.18) 0%, transparent 45%);
+                z-index: -2;
+                pointer-events: none;
+            }
+            .matrix-rain { display: none; }
+            .matrix-code-rain {
+                position: fixed; inset: 0;
+                pointer-events: none; z-index: -1;
+                overflow: hidden;
+            }
+            .matrix-column {
+                position: absolute; top: -120%; left: 0;
+                color: var(--cp-cyan);
+                font-family: "JetBrains Mono", "Courier New", monospace;
+                font-size: 14px; line-height: 1.25;
+                text-shadow: 0 0 6px var(--cp-cyan), 0 0 12px rgba(0,240,255,0.5);
+                animation: cp-drop linear infinite;
+            }
+            @keyframes cp-drop {
+                0%   { top: -120%; opacity: 0; }
+                10%  { opacity: 0.85; }
+                90%  { opacity: 0.4; }
+                100% { top: 110vh; opacity: 0; }
+            }
+            .matrix-column:nth-child(odd)  { animation-duration: 12s; }
+            .matrix-column:nth-child(even) { animation-duration: 18s; color: var(--cp-pink); text-shadow: 0 0 6px var(--cp-pink), 0 0 14px rgba(255,43,214,0.5); }
+            .matrix-column:nth-child(3n)   { animation-duration: 20s; color: var(--cp-purple); text-shadow: 0 0 6px var(--cp-purple); }
+            .matrix-column:nth-child(5n)   { animation-duration: 9s; opacity: 0.6; }
+
+            .terminal {
+                width: 92%; max-width: 860px; height: 540px;
+                background:
+                    linear-gradient(180deg, rgba(8,4,28,0.92) 0%, rgba(15,3,40,0.92) 100%);
+                border: 1px solid var(--cp-border);
+                border-radius: 0;
+                box-shadow:
+                    0 0 0 1px rgba(255,43,214,0.25),
+                    0 0 28px rgba(0,240,255,0.35),
+                    0 0 80px rgba(255,43,214,0.18),
+                    inset 0 0 30px rgba(0,240,255,0.06);
+                clip-path: polygon(
+                    0 18px, 18px 0,
+                    calc(100% - 60px) 0, calc(100% - 42px) 18px,
+                    100% 18px, 100% calc(100% - 14px),
+                    calc(100% - 14px) 100%, 42px 100%,
+                    24px calc(100% - 14px), 0 calc(100% - 14px)
+                );
+                position: relative; z-index: 1;
+                overflow: hidden;
+            }
+            .terminal::before {
+                content: ""; position: absolute; inset: 0;
+                background: repeating-linear-gradient(180deg, rgba(0,240,255,0.06) 0 1px, transparent 1px 4px);
+                pointer-events: none;
+                animation: cp-scan-flicker 5s infinite;
+            }
+            .terminal-header {
+                background: linear-gradient(90deg, rgba(255,43,214,0.18), rgba(0,240,255,0.18));
+                padding: 12px 18px;
+                border-bottom: 1px solid rgba(0,240,255,0.5);
+                display: flex; align-items: center; gap: 16px;
+                position: relative;
+            }
+            .terminal-header::after {
+                content: ""; position: absolute; left: 18px; right: 18px; bottom: -1px;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--cp-pink), var(--cp-cyan), transparent);
+                animation: cp-scan-line 4s linear infinite;
+            }
+            @keyframes cp-scan-line {
+                0% { transform: translateX(-30%); opacity: 0.4; }
+                50% { opacity: 1; }
+                100% { transform: translateX(30%); opacity: 0.4; }
+            }
+            .terminal-buttons {
+                display: flex; gap: 8px;
+            }
+            .terminal-button {
+                width: 12px; height: 12px;
+                background: var(--cp-pink);
+                box-shadow: 0 0 8px var(--cp-pink);
+                border: none; transform: rotate(45deg);
+            }
+            .terminal-button:nth-child(2) { background: var(--cp-yellow); box-shadow: 0 0 8px var(--cp-yellow); }
+            .terminal-button:nth-child(3) { background: var(--cp-mint); box-shadow: 0 0 8px var(--cp-mint); }
+            .terminal-title {
+                color: var(--cp-cyan);
+                font-size: 13px; font-weight: 700;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                text-shadow: 0 0 6px var(--cp-cyan);
+            }
+            .terminal-title::before { content: "// "; color: var(--cp-pink); }
+            .terminal-body {
+                padding: 24px; height: calc(100% - 52px);
+                overflow-y: auto; font-size: 14px;
+                line-height: 1.6;
+                position: relative;
+            }
+            .terminal-body::-webkit-scrollbar { width: 6px; }
+            .terminal-body::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, var(--cp-pink), var(--cp-cyan));
+            }
+            .terminal-line {
+                margin-bottom: 8px; display: flex; align-items: center; gap: 8px;
+                flex-wrap: wrap;
+            }
+            .terminal-prompt {
+                color: var(--cp-pink);
+                font-weight: 700;
+                text-shadow: 0 0 6px var(--cp-pink);
+                letter-spacing: 0.05em;
+            }
+            .terminal-prompt::before { content: "▍"; color: var(--cp-cyan); margin-right: 4px; }
+            .terminal-input {
+                background: transparent; border: none; outline: none;
+                color: var(--cp-cyan);
+                font-family: inherit;
+                font-size: 14px; flex: 1; min-width: 0;
+                caret-color: var(--cp-pink);
+                text-shadow: 0 0 4px var(--cp-cyan);
+            }
+            .terminal-input::placeholder { color: var(--cp-text-dim); opacity: 0.75; }
+            .terminal-cursor {
+                display: inline-block; width: 9px; height: 16px;
+                background: var(--cp-pink);
+                margin-left: 2px;
+                box-shadow: 0 0 8px var(--cp-pink);
+                animation: cp-blink 1s steps(2, end) infinite;
+            }
+            @keyframes cp-blink {
+                0%, 100% { opacity: 1; }
+                50% { opacity: 0; }
+            }
+            .terminal-output { color: var(--cp-cyan); margin: 4px 0; }
+            .terminal-error  { color: var(--cp-red); margin: 4px 0; text-shadow: 0 0 6px var(--cp-red); }
+            .terminal-success{ color: var(--cp-mint); margin: 4px 0; text-shadow: 0 0 6px var(--cp-mint); }
+
+            .cp-hud {
+                position: fixed; top: 18px; right: 22px;
+                color: var(--cp-cyan);
+                font-family: "JetBrains Mono", monospace;
+                font-size: 11px; letter-spacing: 0.2em;
+                text-transform: uppercase;
+                text-align: right;
+                opacity: 0.85;
+                z-index: 1000;
+            }
+            .cp-hud .cp-hud-label { color: var(--cp-pink); }
+            .cp-hud .cp-hud-line { display: block; }
+            .cp-lang-wrapper {
+                position: fixed; top: 18px; left: 22px; z-index: 1000;
+                display: flex; align-items: center; gap: 10px;
+            }
+            .cp-lang-tag {
+                color: var(--cp-pink); font-size: 11px;
+                letter-spacing: 0.25em; text-transform: uppercase;
+                text-shadow: 0 0 6px var(--cp-pink);
+            }
+            #languageSelector {
+                background: rgba(8,4,28,0.85);
+                border: 1px solid var(--cp-cyan);
+                color: var(--cp-cyan);
+                padding: 6px 12px;
+                font-family: inherit;
+                font-size: 12px;
+                cursor: pointer;
+                letter-spacing: 0.12em;
+                text-shadow: 0 0 6px var(--cp-cyan);
+                box-shadow: 0 0 12px rgba(0,240,255,0.35);
+                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            }
+            #languageSelector option { background: var(--cp-bg-2); color: var(--cp-cyan); }
+
+            /* FX toggle - 页面特效图形化开关 */
+            .cp-fx-toggle {
+                position: fixed; top: 68px; left: 22px; z-index: 1001;
+                background: rgba(8,4,28,0.85);
+                border: 1px solid var(--cp-mint);
+                color: var(--cp-mint);
+                padding: 6px 12px;
+                font-family: inherit;
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                cursor: pointer;
+                text-shadow: 0 0 6px var(--cp-mint);
+                box-shadow: 0 0 10px rgba(0,255,157,0.35);
+                clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+                transition: all 0.2s ease;
+                display: inline-flex; align-items: center; gap: 6px;
+            }
+            .cp-fx-toggle:hover { color: var(--cp-pink); border-color: var(--cp-pink); text-shadow: 0 0 8px var(--cp-pink); box-shadow: 0 0 16px rgba(255,43,214,0.55); }
+            .cp-fx-toggle .cp-fx-dot { width: 6px; height: 6px; background: var(--cp-mint); border-radius: 50%; box-shadow: 0 0 8px var(--cp-mint); transition: all 0.2s; }
+            body.fx-off .cp-fx-toggle { color: var(--cp-text-dim); border-color: var(--cp-text-dim); text-shadow: none; box-shadow: none; }
+            body.fx-off .cp-fx-toggle .cp-fx-dot { background: transparent; border: 1px solid var(--cp-text-dim); box-shadow: none; }
+            body.fx-off .matrix-bg,
+            body.fx-off .matrix-code-rain,
+            body.fx-off .matrix-column { display: none !important; }
+            body.fx-off::before,
+            body.fx-off::after { display: none !important; content: none !important; }
+            body.fx-off { background: var(--cp-bg) !important; }
+            body.fx-off * {
+                animation: none !important;
+                transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s !important;
+            }
+            body.fx-off .cp-glitch::before,
+            body.fx-off .cp-glitch::after { display: none !important; }
+            body.fx-off .terminal-cursor::after { animation: none !important; }
+
+            .cp-glitch {
+                font-family: "JetBrains Mono", monospace;
+                font-weight: 700;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                color: var(--cp-cyan);
+                text-shadow:
+                    0 0 8px var(--cp-cyan),
+                    -2px 0 var(--cp-pink),
+                    2px 0 var(--cp-mint);
+            }
+        </style>
+    </head>
+    <body>
+        <div class="matrix-bg"></div>
+        <div class="matrix-code-rain" id="matrixCodeRain"></div>
+            <div class="cp-hud">
+                <span class="cp-hud-line"><span class="cp-hud-label">SYS::</span> ${翻译值659.terminal}</span>
+                <span class="cp-hud-line"><span class="cp-hud-label">NODE::</span> NIGHT_CITY</span>
+                <span class="cp-hud-line"><span class="cp-hud-label">LINK::</span> SECURE / ENC</span>
+            </div>
+            <div class="cp-lang-wrapper">
+                <span class="cp-lang-tag">LANG_</span>
+                <select id="languageSelector" onchange="切换语言(this.value)">
+                    <option value="zh" ${!是否值664 ? 'selected' : ''}>🇨🇳 中文</option>
+                    <option value="fa" ${是否值664 ? 'selected' : ''}>🇮🇷 فارسی</option>
+                </select>
+            </div>
+            <button type="button" id="cpFxToggle" class="cp-fx-toggle" onclick="window.切换页面特效()" title="${是否值664 ? 'تغییر افکت‌های صفحه' : '切换页面特效'}" aria-label="FX toggle">
+                <span class="cp-fx-dot" aria-hidden="true"></span>
+                <span id="cpFxLabel">FX: ON</span>
+            </button>
+        <div class="terminal">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
+                    <div class="terminal-button"></div>
+                </div>
+                    <div class="terminal-title cp-glitch">${翻译值659.terminal}</div>
+            </div>
+            <div class="terminal-body" id="terminalBody">
+                <div class="terminal-line">
+                    <span class="terminal-prompt">root:~$</span>
+                        <span class="terminal-output">${翻译值659.congratulations}</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">root:~$</span>
+                        <span class="terminal-output">${自定义路径 && 自定义路径.trim() ? 翻译值659.enterD : 翻译值659.enterU}</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">root:~$</span>
+                        <span class="terminal-output">${翻译值659.command}${自定义路径 && 自定义路径.trim() ? 翻译值659.path : 翻译值659.uuid}]</span>
+                </div>
+                <div class="terminal-line">
+                    <span class="terminal-prompt">root:~$</span>
+                        <input type="text" class="terminal-input" id="uuidInput" placeholder="${自定义路径 && 自定义路径.trim() ? 翻译值659.inputD : 翻译值659.inputU}" autofocus>
+                    <span class="terminal-cursor"></span>
+                </div>
+            </div>
+        </div>
+        <script>
+// 页面特效图形化开关 (localStorage 持久化)
+window.应用页面特效 = function () {
+  var 本地值10009 = localStorage.getItem('cp-fx-off') === '1';
+  document.body.classList.toggle('fx-off', 本地值10009);
+  var 本地值10008 = document.getElementById('cpFxLabel');
+  if (本地值10008) 本地值10008.textContent = 本地值10009 ? 'FX: OFF' : 'FX: ON';
+  if (本地值10009) {
+    var 本地值10007 = document.getElementById('matrixCodeRain');
+    if (本地值10007) 本地值10007.innerHTML = '';
+  } else if (typeof 创建矩阵雨 === 'function') {
+    var 结果值 = document.getElementById('matrixCodeRain');
+    if (结果值 && !结果值.firstChild) 创建矩阵雨();
+  }
+};
+window.切换页面特效 = function () {
+  var 本地值10006 = localStorage.getItem('cp-fx-off') === '1';
+  localStorage.setItem('cp-fx-off', 本地值10006 ? '0' : '1');
+  window.应用页面特效();
+};
+(function () {
+  if (localStorage.getItem('cp-fx-off') === '1') {
+    document.documentElement.classList.add('fx-off-preload');
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.classList.add('fx-off');
+    });
+  }
+})();
+function 创建矩阵雨() {
+  if (document.body && document.body.classList.contains('fx-off')) return;
+  const 矩阵值 = document.getElementById('matrixCodeRain');
+  if (!矩阵值) return;
+  const 赛博字符列表 = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ$%#@!?<>+=ABCDEF';
+  const 调色板 = ['#00f0ff', '#ff2bd6', '#a347ff', '#00ff9d'];
+  const 列数 = Math.floor(window.innerWidth / 20);
+  for (let 索引值 = 0; 索引值 < 列数; 索引值++) {
+    const 列10005 = document.createElement('div');
+    列10005.className = 'matrix-column';
+    列10005.style.left = 索引值 * 20 + 'px';
+    列10005.style.animationDelay = -Math.random() * 15 + 's';
+    列10005.style.animationDuration = Math.random() * 14 + 8 + 's';
+    列10005.style.fontSize = Math.random() * 4 + 12 + 'px';
+    列10005.style.opacity = (Math.random() * 0.7 + 0.3).toFixed(2);
+    let 文本 = '';
+    const 字符数量 = Math.floor(Math.random() * 30 + 18);
+    for (let 次索引值 = 0; 次索引值 < 字符数量; 次索引值++) {
+      const 字符 = 赛博字符列表[Math.floor(Math.random() * 赛博字符列表.length)];
+      const 值强调 = Math.random() > 0.85;
+      const 颜色 = 值强调 ? 调色板[Math.floor(Math.random() * 调色板.length)] : '';
+      文本 += 颜色 ? '<span style="color:' + 颜色 + ';text-shadow:0 0 8px ' + 颜色 + ';">' + 字符 + '</span><br>' : '<span>' + 字符 + '</span><br>';
+    }
+    列10005.innerHTML = 文本;
+    矩阵值.appendChild(列10005);
+  }
+  setInterval(function () {
+    const 列列表 = 矩阵值.querySelectorAll('.matrix-column');
+    列列表.forEach(function (列) {
+      if (Math.random() > 0.94) {
+        const 字符列表 = 列.querySelectorAll('span');
+        if (字符列表.length > 0) {
+          const 目标 = 字符列表[Math.floor(Math.random() * 字符列表.length)];
+          const 本地值10004 = 目标.style.color;
+          目标.style.color = '#ffffff';
+          目标.style.textShadow = '0 0 10px #ffffff, 0 0 18px #00f0ff';
+          setTimeout(function () {
+            目标.style.color = 本地值10004;
+            目标.style.textShadow = '';
+          }, 200);
+        }
+      }
+    });
+  }, 110);
+}
+function 是否有效唯一标识(唯一标识) {
+  const 唯一标识正则 = /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/i;
+  return 唯一标识正则.test(唯一标识);
+}
+function 添加终端行(内容, 类型 = 'output') {
+  const 终端主体 = document.getElementById('terminalBody');
+  const 行 = document.createElement('div');
+  行.className = 'terminal-line';
+  const 提示符 = document.createElement('span');
+  提示符.className = 'terminal-prompt';
+  提示符.textContent = 'root:~$';
+  const 输出 = document.createElement('span');
+  输出.className = 'terminal-' + 类型;
+  输出.textContent = 内容;
+  行.appendChild(提示符);
+  行.appendChild(输出);
+  终端主体.appendChild(行);
+  终端主体.scrollTop = 终端主体.scrollHeight;
+}
+function 处理唯一标识输入() {
+  const 输入10003 = document.getElementById('uuidInput');
+  const 输入值 = 输入10003.value.trim();
+  const 自定义路径 = '${自定义路径}';
+  if (输入值) {
+    添加终端行(atob('Y29ubmVjdCA=') + 输入值, 'output');
+    const 本地值 = {
+      zh: {
+        connecting: '正在连接...',
+        invading: '正在入侵...',
+        success: '连接成功！返回结果...',
+        error: '错误: 无效的UUID格式',
+        reenter: '请重新输入有效的UUID'
+      },
+      fa: {
+        connecting: 'در حال اتصال...',
+        invading: 'در حال نفوذ...',
+        success: 'اتصال موفق! در حال بازگشت نتیجه...',
+        error: 'خطا: فرمت UUID نامعتبر',
+        reenter: 'لطفا UUID معتبر را دوباره وارد کنید'
+      }
+    };
+    const 浏览器语言 = navigator.language || navigator.userLanguage || '';
+    const 是否值 = 浏览器语言.includes('fa') || 浏览器语言.includes('fa-IR');
+    const 翻译值 = 本地值[是否值 ? 'fa' : 'zh'];
+    if (自定义路径) {
+      const 清理输入 = 输入值.startsWith('/') ? 输入值 : '/' + 输入值;
+      添加终端行(翻译值.connecting, 'output');
+      setTimeout(() => {
+        添加终端行(翻译值.success, 'success');
+        setTimeout(() => {
+          window.location.href = 清理输入;
+        }, 1000);
+      }, 500);
+    } else {
+      if (是否有效唯一标识(输入值)) {
+        添加终端行(翻译值.invading, 'output');
+        setTimeout(() => {
+          添加终端行(翻译值.success, 'success');
+          setTimeout(() => {
+            window.location.href = '/' + 输入值;
+          }, 1000);
+        }, 500);
+      } else {
+        添加终端行(翻译值.error, 'error');
+        添加终端行(翻译值.reenter, 'output');
+      }
+    }
+    输入10003.value = '';
+  }
+}
+function 切换语言(语言) {
+  localStorage.setItem('preferredLanguage', 语言);
+  // 设置Cookie（有效期1年）
+  const 过期日期10002 = new Date();
+  过期日期10002.setFullYear(过期日期10002.getFullYear() + 1);
+  document.cookie = 'preferredLanguage=' + 语言 + '; path=/; expires=' + 过期日期10002.toUTCString() + '; SameSite=Lax';
+  // 刷新页面，不使用URL参数
+  window.location.reload();
+}
+
+// 页面加载时检查 localStorage 和 Cookie，并清理URL参数
+window.addEventListener('DOMContentLoaded', function () {
+  function 获取凭据(名称) {
+    const 值 = '; ' + document.cookie;
+    const 部分列表 = 值.split('; ' + 名称 + '=');
+    if (部分列表.length === 2) return 部分列表.pop().split(';').shift();
+    return null;
+  }
+  const 已保存语言 = localStorage.getItem('preferredLanguage') || 获取凭据('preferredLanguage');
+  const 网址参数 = new URLSearchParams(window.location.search);
+  const 网址语言 = 网址参数.get('lang');
+
+  // 如果URL中有语言参数，移除它并设置Cookie
+  if (网址语言) {
+    const 当前网址 = new URL(window.location.href);
+    当前网址.searchParams.delete('lang');
+    const 新网址 = 当前网址.toString();
+
+    // 设置Cookie
+    const 过期日期10001 = new Date();
+    过期日期10001.setFullYear(过期日期10001.getFullYear() + 1);
+    document.cookie = 'preferredLanguage=' + 网址语言 + '; path=/; expires=' + 过期日期10001.toUTCString() + '; SameSite=Lax';
+    localStorage.setItem('preferredLanguage', 网址语言);
+
+    // 使用history API移除URL参数，不刷新页面
+    window.history.replaceState({}, '', 新网址);
+  } else if (已保存语言) {
+    // 如果localStorage中有但Cookie中没有，同步到Cookie
+    const 过期日期 = new Date();
+    过期日期.setFullYear(过期日期.getFullYear() + 1);
+    document.cookie = 'preferredLanguage=' + 已保存语言 + '; path=/; expires=' + 过期日期.toUTCString() + '; SameSite=Lax';
+  }
+});
+document.addEventListener('DOMContentLoaded', function () {
+  try {
+    创建矩阵雨();
+  } catch (事件值10000) {}
+  const 输入 = document.getElementById('uuidInput');
+  if (输入) {
+    输入.focus();
+    输入.addEventListener('keypress', function (事件值) {
+      if (事件值.key === 'Enter') {
+        处理唯一标识输入();
+      }
+    });
+  }
+});
+</script>
+    </body>
+    </html>`;
+          return new Response(终端页面, {
+            status: 200,
+            headers: {
+              'Content-Type': 'text/html; charset=utf-8'
+            }
+          });
+        }
+        if (自定义路径 && 自定义路径.trim()) {
+          const 清理自定义路径 = 自定义路径.trim().startsWith('/') ? 自定义路径.trim() : '/' + 自定义路径.trim();
+          const 规范化自定义路径 = 清理自定义路径.endsWith('/') && 清理自定义路径.length > 1 ? 清理自定义路径.slice(0, -1) : 清理自定义路径;
+          const 规范化路径 = 网址698.pathname.endsWith('/') && 网址698.pathname.length > 1 ? 网址698.pathname.slice(0, -1) : 网址698.pathname;
+          if (规范化路径 === 规范化自定义路径) {
+            return await 处理订阅值(请求735, 认证令牌);
+          }
+          if (规范化路径 === 规范化自定义路径 + '/sub') {
+            return await 处理订阅请求(请求735, 认证令牌, 网址698);
+          }
+          if (网址698.pathname.length > 1 && 网址698.pathname !== '/') {
+            const 用户658 = 网址698.pathname.replace(/\/$/, '').replace('/sub', '').substring(1);
+            if (是否有效格式(用户658)) {
+              return new Response(JSON.stringify({
+                error: '访问被拒绝',
+                message: '当前 Worker 已启用自定义路径模式，UUID 访问已禁用'
+              }), {
+                status: 403,
+                headers: {
+                  'Content-Type': 'application/json'
+                }
+              });
+            }
+          }
+        } else {
+          if (网址698.pathname.length > 1 && 网址698.pathname !== '/' && !网址698.pathname.includes('/sub')) {
+            const 用户657 = 网址698.pathname.replace(/\/$/, '').substring(1);
+            if (是否有效格式(用户657)) {
+              if (用户657 === 认证令牌) {
+                return await 处理订阅值(请求735, 用户657);
+              } else {
+                return new Response(JSON.stringify({
+                  error: 'UUID错误 请注意变量名称是u不是uuid'
+                }), {
+                  status: 403,
+                  headers: {
+                    'Content-Type': 'application/json'
+                  }
+                });
+              }
+            }
+          }
+          if (网址698.pathname.includes('/sub')) {
+            const 路径部分列表 = 网址698.pathname.split('/');
+            if (路径部分列表.length === 2 && 路径部分列表[1] === 'sub') {
+              const 用户656 = 路径部分列表[0].substring(1);
+              if (是否有效格式(用户656)) {
+                if (用户656 === 认证令牌) {
+                  return await 处理订阅请求(请求735, 用户656, 网址698);
+                } else {
+                  return new Response(JSON.stringify({
+                    error: 'UUID错误'
+                  }), {
+                    status: 403,
+                    headers: {
+                      'Content-Type': 'application/json'
+                    }
+                  });
+                }
+              }
+            }
+          }
+        }
+        if (网址698.pathname.toLowerCase().includes(`/${值路径}`)) {
+          return await 处理订阅请求(请求735, 认证令牌);
+        }
+      }
+      return new Response(JSON.stringify({
+        error: 'Not Found'
+      }), {
+        status: 404,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } catch (错误655) {
+      return new Response(错误655.toString(), {
+        status: 500
+      });
+    }
+  }
+};
+function 生成值配置654(链接列表653) {
+  return btoa(链接列表653.join('\n'));
+}
+
+// 解析分享链接并生成客户端节点配置
+function 解析链接值值节点(链接652) {
+  try {
+    // 解析第一类链接
+    if (链接652.startsWith(解码64('dmxlc3M6Ly8='))) {
+      const 网址651 = new URL(链接652);
+      const 名称650 = decodeURIComponent(网址651.hash.substring(1));
+      const 唯一标识649 = 网址651.username;
+      const 本地值648 = 网址651.hostname;
+      const 端口647 = parseInt(网址651.port) || 443;
+      const 参数646 = new URLSearchParams(网址651.search);
+      const 传输层安全645 = 参数646.get('security') === 'tls' || 参数646.get('tls') === 'true';
+      const 本地值644 = 参数646.get('type') || 'ws';
+      const 路径643 = 参数646.get('path') || '/?ed=2048';
+      const 主机642 = 参数646.get('host') || 本地值648;
+      const 本地值641 = 参数646.get('sni') || 主机642;
+      const 应用层协议协商原始640 = 参数646.get('alpn') || '';
+      const 本地值639 = 参数646.get('fp') || 参数646.get('client-fingerprint') || 'chrome';
+      const 加密客户端问候638 = 参数646.get('ech');
+      const 节点637 = {
+        name: 名称650,
+        type: 解码64('dmxlc3M='),
+        server: 本地值648,
+        port: 端口647,
+        uuid: 唯一标识649,
+        tls: 传输层安全645,
+        network: 本地值644,
+        'client-fingerprint': 本地值639
+      };
+      if (传输层安全645) {
+        节点637.servername = 本地值641;
+        if (应用层协议协商原始640) 节点637.alpn = 应用层协议协商原始640.split(',').map(甲值636 => 甲值636.trim()).filter(Boolean);
+        节点637['skip-cert-verify'] = false;
+      }
+      if (本地值644 === 'ws') {
+        节点637['ws-opts'] = {
+          path: 路径643,
+          headers: {
+            Host: 主机642
+          }
+        };
+      }
+      if (加密客户端问候638) {
+        const 加密客户端问候域名635 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        节点637['ech-opts'] = {
+          enable: true,
+          'query-server-name': 加密客户端问候域名635
+        };
+      }
+      return 节点637;
+    }
+
+    // 解析第二类链接
+    if (链接652.startsWith(解码64('dHJvamFuOi8v'))) {
+      const 网址634 = new URL(链接652);
+      const 名称633 = decodeURIComponent(网址634.hash.substring(1));
+      const 密码632 = 网址634.username;
+      const 本地值631 = 网址634.hostname;
+      const 端口630 = parseInt(网址634.port) || 443;
+      const 参数629 = new URLSearchParams(网址634.search);
+      const 本地值628 = 参数629.get('type') || 'ws';
+      const 路径 = 参数629.get('path') || '/?ed=2048';
+      const 主机627 = 参数629.get('host') || 本地值631;
+      const 服务名称指示626 = 参数629.get('sni') || 主机627;
+      const 应用层协议协商原始 = 参数629.get('alpn') || '';
+      const 加密客户端问候 = 参数629.get('ech');
+      const 节点 = {
+        name: 名称633,
+        type: 解码64('dHJvamFu'),
+        server: 本地值631,
+        port: 端口630,
+        password: 密码632,
+        network: 本地值628,
+        sni: 服务名称指示626,
+        'skip-cert-verify': false
+      };
+      if (应用层协议协商原始) 节点.alpn = 应用层协议协商原始.split(',').map(甲值625 => 甲值625.trim()).filter(Boolean);
+      if (本地值628 === 'ws') {
+        节点['ws-opts'] = {
+          path: 路径,
+          headers: {
+            Host: 主机627
+          }
+        };
+      }
+      if (加密客户端问候) {
+        const 加密客户端问候域名624 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        节点['ech-opts'] = {
+          enable: true,
+          'query-server-name': 加密客户端问候域名624
+        };
+      }
+      return 节点;
+    }
+  } catch (事件值623) {
+    return null;
+  }
+  return null;
+}
+
+// ============================================================
+// 内部格式转换器 - 不依赖外部服务
+// ============================================================
+
+// 用于 YAML 引号包裹（避免 IPv6 方括号、逗号等被解析为数组）
+function 处理本地值622(取值621) {
+  if (取值621 == null) return '""';
+  const 字符串值620 = String(取值621);
+  return '"' + 字符串值620.replace(/\\/g, '\\\\').replace(/"/g, '\\"') + '"';
+}
+
+// URL.hostname 对 IPv6 会带方括号，直接写入 YAML 会被当成数组
+function 规范化值主机(主机名619) {
+  if (!主机名619) return 主机名619;
+  const 头值618 = String(主机名619);
+  if (头值618.startsWith('[') && 头值618.endsWith(']')) return 头值618.slice(1, -1);
+  return 头值618;
+}
+
+// 策略组列表：策略组 + 全部节点（避免分组里只有「节点选择」没有具体节点）
+function 处理值选择值(名称列表617, 本地值616 = {}) {
+  const {
+    directFirst: 直连首次615 = false,
+    extraGroups: 值值614 = []
+  } = 本地值616;
+  const 节点行列表 = 名称列表617.length ? 名称列表617.map(数量值613 => `      - ${处理本地值622(数量值613)}`).join('\n') : '      - DIRECT';
+  const 行列表612 = [];
+  if (直连首次615) {
+    行列表612.push('      - "🎯 全球直连"', '      - "🚀 节点选择"');
+  } else {
+    行列表612.push('      - "🚀 节点选择"', '      - "🎯 全球直连"');
+  }
+  for (const 本地值611 of 值值614) 行列表612.push(`      - ${处理本地值622(本地值611)}`);
+  行列表612.push(节点行列表);
+  return 行列表612.join('\n');
+}
+
+// 圈类客户端策略组列表：策略组 + 全部节点
+function 处理值值列表(名称列表610, 本地值609 = {}) {
+  const {
+    directFirst: 直连首次 = false,
+    extraGroups: 值值608 = [],
+    compact: 本地值607 = false
+  } = 本地值609;
+  const 本地值606 = 本地值607 ? ',' : ', ';
+  const 列表605 = 名称列表610.length ? 名称列表610.join(本地值606) : 'DIRECT';
+  const 部分列表604 = [];
+  if (直连首次) 部分列表604.push('🎯 全球直连', '🚀 节点选择');else 部分列表604.push('🚀 节点选择', '🎯 全球直连');
+  部分列表604.push(...值值608);
+  if (名称列表610.length) 部分列表604.push(列表605);
+  return 部分列表604.join(本地值606);
+}
+
+// 解析任意分享链接为通用节点对象
+function 解析值链接(链接603) {
+  try {
+    if (链接603.startsWith(解码64('dmxlc3M6Ly8='))) {
+      const 网址602 = new URL(链接603);
+      const 参数值601 = new URLSearchParams(网址602.search);
+      return {
+        proto: 解码64('dmxlc3M='),
+        name: decodeURIComponent(网址602.hash.substring(1)) || 网址602.hostname + ':' + 网址602.port,
+        uuid: 网址602.username,
+        server: 规范化值主机(网址602.hostname),
+        port: parseInt(网址602.port) || 443,
+        tls: 参数值601.get('security') === 'tls' || 参数值601.get('security') === 解码64('cmVhbGl0eQ=='),
+        network: 参数值601.get('type') || 'ws',
+        path: 参数值601.get('path') || '/?ed=2048',
+        host: 规范化值主机(参数值601.get('host') || 网址602.hostname),
+        sni: 规范化值主机(参数值601.get('sni') || 参数值601.get('host') || 网址602.hostname),
+        alpn: (参数值601.get('alpn') || '').split(',').map(字符串值600 => 字符串值600.trim()).filter(Boolean),
+        fp: 参数值601.get('fp') || 'chrome',
+        flow: 参数值601.get('flow') || '',
+        encryption: 参数值601.get('encryption') || 'none',
+        mode: 参数值601.get('mode') || '',
+        ech: 参数值601.get('ech') || ''
+      };
+    }
+    if (链接603.startsWith(解码64('dHJvamFuOi8v'))) {
+      const 网址599 = new URL(链接603);
+      const 参数值 = new URLSearchParams(网址599.search);
+      return {
+        proto: 解码64('dHJvamFu'),
+        name: decodeURIComponent(网址599.hash.substring(1)) || 网址599.hostname + ':' + 网址599.port,
+        password: decodeURIComponent(网址599.username),
+        server: 规范化值主机(网址599.hostname),
+        port: parseInt(网址599.port) || 443,
+        tls: true,
+        network: 参数值.get('type') || 'ws',
+        path: 参数值.get('path') || '/?ed=2048',
+        host: 规范化值主机(参数值.get('host') || 网址599.hostname),
+        sni: 规范化值主机(参数值.get('sni') || 参数值.get('host') || 网址599.hostname),
+        alpn: (参数值.get('alpn') || '').split(',').map(字符串值598 => 字符串值598.trim()).filter(Boolean),
+        fp: 参数值.get('fp') || 'chrome',
+        ech: 参数值.get('ech') || ''
+      };
+    }
+  } catch (事件值597) {}
+  return null;
+}
+
+// 单个节点 → 块级 YAML（避免 flow style 解析错误）
+function 构建值节点行(数量值596) {
+  const 行列表595 = [];
+  const 本地值594 = 规范化值主机(数量值596.server);
+  const 主机593 = 规范化值主机(数量值596.host) || 本地值594;
+  const 服务名称指示592 = 规范化值主机(数量值596.sni) || 主机593;
+  行列表595.push(`  - name: ${处理本地值622(数量值596.name)}`);
+  行列表595.push(`    type: ${数量值596.proto}`);
+  行列表595.push(`    server: ${处理本地值622(本地值594)}`);
+  行列表595.push(`    port: ${数量值596.port}`);
+  if (数量值596.proto === 解码64('dmxlc3M=')) {
+    行列表595.push(`    uuid: ${数量值596.uuid}`);
+    行列表595.push(`    udp: true`);
+    行列表595.push(`    tls: ${数量值596.tls ? 'true' : 'false'}`);
+    if (数量值596.flow) 行列表595.push(`    flow: ${处理本地值622(数量值596.flow)}`);
+    行列表595.push(`    client-fingerprint: ${处理本地值622(数量值596.fp || 'chrome')}`);
+  } else if (数量值596.proto === 解码64('dHJvamFu')) {
+    行列表595.push(`    password: ${处理本地值622(数量值596.password)}`);
+    行列表595.push(`    udp: true`);
+    行列表595.push(`    client-fingerprint: ${处理本地值622(数量值596.fp || 'chrome')}`);
+  }
+  if (数量值596.tls) {
+    行列表595.push(`    servername: ${处理本地值622(服务名称指示592)}`);
+    if (数量值596.alpn && 数量值596.alpn.length) {
+      行列表595.push(`    alpn: [${数量值596.alpn.map(甲值591 => 处理本地值622(甲值591)).join(', ')}]`);
+    }
+    行列表595.push(`    skip-cert-verify: false`);
+  }
+  if (数量值596.network === 'ws' || 数量值596.network === 'xhttp') {
+    行列表595.push(`    network: ws`);
+    行列表595.push(`    ws-opts:`);
+    行列表595.push(`      path: ${处理本地值622(数量值596.path)}`);
+    行列表595.push(`      headers:`);
+    行列表595.push(`        Host: ${处理本地值622(主机593)}`);
+  } else if (数量值596.network === 'grpc') {
+    行列表595.push(`    network: grpc`);
+    行列表595.push(`    grpc-opts:`);
+    行列表595.push(`      grpc-service-name: ${处理本地值622(数量值596.path)}`);
+  }
+  if (数量值596.ech) {
+    const 加密客户端问候域名590 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+    行列表595.push(`    ech-opts:`);
+    行列表595.push(`      enable: true`);
+    行列表595.push(`      query-server-name: ${处理本地值622(加密客户端问候域名590)}`);
+  }
+  return 行列表595.join('\n');
+}
+
+// 内部生成 YAML（完整规则集，远端 rule-providers）
+function 生成值值589(链接列表588, 本地值587 = {}) {
+  const 节点列表586 = 链接列表588.map(解析值链接).filter(数量值585 => 数量值585 && (数量值585.proto === 解码64('dmxlc3M=') || 数量值585.proto === 解码64('dHJvamFu')));
+  const 名称列表584 = 节点列表586.map(数量值583 => 数量值583.name);
+  const 域名系统值582 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+  const 头部581 = ['mixed-port: 7890', 'allow-lan: true', 'mode: rule', 'log-level: info', 'ipv6: true', 'external-controller: 127.0.0.1:9090', 'unified-delay: true', 'tcp-concurrent: true', 'geodata-mode: true', 'geo-auto-update: true', 'geo-update-interval: 24', 'geox-url:', '  geoip: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geoip.dat"', '  geosite: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/geosite.dat"', '  mmdb: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/country.mmdb"', '  asn: "https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@release/GeoLite2-ASN.mmdb"', 'sniffer:', '  enable: true', '  force-dns-mapping: true', '  parse-pure-ip: true', '  sniff:', '    HTTP:', '      ports: [80, 8080-8880]', '      override-destination: true', '    TLS:', '      ports: [443, 8443]', '    QUIC:', '      ports: [443, 8443]', 'dns:', '  enable: true', '  listen: 0.0.0.0:1053', '  ipv6: true', '  enhanced-mode: fake-ip', '  fake-ip-range: 198.18.0.1/16', '  fake-ip-filter:', '    - "*.lan"', '    - "+.local"', '    - "+.market.xiaomi.com"', '    - "+.msftconnecttest.com"', '    - "+.msftncsi.com"', '    - "localhost.ptlogin2.qq.com"', '    - "+.srv.nintendo.net"', '    - "+.stun.playstation.net"', '    - "+.xboxlive.com"', '  default-nameserver:', '    - 223.5.5.5', '    - 119.29.29.29', '  nameserver:', `    - ${域名系统值582}`, '    - https://119.29.29.29/dns-query', '  fallback:', '    - https://1.1.1.1/dns-query', '    - https://8.8.8.8/dns-query', '  fallback-filter:', '    geoip: true', '    geoip-code: CN', '    ipcidr:', '      - 240.0.0.0/4', ''];
+  const 值值580 = ['proxies:'];
+  for (const 数量值579 of 节点列表586) 值值580.push(构建值节点行(数量值579));
+  const 节点仅 = 名称列表584.length ? 名称列表584.map(数量值578 => `      - ${处理本地值622(数量值578)}`).join('\n') : '      - DIRECT';
+  const 值值577 = [解码64('cHJveHktZ3JvdXBzOg=='), '  - name: "🚀 节点选择"', '    type: select', '    proxies:', '      - "🎯 全球直连"', 节点仅, '  - name: "🌍 国外媒体"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "📺 哔哩哔哩"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+    directFirst: true
+  }), '  - name: "📹 油管视频"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+    extraGroups: ['🌍 国外媒体']
+  }), '  - name: "🎬 奈飞视频"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+    extraGroups: ['🌍 国外媒体']
+  }), '  - name: "📲 电报信息"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "🌐 谷歌服务"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "🤖 OpenAI"', '    type: select', '    proxies:', 处理值选择值(名称列表584), '  - name: "Ⓜ️ 微软服务"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+    directFirst: true
+  }), '  - name: "🍎 苹果服务"', '    type: select', '    proxies:', 处理值选择值(名称列表584, {
+    directFirst: true
+  }), '  - name: "🎯 全球直连"', '    type: select', '    proxies:', '      - DIRECT', '  - name: "🛑 全球拦截"', '    type: select', '    proxies:', '      - REJECT', '      - DIRECT', '  - name: "🍃 应用净化"', '    type: select', '    proxies:', '      - REJECT', '      - DIRECT', '  - name: "🐟 漏网之鱼"', '    type: select', '    proxies:', 处理值选择值(名称列表584), ''];
+
+  // 规则源 - CDN: jsDelivr
+  const 值基础576 = 解码64('aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0xveWFsc29sZGllci9jbGFzaC1ydWxlc0ByZWxlYXNl');
+  const 提供器 = (名称575, 本地值574) => [`  ${名称575}:`, `    type: http`, `    behavior: ${本地值574}`, `    url: "${值基础576}/${名称575}.txt"`, `    path: ./rulesets/loyalsoldier/${名称575}.txt`, `    interval: 86400`].join('\n');
+  const 规则值 = ['rule-providers:', 提供器('reject', 'domain'), 提供器('icloud', 'domain'), 提供器('apple', 'domain'), 提供器('google', 'domain'), 提供器(解码64('cHJveHk='), 'domain'), 提供器('direct', 'domain'), 提供器('private', 'domain'), 提供器('gfw', 'domain'), 提供器('greatfire', 'domain'), 提供器('tld-not-cn', 'domain'), 提供器('telegramcidr', 'ipcidr'), 提供器('cncidr', 'ipcidr'), 提供器('lancidr', 'ipcidr'), 提供器('applications', 'classical'), ''];
+  const 规则列表 = ['rules:', '  - DOMAIN-SUFFIX,acl4.ssr,🎯 全球直连', '  - DOMAIN-SUFFIX,local,🎯 全球直连', 解码64('ICAtIERPTUFJTixjbGFzaC5yYXpvcmQudG9wLPCfjq8g5YWo55CD55u06L+e'), '  - DOMAIN,yacd.haishan.me,🎯 全球直连', '  - DOMAIN,yacd.metacubex.one,🎯 全球直连', '  - DOMAIN,d.metacubex.one,🎯 全球直连', '  - DOMAIN-SUFFIX,googleapis.cn,🌐 谷歌服务', '  - DOMAIN-SUFFIX,gstatic.com,🌐 谷歌服务', '  - DOMAIN-SUFFIX,xn--ngstr-lra8j.com,🌐 谷歌服务', '  - DOMAIN-SUFFIX,googlevideo.com,📹 油管视频', '  - DOMAIN-SUFFIX,googleusercontent.com,🌐 谷歌服务', '  - DOMAIN-KEYWORD,youtube,📹 油管视频', '  - DOMAIN-SUFFIX,youtube.com,📹 油管视频', '  - DOMAIN-SUFFIX,youtu.be,📹 油管视频', '  - DOMAIN-KEYWORD,netflix,🎬 奈飞视频', '  - DOMAIN-SUFFIX,nflxext.com,🎬 奈飞视频', '  - DOMAIN-SUFFIX,nflxso.net,🎬 奈飞视频', '  - DOMAIN-SUFFIX,nflxvideo.net,🎬 奈飞视频', '  - DOMAIN-SUFFIX,nflximg.com,🎬 奈飞视频', '  - DOMAIN-SUFFIX,nflximg.net,🎬 奈飞视频', '  - DOMAIN-SUFFIX,netflix.com,🎬 奈飞视频', '  - DOMAIN-SUFFIX,netflix.net,🎬 奈飞视频', '  - DOMAIN-SUFFIX,bilibili.com,📺 哔哩哔哩', '  - DOMAIN-SUFFIX,bilivideo.com,📺 哔哩哔哩', '  - DOMAIN-SUFFIX,hdslb.com,📺 哔哩哔哩', '  - DOMAIN-KEYWORD,openai,🤖 OpenAI', '  - DOMAIN-KEYWORD,chatgpt,🤖 OpenAI', '  - DOMAIN-SUFFIX,openai.com,🤖 OpenAI', '  - DOMAIN-SUFFIX,chatgpt.com,🤖 OpenAI', '  - DOMAIN-SUFFIX,oaistatic.com,🤖 OpenAI', '  - DOMAIN-SUFFIX,oaiusercontent.com,🤖 OpenAI', '  - DOMAIN-SUFFIX,anthropic.com,🤖 OpenAI', '  - DOMAIN-SUFFIX,claude.ai,🤖 OpenAI', '  - DOMAIN-SUFFIX,perplexity.ai,🤖 OpenAI', '  - DOMAIN-SUFFIX,gemini.google.com,🤖 OpenAI', '  - RULE-SET,applications,🎯 全球直连', '  - RULE-SET,private,🎯 全球直连', '  - RULE-SET,reject,🛑 全球拦截', '  - RULE-SET,icloud,🍎 苹果服务', '  - RULE-SET,apple,🍎 苹果服务', '  - RULE-SET,google,🌐 谷歌服务', 解码64('ICAtIFJVTEUtU0VULHByb3h5LPCfmoAg6IqC54K56YCJ5oup'), '  - RULE-SET,gfw,🚀 节点选择', '  - RULE-SET,greatfire,🚀 节点选择', '  - RULE-SET,tld-not-cn,🚀 节点选择', '  - RULE-SET,direct,🎯 全球直连', '  - RULE-SET,lancidr,🎯 全球直连,no-resolve', '  - RULE-SET,cncidr,🎯 全球直连,no-resolve', '  - RULE-SET,telegramcidr,📲 电报信息,no-resolve', '  - GEOIP,LAN,🎯 全球直连,no-resolve', '  - GEOIP,CN,🎯 全球直连,no-resolve', '  - MATCH,🐟 漏网之鱼'];
+  return [头部581.join('\n'), 值值580.join('\n'), '', 值值577.join('\n'), 规则值.join('\n'), 规则列表.join('\n'), ''].join('\n');
+}
+
+// 内部生成 JSON 客户端配置（完整规则集：远端镜像）
+// 新版内核要把 DNS 地址拆成 type + server + path，这里按 URL 协议归一
+function 拆域名系统地址(地址) {
+  const 文本 = String(地址 || '').trim();
+  try {
+    const 网址 = new URL(文本);
+    const 协议 = 网址.protocol.replace(':', '').toLowerCase();
+    if (协议 === 'https' || 协议 === 'http3' || 协议 === 'h3') {
+      const 输出 = { type: 'https', server: 网址.hostname };
+      if (网址.port) 输出.server_port = Number(网址.port);
+      if (网址.pathname && 网址.pathname !== '/' && 网址.pathname !== '/dns-query') 输出.path = 网址.pathname;
+      return 输出;
+    }
+    if (协议 === 'tls') return { type: 'tls', server: 网址.hostname };
+    if (协议 === 'quic') return { type: 'quic', server: 网址.hostname };
+    if (协议 === 'udp' || 协议 === 'dns') return { type: 'udp', server: 网址.hostname };
+  } catch (错误) {}
+  return { type: 'udp', server: 文本.replace(/^[a-z0-9]+:\/\//i, '').split('/')[0] || '223.5.5.5' };
+}
+
+function 生成值值数据对象(链接列表573) {
+  const 节点列表572 = 链接列表573.map(解析值链接).filter(数量值571 => 数量值571 && (数量值571.proto === 解码64('dmxlc3M=') || 数量值571.proto === 解码64('dHJvamFu')));
+  const 域名系统值570 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+  const 出站值 = 节点列表572.map(数量值569 => 数量值569.name);
+  function 处理节点值出站(数量值568) {
+    const 输出567 = {
+      type: 数量值568.proto,
+      tag: 数量值568.name,
+      server: 规范化值主机(数量值568.server),
+      server_port: 数量值568.port
+    };
+    if (数量值568.proto === 解码64('dmxlc3M=')) {
+      输出567.uuid = 数量值568.uuid;
+      if (数量值568.flow) 输出567.flow = 数量值568.flow;
+    } else {
+      输出567.password = 数量值568.password;
+    }
+    if (数量值568.tls) {
+      输出567.tls = {
+        enabled: true,
+        server_name: 数量值568.sni,
+        insecure: false,
+        utls: {
+          enabled: true,
+          fingerprint: 数量值568.fp || 'chrome'
+        }
+      };
+      if (数量值568.alpn && 数量值568.alpn.length) 输出567.tls.alpn = 数量值568.alpn;
+      if (数量值568.ech) {
+        输出567.tls.ech = {
+          enabled: true,
+          pq_signature_schemes_enabled: false,
+          dynamic_record_sizing_disabled: false
+        };
+      }
+    }
+    if (数量值568.network === 'ws' || 数量值568.network === 'xhttp') {
+      输出567.transport = {
+        type: 'ws',
+        path: 数量值568.path,
+        headers: {
+          Host: 数量值568.host
+        },
+        max_early_data: 2048,
+        early_data_header_name: 'Sec-WebSocket-Protocol'
+      };
+    } else if (数量值568.network === 'grpc') {
+      输出567.transport = {
+        type: 'grpc',
+        service_name: 数量值568.path
+      };
+    }
+    return 输出567;
+  }
+
+  // 远端 SRS 文件（CDN：jsDelivr 镜像）
+  const 值基础值 = 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geosite';
+  const 值基础地址 = 'https://fastly.jsdelivr.net/gh/MetaCubeX/meta-rules-dat@sing/geo/geoip';
+  const 值规则566 = 本地值565 => ({
+    tag: `geosite-${本地值565}`,
+    type: 'remote',
+    format: 'binary',
+    url: `${值基础值}/${本地值565}.srs`,
+    download_detour: 'direct'
+  });
+  const 地址规则 = 本地值564 => ({
+    tag: `geoip-${本地值564}`,
+    type: 'remote',
+    format: 'binary',
+    url: `${值基础地址}/${本地值564}.srs`,
+    download_detour: 'direct'
+  });
+  const 配置 = {
+    log: {
+      level: 'info',
+      timestamp: true
+    },
+    dns: {
+      // 新版内核 1.12 起 DNS 服务器改成按 type 写，旧的 address 字符串写法 1.14 已经删掉了
+      servers: [{
+        ...拆域名系统地址(域名系统值570),
+        tag: 'remote',
+        detour: 'select'
+      }, {
+        type: 'udp',
+        tag: 'local',
+        server: '223.5.5.5',
+        detour: 'direct'
+      }, {
+        type: 'fakeip',
+        tag: 'fakeip',
+        inet4_range: '198.18.0.0/15',
+        inet6_range: 'fc00::/18'
+      }],
+      // 拦广告不再靠 rcode://success 的假服务器，直接用 action: reject
+      rules: [{
+        rule_set: 'geosite-category-ads-all',
+        action: 'reject'
+      }, {
+        rule_set: 'geosite-cn',
+        server: 'local'
+      }, {
+        query_type: ['A', 'AAAA'],
+        server: 'fakeip'
+      }],
+      strategy: 'ipv4_only'
+    },
+    inbounds: [{
+      type: 'mixed',
+      tag: 'mixed-in',
+      listen: '127.0.0.1',
+      listen_port: 2080
+    }, {
+      type: 'tun',
+      tag: 'tun-in',
+      interface_name: 解码64('c2luZy1ib3g='),
+      address: ['172.19.0.1/30', 'fdfe:dcba:9876::1/126'],
+      mtu: 9000,
+      auto_route: true,
+      strict_route: true,
+      stack: 'mixed'
+    }],
+    outbounds: [{
+      type: 'selector',
+      tag: 'select',
+      outbounds: ['direct', ...出站值],
+      default: 出站值[0] || 'direct'
+    }, {
+      type: 'selector',
+      tag: '🌍 国外媒体',
+      outbounds: ['select', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '📲 电报信息',
+      outbounds: ['select', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '🌐 谷歌服务',
+      outbounds: ['select', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '🤖 OpenAI',
+      outbounds: ['select', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: 'Ⓜ️ 微软服务',
+      outbounds: ['direct', 'select', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '🍎 苹果服务',
+      outbounds: ['direct', 'select', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '📺 哔哩哔哩',
+      outbounds: ['direct', 'select', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '📹 油管视频',
+      outbounds: ['select', '🌍 国外媒体', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '🎬 奈飞视频',
+      outbounds: ['select', '🌍 国外媒体', 'direct', ...出站值]
+    }, {
+      type: 'selector',
+      tag: '🎯 全球直连',
+      outbounds: ['direct']
+    }, {
+      type: 'selector',
+      tag: '🐟 漏网之鱼',
+      outbounds: ['select', 'direct', ...出站值]
+    }, ...节点列表572.map(处理节点值出站), {
+      type: 'direct',
+      tag: 'direct'
+    }],
+    route: {
+      rule_set: [值规则566('cn'), 值规则566('private'), 值规则566('apple'), 值规则566('apple-cn'), 值规则566('microsoft'), 值规则566('microsoft@cn'), 值规则566('google'), 值规则566('telegram'), 值规则566('openai'), 值规则566('anthropic'), 值规则566('youtube'), 值规则566('netflix'), 值规则566('disney'), 值规则566('spotify'), 值规则566('tiktok'), 值规则566('twitter'), 值规则566('facebook'), 值规则566('github'), 值规则566('geolocation-!cn'), 值规则566('category-ads-all'), 地址规则('cn'), 地址规则('private'), 地址规则('telegram')],
+      rules: [{
+        action: 'sniff'
+      }, {
+        protocol: 'dns',
+        action: 'hijack-dns'
+      }, {
+        ip_is_private: true,
+        outbound: 'direct'
+      }, {
+        rule_set: 'geosite-category-ads-all',
+        action: 'reject'
+      }, {
+        rule_set: 'geosite-private',
+        outbound: 'direct'
+      }, {
+        rule_set: 'geosite-apple-cn',
+        outbound: 'direct'
+      }, {
+        rule_set: 'geosite-microsoft@cn',
+        outbound: 'direct'
+      }, {
+        rule_set: 'geosite-apple',
+        outbound: '🍎 苹果服务'
+      }, {
+        rule_set: 'geosite-microsoft',
+        outbound: 'Ⓜ️ 微软服务'
+      }, {
+        rule_set: 'geosite-openai',
+        outbound: '🤖 OpenAI'
+      }, {
+        rule_set: 'geosite-anthropic',
+        outbound: '🤖 OpenAI'
+      }, {
+        rule_set: 'geosite-telegram',
+        outbound: '📲 电报信息'
+      }, {
+        rule_set: 'geoip-telegram',
+        outbound: '📲 电报信息'
+      }, {
+        rule_set: 'geosite-google',
+        outbound: '🌐 谷歌服务'
+      }, {
+        rule_set: 'geosite-youtube',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-netflix',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-disney',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-spotify',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-tiktok',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-twitter',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-facebook',
+        outbound: '🌍 国外媒体'
+      }, {
+        rule_set: 'geosite-github',
+        outbound: 'select'
+      }, {
+        rule_set: 'geosite-geolocation-!cn',
+        outbound: 'select'
+      }, {
+        rule_set: 'geosite-cn',
+        outbound: 'direct'
+      }, {
+        rule_set: 'geoip-cn',
+        outbound: 'direct'
+      }, {
+        ip_is_private: true,
+        outbound: 'direct'
+      }],
+      final: '🐟 漏网之鱼',
+      // 1.12 起出站解析域名必须显式指定用哪个 DNS，不写 1.14 会直接拒绝启动
+      default_domain_resolver: {
+        server: 'local'
+      },
+      auto_detect_interface: true
+    },
+    experimental: {
+      cache_file: {
+        enabled: true,
+        store_fakeip: true
+      },
+      clash_api: {
+        external_controller: '127.0.0.1:9090'
+      }
+    }
+  };
+  return JSON.stringify(配置, null, 2);
+}
+
+// 规则源（CDN：jsDelivr 镜像 GitHub）
+const 值基础 = 解码64('aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0FDTDRTU1IvQUNMNFNTUkBtYXN0ZXIvQ2xhc2g=');
+const 值规则 = 名称563 => `${值基础}/${名称563}.list`;
+
+// 内部生成 ini 客户端配置（完整规则集）
+function 生成值值562(链接列表561) {
+  const 节点列表560 = 链接列表561.map(解析值链接).filter(数量值559 => 数量值559 && 数量值559.proto === 解码64('dHJvamFu'));
+  const 域名系统值558 = 自定义域名系统 || '223.5.5.5';
+  const 名称列表557 = 节点列表560.map(数量值556 => 数量值556.name);
+  const 行列表555 = ['[General]', 'loglevel = notify', 'internet-test-url = http://www.apple.com/library/test/success.html', 解码64('cHJveHktdGVzdC11cmwgPSBodHRwOi8vd3d3LmdzdGF0aWMuY29tL2dlbmVyYXRlXzIwNA=='), 'test-timeout = 3', `dns-server = ${域名系统值558.replace(/^https?:\/\//, '').replace(/\/.*$/, '')}, 119.29.29.29, system`, 'encrypted-dns-server = https://223.5.5.5/dns-query, https://1.12.12.12/dns-query', 'ipv6 = true', 'allow-wifi-access = false', 'wifi-access-http-port = 6152', 解码64('d2lmaS1hY2Nlc3Mtc29ja3M1LXBvcnQgPSA2MTUz'), 解码64('c2tpcC1wcm94eSA9IDEyNy4wLjAuMSwgMTkyLjE2OC4wLjAvMTYsIDEwLjAuMC4wLzgsIDE3Mi4xNi4wLjAvMTIsIGxvY2FsaG9zdCwgKi5sb2NhbCwgY2FwdGl2ZS5hcHBsZS5jb20='), 'exclude-simple-hostnames = true', 'show-error-page-for-reject = true', '', 解码64('W1Byb3h5XQ==')];
+  for (const 数量值554 of 节点列表560) {
+    const 服务名称指示 = 数量值554.sni;
+    行列表555.push(`${数量值554.name} = ${解码64('dHJvamFu')}, ${数量值554.server}, ${数量值554.port}, password=${数量值554.password}, sni=${服务名称指示}, ws=true, ws-path=${数量值554.path}, ws-headers=Host:${数量值554.host}, skip-cert-verify=false, tfo=true`);
+  }
+  if (!节点列表560.length) {
+    行列表555.push('Direct = direct');
+  }
+  行列表555.push('');
+  行列表555.push(解码64('W1Byb3h5IEdyb3VwXQ=='));
+  const 列表553 = 名称列表557.length ? 名称列表557.join(', ') : 'DIRECT';
+  行列表555.push(`🚀 节点选择 = select, 🎯 全球直连, ${列表553}`);
+  行列表555.push(`🌍 国外媒体 = select, ${处理值值列表(名称列表557)}`);
+  行列表555.push(`📺 哔哩哔哩 = select, ${处理值值列表(名称列表557, {
+    directFirst: true
+  })}`);
+  行列表555.push(`📹 油管视频 = select, ${处理值值列表(名称列表557, {
+    extraGroups: ['🌍 国外媒体']
+  })}`);
+  行列表555.push(`🎬 奈飞视频 = select, ${处理值值列表(名称列表557, {
+    extraGroups: ['🌍 国外媒体']
+  })}`);
+  行列表555.push(`📲 电报信息 = select, ${处理值值列表(名称列表557)}`);
+  行列表555.push(`🌐 谷歌服务 = select, ${处理值值列表(名称列表557)}`);
+  行列表555.push(`🤖 OpenAI = select, ${处理值值列表(名称列表557)}`);
+  行列表555.push(`Ⓜ️ 微软服务 = select, ${处理值值列表(名称列表557, {
+    directFirst: true
+  })}`);
+  行列表555.push(`🍎 苹果服务 = select, ${处理值值列表(名称列表557, {
+    directFirst: true
+  })}`);
+  行列表555.push(`🎯 全球直连 = select, DIRECT`);
+  行列表555.push(`🛑 全球拦截 = select, REJECT, DIRECT`);
+  行列表555.push(`🐟 漏网之鱼 = select, ${处理值值列表(名称列表557)}`);
+  行列表555.push('');
+  行列表555.push('[Rule]');
+  行列表555.push(`RULE-SET,${值规则('LocalAreaNetwork')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('UnBan')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('BanAD')},🛑 全球拦截`);
+  行列表555.push(`RULE-SET,${值规则('BanProgramAD')},🛑 全球拦截`);
+  行列表555.push(`RULE-SET,${值规则('GoogleFCM')},🌐 谷歌服务`);
+  行列表555.push(`RULE-SET,${值规则('GoogleCN')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('SteamCN')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('Microsoft')},Ⓜ️ 微软服务`);
+  行列表555.push(`RULE-SET,${值规则('Apple')},🍎 苹果服务`);
+  行列表555.push(`RULE-SET,${值规则('Telegram')},📲 电报信息`);
+  行列表555.push(`RULE-SET,${值规则('OpenAi')},🤖 OpenAI`);
+  行列表555.push(`RULE-SET,${值规则('Claude')},🤖 OpenAI`);
+  行列表555.push(`RULE-SET,${值规则('Copilot')},🤖 OpenAI`);
+  行列表555.push(`RULE-SET,${值规则('Netflix')},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则('YouTube')},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则('Disney')},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则('Spotify')},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则('TikTok')},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则('BiliBili')},📺 哔哩哔哩`);
+  行列表555.push(`RULE-SET,${值规则(解码64('UHJveHlNZWRpYQ=='))},🌍 国外媒体`);
+  行列表555.push(`RULE-SET,${值规则(解码64('UHJveHlHRldsaXN0'))},🚀 节点选择`);
+  行列表555.push(`RULE-SET,${值规则('ChinaDomain')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('ChinaCompanyIp')},🎯 全球直连`);
+  行列表555.push(`RULE-SET,${值规则('ChinaIp')},🎯 全球直连`);
+  行列表555.push('GEOIP,CN,🎯 全球直连');
+  行列表555.push('FINAL,🐟 漏网之鱼,dns-failed');
+  return 行列表555.join('\n');
+}
+
+// 内部生成另一类 ini 客户端配置
+function 生成值值552(链接列表551) {
+  const 节点列表550 = 链接列表551.map(解析值链接).filter(数量值549 => 数量值549 && (数量值549.proto === 解码64('dmxlc3M=') || 数量值549.proto === 解码64('dHJvamFu')));
+  const 名称列表548 = 节点列表550.map(数量值547 => 数量值547.name);
+  const 行列表546 = ['[General]', 'ip-mode = dual', `dns-server = ${(自定义域名系统 || '223.5.5.5').replace(/^https?:\/\//, '').replace(/\/.*$/, '')},119.29.29.29,system`, 'doh-server = https://223.5.5.5/dns-query, https://1.12.12.12/dns-query', 解码64('YWxsb3ctdWRwLXByb3h5ID0gdHJ1ZQ=='), 'allow-wifi-access = false', 'sni-sniffing = true', 解码64('c2tpcC1wcm94eSA9IDEyNy4wLjAuMSwxOTIuMTY4LjAuMC8xNiwxMC4wLjAuMC84LDE3Mi4xNi4wLjAvMTIsbG9jYWxob3N0LCoubG9jYWwsY2FwdGl2ZS5hcHBsZS5jb20='), 'bypass-tun = 10.0.0.0/8,100.64.0.0/10,127.0.0.0/8,169.254.0.0/16,172.16.0.0/12,192.0.0.0/24,192.0.2.0/24,192.88.99.0/24,192.168.0.0/16,198.51.100.0/24,203.0.113.0/24,224.0.0.0/4,255.255.255.255/32', '', 解码64('W1Byb3h5XQ==')];
+  for (const 数量值545 of 节点列表550) {
+    if (数量值545.proto === 解码64('dmxlc3M=')) {
+      const 部分列表544 = [`${数量值545.server}`, `${数量值545.port}`, `udp=true`, `username=${数量值545.uuid}`, `transport=ws`, `path=${数量值545.path}`, `host=${数量值545.host}`, `over-tls=${数量值545.tls ? 'true' : 'false'}`];
+      if (数量值545.tls) {
+        部分列表544.push(`tls-name=${数量值545.sni}`);
+        if (数量值545.alpn && 数量值545.alpn.length) 部分列表544.push(`alpn=${数量值545.alpn.join(':')}`);
+        部分列表544.push(`skip-cert-verify=false`);
+      }
+      行列表546.push(`${数量值545.name} = ${解码64('dmxlc3M=')},${部分列表544.join(',')}`);
+    } else {
+      const 部分列表543 = [`${数量值545.server}`, `${数量值545.port}`, `password=${数量值545.password}`, `transport=ws`, `path=${数量值545.path}`, `host=${数量值545.host}`, `over-tls=true`, `tls-name=${数量值545.sni}`];
+      if (数量值545.alpn && 数量值545.alpn.length) 部分列表543.push(`alpn=${数量值545.alpn.join(':')}`);
+      部分列表543.push(`skip-cert-verify=false`);
+      行列表546.push(`${数量值545.name} = ${解码64('dHJvamFu')},${部分列表543.join(',')}`);
+    }
+  }
+  行列表546.push('');
+  行列表546.push(解码64('W1Byb3h5IEdyb3VwXQ=='));
+  const 列表542 = 名称列表548.length ? 名称列表548.join(',') : 'DIRECT';
+  行列表546.push(`🚀 节点选择 = select,🎯 全球直连,${列表542}`);
+  行列表546.push(`🌍 国外媒体 = select,${处理值值列表(名称列表548, {
+    compact: true
+  })}`);
+  行列表546.push(`📺 哔哩哔哩 = select,${处理值值列表(名称列表548, {
+    directFirst: true,
+    compact: true
+  })}`);
+  行列表546.push(`📹 油管视频 = select,${处理值值列表(名称列表548, {
+    extraGroups: ['🌍 国外媒体'],
+    compact: true
+  })}`);
+  行列表546.push(`🎬 奈飞视频 = select,${处理值值列表(名称列表548, {
+    extraGroups: ['🌍 国外媒体'],
+    compact: true
+  })}`);
+  行列表546.push(`📲 电报信息 = select,${处理值值列表(名称列表548, {
+    compact: true
+  })}`);
+  行列表546.push(`🌐 谷歌服务 = select,${处理值值列表(名称列表548, {
+    compact: true
+  })}`);
+  行列表546.push(`🤖 OpenAI = select,${处理值值列表(名称列表548, {
+    compact: true
+  })}`);
+  行列表546.push(`Ⓜ️ 微软服务 = select,${处理值值列表(名称列表548, {
+    directFirst: true,
+    compact: true
+  })}`);
+  行列表546.push(`🍎 苹果服务 = select,${处理值值列表(名称列表548, {
+    directFirst: true,
+    compact: true
+  })}`);
+  行列表546.push(`🎯 全球直连 = select,DIRECT`);
+  行列表546.push(`🛑 全球拦截 = select,REJECT,DIRECT`);
+  行列表546.push(`🐟 漏网之鱼 = select,${处理值值列表(名称列表548, {
+    compact: true
+  })}`);
+  行列表546.push('');
+  行列表546.push('[Remote Rule]');
+  行列表546.push(`${值规则('LocalAreaNetwork')}, policy=🎯 全球直连, tag=局域网, enabled=true`);
+  行列表546.push(`${值规则('BanAD')}, policy=🛑 全球拦截, tag=广告拦截, enabled=true`);
+  行列表546.push(`${值规则('BanProgramAD')}, policy=🛑 全球拦截, tag=应用广告, enabled=true`);
+  行列表546.push(`${值规则('GoogleCN')}, policy=🎯 全球直连, tag=GoogleCN, enabled=true`);
+  行列表546.push(`${值规则('SteamCN')}, policy=🎯 全球直连, tag=SteamCN, enabled=true`);
+  行列表546.push(`${值规则('Microsoft')}, policy=Ⓜ️ 微软服务, tag=微软, enabled=true`);
+  行列表546.push(`${值规则('Apple')}, policy=🍎 苹果服务, tag=苹果, enabled=true`);
+  行列表546.push(`${值规则('Telegram')}, policy=📲 电报信息, tag=电报, enabled=true`);
+  行列表546.push(`${值规则('OpenAi')}, policy=🤖 OpenAI, tag=OpenAI, enabled=true`);
+  行列表546.push(`${值规则('Netflix')}, policy=🌍 国外媒体, tag=Netflix, enabled=true`);
+  行列表546.push(`${值规则('YouTube')}, policy=🌍 国外媒体, tag=YouTube, enabled=true`);
+  行列表546.push(`${值规则('Disney')}, policy=🌍 国外媒体, tag=Disney, enabled=true`);
+  行列表546.push(`${值规则('Spotify')}, policy=🌍 国外媒体, tag=Spotify, enabled=true`);
+  行列表546.push(`${值规则('TikTok')}, policy=🌍 国外媒体, tag=TikTok, enabled=true`);
+  行列表546.push(`${值规则('BiliBili')}, policy=📺 哔哩哔哩, tag=哔哩哔哩, enabled=true`);
+  行列表546.push(`${值规则(解码64('UHJveHlNZWRpYQ=='))}, policy=🌍 国外媒体, tag=${解码64('5Luj55CG5aqS5L2T')}, enabled=true`);
+  行列表546.push(`${值规则(解码64('UHJveHlHRldsaXN0'))}, policy=🚀 节点选择, tag=${解码64('5Luj55CG5YiX6KGo')}, enabled=true`);
+  行列表546.push(`${值规则('ChinaDomain')}, policy=🎯 全球直连, tag=中国域名, enabled=true`);
+  行列表546.push(`${值规则('ChinaIp')}, policy=🎯 全球直连, tag=中国IP, enabled=true`);
+  行列表546.push('');
+  行列表546.push('[Rule]');
+  行列表546.push('GEOIP,CN,🎯 全球直连');
+  行列表546.push('FINAL,🐟 漏网之鱼');
+  return 行列表546.join('\n');
+}
+
+// 内部生成圈叉配置（完整远端 filter 资源）
+function 生成值值(链接列表541) {
+  const 节点列表 = 链接列表541.map(解析值链接).filter(数量值540 => 数量值540 && (数量值540.proto === 解码64('dmxlc3M=') || 数量值540.proto === 解码64('dHJvamFu')));
+  const 名称列表 = 节点列表.map(数量值539 => 数量值539.name);
+  const 圈叉基础配置 = 解码64('aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL2JsYWNrbWF0cml4Ny9pb3NfcnVsZV9zY3JpcHRAbWFzdGVyL3J1bGUvUXVhbnR1bXVsdFg=');
+  const 行列表538 = ['[general]', 'network_check_url=http://www.gstatic.com/generate_204', 'server_check_url=http://www.gstatic.com/generate_204', 'profile_img_url=https://fastly.jsdelivr.net/gh/byJoey/cfnew@main/snippets/logo.png', 'dns_exclusion_list=*.cmpassport.com, *.jegotrip.com.cn, *.icloud.com, *.icloud.com.cn, *.apple.com, *.weibo.com, *.qq.com', 'running_mode_trigger=filter', '', '[dns]', `server=${(自定义域名系统 || '223.5.5.5').replace(/^https?:\/\//, '').replace(/\/.*$/, '')}`, 'server=119.29.29.29', 'server=https://223.5.5.5/dns-query', 'server=https://1.12.12.12/dns-query', '', '[server_local]'];
+  for (const 数量值537 of 节点列表) {
+    if (数量值537.proto === 解码64('dmxlc3M=')) {
+      const 部分列表536 = [`${数量值537.server}:${数量值537.port}`, `method=none`, `password=${数量值537.uuid}`, `obfs=${数量值537.tls ? 'wss' : 'ws'}`, `obfs-host=${数量值537.host}`, `obfs-uri=${数量值537.path}`];
+      if (数量值537.tls) 部分列表536.push(`tls-verification=true`, `tls13=true`);
+      部分列表536.push(`tag=${数量值537.name}`);
+      行列表538.push(`${解码64('dmxlc3M=')}=${部分列表536.join(', ')}`);
+    } else {
+      const 部分列表535 = [`${数量值537.server}:${数量值537.port}`, `password=${数量值537.password}`, `over-tls=true`, `tls-host=${数量值537.sni}`, `obfs=wss`, `obfs-host=${数量值537.host}`, `obfs-uri=${数量值537.path}`, `tls-verification=true`, `tag=${数量值537.name}`];
+      行列表538.push(`${解码64('dHJvamFu')}=${部分列表535.join(', ')}`);
+    }
+  }
+  行列表538.push('');
+  行列表538.push('[policy]');
+  const 列表534 = 名称列表.length ? 名称列表.join(', ') : 'direct';
+  行列表538.push(`static=🚀 节点选择, ${列表534}, direct, img-url=${解码64('aHR0cHM6Ly9mYXN0bHkuanNkZWxpdnIubmV0L2doL0tvb2xzb24vUXVyZUBtYXN0ZXIvSWNvblNldC9Db2xvci9Qcm94eS5wbmc=')}`);
+  行列表538.push(`static=🌍 国外媒体, ${处理值值列表(名称列表)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ForeignMedia.png`);
+  行列表538.push(`static=📺 哔哩哔哩, ${处理值值列表(名称列表, {
+    directFirst: true
+  })}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/bilibili.png`);
+  行列表538.push(`static=📹 油管视频, ${处理值值列表(名称列表, {
+    extraGroups: ['🌍 国外媒体']
+  })}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/YouTube.png`);
+  行列表538.push(`static=🎬 奈飞视频, ${处理值值列表(名称列表, {
+    extraGroups: ['🌍 国外媒体']
+  })}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Netflix.png`);
+  行列表538.push(`static=📲 电报信息, ${处理值值列表(名称列表)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Telegram.png`);
+  行列表538.push(`static=🌐 谷歌服务, ${处理值值列表(名称列表)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Google.png`);
+  行列表538.push(`static=🤖 OpenAI, ${处理值值列表(名称列表)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/ChatGPT.png`);
+  行列表538.push(`static=Ⓜ️ 微软服务, ${处理值值列表(名称列表, {
+    directFirst: true
+  })}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Microsoft.png`);
+  行列表538.push(`static=🍎 苹果服务, ${处理值值列表(名称列表, {
+    directFirst: true
+  })}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Apple.png`);
+  行列表538.push(`static=🎯 全球直连, direct, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Direct.png`);
+  行列表538.push(`static=🛑 全球拦截, reject, direct, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Advertising.png`);
+  行列表538.push(`static=🐟 漏网之鱼, ${处理值值列表(名称列表)}, img-url=https://fastly.jsdelivr.net/gh/Koolson/Qure@master/IconSet/Color/Final.png`);
+  行列表538.push('');
+  行列表538.push('[filter_remote]');
+  行列表538.push(`${圈叉基础配置}/Lan/Lan.list, tag=局域网, force-policy=🎯 全球直连, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Advertising/Advertising.list, tag=广告拦截, force-policy=🛑 全球拦截, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Microsoft/Microsoft.list, tag=微软, force-policy=Ⓜ️ 微软服务, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Apple/Apple.list, tag=苹果, force-policy=🍎 苹果服务, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Telegram/Telegram.list, tag=电报, force-policy=📲 电报信息, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Google/Google.list, tag=谷歌, force-policy=🌐 谷歌服务, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/OpenAI/OpenAI.list, tag=OpenAI, force-policy=🤖 OpenAI, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Claude/Claude.list, tag=Claude, force-policy=🤖 OpenAI, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/YouTube/YouTube.list, tag=YouTube, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Netflix/Netflix.list, tag=Netflix, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Disney/Disney.list, tag=Disney, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Spotify/Spotify.list, tag=Spotify, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/TikTok/TikTok.list, tag=TikTok, force-policy=🌍 国外媒体, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/BiliBili/BiliBili.list, tag=哔哩哔哩, force-policy=📺 哔哩哔哩, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/Global/Global.list, tag=全球加速, force-policy=🚀 节点选择, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push(`${圈叉基础配置}/ChinaMax/ChinaMax.list, tag=中国直连, force-policy=🎯 全球直连, update-interval=86400, opt-parser=false, enabled=true`);
+  行列表538.push('');
+  行列表538.push('[filter_local]');
+  行列表538.push('geoip, cn, 🎯 全球直连');
+  行列表538.push('final, 🐟 漏网之鱼');
+  return 行列表538.join('\n');
+}
+
+// 兼容旧调用名
+async function 生成值配置533(链接列表532) {
+  return 生成值值589(链接列表532);
+}
+function 生成值配置531(链接列表530) {
+  return 生成值值562(链接列表530);
+}
+function 生成值配置529(链接列表528) {
+  return 生成值值552(链接列表528);
+}
+function 生成值值配置527(链接列表526) {
+  return 生成值值(链接列表526);
+}
+function 生成值值配置(链接列表525) {
+  return 生成值值数据对象(链接列表525);
+}
+function 生成值配置(链接列表524) {
+  return btoa(链接列表524.join('\n'));
+}
+function 生成值2值配置(链接列表523) {
+  return btoa(链接列表523.join('\n'));
+}
+
+// 全局变量存储ECH调试信息
+let 加密客户端问候调试值 = '';
+async function 获取加密客户端问候配置(域名522) {
+  if (!启用加密客户端问候) {
+    加密客户端问候调试值 = 'ECH功能已禁用';
+    return null;
+  }
+  加密客户端问候调试值 = '';
+  const 调试步骤 = [];
+  try {
+    // 优先使用 Google DNS 查询 cloudflare-ech.com 的 ECH 配置
+    调试步骤.push('尝试使用 Google DNS 查询 cloudflare-ech.com...');
+    const 加密客户端问候域名网址 = `https://v.recipes/dns/dns.google/dns-query?name=cloudflare-ech.com&type=65`;
+    const 加密客户端问候响应 = await fetch(加密客户端问候域名网址, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    调试步骤.push(`Google DNS 响应状态: ${加密客户端问候响应.status}`);
+    if (加密客户端问候响应.ok) {
+      const 加密客户端问候数据 = await 加密客户端问候响应.json();
+      调试步骤.push(`Google DNS 返回数据: ${JSON.stringify(加密客户端问候数据).substring(0, 200)}...`);
+      if (加密客户端问候数据.Answer && 加密客户端问候数据.Answer.length > 0) {
+        调试步骤.push(`找到 ${加密客户端问候数据.Answer.length} 条答案记录`);
+        for (const 本地值521 of 加密客户端问候数据.Answer) {
+          if (本地值521.data) {
+            调试步骤.push(`解析答案数据: ${typeof 本地值521.data}, 长度: ${String(本地值521.data).length}`);
+            // Google DNS 返回的数据格式可能不同，需要解析
+            const 数据字符串520 = typeof 本地值521.data === 'string' ? 本地值521.data : JSON.stringify(本地值521.data);
+            const 加密客户端问候值519 = 数据字符串520.match(/ech=([^\s"']+)/);
+            if (加密客户端问候值519 && 加密客户端问候值519[1]) {
+              加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n✅ 成功从 Google DNS 获取 ECH 配置';
+              return 加密客户端问候值519[1];
+            }
+            // 如果没有找到，尝试直接使用 data（可能是 base64 编码的）
+            if (本地值521.data && !数据字符串520.includes('ech=')) {
+              try {
+                const 已解码518 = atob(本地值521.data);
+                调试步骤.push(`尝试 base64 解码，解码后长度: ${已解码518.length}`);
+                const 已解码值517 = 已解码518.match(/ech=([^\s"']+)/);
+                if (已解码值517 && 已解码值517[1]) {
+                  加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n✅ 成功从 Google DNS (base64解码) 获取 ECH 配置';
+                  return 已解码值517[1];
+                }
+              } catch (事件值516) {
+                调试步骤.push(`base64 解码失败: ${事件值516.message}`);
+              }
+            }
+          }
+        }
+      } else {
+        调试步骤.push('Google DNS 未返回答案记录');
+      }
+    } else {
+      调试步骤.push(`Google DNS 请求失败: ${加密客户端问候响应.status}`);
+    }
+
+    // 如果 cloudflare-ech.com 查询失败，尝试使用 Google DNS 查询目标域名的 HTTPS 记录
+    调试步骤.push(`尝试使用 Google DNS 查询目标域名 ${域名522}...`);
+    const 加密域名查询网址 = `https://v.recipes/dns/dns.google/dns-query?name=${encodeURIComponent(域名522)}&type=65`;
+    const 响应515 = await fetch(加密域名查询网址, {
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    调试步骤.push(`Google DNS (目标域名) 响应状态: ${响应515.status}`);
+    if (响应515.ok) {
+      const 数据514 = await 响应515.json();
+      调试步骤.push(`Google DNS (目标域名) 返回数据: ${JSON.stringify(数据514).substring(0, 200)}...`);
+      if (数据514.Answer && 数据514.Answer.length > 0) {
+        调试步骤.push(`找到 ${数据514.Answer.length} 条答案记录`);
+        for (const 本地值513 of 数据514.Answer) {
+          if (本地值513.data) {
+            const 数据字符串 = typeof 本地值513.data === 'string' ? 本地值513.data : JSON.stringify(本地值513.data);
+            const 加密客户端问候值512 = 数据字符串.match(/ech=([^\s"']+)/);
+            if (加密客户端问候值512 && 加密客户端问候值512[1]) {
+              加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n✅ 成功从 Google DNS (目标域名) 获取 ECH 配置';
+              return 加密客户端问候值512[1];
+            }
+            // 尝试 base64 解码
+            try {
+              const 已解码511 = atob(本地值513.data);
+              const 已解码值 = 已解码511.match(/ech=([^\s"']+)/);
+              if (已解码值 && 已解码值[1]) {
+                加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n✅ 成功从 Google DNS (目标域名, base64解码) 获取 ECH 配置';
+                return 已解码值[1];
+              }
+            } catch (事件值510) {
+              调试步骤.push(`base64 解码失败: ${事件值510.message}`);
+            }
+          }
+        }
+      } else {
+        调试步骤.push('Google DNS (目标域名) 未返回答案记录');
+      }
+    } else {
+      调试步骤.push(`Google DNS (目标域名) 请求失败: ${响应515.status}`);
+    }
+
+    // 如果 Google DNS 失败，尝试使用 Cloudflare DNS 作为备选
+    调试步骤.push('尝试使用 Cloudflare DNS 作为备选...');
+    const 云墙加密客户端问候网址 = `https://cloudflare-dns.com/dns-query?name=cloudflare-ech.com&type=65`;
+    const 云墙响应 = await fetch(云墙加密客户端问候网址, {
+      headers: {
+        'Accept': 'application/dns-json'
+      }
+    });
+    调试步骤.push(`Cloudflare DNS 响应状态: ${云墙响应.status}`);
+    if (云墙响应.ok) {
+      const 云墙数据 = await 云墙响应.json();
+      调试步骤.push(`Cloudflare DNS 返回数据: ${JSON.stringify(云墙数据).substring(0, 200)}...`);
+      if (云墙数据.Answer && 云墙数据.Answer.length > 0) {
+        调试步骤.push(`找到 ${云墙数据.Answer.length} 条答案记录`);
+        for (const 本地值509 of 云墙数据.Answer) {
+          if (本地值509.data) {
+            const 加密客户端问候值 = 本地值509.data.match(/ech=([^\s"']+)/);
+            if (加密客户端问候值 && 加密客户端问候值[1]) {
+              加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n✅ 成功从 Cloudflare DNS 获取 ECH 配置';
+              return 加密客户端问候值[1];
+            }
+          }
+        }
+      } else {
+        调试步骤.push('Cloudflare DNS 未返回答案记录');
+      }
+    } else {
+      调试步骤.push(`Cloudflare DNS 请求失败: ${云墙响应.status}`);
+    }
+    加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n❌ 所有DNS查询均失败，未获取到ECH配置';
+    return null;
+  } catch (错误508) {
+    加密客户端问候调试值 = 调试步骤.join('\\n') + '\\n❌ 获取ECH配置时发生错误: ' + 错误508.message;
+    return null;
+  }
+}
+// ======================= 家宽链式（住宅宽带当落地） =======================
+// 跟之前的套娃一个思路：cfnew 自己的节点在前面带路，落地换成网友共享出来的家庭宽带。
+// 客户端会把落地节点的整条隧道塞进前置节点里走，握手走 CF 边缘，出网是住宅 IP。
+// 内核要 1.19.25 以上才认这类节点，老内核导入会报类型不认识。
+const 家宽节点源 = 解码64('aHR0cHM6Ly93d3cudnBuZ2F0ZS5uZXQvYXBpL2lwaG9uZS8=');
+const 家宽节点类型 = 解码64('b3BlbnZwbg==');
+const 家宽前置字段 = 解码64('ZGlhbGVyLXByb3h5');
+const 家宽机房前缀 = 解码64('cHVibGljLXZwbg==');
+const 家宽机房网段 = '219.100.37.';
+const 家宽缓存期限 = 30 * 60 * 1000;
+let 家宽缓存 = null;
+let 家宽缓存时间 = 0;
+const 家宽指令正则 = {};
+
+function 取家宽指令(配置文本, 指令名) {
+  if (!家宽指令正则[指令名]) 家宽指令正则[指令名] = new RegExp('^[ \\t]*' + 指令名 + '[ \\t]+(.+?)[ \\t]*$', 'm');
+  const 命中 = 配置文本.match(家宽指令正则[指令名]);
+  return 命中 ? 命中[1].trim() : '';
+}
+
+function 取家宽内联块(配置文本, 标签) {
+  const 命中 = 配置文本.match(new RegExp('<' + 标签 + '>([\\s\\S]*?)<\\/' + 标签 + '>'));
+  return 命中 ? 命中[1].trim() : '';
+}
+
+function 缩进证书文本(文本, 空白) {
+  return 文本.split('\n').map(行 => 行.trim()).filter(行 => 行).map(行 => 空白 + 行).join('\n');
+}
+
+// 每条配置解出来约 10KB，但要的几行指令都在前 4KB 里，证书从 4.7KB 往后才开始。
+// 所以只解开头一段，全量 60 多个节点的解析开销能压一半多；开头没找到 remote 再整条解。
+const 家宽前段长度 = 6000;
+function 解家宽配置(配置64, 整条 = false) {
+  const 干净 = 配置64.replace(/\s/g, '');
+  if (整条 || 干净.length <= 家宽前段长度) return 解码64(干净);
+  return 解码64(干净.slice(0, 家宽前段长度));
+}
+
+// 清单里 Operator/Message 两列可能自带逗号，所以只从行首按下标取前几列，
+// 配置固定是最后一列，多出来的逗号不会把解析冲歪。
+function 解析家宽清单(原文) {
+  const 候选 = [];
+  for (const 原始行 of 原文.split('\n')) {
+    const 行 = 原始行.trim();
+    if (!行 || 行.charAt(0) === '*' || 行.charAt(0) === '#') continue;
+    const 字段 = 行.split(',');
+    if (字段.length < 15) continue;
+    // 只要住宅宽带：官方自己架的机房服务器剔掉，而且那批容易满员握手失败
+    if ((字段[0] || '').indexOf(家宽机房前缀) === 0) continue;
+    if ((字段[1] || '').indexOf(家宽机房网段) === 0) continue;
+    const 配置64 = 字段[字段.length - 1];
+    if (!配置64 || 配置64.length < 100) continue;
+    候选.push({ 国家: (字段[6] || '').toUpperCase() || 'XX', 速度: parseInt(字段[4], 10) || 0, 配置64 });
+  }
+  // 按速度倒序。试过挑会话数最少的，结果更差（6/12 对 2/12）：
+  // 会话少多半是这台根本连不上，不是空闲，别按会话数挑。
+  候选.sort((甲, 乙) => 乙.速度 - 甲.速度);
+  const 节点列表 = [];
+  let 证书 = null;
+  for (const 项 of 候选) {
+    let 配置文本 = '';
+    try {
+      配置文本 = 解家宽配置(项.配置64);
+      if (!取家宽指令(配置文本, 'remote')) 配置文本 = 解家宽配置(项.配置64, true);
+    } catch (错误) {
+      continue;
+    }
+    // 前置只能承载 TCP，UDP 的节点丢掉
+    if ((取家宽指令(配置文本, 'proto') || 'tcp').toLowerCase() !== 'tcp') continue;
+    const 远端 = 取家宽指令(配置文本, 'remote').split(/\s+/);
+    if (!远端[0]) continue;
+    if (!证书) {
+      // 证书全站共用一份，找第一个完整的就够了
+      try {
+        const 全文 = 解家宽配置(项.配置64, true);
+        const 本次证书 = { ca: 取家宽内联块(全文, 'ca'), cert: 取家宽内联块(全文, 'cert'), key: 取家宽内联块(全文, 'key') };
+        if (本次证书.ca && 本次证书.cert && 本次证书.key) 证书 = 本次证书;
+      } catch (错误) {}
+      if (!证书) continue;
+    }
+    节点列表.push({
+      国家: 项.国家,
+      地址: 远端[0],
+      端口: parseInt(远端[1], 10) || 443,
+      加密: 取家宽指令(配置文本, 'cipher') || 'AES-128-CBC',
+      摘要: 取家宽指令(配置文本, 'auth') || 'SHA1'
+    });
+  }
+  return { 节点列表, 证书 };
+}
+
+async function 获取家宽节点() {
+  const 现在 = Date.now();
+  if (家宽缓存 && 现在 - 家宽缓存时间 < 家宽缓存期限) return 家宽缓存;
+  // 节点源的 TLS 很老（没有 TLS1.3，ECDHE 只有 CBC 套件），有的运行环境握不上，
+  // 握不上就退回明文再拉一次。清单本身是公开数据。
+  let 原文 = '';
+  let 最后错误 = null;
+  for (const 源 of [家宽节点源, 家宽节点源.replace(/^https:/, 'http:')]) {
+    try {
+      const 响应 = await fetch(源, {
+        headers: { 'User-Agent': 'Mozilla/5.0', 'Accept': 'text/plain' },
+        cf: { cacheTtl: 1800, cacheEverything: true }
+      });
+      if (!响应.ok) {
+        最后错误 = new Error('节点源返回 ' + 响应.status);
+        continue;
+      }
+      原文 = await 响应.text();
+      break;
+    } catch (错误) {
+      最后错误 = 错误;
+    }
+  }
+  if (!原文) throw 最后错误 || new Error('节点源没有返回内容');
+  const 结果 = 解析家宽清单(原文);
+  if (!结果.节点列表.length || !结果.证书) throw new Error('没解析出能用的节点');
+  家宽缓存 = 结果;
+  家宽缓存时间 = 现在;
+  return 结果;
+}
+
+// 拉不到节点直接抛错，由调用方回 503，客户端会继续用上一份，不会被空配置覆盖
+async function 生成家宽链式值(链接列表) {
+  const 前置组名 = '\u26a1 CF前置';
+  const 家宽自动 = '\ud83c\udfe0 家宽自动';
+  const 家宽手选 = '\ud83c\udfe0 家宽节点';
+  const 节点选择 = '\ud83d\ude80 节点选择';
+  const 全部前置 = 链接列表.map(解析值链接)
+    .filter(项 => 项 && (项.proto === 解码64('dmxlc3M=') || 项.proto === 解码64('dHJvamFu')));
+  // 落地隧道的握手特征很明显，前置用明文会被一眼认出来，有 TLS 节点就只用 TLS 的
+  const 加密前置 = 全部前置.filter(项 => 项.tls);
+  const 前置节点 = 加密前置.length ? 加密前置 : 全部前置;
+  const 前置名称 = 前置节点.map(项 => 项.name);
+  const 域名系统 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+  const { 节点列表, 证书 } = await 获取家宽节点();
+  const 国家计数 = {};
+  const 家宽项 = 节点列表.map(节点 => {
+    国家计数[节点.国家] = (国家计数[节点.国家] || 0) + 1;
+    return { ...节点, 名称: '\ud83c\udfe0 ' + 节点.国家 + '-家宽-' + String(国家计数[节点.国家]).padStart(2, '0') };
+  });
+  const 头部 = [
+    '# cfnew 家宽订阅：CF 节点带路，落地是住宅宽带',
+    '# 内核要 1.19.25 以上，老内核不认这类节点',
+    '# 节点是网友共享的，掉线很正常，家宽自动会自己往下换',
+    'mixed-port: 7890',
+    'allow-lan: false',
+    'mode: rule',
+    'log-level: info',
+    'ipv6: false',
+    'unified-delay: true',
+    'tcp-concurrent: true',
+    'external-controller: 127.0.0.1:9090',
+    'dns:',
+    '  enable: true',
+    '  ipv6: false',
+    '  enhanced-mode: fake-ip',
+    '  fake-ip-range: 198.18.0.1/16',
+    '  nameserver:',
+    '    - ' + 域名系统,
+    '    - https://1.1.1.1/dns-query',
+    ''
+  ];
+  const 节点段 = ['proxies:'];
+  for (const 项 of 前置节点) 节点段.push(构建值节点行(项));
+  家宽项.forEach((节点, 下标) => {
+    const 行 = [
+      '  - name: "' + 节点.名称 + '"',
+      '    type: ' + 家宽节点类型,
+      '    server: ' + 节点.地址,
+      '    port: ' + 节点.端口,
+      '    proto: tcp',
+      '    username: vpn',
+      '    password: vpn',
+      '    cipher: ' + 节点.加密,
+      '    auth: ' + 节点.摘要,
+      '    udp: false',
+      '    handshake-timeout: 30',
+      '    remote-dns-resolve: true',
+      '    dns: [ 8.8.8.8, 1.1.1.1 ]'
+    ];
+    // 一个前置都没有就退化成直连落地，订阅至少还能用
+    if (前置名称.length) 行.push('    ' + 家宽前置字段 + ': "' + 前置组名 + '"');
+    // 证书全站同一份，第一个节点定锚点，后面引用，全量几十个节点能省下几百 KB
+    if (下标 === 0) {
+      行.push('    ca: &jkca |-', 缩进证书文本(证书.ca, '      '));
+      行.push('    cert: &jkcert |-', 缩进证书文本(证书.cert, '      '));
+      行.push('    key: &jkkey |-', 缩进证书文本(证书.key, '      '));
+    } else {
+      行.push('    ca: *jkca', '    cert: *jkcert', '    key: *jkkey');
+    }
+    节点段.push(行.join('\n'));
+  });
+  const 列出 = 名称列表 => 名称列表.map(名称 => '      - "' + 名称 + '"').join('\n');
+  // 自动组按速度排，决定回落顺序；手选组按国家排，翻起来好找
+  const 按速度 = 家宽项.map(项 => 项.名称);
+  const 按国家 = 家宽项.slice().sort((甲, 乙) => 甲.国家 === 乙.国家 ? 0 : (甲.国家 < 乙.国家 ? -1 : 1)).map(项 => 项.名称);
+  const 分组段 = [解码64('cHJveHktZ3JvdXBzOg==')];
+  if (前置名称.length) {
+    分组段.push('  - name: "' + 前置组名 + '"', '    type: url-test',
+      '    url: https://www.gstatic.com/generate_204', '    interval: 300', '    tolerance: 50',
+      '    proxies:', 列出(前置名称));
+  }
+  // 全量几十个节点，测一轮就是几十次握手，所以间隔拉长、用到才测
+  分组段.push('  - name: "' + 家宽自动 + '"', '    type: fallback',
+    '    url: https://www.gstatic.com/generate_204', '    interval: 1800', '    lazy: true',
+    '    proxies:', 列出(按速度));
+  分组段.push('  - name: "' + 家宽手选 + '"', '    type: select', '    proxies:', 列出(按国家));
+  const 主选列表 = ['      - "' + 家宽自动 + '"', '      - "' + 家宽手选 + '"'];
+  if (前置名称.length) 主选列表.push('      - "' + 前置组名 + '"');
+  主选列表.push('      - DIRECT');
+  分组段.push('  - name: "' + 节点选择 + '"', '    type: select', '    proxies:', 主选列表.join('\n'));
+  const 规则段 = [
+    'rules:',
+    '  - GEOIP,LAN,DIRECT,no-resolve',
+    '  - GEOIP,CN,DIRECT,no-resolve',
+    '  - MATCH,' + 节点选择
+  ];
+  return 头部.concat(节点段, [''], 分组段, [''], 规则段, ['']).join('\n');
+}
+
+async function 处理订阅请求(请求507, 用户506, 网址505 = null) {
+  if (!网址505) 网址505 = new URL(请求507.url);
+  const 最终链接列表 = [];
+  const 工作器域名504 = 网址505.hostname;
+  const 目标503 = 网址505.searchParams.get('target') || 'base64';
+  const 家宽目标 = ['vg', 'jk', 解码64('amlha3Vhbg==')].includes(目标503.toLowerCase());
+  if (家宽目标 && !启用家宽链式) {
+    return new Response('家宽链式没开。去配置管理勾上「开启家宽链式」，或者加环境变量 jk=yes。', {
+      status: 403,
+      headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+    });
+  }
+  const 别名命名器502 = 创建值节点命名器(false);
+
+  // 如果启用了ECH，使用自定义值
+  let 加密客户端问候配置501 = null;
+  if (启用加密客户端问候) {
+    const 域名系统值500 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+    const 加密客户端问候域名499 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+    加密客户端问候配置501 = `${加密客户端问候域名499}+${域名系统值500}`;
+  }
+  async function 添加节点列表来源列表(列表498) {
+    if (启用明文) {
+      最终链接列表.push(...生成链接列表来源源(列表498, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502));
+    }
+    if (启用木马) {
+      最终链接列表.push(...(await 生成木马链接列表来源源(列表498, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502)));
+    }
+    if (启用扩展传输) {
+      最终链接列表.push(...生成扩展超文本链接列表来源源(列表498, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502));
+    }
+  }
+  if (启用原生地址) {
+    if (当前工作器地区 === 'CUSTOM') {
+      const 原生列表497 = [{
+        ip: 工作器域名504,
+        isp: '原生地址'
+      }];
+      await 添加节点列表来源列表(原生列表497);
+    } else {
+      try {
+        const 原生列表496 = [{
+          ip: 工作器域名504,
+          isp: '原生地址'
+        }];
+        await 添加节点列表来源列表(原生列表496);
+      } catch (错误495) {
+        if (!当前工作器地区) {
+          当前工作器地区 = 'CF';
+        }
+        const 值备用地址494 = await 获取值备用地址(当前工作器地区);
+        if (值备用地址494) {
+          回退地址 = 值备用地址494.domain + ':' + 值备用地址494.port;
+          const 备用列表493 = [{
+            ip: 值备用地址494.domain,
+            isp: 解码64('UHJveHlJUC0=') + 当前工作器地区
+          }];
+          await 添加节点列表来源列表(备用列表493);
+        } else {
+          const 原生列表 = [{
+            ip: 工作器域名504,
+            isp: '原生地址'
+          }];
+          await 添加节点列表来源列表(原生列表);
+        }
+      }
+    }
+  }
+  const 是否有自定义优选 = 自定义优选地址列表.length > 0 || 自定义优选域名列表.length > 0;
+  if (禁用优选) {} else if (是否有自定义优选) {
+    if (自定义优选地址列表.length > 0 && 启用优选地址) {
+      await 添加节点列表来源列表(自定义优选地址列表);
+    }
+    if (自定义优选域名列表.length > 0 && 启用优选域名) {
+      const 自定义域名列表 = 自定义优选域名列表.map(丁值492 => ({
+        ip: 丁值492.domain,
+        isp: 丁值492.name || 丁值492.domain
+      }));
+      await 添加节点列表来源列表(自定义域名列表);
+    }
+  } else {
+    if (启用优选域名) {
+      const 域名列表 = 直连域名列表.map(丁值491 => ({
+        ip: 丁值491.domain,
+        isp: 丁值491.name || 丁值491.domain
+      }));
+      await 添加节点列表来源列表(域名列表);
+    }
+    if (启用优选地址) {
+      if (!优选地址源) {
+        try {
+          const 值地址列表490 = await 获取值地址列表();
+          if (值地址列表490.length > 0) {
+            await 添加节点列表来源列表(值地址列表490);
+          }
+        } catch (错误489) {
+          if (!当前工作器地区) {
+            当前工作器地区 = 'CF';
+          }
+          const 值备用地址488 = await 获取值备用地址(当前工作器地区);
+          if (值备用地址488) {
+            回退地址 = 值备用地址488.domain + ':' + 值备用地址488.port;
+            const 备用列表487 = [{
+              ip: 值备用地址488.domain,
+              isp: 解码64('UHJveHlJUC0=') + 当前工作器地区
+            }];
+            await 添加节点列表来源列表(备用列表487);
+          }
+        }
+      }
+    }
+    if (启用仓库优选) {
+      try {
+        const 新地址列表 = await 获取值解析新地址列表();
+        if (新地址列表.length > 0) {
+          if (启用明文) {
+            最终链接列表.push(...生成链接列表来源新地址列表(新地址列表, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502));
+          }
+          if (启用木马) {
+            最终链接列表.push(...(await 生成木马链接列表来源新地址列表(新地址列表, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502)));
+          }
+          if (启用扩展传输) {
+            最终链接列表.push(...生成扩展超文本链接列表来源源(新地址列表, 用户506, 工作器域名504, 加密客户端问候配置501, false, 别名命名器502));
+          }
+        }
+      } catch (错误486) {
+        if (!当前工作器地区) {
+          当前工作器地区 = 'CF';
+        }
+        const 值备用地址485 = await 获取值备用地址(当前工作器地区);
+        if (值备用地址485) {
+          回退地址 = 值备用地址485.domain + ':' + 值备用地址485.port;
+          const 备用列表 = [{
+            ip: 值备用地址485.domain,
+            isp: 解码64('UHJveHlJUC0=') + 当前工作器地区
+          }];
+          await 添加节点列表来源列表(备用列表);
+        }
+      }
+    }
+  }
+  if (最终链接列表.length === 0) {
+    const 错误备注 = "所有节点获取失败";
+    const 协议484 = atob('dmxlc3M=');
+    const 错误链接 = `${协议484}://00000000-0000-0000-0000-000000000000@127.0.0.1:80?encryption=none&security=none&type=ws&host=error.com&path=%2F#${encodeURIComponent(错误备注)}`;
+    最终链接列表.push(错误链接);
+  }
+  let 订阅内容;
+  let 内容类型483 = 'text/plain; charset=utf-8';
+  switch (目标503.toLowerCase()) {
+    case atob('Y2xhc2g='):
+    case atob('Y2xhc2hy'):
+    case 解码64('c3Rhc2g='):
+    case 'meta':
+    case 解码64('Y2xhc2htZXRh'):
+      订阅内容 = 生成值值589(最终链接列表);
+      内容类型483 = 'text/yaml; charset=utf-8';
+      break;
+    case 'vg':
+    case 'jk':
+    case 解码64('amlha3Vhbg=='):
+      try {
+        订阅内容 = await 生成家宽链式值(最终链接列表);
+      } catch (错误) {
+        return new Response('家宽节点暂时拉不到：' + (错误 && 错误.message ? 错误.message : 错误) + '\n过几分钟再更新，客户端会先用着上一份。', {
+          status: 503,
+          headers: { 'Content-Type': 'text/plain; charset=utf-8', 'Cache-Control': 'no-store' }
+        });
+      }
+      内容类型483 = 'text/yaml; charset=utf-8';
+      break;
+    case atob('c3VyZ2U='):
+    case atob('c3VyZ2Uy'):
+    case atob('c3VyZ2Uz'):
+    case atob('c3VyZ2U0'):
+      订阅内容 = 生成值值562(最终链接列表);
+      内容类型483 = 'text/plain; charset=utf-8';
+      break;
+    case atob('cXVhbnR1bXVsdA=='):
+    case atob('cXVhbng='):
+    case 解码64('cXVhbng='):
+      订阅内容 = 生成值值(最终链接列表);
+      内容类型483 = 'text/plain; charset=utf-8';
+      break;
+    case atob('c3M='):
+    case atob('c3Ny'):
+      订阅内容 = btoa(最终链接列表.join('\n'));
+      break;
+    case atob('djJyYXk='):
+      订阅内容 = btoa(最终链接列表.join('\n'));
+      break;
+    case atob('bG9vbg=='):
+      订阅内容 = 生成值值552(最终链接列表);
+      内容类型483 = 'text/plain; charset=utf-8';
+      break;
+    case atob('c2luZ2JveA=='):
+    case 解码64('c2luZy1ib3g='):
+    case 解码64('c2luZ2JveA=='):
+      订阅内容 = 生成值值数据对象(最终链接列表);
+      内容类型483 = 'application/json; charset=utf-8';
+      break;
+    default:
+      订阅内容 = btoa(最终链接列表.join('\n'));
+  }
+  const 响应头部列表 = {
+    'Content-Type': 内容类型483,
+    'Cache-Control': 'no-store, no-cache, must-revalidate, max-age=0'
+  };
+
+  // 添加ECH状态到响应头
+  if (启用加密客户端问候) {
+    响应头部列表['X-ECH-Status'] = 'ENABLED';
+    if (加密客户端问候配置501) {
+      响应头部列表['X-ECH-Config-Length'] = String(加密客户端问候配置501.length);
+    }
+  }
+  return new Response(订阅内容, {
+    headers: 响应头部列表
+  });
+}
+function 生成链接列表来源源(列表482, 用户481, 工作器域名480, 加密客户端问候配置479 = null, 跳过编号478 = false, 别名命名器477 = null) {
+  const 云墙超文本端口476 = [80, 8080, 8880, 2052, 2082, 2086, 2095];
+  const 云墙安全超文本端口475 = [443, 2053, 2083, 2087, 2096, 8443];
+  const 默认安全超文本值474 = [443];
+  const 默认超文本值473 = 禁用非传输层安全 ? [] : [80];
+  const 链接列表472 = [];
+  const 网页套接字路径471 = '/?ed=2048';
+  const 协议470 = atob('dmxlc3M=');
+  const 制作节点名称469 = 别名命名器477 || 创建值节点命名器(跳过编号478);
+  for (const 项目468 of 列表482) {
+    const 安全地址467 = 项目468.ip.includes(':') ? `[${项目468.ip}]` : 项目468.ip;
+    let 值值生成466 = [];
+    if (项目468.port) {
+      const 端口465 = 项目468.port;
+      if (云墙安全超文本端口475.includes(端口465)) {
+        值值生成466.push({
+          port: 端口465,
+          tls: true
+        });
+      } else if (云墙超文本端口476.includes(端口465)) {
+        if (!禁用非传输层安全) {
+          值值生成466.push({
+            port: 端口465,
+            tls: false
+          });
+        }
+      } else {
+        值值生成466.push({
+          port: 端口465,
+          tls: true
+        });
+      }
+    } else {
+      默认安全超文本值474.forEach(端口464 => {
+        值值生成466.push({
+          port: 端口464,
+          tls: true
+        });
+      });
+      默认超文本值473.forEach(端口463 => {
+        值值生成466.push({
+          port: 端口463,
+          tls: false
+        });
+      });
+    }
+    for (const {
+      port: 端口462,
+      tls: 传输层安全461
+    } of 值值生成466) {
+      const 网页套接字节点名称460 = 制作节点名称469(项目468);
+      if (传输层安全461) {
+        const 网页套接字参数459 = new URLSearchParams({
+          encryption: 'none',
+          security: 'tls',
+          sni: 工作器域名480,
+          // randomized fingerprint may cause TLS compatibility issues with some Xray/uTLS clients.
+          // Use chrome as default for better compatibility (chrome is also required when ECH is enabled).
+          fp: 'chrome',
+          type: 'ws',
+          host: 工作器域名480,
+          path: 网页套接字路径471
+        });
+        处理值应用层协议协商值(网页套接字参数459);
+
+        // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+        if (启用加密客户端问候) {
+          const 域名系统值458 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+          const 加密客户端问候域名457 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+          网页套接字参数459.set('ech', `${加密客户端问候域名457}+${域名系统值458}`);
+        }
+        链接列表472.push(`${协议470}://${用户481}@${安全地址467}:${端口462}?${网页套接字参数459.toString()}#${encodeURIComponent(网页套接字节点名称460)}`);
+      } else {
+        const 网页套接字参数456 = new URLSearchParams({
+          encryption: 'none',
+          security: 'none',
+          type: 'ws',
+          host: 工作器域名480,
+          path: 网页套接字路径471
+        });
+        链接列表472.push(`${协议470}://${用户481}@${安全地址467}:${端口462}?${网页套接字参数456.toString()}#${encodeURIComponent(网页套接字节点名称460)}`);
+      }
+    }
+  }
+  return 链接列表472;
+}
+async function 生成木马链接列表来源源(列表455, 用户454, 工作器域名453, 加密客户端问候配置452 = null, 跳过编号451 = false, 别名命名器450 = null) {
+  const 云墙超文本端口449 = [80, 8080, 8880, 2052, 2082, 2086, 2095];
+  const 云墙安全超文本端口448 = [443, 2053, 2083, 2087, 2096, 8443];
+  const 默认安全超文本值 = [443];
+  const 默认超文本值 = 禁用非传输层安全 ? [] : [80];
+  const 链接列表447 = [];
+  const 网页套接字路径446 = '/?ed=2048';
+  const 密码445 = 传输路径 || 用户454;
+  const 制作节点名称444 = 别名命名器450 || 创建值节点命名器(跳过编号451);
+  for (const 项目443 of 列表455) {
+    const 安全地址442 = 项目443.ip.includes(':') ? `[${项目443.ip}]` : 项目443.ip;
+    let 值值生成 = [];
+    if (项目443.port) {
+      const 端口441 = 项目443.port;
+      if (云墙安全超文本端口448.includes(端口441)) {
+        值值生成.push({
+          port: 端口441,
+          tls: true
+        });
+      } else if (云墙超文本端口449.includes(端口441)) {
+        if (!禁用非传输层安全) {
+          值值生成.push({
+            port: 端口441,
+            tls: false
+          });
+        }
+      } else {
+        值值生成.push({
+          port: 端口441,
+          tls: true
+        });
+      }
+    } else {
+      默认安全超文本值.forEach(端口440 => {
+        值值生成.push({
+          port: 端口440,
+          tls: true
+        });
+      });
+      默认超文本值.forEach(端口439 => {
+        值值生成.push({
+          port: 端口439,
+          tls: false
+        });
+      });
+    }
+    for (const {
+      port: 端口438,
+      tls: 传输层安全
+    } of 值值生成) {
+      const 网页套接字节点名称437 = 制作节点名称444(项目443);
+      if (传输层安全) {
+        const 网页套接字参数436 = new URLSearchParams({
+          security: 'tls',
+          sni: 工作器域名453,
+          fp: 'chrome',
+          type: 'ws',
+          host: 工作器域名453,
+          path: 网页套接字路径446
+        });
+        处理值应用层协议协商值(网页套接字参数436);
+
+        // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+        if (启用加密客户端问候) {
+          const 域名系统值435 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+          const 加密客户端问候域名434 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+          网页套接字参数436.set('ech', `${加密客户端问候域名434}+${域名系统值435}`);
+        }
+        链接列表447.push(`${atob('dHJvamFuOi8v')}${密码445}@${安全地址442}:${端口438}?${网页套接字参数436.toString()}#${encodeURIComponent(网页套接字节点名称437)}`);
+      } else {
+        const 网页套接字参数 = new URLSearchParams({
+          security: 'none',
+          type: 'ws',
+          host: 工作器域名453,
+          path: 网页套接字路径446
+        });
+        链接列表447.push(`${atob('dHJvamFuOi8v')}${密码445}@${安全地址442}:${端口438}?${网页套接字参数.toString()}#${encodeURIComponent(网页套接字节点名称437)}`);
+      }
+    }
+  }
+  return 链接列表447;
+}
+async function 计算值摘要(文本434) {
+  const 缓冲区434 = await crypto.subtle.digest('MD5', new TextEncoder().encode(文本434));
+  return Array.from(new Uint8Array(缓冲区434)).map(字节434 => 字节434.toString(16).padStart(2, '0')).join('');
+}
+async function 获取值地址列表() {
+  const 分组线路映射 = {
+    ctcc: '电信',
+    cucc: '联通',
+    cmcc: '移动',
+    bgp: '多线',
+    ipv6: 'IPv6'
+  };
+  const 值4已启用 = 获取配置值('ipv4', '') === '' || 获取配置值('ipv4', 'yes') !== 'no';
+  const 值6已启用 = 获取配置值('ipv6', '') === '' || 获取配置值('ipv6', 'yes') !== 'no';
+  const 值值432 = 获取配置值('ispMobile', '') === '' || 获取配置值('ispMobile', 'yes') !== 'no';
+  const 值值431 = 获取配置值('ispUnicom', '') === '' || 获取配置值('ispUnicom', 'yes') !== 'no';
+  const 值值430 = 获取配置值('ispTelecom', '') === '' || 获取配置值('ispTelecom', 'yes') !== 'no';
+  try {
+    const 时间戳434 = String(Date.now());
+    const 内层摘要434 = await 计算值摘要(解码64('RGRsVHh0TjBzVU91'));
+    const 请求密钥434 = await 计算值摘要(内层摘要434 + 解码64('NzBjbG91ZGZsYXJlYXBpa2V5') + 时间戳434);
+    const 响应434 = await fetch(`${解码64('aHR0cHM6Ly9hcGkudW91aW4uY29tL2luZGV4LnBocC9pbmRleC9DbG91ZGZsYXJl')}?key=${请求密钥434}&time=${时间戳434}`, {
+      headers: {
+        'User-Agent': 'Mozilla/5.0'
+      }
+    });
+    if (!响应434.ok) return [];
+    const 数据434 = await 响应434.json();
+    const 分组集合434 = 数据434 && 数据434.data;
+    if (!分组集合434) return [];
+    const 结果列表433 = [];
+    for (const 分组名434 of Object.keys(分组线路映射)) {
+      const 是否值6434 = 分组名434 === 'ipv6';
+      if (是否值6434 && !值6已启用) continue;
+      if (!是否值6434 && !值4已启用) continue;
+      const 线路名434 = 分组线路映射[分组名434];
+      if (线路名434 === '移动' && !值值432) continue;
+      if (线路名434 === '联通' && !值值431) continue;
+      if (线路名434 === '电信' && !值值430) continue;
+      const 分组434 = 分组集合434[分组名434];
+      const 条目列表434 = 分组434 && Array.isArray(分组434.info) ? 分组434.info : [];
+      for (const 条目434 of 条目列表434) {
+        const 地址434 = 规范化节点主机(条目434 && 条目434.ip);
+        if (!地址434) continue;
+        结果列表433.push({
+          isp: 线路名434,
+          ip: 地址434,
+          colo: ''
+        });
+      }
+    }
+    return 结果列表433;
+  } catch (事件值427) {}
+  return [];
+}
+async function 处理网页套接字请求(请求417) {
+  // 从请求URL的path query中读取客户端自定义参数
+  // 从 path query 读取覆盖参数
+  const 请求网址 = new URL(请求417.url);
+  const 请求回退416 = 请求网址.searchParams.get('p') || '';
+  const 请求地区415 = (请求网址.searchParams.get('wk') || '').toUpperCase();
+  const 请求值字符串 = 请求网址.searchParams.get('rm') || '';
+  const 请求值414 = 请求值字符串 ? 请求值字符串.toLowerCase() !== 'no' : null;
+  const 请求代理字符串 = 请求网址.searchParams.get('s') || '';
+  let 请求代理配置413 = null;
+  if (请求代理字符串) {
+    try {
+      请求代理配置413 = 解析代理配置(请求代理字符串);
+    } catch (忽略值412) {}
+  }
+
+  // 检测并设置当前Worker地区，确保WebSocket请求能正确进行就近匹配
+  // 优先级：客户端path参数wk > 全局manualWorkerRegion > 自动检测
+  let 实际地区411 = 当前工作器地区;
+  if (!实际地区411 || 实际地区411 === '') {
+    if (请求地区415) {
+      实际地区411 = 请求地区415;
+    } else if (手动工作器地区 && 手动工作器地区.trim()) {
+      实际地区411 = 手动工作器地区.trim().toUpperCase();
+    } else {
+      实际地区411 = 'CF';
+    }
+  } else if (请求地区415) {
+    实际地区411 = 请求地区415;
+  }
+  const 网页套接字值 = new WebSocketPair();
+  const [客户端值, 值值410] = Object.values(网页套接字值);
+  值值410.accept();
+  值值410.binaryType = 'arraybuffer';
+  let 远程连接值409 = {
+    socket: null,
+    writer: null,
+    drainUpload: null
+  };
+  let 是否域名系统值 = false;
+  let 协议类型 = null;
+  let 值值408 = false;
+  let 传输值 = false;
+  const 值队列 = 创建块队列(传输上传包大小, 传输上传队列上限, 传输上传队列上限 >> 8);
+  const 请求值407 = 请求417.fetcher;
+  function 处理值远程写入器() {
+    try {
+      远程连接值409.writer?.releaseLock();
+    } catch (忽略值406) {}
+    远程连接值409.writer = null;
+  }
+  function 关闭传输() {
+    if (传输值) return;
+    传输值 = true;
+    值队列.clear();
+    处理值远程写入器();
+    try {
+      远程连接值409.socket?.close();
+    } catch (忽略值405) {}
+    关闭套接字值(值值410);
+  }
+  function 处理队列值(块404) {
+    const 数据403 = 处理值值8数组(块404);
+    if (!数据403.byteLength) return true;
+    if (!值队列.sow(数据403)) {
+      关闭传输();
+      return false;
+    }
+    远程连接值409.drainUpload();
+    return true;
+  }
+  async function 处理值值402() {
+    if (值值408 || 传输值 || !远程连接值409.writer) return;
+    值值408 = true;
+    try {
+      for (;;) {
+        if (传输值 || !远程连接值409.writer) break;
+        const [数据401] = 值队列.bundle();
+        if (!数据401) break;
+        await 远程连接值409.writer.write(数据401);
+      }
+    } catch (忽略值400) {
+      关闭传输();
+    } finally {
+      值值408 = false;
+      if (!值队列.empty && !传输值 && 远程连接值409.writer) queueMicrotask(处理值值402);
+    }
+  }
+  远程连接值409.drainUpload = () => {
+    if (!值值408 && !值队列.empty && 远程连接值409.writer) queueMicrotask(处理值值402);
+  };
+  const 值数据399 = 请求417.headers.get(atob('c2VjLXdlYnNvY2tldC1wcm90b2NvbA==')) || '';
+  const 本地值398 = 制作值流(值值410, 值数据399);
+  本地值398.pipeTo(new WritableStream({
+    async write(块397) {
+      if (传输值) return;
+      const 数据396 = 处理值值8数组(块397);
+      if (是否域名系统值) return await 处理值用户数据报(数据396, 值值410, null, 请求值407);
+      if (远程连接值409.socket && 远程连接值409.writer) {
+        if (!处理队列值(数据396)) throw new Error('upload queue overflow');
+        return;
+      }
+      if (协议类型) {
+        if (!处理队列值(数据396)) throw new Error('upload queue overflow');
+        return;
+      }
+      if (!协议类型) {
+        if (启用明文 && 数据396.byteLength >= 24) {
+          const 轻量协议结果 = 解析网页套接字值头部(数据396, 认证令牌);
+          if (!轻量协议结果.hasError) {
+            协议类型 = 解码64('dmxlc3M=');
+            const {
+              addressType: 地址类型395,
+              port: 端口394,
+              hostname: 主机名393,
+              rawIndex: 原始索引,
+              version: 本地值392,
+              isUDP: 是否用户数据报391
+            } = 轻量协议结果;
+            if (是否用户数据报391) {
+              if (端口394 === 53) 是否域名系统值 = true;else throw new Error(错误_仅支持域名系统用户数据报);
+            }
+            const 值头部390 = new Uint8Array([本地值392[0], 0]);
+            const 原始数据389 = 数据396.subarray(原始索引);
+            if (是否域名系统值) return 处理值用户数据报(原始数据389, 值值410, 值头部390, 请求值407);
+            await 处理值值384(地址类型395, 主机名393, 端口394, 原始数据389, 值值410, 值头部390, 远程连接值409, 请求回退416, 实际地区411, 请求值414, 请求代理配置413, 请求值407);
+            return;
+          }
+        }
+        if (启用木马 && 数据396.byteLength >= 56) {
+          const 值结果 = await 解析木马头部(数据396, 认证令牌);
+          if (!值结果.hasError) {
+            协议类型 = atob('dHJvamFu');
+            const {
+              addressType: 地址类型388,
+              port: 端口387,
+              hostname: 主机名386,
+              rawClientData: 原始客户端数据
+            } = 值结果;
+            await 处理值值384(地址类型388, 主机名386, 端口387, 原始客户端数据, 值值410, null, 远程连接值409, 请求回退416, 实际地区411, 请求值414, 请求代理配置413, 请求值407);
+            return;
+          }
+        }
+        throw new Error('Invalid protocol or authentication failed');
+      }
+    }
+  })).catch(错误385 => {
+    关闭传输();
+  });
+  return new Response(null, {
+    status: 101,
+    webSocket: 客户端值
+  });
+}
+async function 处理值值384(地址类型383, 主机, 端口数字, 原始数据, 网页套接字382, 值头部381, 远程连接值, 请求回退 = '', 请求地区 = '', 请求值380 = null, 请求代理配置 = null, 请求值379 = null) {
+  // 优先使用客户端path参数，其次回退到全局配置
+  const 实际回退 = 请求回退 || 回退地址;
+  const 实际地区 = 请求地区 || 当前工作器地区;
+  const 实际地区匹配 = 请求值380 !== null ? 请求值380 : 启用地区匹配;
+  const 实际代理配置 = 请求代理配置 || 已解析代理5配置;
+  const 实际代理已启用 = 请求代理配置 ? true : 是否代理已启用;
+  const 值数据378 = 处理值值8数组(原始数据);
+  async function 连接值发送(地址377, 端口376, 值代理 = false) {
+    // 走代理时首包交给握手函数在释放写入器前发出，避免换写入器导致连接被重置
+    const 远程值375 = 值代理 ? await 处理值代理连接(地址类型383, 地址377, 端口376, 实际代理配置, 请求值379, 值数据378) : await 连接值套接字(地址377, 端口376, 请求值379, 传输连接竞速数);
+    const 写入器374 = 远程值375.writable.getWriter();
+    if (!值代理 && 值数据378.byteLength) await 写入器374.write(值数据378);
+    return {
+      remoteSock: 远程值375,
+      writer: 写入器374
+    };
+  }
+  function 处理值值当前(远程值373, 写入器372) {
+    if (远程连接值.socket !== 远程值373) return;
+    try {
+      写入器372?.releaseLock();
+    } catch (忽略值371) {}
+    远程连接值.socket = null;
+    远程连接值.writer = null;
+  }
+  function 处理值远程(远程值370, 写入器369, 重试值368) {
+    try {
+      if (远程连接值.writer && 远程连接值.writer !== 写入器369) {
+        远程连接值.writer.releaseLock();
+      }
+    } catch (忽略值367) {}
+    远程连接值.socket = 远程值370;
+    远程连接值.writer = 写入器369;
+    远程连接值.drainUpload?.();
+    远程值370.closed.catch(() => {}).finally(() => {
+      if (远程连接值.socket === 远程值370) 关闭套接字值(网页套接字382);
+    });
+    连接值279(远程值370, 网页套接字382, 值头部381, 重试值368).finally(() => {
+      if (远程连接值.socket === 远程值370) {
+        try {
+          写入器369.releaseLock();
+        } catch (忽略值366) {}
+        远程连接值.writer = null;
+      }
+    });
+  }
+  async function 处理重试连接() {
+    // 只走代理：不回落到直连或备用地址，避免出口 IP 泄漏
+    if (仅走代理 && 实际代理已启用) {
+      关闭套接字值(网页套接字382);
+      return;
+    }
+    if (启用代理降级 && 实际代理已启用) {
+      try {
+        const {
+          remoteSock: 代理套接字,
+          writer: 代理写入器
+        } = await 连接值发送(主机, 端口数字, true);
+        处理值远程(代理套接字, 代理写入器, null);
+        return;
+      } catch (代理错误) {
+        let 备用主机365, 备用端口364;
+        if (实际回退 && 实际回退.trim()) {
+          const 已解析363 = 解析地址值端口(实际回退);
+          备用主机365 = 已解析363.address;
+          备用端口364 = 已解析363.port || 端口数字;
+        } else {
+          const 值备用地址362 = await 获取值备用地址(实际地区, 实际地区匹配);
+          备用主机365 = 值备用地址362 ? 值备用地址362.domain : 主机;
+          备用端口364 = 值备用地址362 ? 值备用地址362.port : 端口数字;
+        }
+        try {
+          const {
+            remoteSock: 回退套接字361,
+            writer: 回退写入器360
+          } = await 连接值发送(备用主机365, 备用端口364, false);
+          处理值远程(回退套接字361, 回退写入器360, null);
+        } catch (回退错误359) {
+          关闭套接字值(网页套接字382);
+        }
+      }
+    } else {
+      let 备用主机, 备用端口;
+      if (实际回退 && 实际回退.trim()) {
+        const 已解析 = 解析地址值端口(实际回退);
+        备用主机 = 已解析.address;
+        备用端口 = 已解析.port || 端口数字;
+      } else {
+        const 值备用地址 = await 获取值备用地址(实际地区, 实际地区匹配);
+        备用主机 = 值备用地址 ? 值备用地址.domain : 主机;
+        备用端口 = 值备用地址 ? 值备用地址.port : 端口数字;
+      }
+      try {
+        const {
+          remoteSock: 回退套接字,
+          writer: 回退写入器
+        } = await 连接值发送(备用主机, 备用端口, 实际代理已启用);
+        处理值远程(回退套接字, 回退写入器, null);
+      } catch (回退错误) {
+        关闭套接字值(网页套接字382);
+      }
+    }
+  }
+  try {
+    // 首跳是否走代理：只走代理 → 必走；优先直连 → 不走；其余按代理是否配置
+    const 首跳走代理 = 仅走代理 && 实际代理已启用 ? true : 启用代理降级 ? false : 实际代理已启用;
+    const {
+      remoteSock: 值套接字358,
+      writer: 值写入器
+    } = await 连接值发送(主机, 端口数字, 首跳走代理);
+    处理值远程(值套接字358, 值写入器, () => {
+      处理值值当前(值套接字358, 值写入器);
+      处理重试连接();
+    });
+  } catch (错误357) {
+    await 处理重试连接();
+  }
+}
+function 处理值值8数组(块356) {
+  if (块356 instanceof Uint8Array) return 块356;
+  if (块356 instanceof ArrayBuffer) return new Uint8Array(块356);
+  if (ArrayBuffer.isView(块356)) return new Uint8Array(块356.buffer, 块356.byteOffset, 块356.byteLength);
+  return new Uint8Array(块356);
+}
+function 拼接值8数组(头部355, 主体354) {
+  const 头值353 = 处理值值8数组(头部355);
+  const 乙值352 = 处理值值8数组(主体354);
+  const 输出351 = new Uint8Array(头值353.byteLength + 乙值352.byteLength);
+  输出351.set(头值353);
+  输出351.set(乙值352, 头值353.byteLength);
+  return 输出351;
+}
+function 创建块队列(本地值350, 值值349 = 本地值350, 项目列表上限 = Math.max(1, 值值349 >> 8)) {
+  let 队列 = [];
+  let 头部348 = 0;
+  let 值字节347 = 0;
+  let 值缓冲346 = null;
+  function 处理本地值345() {
+    if (头部348 > 32 && 头部348 * 2 >= 队列.length) {
+      队列 = 队列.slice(头部348);
+      头部348 = 0;
+    }
+  }
+  function 处理本地值344() {
+    if (头部348 >= 队列.length) return null;
+    const 数据343 = 队列[头部348];
+    队列[头部348++] = undefined;
+    值字节347 -= 数据343.byteLength;
+    处理本地值345();
+    return 数据343;
+  }
+  return {
+    get empty() {
+      return 头部348 >= 队列.length;
+    },
+    clear() {
+      队列 = [];
+      头部348 = 0;
+      值字节347 = 0;
+    },
+    sow(数据342) {
+      const 数量值 = 数据342?.byteLength || 0;
+      if (!数量值) return true;
+      if (值字节347 + 数量值 > 值值349 || 队列.length - 头部348 >= 项目列表上限) return false;
+      队列.push(数据342);
+      值字节347 += 数量值;
+      return true;
+    },
+    bundle(数据341 = null) {
+      数据341 ||= 处理本地值344();
+      if (!数据341 || 头部348 >= 队列.length || 数据341.byteLength >= 本地值350) return [数据341, false];
+      let 本地值340 = 数据341.byteLength;
+      let 结束 = 头部348;
+      while (结束 < 队列.length) {
+        const 本地值339 = 队列[结束];
+        const 值值338 = 本地值340 + 本地值339.byteLength;
+        if (值值338 > 本地值350) break;
+        本地值340 = 值值338;
+        结束++;
+      }
+      if (结束 === 头部348) return [数据341, false];
+      const 输出 = 值缓冲346 ||= new Uint8Array(本地值350);
+      输出.set(数据341);
+      let 偏移337 = 数据341.byteLength;
+      while (头部348 < 结束) {
+        const 本地值336 = 队列[头部348];
+        队列[头部348++] = undefined;
+        值字节347 -= 本地值336.byteLength;
+        输出.set(本地值336, 偏移337);
+        偏移337 += 本地值336.byteLength;
+      }
+      处理本地值345();
+      return [输出.subarray(0, 本地值340), true];
+    }
+  };
+}
+function 创建值值(网页套接字335) {
+  const 本地值334 = 传输下载包大小;
+  const 尾部 = 传输下载尾部;
+  const 值值333 = Math.max(4096, 尾部 << 3);
+  let 本地值332 = new Uint8Array(本地值334);
+  let 值字节 = 0;
+  let 计时器 = 0;
+  let 值值331 = false;
+  let 本地值330 = 0;
+  let 值键 = 0;
+  let 值值329 = 0;
+  function 刷新() {
+    if (计时器) clearTimeout(计时器);
+    计时器 = 0;
+    值值331 = false;
+    if (!值字节) return;
+    if (网页套接字335.readyState === 1) 网页套接字335.send(本地值332.subarray(0, 值字节).slice());
+    本地值332 = new Uint8Array(本地值334);
+    值字节 = 0;
+    值值329 = 0;
+  }
+  function 处理本地值() {
+    if (计时器 || 值值331) return;
+    值值331 = true;
+    值键 = 本地值330;
+    queueMicrotask(() => {
+      值值331 = false;
+      if (!值字节 || 计时器) return;
+      if (本地值334 - 值字节 < 尾部) return 刷新();
+      计时器 = setTimeout(() => {
+        计时器 = 0;
+        if (!值字节) return;
+        if (本地值334 - 值字节 < 尾部) return 刷新();
+        if (值值329 < 2 && (本地值330 !== 值键 || 值字节 < 值值333)) {
+          值值329++;
+          值键 = 本地值330;
+          return 处理本地值();
+        }
+        刷新();
+      }, Math.max(传输下载延迟, 1));
+    });
+  }
+  return {
+    send(块328) {
+      const 数据327 = 处理值值8数组(块328);
+      let 偏移326 = 0;
+      const 本地值325 = 数据327.byteLength;
+      if (!本地值325) return;
+      while (偏移326 < 本地值325) {
+        if (!值字节 && 本地值325 - 偏移326 >= 本地值334) {
+          const 大小324 = Math.min(本地值334, 本地值325 - 偏移326);
+          if (网页套接字335.readyState === 1) 网页套接字335.send(偏移326 || 大小324 !== 本地值325 ? 数据327.subarray(偏移326, 偏移326 + 大小324) : 数据327);
+          偏移326 += 大小324;
+          continue;
+        }
+        const 大小323 = Math.min(本地值334 - 值字节, 本地值325 - 偏移326);
+        本地值332.set(数据327.subarray(偏移326, 偏移326 + 大小323), 值字节);
+        值字节 += 大小323;
+        偏移326 += 大小323;
+        本地值330++;
+        if (值字节 === 本地值334 || 本地值334 - 值字节 < 尾部) 刷新();else 处理本地值();
+      }
+    },
+    flush: 刷新
+  };
+}
+function 处理打开值套接字(地址322, 端口321, 请求值320 = null) {
+  const 目标 = {
+    hostname: 地址322,
+    port: 端口321
+  };
+  if (请求值320 && typeof 请求值320.connect === 'function') return 请求值320.connect(目标);
+  return 连接(目标);
+}
+async function 处理打开值套接字值(地址319, 端口318, 请求值317 = null) {
+  try {
+    const 套接字316 = 处理打开值套接字(地址319, 端口318, 请求值317);
+    if (套接字316?.opened) await 套接字316.opened;
+    return 套接字316;
+  } catch (错误315) {
+    if (!请求值317) throw 错误315;
+    const 套接字314 = 连接({
+      hostname: 地址319,
+      port: 端口318
+    });
+    if (套接字314?.opened) await 套接字314.opened;
+    return 套接字314;
+  }
+}
+async function 连接值套接字(地址313, 端口312, 请求值311 = null, 竞速数量 = 1) {
+  const 数量 = Math.max(1, 竞速数量 | 0);
+  if (数量 <= 1) return 处理打开值套接字值(地址313, 端口312, 请求值311);
+  const 本地值310 = Array.from({
+    length: 数量
+  }, () => 处理打开值套接字值(地址313, 端口312, 请求值311));
+  const 本地值309 = await Promise.any(本地值310);
+  本地值310.forEach(本地值308 => {
+    本地值308.then(套接字307 => {
+      if (套接字307 !== 本地值309) {
+        try {
+          套接字307.close();
+        } catch (忽略值306) {}
+      }
+    }, () => {});
+  });
+  return 本地值309;
+}
+function 获取唯一标识字节(令牌305) {
+  if (唯一标识字节缓存.has(令牌305)) return 唯一标识字节缓存.get(令牌305);
+  const 十六进制 = String(令牌305 || '').replace(/-/g, '');
+  if (十六进制.length !== 32) return null;
+  const 字节304 = new Uint8Array(16);
+  for (let 索引值303 = 0; 索引值303 < 16; 索引值303++) {
+    const 值302 = Number.parseInt(十六进制.slice(索引值303 * 2, 索引值303 * 2 + 2), 16);
+    if (Number.isNaN(值302)) return null;
+    字节304[索引值303] = 值302;
+  }
+  if (唯一标识字节缓存.size > 16) 唯一标识字节缓存.clear();
+  唯一标识字节缓存.set(令牌305, 字节304);
+  return 字节304;
+}
+function 处理值唯一标识(字节301, 偏移300, 令牌299) {
+  const 标识298 = 获取唯一标识字节(令牌299);
+  return !!标识298 && 字节301[偏移300] === 标识298[0] && 字节301[偏移300 + 1] === 标识298[1] && 字节301[偏移300 + 2] === 标识298[2] && 字节301[偏移300 + 3] === 标识298[3] && 字节301[偏移300 + 4] === 标识298[4] && 字节301[偏移300 + 5] === 标识298[5] && 字节301[偏移300 + 6] === 标识298[6] && 字节301[偏移300 + 7] === 标识298[7] && 字节301[偏移300 + 8] === 标识298[8] && 字节301[偏移300 + 9] === 标识298[9] && 字节301[偏移300 + 10] === 标识298[10] && 字节301[偏移300 + 11] === 标识298[11] && 字节301[偏移300 + 12] === 标识298[12] && 字节301[偏移300 + 13] === 标识298[13] && 字节301[偏移300 + 14] === 标识298[14] && 字节301[偏移300 + 15] === 标识298[15];
+}
+function 解析网页套接字值头部(块297, 令牌) {
+  const 字节296 = 处理值值8数组(块297);
+  if (字节296.byteLength < 24) return {
+    hasError: true,
+    message: 错误_无效数据
+  };
+  const 本地值295 = 字节296.subarray(0, 1);
+  if (!处理值唯一标识(字节296, 1, 令牌)) return {
+    hasError: true,
+    message: 错误_无效用户
+  };
+  const 值长度294 = 字节296[17];
+  const 命令索引 = 18 + 值长度294;
+  if (字节296.byteLength < 命令索引 + 5) return {
+    hasError: true,
+    message: 错误_无效数据
+  };
+  const 命令293 = 字节296[命令索引];
+  let 是否用户数据报 = false;
+  if (命令293 === 1) {} else if (命令293 === 2) {
+    是否用户数据报 = true;
+  } else {
+    return {
+      hasError: true,
+      message: 错误_不支持命令
+    };
+  }
+  const 端口索引292 = 19 + 值长度294;
+  const 端口291 = 字节296[端口索引292] << 8 | 字节296[端口索引292 + 1];
+  let 地址索引290 = 端口索引292 + 2,
+    地址长度289 = 0,
+    地址值索引 = 地址索引290 + 1,
+    主机名288 = '';
+  const 地址类型287 = 字节296[地址索引290];
+  switch (地址类型287) {
+    case 地址类型_四版:
+      地址长度289 = 4;
+      if (字节296.byteLength < 地址值索引 + 地址长度289) return {
+        hasError: true,
+        message: 错误_无效数据
+      };
+      主机名288 = `${字节296[地址值索引]}.${字节296[地址值索引 + 1]}.${字节296[地址值索引 + 2]}.${字节296[地址值索引 + 3]}`;
+      break;
+    case 地址类型_网址:
+      if (字节296.byteLength < 地址值索引 + 1) return {
+        hasError: true,
+        message: 错误_无效数据
+      };
+      地址长度289 = 字节296[地址值索引++];
+      if (字节296.byteLength < 地址值索引 + 地址长度289) return {
+        hasError: true,
+        message: 错误_无效数据
+      };
+      主机名288 = 共享解码器.decode(字节296.subarray(地址值索引, 地址值索引 + 地址长度289));
+      break;
+    case 地址类型_六版:
+      地址长度289 = 16;
+      if (字节296.byteLength < 地址值索引 + 地址长度289) return {
+        hasError: true,
+        message: 错误_无效数据
+      };
+      const 值6286 = [];
+      const 值6视图 = new DataView(字节296.buffer, 字节296.byteOffset + 地址值索引, 地址长度289);
+      for (let 索引值285 = 0; 索引值285 < 8; 索引值285++) 值6286.push(值6视图.getUint16(索引值285 * 2).toString(16));
+      主机名288 = 值6286.join(':');
+      break;
+    default:
+      return {
+        hasError: true,
+        message: `${错误_无效地址类型}: ${地址类型287}`
+      };
+  }
+  if (!主机名288) return {
+    hasError: true,
+    message: `${错误_空地址}: ${地址类型287}`
+  };
+  return {
+    hasError: false,
+    addressType: 地址类型287,
+    port: 端口291,
+    hostname: 主机名288,
+    isUDP: 是否用户数据报,
+    rawIndex: 地址值索引 + 地址长度289,
+    version: 本地值295
+  };
+}
+function 制作值流(套接字284, 值数据头部) {
+  let 本地值283 = false;
+  return new ReadableStream({
+    start(控制器282) {
+      套接字284.addEventListener('message', 事件 => {
+        if (!本地值283) 控制器282.enqueue(处理值值8数组(事件.data));
+      });
+      套接字284.addEventListener('close', () => {
+        if (!本地值283) {
+          关闭套接字值(套接字284);
+          控制器282.close();
+        }
+      });
+      套接字284.addEventListener('error', 错误281 => 控制器282.error(错误281));
+      const {
+        earlyData: 值数据,
+        error: 错误280
+      } = 处理基础64值数组(值数据头部);
+      if (错误280) 控制器282.error(错误280);else if (值数据) 控制器282.enqueue(处理值值8数组(值数据));
+    },
+    cancel() {
+      本地值283 = true;
+      关闭套接字值(套接字284);
+    }
+  });
+}
+async function 连接值279(远程套接字, 网页套接字278, 头部数据, 重试值) {
+  let 头部277 = 头部数据,
+    是否有数据 = false,
+    本地值276 = false;
+
+  // 关键：直连有时握手成功但远端长时间无数据，需要超时触发降级
+  let 首次字节计时器 = null;
+  if (重试值) {
+    首次字节计时器 = setTimeout(() => {
+      if (!是否有数据 && !本地值276) {
+        本地值276 = true;
+        try {
+          远程套接字.close && 远程套接字.close();
+        } catch (忽略值275) {}
+        重试值();
+      }
+    }, 首字节超时);
+  }
+  const 本地值274 = 创建值值(网页套接字278);
+  let 读取器273 = null;
+  let 本地值272 = true;
+  let 缓冲271 = new ArrayBuffer(传输块大小);
+  try {
+    try {
+      读取器273 = 远程套接字.readable.getReader({
+        mode: 'byob'
+      });
+    } catch (忽略值270) {
+      本地值272 = false;
+      读取器273 = 远程套接字.readable.getReader();
+    }
+    for (;;) {
+      const 结果269 = 本地值272 ? await 读取器273.read(new Uint8Array(缓冲271, 0, 传输块大小)) : await 读取器273.read();
+      if (结果269.done) break;
+      const 读取值 = 结果269.value;
+      let 块268 = 处理值值8数组(读取值);
+      const 值缓冲 = 本地值272 && 读取值?.buffer instanceof ArrayBuffer && 读取值.buffer.byteLength >= 传输块大小 ? 读取值.buffer : new ArrayBuffer(传输块大小);
+      if (!块268.byteLength) continue;
+      if (!是否有数据) {
+        是否有数据 = true;
+        if (首次字节计时器) {
+          clearTimeout(首次字节计时器);
+          首次字节计时器 = null;
+        }
+      }
+      if (网页套接字278.readyState !== 1) throw new Error(错误_网页套接字未打开);
+      if (头部277) {
+        块268 = 拼接值8数组(头部277, 块268);
+        头部277 = null;
+      }
+      if (块268.byteLength >= 传输块大小 >> 1) {
+        本地值274.flush();
+        网页套接字278.send(块268);
+        if (本地值272) 缓冲271 = new ArrayBuffer(传输块大小);
+      } else {
+        本地值274.send(块268.slice());
+        if (本地值272) 缓冲271 = 值缓冲;
+      }
+    }
+    本地值274.flush();
+  } catch (错误267) {
+    // 已经触发 retry 时不要关闭 WS（retry 会重新挂载新 socket）
+    if (!本地值276) 关闭套接字值(网页套接字278);
+  } finally {
+    try {
+      本地值274.flush();
+    } catch (忽略值266) {}
+    try {
+      读取器273?.releaseLock();
+    } catch (忽略值265) {}
+  }
+  if (首次字节计时器) {
+    clearTimeout(首次字节计时器);
+    首次字节计时器 = null;
+  }
+  if (!是否有数据 && !本地值276 && 重试值) 重试值();
+}
+async function 处理值用户数据报(用户数据报块, 网页套接字, 值头部, 请求值 = null) {
+  try {
+    const 值套接字 = await 连接值套接字('8.8.4.4', 53, 请求值, 1);
+    let 头部 = 值头部;
+    const 写入器264 = 值套接字.writable.getWriter();
+    await 写入器264.write(用户数据报块);
+    写入器264.releaseLock();
+    await 连接值279(值套接字, 网页套接字, 头部, null);
+  } catch (错误263) {}
+}
+async function 处理值代理连接(地址类型, 地址262, 端口261, 代理配置 = 已解析代理5配置, 请求值258 = null, 首包数据 = null) {
+  // 按代理种类分派：隧道走建隧请求，其余保持套接字5 握手
+  if (代理配置 && (代理配置.kind === 代理种类_隧道 || 代理配置.kind === 代理种类_安全隧道)) {
+    return 处理值隧道连接(地址262, 端口261, 代理配置, 请求值258, 首包数据);
+  }
+  const {
+    username: 本地值260,
+    password: 密码259,
+    hostname: 主机名258,
+    socksPort: 代理端口257
+  } = 代理配置;
+  // 优先用请求自带的 fetcher 建连，回退到全局连接
+  const 套接字256 = 处理打开值套接字(主机名258, 代理端口257, 请求值258);
+  const 写入器255 = 套接字256.writable.getWriter();
+  await 写入器255.write(new Uint8Array(本地值260 ? [5, 2, 0, 2] : [5, 1, 0]));
+  const 读取器254 = 套接字256.readable.getReader();
+  // 响应可能分片到达，按需累积到足够长度再解析；残留字节留给下一步
+  let 残留字节 = new Uint8Array(0);
+  async function 读满(需要长度) {
+    while (残留字节.length < 需要长度) {
+      const { value: 分片, done: 已结束 } = await 读取器254.read();
+      if (已结束 || !分片) throw new Error(错误_代理连接失败);
+      残留字节 = 拼接值8数组(残留字节, 分片);
+    }
+    return 残留字节;
+  }
+  function 取走(长度) {
+    const 结果 = 残留字节.subarray(0, 长度);
+    残留字节 = 残留字节.subarray(长度);
+    return 结果;
+  }
+  let 本地值253 = await 读满(2);
+  if (本地值253[0] !== 5 || 本地值253[1] === 255) throw new Error(错误_代理无可用方法);
+  const 选中方法 = 本地值253[1];
+  取走(2);
+  if (选中方法 === 2) {
+    if (!本地值260 || !密码259) throw new Error(错误_代理需要认证);
+    const 编码器252 = new TextEncoder();
+    const 认证请求 = new Uint8Array([1, 本地值260.length, ...编码器252.encode(本地值260), 密码259.length, ...编码器252.encode(密码259)]);
+    await 写入器255.write(认证请求);
+    本地值253 = await 读满(2);
+    if (本地值253[0] !== 1 || 本地值253[1] !== 0) throw new Error(错误_代理认证失败);
+    取走(2);
+  }
+  // 统一用域名型寻址：调用方的地址类型编号在不同协议下含义不一致（值协议 2=域名，
+  // 木马协议 3=域名），按编号分支会把域名当成六版地址编错。交给代理自己解析更稳。
+  const 编码器251 = new TextEncoder();
+  const 目标字节 = 编码器251.encode(规范化目标地址(地址262));
+  const 本地值250 = new Uint8Array([3, 目标字节.length, ...目标字节]);
+  await 写入器255.write(new Uint8Array([5, 1, 0, ...本地值250, 端口261 >> 8, 端口261 & 255]));
+  // 连接应答长度随绑定地址类型而变，先读固定的 4 字节头再按类型补齐
+  本地值253 = await 读满(4);
+  if (本地值253[1] !== 0) throw new Error(错误_代理连接失败);
+  const 绑定地址类型 = 本地值253[3];
+  let 应答长度;
+  if (绑定地址类型 === 1) {
+    应答长度 = 10;
+  } else if (绑定地址类型 === 4) {
+    应答长度 = 22;
+  } else if (绑定地址类型 === 3) {
+    应答长度 = 7 + (await 读满(5))[4];
+  } else {
+    throw new Error(错误_代理响应异常);
+  }
+  await 读满(应答长度);
+  取走(应答长度);
+  // 首包必须在释放写入器之前发出，与握手共用同一个写入器
+  if (首包数据 && 首包数据.byteLength) await 写入器255.write(首包数据);
+  写入器255.releaseLock();
+  读取器254.releaseLock();
+  // 应答之后若已捎带目标数据，重新挂回流首部，避免丢首包
+  if (残留字节.length) return 包装残留套接字(套接字256, 残留字节);
+  return 套接字256;
+}
+// 六版地址在域名型寻址里不带方括号
+function 规范化目标地址(地址234值) {
+  const 文本 = String(地址234值 || '');
+  return /^\[.*\]$/.test(文本) ? 文本.slice(1, -1) : 文本;
+}
+async function 处理值隧道连接(地址238值, 端口237值, 代理配置, 请求值236值 = null, 首包数据235值 = null) {
+  const {
+    username: 隧道用户,
+    password: 隧道密码,
+    hostname: 隧道主机,
+    socksPort: 隧道端口,
+    kind: 隧道种类
+  } = 代理配置;
+  const 连接选项 = 隧道种类 === 代理种类_安全隧道 ? {
+    secureTransport: 'on',
+    allowHalfOpen: false
+  } : undefined;
+  const 目标参数 = {
+    hostname: 隧道主机,
+    port: 隧道端口
+  };
+  // 优先用请求自带的 fetcher 建连，回退到全局连接
+  const 套接字 = 请求值236值 && typeof 请求值236值.connect === 'function' ? (连接选项 === undefined ? 请求值236值.connect(目标参数) : 请求值236值.connect(目标参数, 连接选项)) : 连接(目标参数, 连接选项);
+  if (套接字?.opened) await 套接字.opened;
+  // IPv6 目标在请求行里要带方括号
+  const 目标主机 = 地址238值.includes(':') && !/^\[.*\]$/.test(地址238值) ? `[${地址238值}]` : 地址238值;
+  const 目标地址 = `${目标主机}:${端口237值}`;
+  let 请求头 = `${文本_连接方法} ${目标地址}${文本_协议版本}${文本_换行}` + `${文本_主机头}${目标地址}${文本_换行}` + `${文本_用户代理头}${文本_换行}` + `${文本_代理保持}${文本_换行}`;
+  if (隧道用户) {
+    请求头 += `${文本_代理认证头}${btoa(`${隧道用户}:${隧道密码 || ''}`)}${文本_换行}`;
+  }
+  请求头 += 文本_换行;
+  const 写入器 = 套接字.writable.getWriter();
+  const 读取器 = 套接字.readable.getReader();
+  try {
+    await 写入器.write(new TextEncoder().encode(请求头));
+    // 响应可能分片到达，累积到头部结束（空行）为止
+    const 分隔 = [13, 10, 13, 10];
+    let 缓冲 = new Uint8Array(0);
+    let 头部结束 = -1;
+    while (头部结束 < 0) {
+      const {
+        value: 分片,
+        done: 已结束
+      } = await 读取器.read();
+      if (已结束 || !分片) throw new Error(错误_代理隧道失败);
+      缓冲 = 拼接值8数组(缓冲, 分片);
+      for (let 位置 = 0; 位置 + 3 < 缓冲.length; 位置++) {
+        if (缓冲[位置] === 分隔[0] && 缓冲[位置 + 1] === 分隔[1] && 缓冲[位置 + 2] === 分隔[2] && 缓冲[位置 + 3] === 分隔[3]) {
+          头部结束 = 位置 + 4;
+          break;
+        }
+      }
+      if (头部结束 < 0 && 缓冲.length > 8192) throw new Error(错误_代理响应异常);
+    }
+    const 状态行 = 共享解码器.decode(缓冲.subarray(0, Math.min(头部结束, 128)));
+    if (!状态行.startsWith(文本_响应前缀)) throw new Error(错误_代理响应异常);
+    const 状态码 = Number(状态行.split(' ')[1]);
+    if (!(状态码 >= 200 && 状态码 < 300)) throw new Error(错误_代理隧道失败);
+    // 代理在头部之后可能已经捎带了目标数据，需要交还给下游
+    const 残留数据 = 缓冲.subarray(头部结束);
+    // 首包在释放写入器之前发出
+    if (首包数据235值 && 首包数据235值.byteLength) await 写入器.write(首包数据235值);
+    写入器.releaseLock();
+    读取器.releaseLock();
+    if (残留数据.byteLength) return 包装残留套接字(套接字, 残留数据);
+    return 套接字;
+  } catch (隧道错误) {
+    try {
+      写入器.releaseLock();
+    } catch (忽略隧道1) {}
+    try {
+      读取器.releaseLock();
+    } catch (忽略隧道2) {}
+    try {
+      套接字.close();
+    } catch (忽略隧道3) {}
+    throw 隧道错误;
+  }
+}
+// 把建隧响应里捎带的目标数据重新挂回可读流首部
+function 包装残留套接字(套接字, 残留数据) {
+  let 上游读取器 = null;
+  const 新可读 = new ReadableStream({
+    start(控制器) {
+      控制器.enqueue(残留数据);
+      上游读取器 = 套接字.readable.getReader();
+    },
+    async pull(控制器) {
+      const {
+        value: 分片,
+        done: 已结束
+      } = await 上游读取器.read();
+      if (已结束) {
+        控制器.close();
+        return;
+      }
+      控制器.enqueue(分片);
+    },
+    cancel(原因) {
+      try {
+        上游读取器?.cancel(原因);
+      } catch (忽略取消) {}
+    }
+  });
+  return {
+    readable: 新可读,
+    writable: 套接字.writable,
+    closed: 套接字.closed,
+    opened: 套接字.opened,
+    close: () => 套接字.close()
+  };
+}
+function 解析代理配置(地址249) {
+  let 剩余地址 = String(地址249 || '').trim();
+  // 按前缀识别代理种类，无前缀保持原有行为（套接字5）
+  let 代理种类 = 代理种类_套接字5;
+  const 小写地址 = 剩余地址.toLowerCase();
+  if (小写地址.startsWith(前缀_安全超文本)) {
+    代理种类 = 代理种类_安全隧道;
+    剩余地址 = 剩余地址.slice(前缀_安全超文本.length);
+  } else if (小写地址.startsWith(前缀_超文本)) {
+    代理种类 = 代理种类_隧道;
+    剩余地址 = 剩余地址.slice(前缀_超文本.length);
+  } else if (小写地址.startsWith(前缀_套接字5)) {
+    剩余地址 = 剩余地址.slice(前缀_套接字5.length);
+  } else if (小写地址.startsWith(前缀_套接字)) {
+    剩余地址 = 剩余地址.slice(前缀_套接字.length);
+  }
+  // 去掉可能存在的尾部路径，只留 认证@主机:端口
+  const 路径位置 = 剩余地址.indexOf('/');
+  if (路径位置 >= 0) 剩余地址 = 剩余地址.slice(0, 路径位置);
+  if (!剩余地址) throw new Error(错误_无效代理地址);
+  let [本地值248, 本地值247] = 剩余地址.split("@").reverse();
+  let 本地值246, 密码245, 主机名244, 代理端口;
+  if (本地值247) {
+    const 本地值243 = 本地值247.split(":");
+    if (本地值243.length !== 2) throw new Error(错误_无效代理地址);
+    [本地值246, 密码245] = 本地值243;
+  }
+  const 本地值242 = 本地值248.split(":");
+  const 末段值 = 本地值242.pop();
+  代理端口 = Number(末段值);
+  // 隧道模式允许省略端口，按明文 80 / 安全 443 兜底
+  if (isNaN(代理端口)) {
+    if (代理种类 === 代理种类_套接字5) throw new Error(错误_无效代理地址);
+    本地值242.push(末段值);
+    代理端口 = 代理种类 === 代理种类_安全隧道 ? 443 : 80;
+  }
+  主机名244 = 本地值242.join(":");
+  if (!主机名244) throw new Error(错误_无效代理地址);
+  if (主机名244.includes(":") && !/^\[.*\]$/.test(主机名244)) throw new Error(错误_无效代理地址);
+  return {
+    username: 本地值246,
+    password: 密码245,
+    hostname: 主机名244,
+    socksPort: 代理端口,
+    kind: 代理种类
+  };
+}
+async function 处理订阅值(请求241, 用户240 = null) {
+  if (!用户240) 用户240 = 认证令牌;
+  const 网址239 = new URL(请求241.url);
+  // 优先检查Cookie中的语言设置
+  const 凭据头部 = 请求241.headers.get('Cookie') || '';
+  let 语言来源凭据 = null;
+  if (凭据头部) {
+    const 本地值238 = 凭据头部.split(';').map(丙值237 => 丙值237.trim());
+    for (const 凭据 of 本地值238) {
+      if (凭据.startsWith('preferredLanguage=')) {
+        语言来源凭据 = 凭据.split('=')[1];
+        break;
+      }
+    }
+  }
+  let 是否值236 = false;
+  if (语言来源凭据 === 'fa' || 语言来源凭据 === 'fa-IR') {
+    是否值236 = true;
+  } else if (语言来源凭据 === 'zh' || 语言来源凭据 === 'zh-CN') {
+    是否值236 = false;
+  } else {
+    // 如果没有Cookie，使用浏览器语言检测
+    const 接受语言 = 请求241.headers.get('Accept-Language') || '';
+    const 浏览器语言 = 接受语言.split(',')[0].split('-')[0].toLowerCase();
+    是否值236 = 浏览器语言 === 'fa' || 接受语言.includes('fa-IR') || 接受语言.includes('fa');
+  }
+  const 语言值 = 是否值236 ? 'fa-IR' : 'zh-CN';
+  const 本地值235 = {
+    zh: {
+      title: 解码64('6K6i6ZiF5Lit5b+D'),
+      subtitle: '多客户端支持 • 智能优选 • 一键生成',
+      selectClient: '[ 选择客户端 ]',
+      systemStatus: '[ 系统状态 ]',
+      configManagement: '[ 配置管理 ]',
+      relatedLinks: '[ 相关链接 ]',
+      checking: '检测中...',
+      workerRegion: 'Worker地区: ',
+      detectionMethod: '检测方式: ',
+      proxyIPStatus: 解码64('UHJveHlJUOeKtuaAgTog'),
+      currentIP: '当前使用IP: ',
+      regionMatch: '地区匹配: ',
+      selectionLogic: '选择逻辑: ',
+      kvStatusChecking: '检测KV状态中...',
+      kvEnabled: '✅ KV存储已启用，可以使用配置管理功能',
+      kvDisabled: '⚠️ KV存储未启用或未配置',
+      specifyRegion: '指定地区 (wk):',
+      autoDetect: 解码64('5a6Y5pa555u06L+e'),
+      saveRegion: '保存地区配置',
+      protocolSelection: 解码64('5Y2P6K6u6YCJ5oupOg=='),
+      enableProtoV: 解码64('5ZCv55SoIFZMRVNTIOWNj+iurg=='),
+      enableProtoT: 解码64('5ZCv55SoIFRyb2phbiDljY/orq4='),
+      enableXhttp: 解码64('5ZCv55SoIHhodHRwIOWNj+iurg=='),
+      altPassword: 解码64('VHJvamFuIOWvhueggSAo5Y+v6YCJKTo='),
+      customPath: '自定义路径 (d):',
+      customIP: 解码64('6Ieq5a6a5LmJUHJveHlJUCAocCk6'),
+      preferredIPs: '优选IP列表 (yx):',
+      preferredIPsURL: '优选IP来源URL (yxURL):',
+      latencyTest: '延迟测试',
+      latencyTestIP: '测试IP/域名:',
+      latencyTestIPPlaceholder: '输入IP或域名，多个用逗号分隔',
+      latencyTestPort: '端口:',
+      startTest: '开始测试',
+      stopTest: '停止测试',
+      testResult: '测试结果:',
+      addToYx: '添加到优选列表',
+      addSelectedToYx: '添加选中项到优选列表',
+      selectAll: '全选',
+      deselectAll: '取消全选',
+      testingInProgress: '测试中...',
+      testComplete: '测试完成',
+      latencyMs: '延迟',
+      timeout: '超时',
+      ipSource: 'IP来源:',
+      manualInput: '手动输入',
+      cfRandomIP: 'CF随机IP',
+      urlFetch: 'URL获取',
+      randomCount: '生成数量:',
+      fetchURL: '获取URL:',
+      fetchURLPlaceholder: '输入优选IP的URL地址',
+      generateIP: '生成IP',
+      fetchIP: '获取IP',
+      socks5Config: 解码64('5Luj55CG6YWN572uIChzKTo='),
+      customHomepage: '自定义首页URL (homepage):',
+      customHomepagePlaceholder: '例如: https://example.com',
+      customHomepageHint: '设置自定义URL作为首页伪装。访问根路径 / 时将显示该URL的内容。留空则显示默认终端页面。',
+      saveConfig: '保存配置',
+      advancedControl: '高级控制',
+      subscriptionConverter: 解码64('6K6i6ZiF6L2s5o2i5Zyw5Z2AOg=='),
+      builtinPreferred: '内置优选类型:',
+      enablePreferredDomain: '启用优选域名',
+      enablePreferredIP: '启用优选 IP',
+      enableNativeAddress: '启用原生地址',
+      enableGitHubPreferred: '启用自定义优选',
+      jkSection: '家宽链式',
+      jkEnable: '开启家宽链式',
+      jkHint: 解码64('5byA5LqG5LmL5ZCO5a6i5oi356uv5YiX6KGo5aSa5LiA5Liq44CMQ0xBU0gg5a625a6944CN44CCQ0Yg6IqC54K55bim6Lev77yM5Ye65Y+j5o2i5oiQ5pel5pys44CB6Z+p5Zu9562J5Zyw55qE5a625bqt5a695bim44CC6KaBIENsYXNoIE1ldGEg5YaF5qC4IDEuMTkuMjUg5Lul5LiK5omN6K6k77yMQ2xhc2ggVmVyZ2UgUmV244CBRmxDbGFzaOOAgUNNRkEg6YO96KGM44CC6IqC54K55piv572R5Y+L5YWx5Lqr55qE77yM5pe25LiN5pe25Lya5o6J77yM6K6i6ZiF6YeM5Lya6Ieq5bex5o2i44CC'),
+      jkClient: 'CLASH 家宽',
+      allowAPIManagement: '允许API管理 (ae):',
+      regionMatching: '地区匹配 (rm):',
+      downgradeControl: 解码64('5Ye656uZ5pa55byPIChxaik6'),
+      tlsControl: 'TLS控制 (dkby):',
+      preferredControl: '优选控制 (yxby):',
+      saveAdvanced: '保存高级配置',
+      loading: '加载中...',
+      currentConfig: '📍 当前路径配置',
+      refreshConfig: '刷新配置',
+      resetConfig: '重置配置',
+      subscriptionCopied: 解码64('6K6i6ZiF6ZO+5o6l5bey5aSN5Yi2'),
+      autoSubscriptionCopied: 解码64('6Ieq5Yqo6K+G5Yir6K6i6ZiF6ZO+5o6l5bey5aSN5Yi277yM5a6i5oi356uv6K6/6Zeu5pe25Lya5qC55o2uVXNlci1BZ2VudOiHquWKqOivhuWIq+W5tui/lOWbnuWvueW6lOagvOW8jw=='),
+      altPasswordPlaceholder: '留空则自动使用 UUID',
+      altPasswordHint: 解码64('6K6+572u6Ieq5a6a5LmJIFRyb2phbiDlr4bnoIHjgILnlZnnqbrliJnkvb/nlKggVVVJROOAguWuouaIt+err+S8muiHquWKqOWvueWvhueggei/m+ihjCBTSEEyMjQg5ZOI5biM44CC'),
+      protocolHint: 解码64('5Y+v5Lul5ZCM5pe25ZCv55So5aSa5Liq5Y2P6K6u44CC6K6i6ZiF5bCG55Sf5oiQ6YCJ5Lit5Y2P6K6u55qE6IqC54K544CCPGJyPuKAoiBWTEVTUyBXUzog5Z+65LqOIFdlYlNvY2tldCDnmoTmoIflh4bljY/orq48YnI+4oCiIFRyb2phbjog5L2/55SoIFNIQTIyNCDlr4bnoIHorqTor4E8YnI+4oCiIHhodHRwOiDln7rkuo4gSFRUUCBQT1NUIOeahOS8quijheWNj+iuru+8iOmcgOimgee7keWumuiHquWumuS5ieWfn+WQjeW5tuW8gOWQryBnUlBD77yJ'),
+      enableECH: '启用 ECH (Encrypted Client Hello)',
+      enableECHHint: 解码64('5ZCv55So5ZCO77yM5q+P5qyh5Yi35paw6K6i6ZiF5pe25Lya6Ieq5Yqo5LuOIERvSCDojrflj5bmnIDmlrDnmoQgRUNIIOmFjee9ruW5tua3u+WKoOWIsOmTvuaOpeS4rQ=='),
+      customDNS: '自定义 DNS 服务器',
+      customDNSPlaceholder: '例如: https://223.5.5.5/dns-query',
+      customDNSHint: '用于ECH配置查询的DNS服务器地址（DoH格式）',
+      customECHDomain: '自定义 ECH 域名',
+      customECHDomainPlaceholder: '例如: cloudflare-ech.com',
+      customECHDomainHint: 'ECH配置中使用的域名，留空则使用默认值',
+      alpn: 'TLS ALPN',
+      alpnDefault: '默认（留空，由客户端协商）',
+      alpnHint: '仅添加到 TLS 节点链接参数；留空则不写 alpn。',
+      saveProtocol: 解码64('5L+d5a2Y5Y2P6K6u6YWN572u'),
+      subscriptionConverterPlaceholder: '默认: https://url.v1.mk/sub',
+      subscriptionConverterHint: 解码64('6K6i6ZiF6L2s5o2i5bey5YaF6YOo5a6e546w77yM5peg6ZyA5aSW6YOoIEFQSeOAguatpOmhueS7heS9nOWFvOWuueS/neeVme+8jOWPr+eVmeepuuOAgg=='),
+      builtinPreferredHint: 解码64('5o6n5Yi26K6i6ZiF5Lit5YyF5ZCr5ZOq5Lqb5YaF572u5LyY6YCJ6IqC54K544CC6buY6K6k5YWo6YOo5ZCv55So44CC'),
+      apiEnabledDefault: '默认（关闭API）',
+      apiEnabledYes: '开启API管理',
+      apiEnabledHint: '⚠️ 安全提醒：开启后允许通过API动态添加优选IP。建议仅在需要时开启。',
+      regionMatchingDefault: '默认（启用地区匹配）',
+      regionMatchingNo: '关闭地区匹配',
+      regionMatchingHint: '设置为"关闭"时不进行地区智能匹配',
+      downgradeControlDefault: 解码64('5LyY5YWI6LWw5Luj55CG77yI6buY6K6k77yJ'),
+      downgradeControlNo: 解码64('5LyY5YWI55u06L+e77yM5aSx6LSl5YaN6LWw5Luj55CG'),
+      downgradeControlOnly: 解码64('5Y+q6LWw5Luj55CG77yM5LiN5Zue6JC9'),
+      downgradeControlHint: 解码64('5rKh5aGr5Luj55CG5pe25LiJ5Liq6YCJ6aG56YO95LiA5qC377yM6YO95piv55u06L+e44CC5Y+q6LWw5Luj55CG5pe26L+e5LiN5LiK5bCx5pat5byA77yM5Ye65Y+jIElQIOS4jeS8mua8jw=='),
+      tlsControlDefault: '默认（保留所有节点）',
+      tlsControlYes: '仅TLS节点',
+      tlsControlHint: '设置为"仅TLS节点"时只生成带TLS的节点，不生成非TLS节点（如80端口）',
+      preferredControlDefault: '默认（启用优选）',
+      preferredControlYes: '关闭优选',
+      preferredControlHint: '设置为"关闭优选"时只使用原生地址，不生成优选IP和域名节点',
+      regionNames: {
+        CF: 解码64('8J+MkCDlrpjmlrnnm7Tov54='),
+        HK: '🇭🇰 香港',
+        US: '🇺🇸 美国',
+        SG: '🇸🇬 新加坡',
+        JP: '🇯🇵 日本',
+        KR: '🇰🇷 韩国',
+        DE: '🇩🇪 德国',
+        SE: '🇸🇪 瑞典',
+        NL: '🇳🇱 荷兰',
+        FI: '🇫🇮 芬兰',
+        GB: '🇬🇧 英国'
+      },
+      terminal: '终端 v3.1',
+      githubProject: 'GitHub 项目',
+      优选工具: '优选工具',
+      autoDetectClient: '自动识别',
+      selectionLogicText: '同地区 → 邻近地区 → 其他地区',
+      customIPDisabledHint: 解码64('5L2/55So6Ieq5a6a5LmJUHJveHlJUOaXtu+8jOWcsOWMuumAieaLqeW3suemgeeUqA=='),
+      customIPMode: 解码64('6Ieq5a6a5LmJUHJveHlJUOaooeW8jyAocOWPmOmHj+WQr+eUqCk='),
+      customIPModeDesc: '自定义IP模式 (已禁用地区匹配)',
+      usingCustomProxyIP: 解码64('5L2/55So6Ieq5a6a5LmJUHJveHlJUDog'),
+      customIPConfig: ' (p变量配置)',
+      customIPModeDisabled: '自定义IP模式，地区选择已禁用',
+      manualRegion: '手动指定地区',
+      manualRegionDesc: ' (手动指定)',
+      proxyIPAvailable: 解码64('MTAvMTAg5Y+v55SoIChQcm94eUlQ5Z+f5ZCN6aKE6K6+5Y+v55SoKQ=='),
+      smartSelection: '智能就近选择中',
+      sameRegionIP: '同地区IP可用 (1个)',
+      cloudflareDetection: 解码64('5a6Y5pa555u06L+e'),
+      detectionFailed: '检测失败',
+      apiTestResult: 'API检测结果: ',
+      apiTestTime: '检测时间: ',
+      apiTestFailed: 'API检测失败: ',
+      unknownError: '未知错误',
+      apiTestError: 'API测试失败: ',
+      kvNotConfigured: 'KV存储未配置，无法使用配置管理功能。\\n\\n请在Cloudflare Workers中:\\n1. 创建KV命名空间\\n2. 绑定环境变量 C\\n3. 重新部署代码',
+      kvNotEnabled: 'KV存储未配置',
+      kvCheckFailed: 'KV存储检测失败: 响应格式错误',
+      kvCheckFailedStatus: 'KV存储检测失败 - 状态码: ',
+      kvCheckFailedError: 'KV存储检测失败 - 错误: '
+    },
+    fa: {
+      title: 'مرکز اشتراک',
+      subtitle: 'پشتیبانی چند کلاینت • انتخاب هوشمند • تولید یک کلیکی',
+      selectClient: '[ انتخاب کلاینت ]',
+      systemStatus: '[ وضعیت سیستم ]',
+      configManagement: '[ مدیریت تنظیمات ]',
+      relatedLinks: '[ لینک‌های مرتبط ]',
+      checking: 'در حال بررسی...',
+      workerRegion: 'منطقه Worker: ',
+      detectionMethod: 'روش تشخیص: ',
+      proxyIPStatus: 解码64('2YjYtti524zYqiBQcm94eUlQOiA='),
+      currentIP: 'IP فعلی: ',
+      regionMatch: 'تطبیق منطقه: ',
+      selectionLogic: 'منطق انتخاب: ',
+      kvStatusChecking: 'در حال بررسی وضعیت KV...',
+      kvEnabled: '✅ ذخیره‌سازی KV فعال است، می‌توانید از مدیریت تنظیمات استفاده کنید',
+      kvDisabled: '⚠️ ذخیره‌سازی KV فعال نیست یا پیکربندی نشده است',
+      specifyRegion: 'تعیین منطقه (wk):',
+      autoDetect: 'اتصال مستقیم رسمی',
+      saveRegion: 'ذخیره تنظیمات منطقه',
+      protocolSelection: 'انتخاب پروتکل:',
+      enableProtoV: 解码64('2YHYudin2YTigIzYs9in2LLbjCDZvtix2YjYqtqp2YQgVkxFU1M='),
+      enableProtoT: 解码64('2YHYudin2YTigIzYs9in2LLbjCDZvtix2YjYqtqp2YQgVHJvamFu'),
+      enableXhttp: 'فعال‌سازی پروتکل xhttp',
+      enableECH: 'فعال‌سازی ECH (Encrypted Client Hello)',
+      enableECHHint: 'پس از فعال‌سازی، در هر بار تازه‌سازی اشتراک، پیکربندی ECH به‌روز به‌طور خودکار از DoH دریافت شده و به لینک‌ها اضافه می‌شود',
+      customDNS: 'سرور DNS سفارشی',
+      customDNSPlaceholder: 'مثال: https://223.5.5.5/dns-query',
+      customDNSHint: 'آدرس سرور DNS برای جستجوی پیکربندی ECH (فرمت DoH)',
+      customECHDomain: 'دامنه ECH سفارشی',
+      customECHDomainPlaceholder: 'مثال: cloudflare-ech.com',
+      customECHDomainHint: 'دامنه استفاده شده در پیکربندی ECH، خالی بگذارید تا از مقدار پیش‌فرض استفاده شود',
+      altPassword: 解码64('2LHZhdiyINi52KjZiNixIFRyb2phbiAo2KfYrtiq24zYp9ix24wpOg=='),
+      customPath: 'مسیر سفارشی (d):',
+      customIP: 解码64('UHJveHlJUCDYs9mB2KfYsdi024wgKHApOg=='),
+      preferredIPs: 'لیست IP ترجیحی (yx):',
+      preferredIPsURL: 'URL منبع IP ترجیحی (yxURL):',
+      latencyTest: 'تست تاخیر',
+      latencyTestIP: 'IP/دامنه تست:',
+      latencyTestIPPlaceholder: 'IP یا دامنه وارد کنید، چند مورد با کاما جدا شوند',
+      latencyTestPort: 'پورت:',
+      startTest: 'شروع تست',
+      stopTest: 'توقف تست',
+      testResult: 'نتیجه تست:',
+      addToYx: 'افزودن به لیست ترجیحی',
+      addSelectedToYx: 'افزودن موارد انتخاب شده',
+      selectAll: 'انتخاب همه',
+      deselectAll: 'لغو انتخاب',
+      testingInProgress: 'در حال تست...',
+      testComplete: 'تست کامل شد',
+      latencyMs: 'تاخیر',
+      timeout: 'زمان تمام شد',
+      ipSource: 'منبع IP:',
+      manualInput: 'ورودی دستی',
+      cfRandomIP: 'IP تصادفی CF',
+      urlFetch: 'دریافت از URL',
+      randomCount: 'تعداد تولید:',
+      fetchURL: 'URL دریافت:',
+      fetchURLPlaceholder: 'آدرس URL لیست IP را وارد کنید',
+      generateIP: 'تولید IP',
+      fetchIP: 'دریافت IP',
+      socks5Config: 解码64('2KrZhti424zZhdin2Kog2b7YsdmI2qnYs9uMIChzKTo='),
+      customHomepage: 'URL صفحه اصلی سفارشی (homepage):',
+      customHomepagePlaceholder: 'مثال: https://example.com',
+      customHomepageHint: 'تنظیم URL سفارشی به عنوان استتار صفحه اصلی. هنگام دسترسی به مسیر اصلی / محتوای این URL نمایش داده می‌شود. اگر خالی بگذارید صفحه ترمینال پیش‌فرض نمایش داده می‌شود.',
+      saveConfig: 'ذخیره تنظیمات',
+      advancedControl: 'کنترل پیشرفته',
+      subscriptionConverter: 'آدرس تبدیل اشتراک:',
+      builtinPreferred: 'نوع ترجیحی داخلی:',
+      enablePreferredDomain: 'فعال‌سازی دامنه ترجیحی',
+      enablePreferredIP: 'فعال‌سازی IP ترجیحی',
+      enableNativeAddress: 'فعال‌سازی آدرس اصلی',
+      enableGitHubPreferred: 'فعال‌سازی ترجیح سفارشی',
+      jkSection: 'زنجیره اینترنت خانگی',
+      jkEnable: 'فعال‌سازی زنجیره اینترنت خانگی',
+      jkHint: 解码64('2b7YsyDYp9iyINmB2LnYp9mE4oCM2LPYp9iy24zYjCDar9iy24zZhtmHIMKrQ0xBU0gg2K7Yp9mG2q/bjMK7INio2Ycg2YHZh9ix2LPYqiDaqdmE2KfbjNmG2KrigIzZh9inINin2LbYp9mB2Ycg2YXbjOKAjNi02YjYry4g2q/YsdmH4oCM2YfYp9uMIENGINmF2LPbjNixINix2Kcg2KjYp9iyINmF24zigIzaqdmG2YbYryDZiCDYrtix2YjYrNuMINin2LIg2KfbjNmG2KrYsdmG2Kog2K7Yp9mG2q/bjCDamNin2b7ZhtiMINqp2LHZhyDZiCDaqdi02YjYsdmH2KfbjCDYr9uM2q/YsSDYp9iz2KouINmB2YLYtyDZh9iz2KrZhyBDbGFzaCBNZXRhINmG2LPYrtmHIDEuMTkuMjUg2KjZhyDYqNin2YTYpyDYotmGINix2Kcg2YXbjOKAjNi02YbYp9iz2K/YmyBDbGFzaCBWZXJnZSBSZXbYjCBGbENsYXNoINmIIENNRkEg2qnYp9ixINmF24zigIzaqdmG2YbYry4g2q/YsdmH4oCM2YfYpyDYp9i02KrYsdin2qnbjCDZh9iz2KrZhtivINmIINqv2KfZh9uMINmC2LfYuSDZhduM4oCM2LTZiNmG2K/YjCDYp9i02KrYsdin2qkg2K7ZiNiv2LQg2q/YsdmHINiv24zar9ix24wg2LHYpyDYp9mG2KrYrtin2Kgg2YXbjOKAjNqp2YbYry4='),
+      jkClient: 'CLASH خانگی',
+      allowAPIManagement: 'اجازه مدیریت API (ae):',
+      regionMatching: 'تطبیق منطقه (rm):',
+      downgradeControl: 解码64('2LHZiNi0INiu2LHZiNisIChxaik6'),
+      tlsControl: 'کنترل TLS (dkby):',
+      preferredControl: 'کنترل ترجیحی (yxby):',
+      saveAdvanced: 'ذخیره تنظیمات پیشرفته',
+      loading: 'در حال بارگذاری...',
+      currentConfig: '📍 پیکربندی مسیر فعلی',
+      refreshConfig: 'تازه‌سازی تنظیمات',
+      resetConfig: 'بازنشانی تنظیمات',
+      subscriptionCopied: 'لینک اشتراک کپی شد',
+      autoSubscriptionCopied: 'لینک اشتراک تشخیص خودکار کپی شد، کلاینت هنگام دسترسی بر اساس User-Agent به طور خودکار تشخیص داده و قالب مربوطه را برمی‌گرداند',
+      altPasswordPlaceholder: 'خالی بگذارید تا از UUID استفاده شود',
+      altPasswordHint: 解码64('2LHZhdiyINi52KjZiNixIFRyb2phbiDYs9mB2KfYsdi024wg2LHYpyDYqtmG2LjbjNmFINqp2YbbjNivLiDYp9qv2LEg2K7Yp9mE24wg2Kjar9iw2KfYsduM2K8g2KfYsiBVVUlEINin2LPYqtmB2KfYr9mHINmF24zigIzYtNmI2K8uINqp2YTYp9uM2YbYqiDYqNmHINi32YjYsSDYrtmI2K/aqdin2LEg2LHZhdiyINi52KjZiNixINix2Kcg2KjYpyBTSEEyMjQg2YfYtCDZhduM4oCM2qnZhtivLg=='),
+      protocolHint: 解码64('2YXbjOKAjNiq2YjYp9mG24zYryDahtmG2K/bjNmGINm+2LHZiNiq2qnZhCDYsdinINmH2YXYstmF2KfZhiDZgdi52KfZhCDaqdmG24zYry4g2KfYtNiq2LHYp9qpINqv2LHZh+KAjNmH2KfbjCDZvtix2YjYqtqp2YTigIzZh9in24wg2KfZhtiq2K7Yp9ioINi02K/ZhyDYsdinINiq2YjZhNuM2K8g2YXbjOKAjNqp2YbYry48YnI+4oCiIFZMRVNTIFdTOiDZvtix2YjYqtqp2YQg2KfYs9iq2KfZhtiv2KfYsdivINmF2KjYqtmG24wg2KjYsSBXZWJTb2NrZXQ8YnI+4oCiIFRyb2phbjog2KfYrdix2KfYsiDZh9mI24zYqiDYqNinINix2YXYsiDYudio2YjYsSBTSEEyMjQ8YnI+4oCiIHhodHRwOiDZvtix2YjYqtqp2YQg2KfYs9iq2KrYp9ixINmF2KjYqtmG24wg2KjYsSBIVFRQIFBPU1QgKNmG24zYp9iyINio2Ycg2KfYqti12KfZhCDYr9in2YXZhtmHINiz2YHYp9ix2LTbjCDZiCDZgdi52KfZhOKAjNiz2KfYstuMIGdSUEMg2K/Yp9ix2K8p'),
+      alpn: 'TLS ALPN',
+      alpnDefault: 'پیش‌فرض (خالی، مذاکره توسط کلاینت)',
+      alpnHint: 'فقط به لینک‌های TLS اضافه می‌شود؛ اگر خالی باشد alpn نوشته نمی‌شود.',
+      saveProtocol: 'ذخیره تنظیمات پروتکل',
+      subscriptionConverterPlaceholder: 'پیش‌فرض: https://url.v1.mk/sub',
+      subscriptionConverterHint: 'تبدیل اشتراک به صورت داخلی پیاده‌سازی شده است و نیازی به API خارجی ندارد. این فیلد فقط برای سازگاری حفظ شده و می‌توان آن را خالی گذاشت.',
+      builtinPreferredHint: 'کنترل اینکه کدام گره‌های ترجیحی داخلی در اشتراک گنجانده شوند. به طور پیش‌فرض همه فعال هستند.',
+      apiEnabledDefault: 'پیش‌فرض (بستن API)',
+      apiEnabledYes: 'فعال‌سازی مدیریت API',
+      apiEnabledHint: '⚠️ هشدار امنیتی: فعال‌سازی این گزینه اجازه می‌دهد IP های ترجیحی از طریق API به طور پویا اضافه شوند. توصیه می‌شود فقط در صورت نیاز فعال کنید.',
+      regionMatchingDefault: 'پیش‌فرض (فعال‌سازی تطبیق منطقه)',
+      regionMatchingNo: 'بستن تطبیق منطقه',
+      regionMatchingHint: 'وقتی "بستن" تنظیم شود، تطبیق هوشمند منطقه انجام نمی‌شود',
+      downgradeControlDefault: 解码64('2KfZiNmE2YjbjNiqINio2Kcg2b7YsdmI2qnYs9uMICjZvtuM2LTigIzZgdix2LYp'),
+      downgradeControlNo: 解码64('2KfZiNmE2YjbjNiqINio2Kcg2KfYqti12KfZhCDZhdiz2KrZgtuM2YXYjCDYr9ixINi12YjYsdiqINiu2LfYpyDZvtix2Yjaqdiz24w='),
+      downgradeControlOnly: 解码64('2YHZgti3INm+2LHZiNqp2LPbjNiMINio2K/ZiNmGINio2KfYstqv2LTYqg=='),
+      downgradeControlHint: 解码64('2Kfar9ixINm+2LHZiNqp2LPbjCDYqtmG2LjbjNmFINmG2LTYr9mHINio2KfYtNivINmH2LEg2LPZhyDar9iy24zZhtmHINuM2qnYs9in2YYg2Ygg2YXYs9iq2YLbjNmFINmH2LPYqtmG2K8uINiv2LEg2K3Yp9mE2Kog2YHZgti3INm+2LHZiNqp2LPbjNiMINin2KrYtdin2YQg2YbYp9mF2YjZgdmCINmC2LfYuSDZhduM4oCM2LTZiNivINmIIElQINiu2LHZiNis24wg2YHYp9i0INmG2YXbjOKAjNi02YjYrw=='),
+      tlsControlDefault: 'پیش‌فرض (حفظ همه گره‌ها)',
+      tlsControlYes: 'فقط گره‌های TLS',
+      tlsControlHint: 'وقتی "فقط گره‌های TLS" تنظیم شود، فقط گره‌های با TLS تولید می‌شوند، گره‌های غیر TLS (مانند پورت 80) تولید نمی‌شوند',
+      preferredControlDefault: 'پیش‌فرض (فعال‌سازی ترجیح)',
+      preferredControlYes: 'بستن ترجیح',
+      preferredControlHint: 'وقتی "بستن ترجیح" تنظیم شود، فقط از آدرس اصلی استفاده می‌شود، گره‌های IP و دامنه ترجیحی تولید نمی‌شوند',
+      regionNames: {
+        CF: '🌐 مستقیم رسمی',
+        HK: '🇭🇰 هنگ کنگ',
+        US: '🇺🇸 آمریکا',
+        SG: '🇸🇬 سنگاپور',
+        JP: '🇯🇵 ژاپن',
+        KR: '🇰🇷 کره جنوبی',
+        DE: '🇩🇪 آلمان',
+        SE: '🇸🇪 سوئد',
+        NL: '🇳🇱 هلند',
+        FI: '🇫🇮 فنلاند',
+        GB: '🇬🇧 بریتانیا'
+      },
+      terminal: 'ترمینال v3.1',
+      githubProject: 'پروژه GitHub',
+      优选工具: 'ابزار ترجیح IP',
+      autoDetectClient: 'تشخیص خودکار',
+      selectionLogicText: 'هم‌منطقه → منطقه مجاور → سایر مناطق',
+      customIPDisabledHint: 解码64('2YfZhtqv2KfZhSDYp9iz2KrZgdin2K/ZhyDYp9iyIFByb3h5SVAg2LPZgdin2LHYtNuM2Iwg2KfZhtiq2K7Yp9ioINmF2YbYt9mC2Ycg2LrbjNix2YHYudin2YQg2KfYs9iq'),
+      customIPMode: 解码64('2K3Yp9mE2KogUHJveHlJUCDYs9mB2KfYsdi024wgKNmF2KrYutuM2LEgcCDZgdi52KfZhCDYp9iz2Kop'),
+      customIPModeDesc: 'حالت IP سفارشی (تطبیق منطقه غیرفعال است)',
+      usingCustomProxyIP: 解码64('2KfYs9iq2YHYp9iv2Ycg2KfYsiBQcm94eUlQINiz2YHYp9ix2LTbjDog'),
+      customIPConfig: ' (پیکربندی متغیر p)',
+      customIPModeDisabled: 'حالت IP سفارشی، انتخاب منطقه غیرفعال است',
+      manualRegion: 'تعیین منطقه دستی',
+      manualRegionDesc: ' (تعیین دستی)',
+      proxyIPAvailable: 解码64('MTAvMTAg2K/YsSDYr9iz2KrYsdizICjYr9in2YXZhtmHINm+24zYtOKAjNmB2LHYtiBQcm94eUlQINiv2LEg2K/Ys9iq2LHYsyDYp9iz2Kop'),
+      smartSelection: 'انتخاب هوشمند نزدیک در حال انجام است',
+      sameRegionIP: 'IP هم‌منطقه در دسترس است (1)',
+      cloudflareDetection: 'اتصال مستقیم رسمی',
+      detectionFailed: 'تشخیص ناموفق',
+      apiTestResult: 'نتیجه تشخیص API: ',
+      apiTestTime: 'زمان تشخیص: ',
+      apiTestFailed: 'تشخیص API ناموفق: ',
+      unknownError: 'خطای ناشناخته',
+      apiTestError: 'تست API ناموفق: ',
+      kvNotConfigured: 'ذخیره‌سازی KV پیکربندی نشده است، نمی‌توانید از عملکرد مدیریت تنظیمات استفاده کنید.\\n\\nلطفا در Cloudflare Workers:\\n1. فضای نام KV ایجاد کنید\\n2. متغیر محیطی C را پیوند دهید\\n3. کد را دوباره مستقر کنید',
+      kvNotEnabled: 'ذخیره‌سازی KV پیکربندی نشده است',
+      kvCheckFailed: 'بررسی ذخیره‌سازی KV ناموفق: خطای فرمت پاسخ',
+      kvCheckFailedStatus: 'بررسی ذخیره‌سازی KV ناموفق - کد وضعیت: ',
+      kvCheckFailedError: 'بررسی ذخیره‌سازی KV ناموفق - خطا: '
+    }
+  };
+  const 翻译值 = 本地值235[是否值236 ? 'fa' : 'zh'];
+  const 值页面 = `<!DOCTYPE html>
+    <html lang="${语言值}" dir="${是否值236 ? 'rtl' : 'ltr'}">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>${翻译值.title}</title>
+        <style>
+            :root {
+                --cp-bg: #05030e;
+                --cp-bg-2: #0a0820;
+                --cp-bg-3: #110835;
+                --cp-cyan: #00f0ff;
+                --cp-cyan-d: #00b8c4;
+                --cp-pink: #ff2bd6;
+                --cp-pink-d: #d1239f;
+                --cp-purple: #a347ff;
+                --cp-yellow: #fff200;
+                --cp-mint: #00ff9d;
+                --cp-amber: #ffb400;
+                --cp-red: #ff3860;
+                --cp-text: #e6f5ff;
+                --cp-text-dim: #7aa9c4;
+                --cp-border: rgba(0, 240, 255, 0.55);
+                --cp-border-pink: rgba(255, 43, 214, 0.55);
+                --cp-grid: rgba(255, 43, 214, 0.16);
+            }
+            * { margin: 0; padding: 0; box-sizing: border-box; }
+            html, body { min-height: 100%; }
+            body {
+                font-family: "JetBrains Mono", "Fira Code", "Courier New", monospace;
+                background: radial-gradient(ellipse at 80% -10%, #2a0040 0%, var(--cp-bg) 50%, #000 100%);
+                color: var(--cp-text);
+                min-height: 100vh;
+                overflow-x: hidden;
+                position: relative;
+            }
+            body::before {
+                content: ""; position: fixed; inset: 0;
+                background-image:
+                    linear-gradient(var(--cp-grid) 1px, transparent 1px),
+                    linear-gradient(90deg, var(--cp-grid) 1px, transparent 1px);
+                background-size: 48px 48px;
+                mask-image: radial-gradient(ellipse at center, #000 30%, transparent 85%);
+                z-index: -3;
+                animation: cp-grid-slide 22s linear infinite;
+                pointer-events: none;
+            }
+            body::after {
+                content: ""; position: fixed; inset: 0;
+                background: repeating-linear-gradient(
+                    180deg,
+                    rgba(255,255,255,0.035) 0,
+                    rgba(255,255,255,0.035) 1px,
+                    transparent 1px,
+                    transparent 3px
+                );
+                pointer-events: none;
+                z-index: 6;
+                mix-blend-mode: overlay;
+                animation: cp-scan-flicker 6s infinite;
+            }
+            @keyframes cp-grid-slide {
+                0% { background-position: 0 0, 0 0; }
+                100% { background-position: 48px 48px, 48px 48px; }
+            }
+            @keyframes cp-scan-flicker {
+                0%, 100% { opacity: 0.55; }
+                50% { opacity: 0.85; }
+            }
+            .matrix-bg {
+                position: fixed; inset: 0;
+                background:
+                    radial-gradient(circle at 85% 15%, rgba(255,43,214,0.18) 0%, transparent 45%),
+                    radial-gradient(circle at 10% 85%, rgba(0,240,255,0.18) 0%, transparent 45%),
+                    radial-gradient(circle at 55% 50%, rgba(163,71,255,0.10) 0%, transparent 60%);
+                z-index: -2;
+                pointer-events: none;
+            }
+            .matrix-rain { display: none; }
+            .matrix-code-rain {
+                position: fixed; inset: 0;
+                pointer-events: none; z-index: -1;
+                overflow: hidden;
+            }
+            .matrix-column {
+                position: absolute; top: -120%; left: 0;
+                color: var(--cp-cyan);
+                font-family: "JetBrains Mono", "Courier New", monospace;
+                font-size: 14px; line-height: 1.25;
+                text-shadow: 0 0 6px var(--cp-cyan), 0 0 12px rgba(0,240,255,0.5);
+                animation: cp-drop linear infinite;
+            }
+            @keyframes cp-drop {
+                0%   { top: -120%; opacity: 0; }
+                10%  { opacity: 0.85; }
+                90%  { opacity: 0.4; }
+                100% { top: 110vh; opacity: 0; }
+            }
+            .matrix-column:nth-child(odd)  { animation-duration: 12s; }
+            .matrix-column:nth-child(even) { animation-duration: 18s; color: var(--cp-pink); text-shadow: 0 0 6px var(--cp-pink), 0 0 14px rgba(255,43,214,0.5); }
+            .matrix-column:nth-child(3n)   { animation-duration: 20s; color: var(--cp-purple); text-shadow: 0 0 6px var(--cp-purple); }
+            .matrix-column:nth-child(5n)   { animation-duration: 9s; opacity: 0.6; }
+
+            ::selection { background: var(--cp-pink); color: var(--cp-bg); }
+
+            .container {
+                max-width: 1180px;
+                margin: 0 auto;
+                padding: 110px 24px 60px;
+                position: relative;
+                z-index: 1;
+            }
+            .header {
+                text-align: center;
+                margin-bottom: 36px;
+                padding: 28px 24px;
+                position: relative;
+                border: 1px solid var(--cp-border);
+                background: linear-gradient(135deg, rgba(15,3,40,0.6), rgba(40,5,70,0.45));
+                clip-path: polygon(
+                    0 14px, 14px 0,
+                    calc(100% - 80px) 0, calc(100% - 60px) 14px,
+                    100% 14px, 100% calc(100% - 14px),
+                    calc(100% - 14px) 100%, 80px 100%,
+                    60px calc(100% - 14px), 0 calc(100% - 14px)
+                );
+                box-shadow: 0 0 30px rgba(0,240,255,0.25), 0 0 60px rgba(255,43,214,0.18);
+            }
+            .header::before {
+                content: "// SYS_ID / CFNEW / NIGHTCITY.NET";
+                position: absolute; top: 8px; left: 24px;
+                font-size: 10px; letter-spacing: 0.35em;
+                color: var(--cp-pink);
+                text-shadow: 0 0 6px var(--cp-pink);
+            }
+            .header::after {
+                content: "STATUS // ONLINE";
+                position: absolute; top: 8px; right: 24px;
+                font-size: 10px; letter-spacing: 0.35em;
+                color: var(--cp-mint);
+                text-shadow: 0 0 6px var(--cp-mint);
+            }
+            .title {
+                font-size: clamp(2.2rem, 5vw, 3.4rem);
+                font-weight: 800;
+                margin: 14px 0 8px;
+                color: var(--cp-cyan);
+                letter-spacing: 0.08em;
+                text-transform: uppercase;
+                text-shadow:
+                    0 0 12px var(--cp-cyan),
+                    0 0 28px rgba(0,240,255,0.5),
+                    -2px 0 var(--cp-pink),
+                    2px 0 var(--cp-mint);
+                position: relative;
+                animation: cp-title-flicker 6s infinite;
+            }
+            @keyframes cp-title-flicker {
+                0%, 92%, 100% { opacity: 1; }
+                94%, 96% { opacity: 0.65; }
+            }
+            .subtitle {
+                color: var(--cp-text-dim);
+                margin-bottom: 0;
+                font-size: 0.95rem;
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+            }
+            .subtitle::before { content: "▸ "; color: var(--cp-pink); }
+
+            .card {
+                background:
+                    linear-gradient(180deg, rgba(8,4,28,0.85) 0%, rgba(15,3,40,0.78) 100%);
+                border: 1px solid var(--cp-border);
+                border-radius: 0;
+                padding: 26px 28px 28px;
+                margin-bottom: 22px;
+                position: relative;
+                backdrop-filter: blur(8px);
+                width: 100%;
+                box-shadow:
+                    0 0 0 1px rgba(255,43,214,0.18),
+                    0 0 22px rgba(0,240,255,0.18),
+                    0 0 60px rgba(255,43,214,0.06),
+                    inset 0 0 24px rgba(0,240,255,0.05);
+                clip-path: polygon(
+                    0 16px, 16px 0,
+                    calc(100% - 56px) 0, calc(100% - 40px) 16px,
+                    100% 16px, 100% calc(100% - 14px),
+                    calc(100% - 14px) 100%, 40px 100%,
+                    24px calc(100% - 14px), 0 calc(100% - 14px)
+                );
+            }
+            .card::after {
+                content: ""; position: absolute; top: 0; left: 0; right: 0;
+                height: 1px;
+                background: linear-gradient(90deg, transparent, var(--cp-pink), var(--cp-cyan), transparent);
+                opacity: 0.7;
+            }
+            .card-title {
+                font-size: 1.1rem;
+                margin: 0 0 20px;
+                color: var(--cp-cyan);
+                letter-spacing: 0.25em;
+                text-transform: uppercase;
+                text-shadow: 0 0 8px var(--cp-cyan);
+                display: flex; align-items: center; gap: 12px;
+                font-weight: 700;
+            }
+            .card-title::before {
+                content: ""; display: inline-block;
+                width: 14px; height: 14px;
+                background: var(--cp-pink);
+                box-shadow: 0 0 10px var(--cp-pink);
+                transform: rotate(45deg);
+            }
+            .card-title::after {
+                content: ""; flex: 1; height: 1px;
+                background: linear-gradient(90deg, var(--cp-cyan), transparent);
+                margin-left: 6px;
+            }
+            h3, h4 {
+                color: var(--cp-cyan);
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                text-shadow: 0 0 6px var(--cp-cyan);
+                font-weight: 700;
+            }
+
+            .client-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                gap: 14px;
+                margin: 12px 0 18px;
+            }
+            .client-btn {
+                background: linear-gradient(135deg, rgba(0,240,255,0.08), rgba(255,43,214,0.08));
+                border: 1px solid var(--cp-border);
+                padding: 14px 18px;
+                color: var(--cp-cyan);
+                font-family: inherit;
+                font-weight: 700;
+                font-size: 0.85rem;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-align: center;
+                position: relative;
+                overflow: hidden;
+                text-shadow: 0 0 6px var(--cp-cyan);
+                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            }
+            .client-btn::before {
+                content: ""; position: absolute; inset: 0; left: -100%;
+                background: linear-gradient(90deg, transparent, rgba(0,240,255,0.35), transparent);
+                transition: left 0.6s ease;
+            }
+            .client-btn:hover::before { left: 100%; }
+            .client-btn:hover {
+                color: var(--cp-pink);
+                border-color: var(--cp-pink);
+                background: linear-gradient(135deg, rgba(255,43,214,0.18), rgba(0,240,255,0.10));
+                box-shadow: 0 0 14px rgba(255,43,214,0.55), 0 0 28px rgba(0,240,255,0.30);
+                transform: translateY(-2px);
+                text-shadow: 0 0 8px var(--cp-pink);
+            }
+
+            #clientSubscriptionUrl,
+            .subscription-url,
+            [class*='subscription-url'],
+            [class*='c3Vic2NyaXB0aW9u'] {
+                background: rgba(0,0,0,0.7) !important;
+                border: 1px dashed var(--cp-pink) !important;
+                padding: 14px 16px !important;
+                word-break: break-all;
+                font-family: inherit;
+                color: var(--cp-mint) !important;
+                margin-top: 18px;
+                box-shadow: inset 0 0 12px rgba(255,43,214,0.18), 0 0 18px rgba(0,255,157,0.18) !important;
+                position: relative;
+                overflow-wrap: break-word;
+                overflow-x: auto;
+                max-width: 100%;
+                font-size: 0.85rem;
+                line-height: 1.6;
+                text-shadow: 0 0 6px var(--cp-mint);
+            }
+            #clientSubscriptionUrl:empty { display: none !important; }
+
+            .cp-hud {
+                position: fixed; top: 18px; right: 22px;
+                color: var(--cp-cyan);
+                font-family: "JetBrains Mono", monospace;
+                font-size: 11px; letter-spacing: 0.2em;
+                text-transform: uppercase;
+                text-align: right;
+                opacity: 0.85;
+                z-index: 1000;
+            }
+            .cp-hud .cp-hud-label { color: var(--cp-pink); }
+            .cp-hud .cp-hud-line { display: block; }
+            .cp-lang-wrapper {
+                position: fixed; top: 18px; left: 22px; z-index: 1000;
+                display: flex; align-items: center; gap: 10px;
+            }
+            .cp-lang-tag {
+                color: var(--cp-pink); font-size: 11px;
+                letter-spacing: 0.25em; text-transform: uppercase;
+                text-shadow: 0 0 6px var(--cp-pink);
+            }
+            #languageSelector {
+                background: rgba(8,4,28,0.85);
+                border: 1px solid var(--cp-cyan);
+                color: var(--cp-cyan);
+                padding: 6px 12px;
+                font-family: inherit;
+                font-size: 12px;
+                cursor: pointer;
+                letter-spacing: 0.12em;
+                text-shadow: 0 0 6px var(--cp-cyan);
+                box-shadow: 0 0 12px rgba(0,240,255,0.35);
+                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+            }
+            #languageSelector option { background: var(--cp-bg-2); color: var(--cp-cyan); }
+
+            /* FX toggle - 页面特效图形化开关 */
+            .cp-fx-toggle {
+                position: fixed; top: 68px; left: 22px; z-index: 1001;
+                background: rgba(8,4,28,0.85);
+                border: 1px solid var(--cp-mint);
+                color: var(--cp-mint);
+                padding: 6px 12px;
+                font-family: inherit;
+                font-size: 11px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                cursor: pointer;
+                text-shadow: 0 0 6px var(--cp-mint);
+                box-shadow: 0 0 10px rgba(0,255,157,0.35);
+                clip-path: polygon(7px 0, 100% 0, 100% calc(100% - 7px), calc(100% - 7px) 100%, 0 100%, 0 7px);
+                transition: all 0.2s ease;
+                display: inline-flex; align-items: center; gap: 6px;
+            }
+            .cp-fx-toggle:hover {
+                color: var(--cp-pink);
+                border-color: var(--cp-pink);
+                text-shadow: 0 0 8px var(--cp-pink);
+                box-shadow: 0 0 16px rgba(255,43,214,0.55);
+            }
+            .cp-fx-toggle .cp-fx-dot {
+                width: 6px; height: 6px;
+                background: var(--cp-mint);
+                border-radius: 50%;
+                box-shadow: 0 0 8px var(--cp-mint);
+                transition: all 0.2s;
+            }
+            body.fx-off .cp-fx-toggle {
+                color: var(--cp-text-dim);
+                border-color: var(--cp-text-dim);
+                text-shadow: none;
+                box-shadow: none;
+            }
+            body.fx-off .cp-fx-toggle .cp-fx-dot {
+                background: transparent;
+                border: 1px solid var(--cp-text-dim);
+                box-shadow: none;
+            }
+            /* FX OFF: 关闭所有装饰性特效，保留布局和配色 */
+            body.fx-off .matrix-bg,
+            body.fx-off .matrix-code-rain,
+            body.fx-off .matrix-column { display: none !important; }
+            body.fx-off::before,
+            body.fx-off::after { display: none !important; content: none !important; }
+            body.fx-off { background: var(--cp-bg) !important; }
+            body.fx-off * {
+                animation: none !important;
+                transition: color 0.15s, background-color 0.15s, border-color 0.15s, box-shadow 0.15s !important;
+            }
+            body.fx-off .cp-glitch::before,
+            body.fx-off .cp-glitch::after { display: none !important; }
+            body.fx-off .terminal-cursor::after,
+            body.fx-off .cp-fab-save .cp-fab-dot { animation: none !important; }
+            body.fx-off .cp-fab-save:hover { transform: none !important; }
+            body.fx-off .cp-action-bar.cp-dirty::before { animation: none !important; }
+            body.fx-off .header::before { display: none !important; }
+            body.fx-off .card { backdrop-filter: none !important; }
+            body.fx-off select, body.fx-off input, body.fx-off textarea { backdrop-filter: none !important; }
+
+            /* Status panel inside card */
+            #systemStatus {
+                background: linear-gradient(135deg, rgba(0,240,255,0.05), rgba(255,43,214,0.05)) !important;
+                border: 1px solid var(--cp-border) !important;
+                padding: 18px 20px !important;
+                margin: 14px 0 0 !important;
+                box-shadow: inset 0 0 16px rgba(0,240,255,0.12) !important;
+                position: relative;
+                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+            }
+            #systemStatus > div {
+                color: var(--cp-text) !important;
+                text-shadow: none !important;
+                font-family: inherit !important;
+                margin: 6px 0 !important;
+                font-size: 0.85rem !important;
+                letter-spacing: 0.05em;
+            }
+            #systemStatus > div:first-child {
+                color: var(--cp-pink) !important;
+                font-weight: 700 !important;
+                letter-spacing: 0.25em !important;
+                text-shadow: 0 0 6px var(--cp-pink) !important;
+                margin-bottom: 14px !important;
+                text-transform: uppercase;
+            }
+
+            /* Force inputs / selects to cyberpunk */
+            input[type="text"], input[type="number"], input[type="password"],
+            select, textarea {
+                background: rgba(0,0,0,0.6) !important;
+                border: 1px solid var(--cp-border) !important;
+                color: var(--cp-cyan) !important;
+                font-family: inherit !important;
+                font-size: 13px !important;
+                padding: 10px 12px !important;
+                outline: none;
+                transition: border-color 0.2s, box-shadow 0.2s;
+                box-shadow: inset 0 0 8px rgba(0,240,255,0.08) !important;
+                letter-spacing: 0.04em;
+            }
+            input::placeholder { color: var(--cp-text-dim) !important; opacity: 0.7; }
+            input:focus, select:focus, textarea:focus {
+                border-color: var(--cp-pink) !important;
+                box-shadow: 0 0 0 1px var(--cp-pink), 0 0 14px rgba(255,43,214,0.4) !important;
+            }
+            select option { background: var(--cp-bg-2); color: var(--cp-cyan); }
+            input[type="checkbox"], input[type="radio"] {
+                accent-color: var(--cp-pink);
+            }
+
+            label {
+                color: var(--cp-cyan) !important;
+                letter-spacing: 0.05em;
+                text-shadow: 0 0 4px rgba(0,240,255,0.4);
+            }
+            label[style*="font-weight"], label[style*="bold"] {
+                font-weight: 700 !important;
+                color: var(--cp-pink) !important;
+                text-shadow: 0 0 6px var(--cp-pink) !important;
+                letter-spacing: 0.15em !important;
+                text-transform: uppercase;
+                font-size: 0.78rem !important;
+            }
+            small {
+                color: var(--cp-text-dim) !important;
+                font-size: 0.78rem !important;
+                letter-spacing: 0.04em;
+                line-height: 1.5;
+            }
+
+            /* Buttons inside forms - global override */
+            button, input[type="submit"] {
+                background: linear-gradient(135deg, rgba(0,240,255,0.15), rgba(255,43,214,0.15)) !important;
+                border: 1px solid var(--cp-border) !important;
+                color: var(--cp-cyan) !important;
+                font-family: inherit !important;
+                font-weight: 700 !important;
+                cursor: pointer;
+                padding: 10px 18px !important;
+                letter-spacing: 0.18em !important;
+                text-transform: uppercase;
+                font-size: 0.78rem !important;
+                text-shadow: 0 0 6px var(--cp-cyan) !important;
+                transition: all 0.25s ease;
+                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+                box-shadow: 0 0 10px rgba(0,240,255,0.25);
+            }
+            button:hover, input[type="submit"]:hover {
+                color: var(--cp-pink) !important;
+                border-color: var(--cp-pink) !important;
+                box-shadow: 0 0 16px rgba(255,43,214,0.45), 0 0 32px rgba(0,240,255,0.20) !important;
+                transform: translateY(-1px);
+                text-shadow: 0 0 8px var(--cp-pink) !important;
+            }
+            button[id*="Reset"], button[onclick*="reset"], button[style*="ff0000"] {
+                color: var(--cp-red) !important;
+                border-color: var(--cp-red) !important;
+                text-shadow: 0 0 6px var(--cp-red) !important;
+                background: linear-gradient(135deg, rgba(255,56,96,0.15), rgba(255,43,214,0.10)) !important;
+            }
+            button[id*="Reset"]:hover, button[onclick*="reset"]:hover, button[style*="ff0000"]:hover {
+                box-shadow: 0 0 16px rgba(255,56,96,0.5) !important;
+            }
+            button[id="stopLatencyTest"] {
+                color: var(--cp-red) !important;
+                border-color: var(--cp-red) !important;
+            }
+
+            /* Form sub-cards */
+            .card form > div[style*="background: rgba(15, 3, 40"],
+            .card form > div[style*="background: rgba(20, 5, 50"],
+            div[style*="background: rgba(15, 3, 40"],
+            div[style*="background: rgba(20, 5, 50"] {
+                background: linear-gradient(135deg, rgba(0,240,255,0.04), rgba(255,43,214,0.04)) !important;
+                border: 1px solid var(--cp-border-pink) !important;
+                box-shadow: inset 0 0 12px rgba(255,43,214,0.06) !important;
+                border-radius: 0 !important;
+            }
+
+            /* kvStatus / statusMessage / currentConfig / pathTypeInfo */
+            #kvStatus, #statusMessage, #currentConfig, #pathTypeInfo {
+                background: rgba(0,0,0,0.55) !important;
+                border: 1px solid var(--cp-border) !important;
+                color: var(--cp-cyan) !important;
+                font-family: inherit !important;
+                box-shadow: inset 0 0 10px rgba(0,240,255,0.10) !important;
+                padding: 12px 14px !important;
+                font-size: 0.85rem !important;
+                letter-spacing: 0.04em;
+            }
+            #pathTypeInfo div:first-child {
+                color: var(--cp-pink) !important;
+                text-shadow: 0 0 6px var(--cp-pink) !important;
+                letter-spacing: 0.2em !important;
+            }
+
+            /* Latency Result list */
+            #latencyResultsList {
+                background: rgba(0,0,0,0.5) !important;
+                border: 1px solid var(--cp-border) !important;
+            }
+            #latencyResultsList > div {
+                border-bottom: 1px dashed rgba(0,240,255,0.18) !important;
+            }
+            #cityFilterContainer {
+                background: rgba(0,0,0,0.55) !important;
+                border: 1px solid var(--cp-border-pink) !important;
+            }
+
+            /* Related links area */
+            .card a {
+                color: var(--cp-cyan) !important;
+                text-decoration: none;
+                text-shadow: 0 0 6px var(--cp-cyan);
+                letter-spacing: 0.15em;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                padding: 4px 0;
+                border-bottom: 1px dashed transparent;
+                transition: all 0.25s;
+            }
+            .card a:hover {
+                color: var(--cp-pink) !important;
+                border-bottom-color: var(--cp-pink);
+                text-shadow: 0 0 8px var(--cp-pink);
+            }
+
+            /* Scrollbars */
+            ::-webkit-scrollbar { width: 8px; height: 8px; }
+            ::-webkit-scrollbar-track { background: rgba(0,0,0,0.4); }
+            ::-webkit-scrollbar-thumb {
+                background: linear-gradient(180deg, var(--cp-pink), var(--cp-cyan));
+            }
+
+            .cp-glitch {
+                position: relative;
+                display: inline-block;
+            }
+
+            /* Floating action dock - bottom-right anchored FAB cluster */
+            .cp-action-bar {
+                position: fixed;
+                right: 22px;
+                bottom: 22px;
+                z-index: 99999;
+                isolation: isolate;
+                display: flex;
+                flex-direction: row-reverse;
+                align-items: center;
+                gap: 10px;
+                padding: 0;
+                background: transparent;
+                border: 0;
+                box-shadow: none;
+                max-width: calc(100vw - 32px);
+                pointer-events: auto;
+            }
+            /* Primary SAVE FAB - large, magenta, pulses when dirty */
+            .cp-fab-save {
+                position: relative;
+                min-width: 188px;
+                padding: 16px 26px !important;
+                font-size: 0.92rem !important;
+                font-weight: 800 !important;
+                letter-spacing: 0.22em !important;
+                text-transform: uppercase;
+                color: var(--cp-pink) !important;
+                background:
+                    linear-gradient(135deg, rgba(255,43,214,0.45) 0%, rgba(0,240,255,0.25) 100%) !important;
+                border: 2px solid var(--cp-pink) !important;
+                text-shadow: 0 0 10px var(--cp-pink) !important;
+                box-shadow:
+                    0 0 0 1px rgba(0,240,255,0.4),
+                    0 0 24px rgba(255,43,214,0.7),
+                    0 0 48px rgba(255,43,214,0.35),
+                    inset 0 0 18px rgba(255,43,214,0.25) !important;
+                clip-path: polygon(12px 0, 100% 0, 100% calc(100% - 12px), calc(100% - 12px) 100%, 0 100%, 0 12px);
+                cursor: pointer;
+                transition: transform 0.18s ease, box-shadow 0.25s ease;
+                display: inline-flex; align-items: center; gap: 10px;
+                white-space: nowrap;
+                font-family: inherit !important;
+                animation: cp-fab-breathe 3.4s ease-in-out infinite;
+            }
+            @keyframes cp-fab-breathe {
+                0%, 100% {
+                    box-shadow:
+                        0 0 0 1px rgba(0,240,255,0.4),
+                        0 0 24px rgba(255,43,214,0.7),
+                        0 0 48px rgba(255,43,214,0.35),
+                        inset 0 0 18px rgba(255,43,214,0.25);
+                }
+                50% {
+                    box-shadow:
+                        0 0 0 1px rgba(0,240,255,0.55),
+                        0 0 32px rgba(255,43,214,0.9),
+                        0 0 80px rgba(255,43,214,0.45),
+                        inset 0 0 24px rgba(255,43,214,0.4);
+                }
+            }
+            .cp-fab-save:hover {
+                transform: translateY(-3px) scale(1.03);
+                color: #fff !important;
+                text-shadow: 0 0 14px #fff, 0 0 22px var(--cp-pink) !important;
+            }
+            .cp-fab-save .cp-fab-icon {
+                font-size: 1.15em;
+                line-height: 1;
+                color: var(--cp-cyan);
+                text-shadow: 0 0 10px var(--cp-cyan);
+            }
+            .cp-fab-save .cp-fab-dot {
+                width: 8px; height: 8px;
+                background: var(--cp-mint);
+                box-shadow: 0 0 8px var(--cp-mint);
+                transform: rotate(45deg);
+                margin-left: 4px;
+                opacity: 0.5;
+                transition: all 0.2s;
+            }
+            .cp-action-bar.cp-dirty .cp-fab-save {
+                animation: cp-fab-dirty 1.1s ease-in-out infinite;
+                color: #fff !important;
+            }
+            .cp-action-bar.cp-dirty .cp-fab-save .cp-fab-dot {
+                background: var(--cp-pink);
+                box-shadow: 0 0 12px var(--cp-pink), 0 0 24px var(--cp-pink);
+                opacity: 1;
+            }
+            @keyframes cp-fab-dirty {
+                0%, 100% {
+                    box-shadow:
+                        0 0 0 1px var(--cp-pink),
+                        0 0 24px rgba(255,43,214,0.85),
+                        0 0 60px rgba(255,43,214,0.5),
+                        inset 0 0 22px rgba(255,43,214,0.45);
+                    transform: scale(1);
+                }
+                50% {
+                    box-shadow:
+                        0 0 0 2px var(--cp-pink),
+                        0 0 40px rgba(255,43,214,1),
+                        0 0 100px rgba(255,43,214,0.7),
+                        inset 0 0 30px rgba(255,43,214,0.6);
+                    transform: scale(1.04);
+                }
+            }
+            /* Secondary mini buttons - icon-first */
+            .cp-action-btn {
+                background: rgba(8,4,28,0.85) !important;
+                border: 1px solid var(--cp-border) !important;
+                color: var(--cp-cyan) !important;
+                font-family: inherit !important;
+                font-weight: 700 !important;
+                cursor: pointer;
+                width: 46px; height: 46px;
+                padding: 0 !important;
+                letter-spacing: 0 !important;
+                font-size: 1.05rem !important;
+                text-shadow: 0 0 6px var(--cp-cyan) !important;
+                transition: all 0.25s ease;
+                clip-path: polygon(8px 0, 100% 0, 100% calc(100% - 8px), calc(100% - 8px) 100%, 0 100%, 0 8px);
+                box-shadow: 0 0 10px rgba(0,240,255,0.35);
+                display: inline-flex; align-items: center; justify-content: center;
+                white-space: nowrap;
+                position: relative;
+            }
+            .cp-action-btn .cp-btn-label { display: none; }
+            .cp-action-btn::after {
+                content: attr(data-tip);
+                position: absolute;
+                bottom: 100%; right: 50%;
+                transform: translate(50%, -8px);
+                background: rgba(8,4,28,0.95);
+                color: var(--cp-cyan);
+                font-size: 10px;
+                letter-spacing: 0.18em;
+                text-transform: uppercase;
+                padding: 5px 9px;
+                border: 1px solid var(--cp-border);
+                opacity: 0; pointer-events: none;
+                transition: opacity 0.2s;
+                white-space: nowrap;
+                text-shadow: 0 0 5px var(--cp-cyan);
+                box-shadow: 0 0 10px rgba(0,240,255,0.4);
+            }
+            .cp-action-btn:hover::after { opacity: 1; }
+            .cp-action-btn:hover {
+                color: var(--cp-pink) !important;
+                border-color: var(--cp-pink) !important;
+                box-shadow: 0 0 16px rgba(255,43,214,0.55) !important;
+                transform: translateY(-2px);
+                text-shadow: 0 0 8px var(--cp-pink) !important;
+            }
+            .cp-action-btn-danger {
+                color: var(--cp-red) !important;
+                border-color: var(--cp-red) !important;
+                text-shadow: 0 0 6px var(--cp-red) !important;
+                box-shadow: 0 0 10px rgba(255,56,96,0.45) !important;
+            }
+            .cp-action-btn-danger:hover {
+                color: #fff !important;
+                box-shadow: 0 0 20px rgba(255,56,96,0.85) !important;
+                transform: translateY(-2px);
+            }
+            .cp-action-btn-saving,
+            .cp-fab-save.cp-action-btn-saving {
+                opacity: 0.7;
+                pointer-events: none;
+                animation: cp-pulse-pink 0.9s ease-in-out infinite !important;
+            }
+            @keyframes cp-pulse-pink {
+                0%, 100% { box-shadow: 0 0 12px rgba(255,43,214,0.45); }
+                50%      { box-shadow: 0 0 36px rgba(255,43,214,0.95); }
+            }
+            .container { padding-bottom: 130px; }
+            .cp-action-status {
+                position: fixed;
+                right: 22px;
+                bottom: 86px;
+                z-index: 99998;
+                padding: 9px 16px;
+                background: rgba(8,4,28,0.95);
+                border: 1px solid var(--cp-mint);
+                color: var(--cp-mint);
+                font-size: 0.78rem;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                text-shadow: 0 0 6px var(--cp-mint);
+                box-shadow: 0 0 14px rgba(0,255,157,0.45);
+                clip-path: polygon(6px 0, 100% 0, 100% calc(100% - 6px), calc(100% - 6px) 100%, 0 100%, 0 6px);
+                opacity: 0;
+                transform: translateY(8px);
+                transition: opacity 0.25s, transform 0.25s;
+                pointer-events: none;
+                white-space: nowrap;
+                max-width: calc(100vw - 44px);
+                overflow: hidden; text-overflow: ellipsis;
+            }
+            .cp-action-status.cp-show { opacity: 1; transform: translateY(0); }
+            .cp-action-status.cp-err {
+                border-color: var(--cp-red);
+                color: var(--cp-red);
+                text-shadow: 0 0 6px var(--cp-red);
+                box-shadow: 0 0 14px rgba(255,56,96,0.55);
+            }
+            /* Toast notification stack (top-right) */
+            .cp-toast-stack {
+                position: fixed;
+                top: 88px;
+                right: 22px;
+                z-index: 100000;
+                display: flex;
+                flex-direction: column;
+                gap: 10px;
+                max-width: min(420px, calc(100vw - 32px));
+                pointer-events: none;
+            }
+            .cp-toast {
+                position: relative;
+                display: flex;
+                align-items: flex-start;
+                gap: 12px;
+                padding: 12px 16px 12px 14px;
+                background: linear-gradient(135deg, rgba(8,4,28,0.96) 0%, rgba(20,5,50,0.92) 100%);
+                border: 1px solid var(--cp-mint);
+                color: var(--cp-mint);
+                font-size: 0.82rem;
+                line-height: 1.45;
+                letter-spacing: 0.06em;
+                text-shadow: 0 0 6px var(--cp-mint);
+                box-shadow:
+                    0 0 0 1px rgba(0,255,157,0.25),
+                    0 0 18px rgba(0,255,157,0.45),
+                    0 8px 28px rgba(0,0,0,0.55);
+                backdrop-filter: blur(8px);
+                clip-path: polygon(10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%, 0 10px);
+                transform: translateX(120%);
+                opacity: 0;
+                transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), opacity 0.25s;
+                pointer-events: auto;
+                overflow: hidden;
+                word-break: break-all;
+            }
+            .cp-toast.cp-show { transform: translateX(0); opacity: 1; }
+            .cp-toast.cp-hide { transform: translateX(120%); opacity: 0; }
+            .cp-toast::before {
+                content: "";
+                position: absolute;
+                left: 0; top: 0; bottom: 0;
+                width: 3px;
+                background: var(--cp-mint);
+                box-shadow: 0 0 10px var(--cp-mint);
+            }
+            .cp-toast-icon {
+                font-size: 1.1rem;
+                line-height: 1;
+                margin-top: 1px;
+                flex-shrink: 0;
+                color: var(--cp-mint);
+                text-shadow: 0 0 8px var(--cp-mint);
+            }
+            .cp-toast-body { flex: 1; min-width: 0; }
+            .cp-toast-title {
+                font-size: 0.72rem;
+                font-weight: 800;
+                letter-spacing: 0.22em;
+                text-transform: uppercase;
+                opacity: 0.85;
+                margin-bottom: 2px;
+            }
+            .cp-toast-msg { white-space: pre-wrap; }
+            .cp-toast-close {
+                position: absolute;
+                top: 6px; right: 8px;
+                background: transparent;
+                border: 0;
+                color: inherit;
+                font-size: 14px;
+                cursor: pointer;
+                opacity: 0.55;
+                padding: 2px 4px;
+                line-height: 1;
+                transition: opacity 0.2s;
+            }
+            .cp-toast-close:hover { opacity: 1; }
+            .cp-toast::after {
+                content: "";
+                position: absolute;
+                left: 0; bottom: 0;
+                height: 2px;
+                width: 100%;
+                background: linear-gradient(90deg, var(--cp-mint), transparent);
+                box-shadow: 0 0 6px var(--cp-mint);
+                transform-origin: left;
+                animation: cp-toast-bar var(--cp-toast-dur, 3200ms) linear forwards;
+            }
+            @keyframes cp-toast-bar {
+                from { transform: scaleX(1); }
+                to   { transform: scaleX(0); }
+            }
+            .cp-toast.cp-toast-success { border-color: var(--cp-mint); color: var(--cp-mint); text-shadow: 0 0 6px var(--cp-mint); }
+            .cp-toast.cp-toast-success::before,
+            .cp-toast.cp-toast-success::after { background: var(--cp-mint); box-shadow: 0 0 10px var(--cp-mint); }
+            .cp-toast.cp-toast-success .cp-toast-icon { color: var(--cp-mint); text-shadow: 0 0 8px var(--cp-mint); }
+            .cp-toast.cp-toast-info { border-color: var(--cp-cyan); color: var(--cp-cyan); text-shadow: 0 0 6px var(--cp-cyan); box-shadow: 0 0 0 1px rgba(0,240,255,0.25), 0 0 18px rgba(0,240,255,0.45), 0 8px 28px rgba(0,0,0,0.55); }
+            .cp-toast.cp-toast-info::before,
+            .cp-toast.cp-toast-info::after { background: var(--cp-cyan); box-shadow: 0 0 10px var(--cp-cyan); }
+            .cp-toast.cp-toast-info .cp-toast-icon { color: var(--cp-cyan); text-shadow: 0 0 8px var(--cp-cyan); }
+            .cp-toast.cp-toast-warn { border-color: var(--cp-amber); color: var(--cp-amber); text-shadow: 0 0 6px var(--cp-amber); box-shadow: 0 0 0 1px rgba(255,176,46,0.25), 0 0 18px rgba(255,176,46,0.45), 0 8px 28px rgba(0,0,0,0.55); }
+            .cp-toast.cp-toast-warn::before,
+            .cp-toast.cp-toast-warn::after { background: var(--cp-amber); box-shadow: 0 0 10px var(--cp-amber); }
+            .cp-toast.cp-toast-warn .cp-toast-icon { color: var(--cp-amber); text-shadow: 0 0 8px var(--cp-amber); }
+            .cp-toast.cp-toast-error { border-color: var(--cp-red); color: var(--cp-red); text-shadow: 0 0 6px var(--cp-red); box-shadow: 0 0 0 1px rgba(255,56,96,0.30), 0 0 18px rgba(255,56,96,0.55), 0 8px 28px rgba(0,0,0,0.55); }
+            .cp-toast.cp-toast-error::before,
+            .cp-toast.cp-toast-error::after { background: var(--cp-red); box-shadow: 0 0 10px var(--cp-red); }
+            .cp-toast.cp-toast-error .cp-toast-icon { color: var(--cp-red); text-shadow: 0 0 8px var(--cp-red); }
+
+            /* Tiny floating "unsaved" badge on the FAB */
+            .cp-action-bar.cp-dirty::before {
+                content: "● UNSAVED";
+                position: absolute;
+                top: -22px; right: 6px;
+                font-size: 9px;
+                letter-spacing: 0.3em;
+                color: var(--cp-pink);
+                text-shadow: 0 0 6px var(--cp-pink);
+                background: rgba(8,4,28,0.92);
+                padding: 3px 8px;
+                border: 1px solid var(--cp-pink);
+                box-shadow: 0 0 10px rgba(255,43,214,0.6);
+                animation: cp-pulse-pink 1.6s ease-in-out infinite;
+            }
+
+            @media (max-width: 720px) {
+                .container { padding: 100px 14px 140px; }
+                .card { padding: 22px 18px; }
+                .header { padding: 22px 18px; }
+                .title { font-size: 2rem; }
+                .cp-hud { font-size: 9px; }
+                .cp-action-bar {
+                    right: 50%;
+                    bottom: 14px;
+                    transform: translateX(50%);
+                    gap: 8px;
+                }
+                .cp-fab-save {
+                    min-width: 0;
+                    padding: 13px 18px !important;
+                    font-size: 0.8rem !important;
+                    letter-spacing: 0.16em !important;
+                }
+                .cp-action-btn { width: 42px; height: 42px; }
+                .cp-action-status { right: 50%; transform: translate(50%, 8px); }
+                .cp-action-status.cp-show { transform: translate(50%, 0); }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="matrix-bg"></div>
+        <div class="matrix-code-rain" id="matrixCodeRain"></div>
+            <div class="cp-hud">
+                <span class="cp-hud-line"><span class="cp-hud-label">SYS::</span> ${翻译值.terminal}</span>
+                <span class="cp-hud-line"><span class="cp-hud-label">NODE::</span> NIGHT_CITY</span>
+                <span class="cp-hud-line"><span class="cp-hud-label">LINK::</span> SECURE / ENC</span>
+            </div>
+            <div class="cp-lang-wrapper">
+                <span class="cp-lang-tag">LANG_</span>
+                <select id="languageSelector" onchange="切换语言(this.value)">
+                    <option value="zh" ${!是否值236 ? 'selected' : ''}>🇨🇳 中文</option>
+                    <option value="fa" ${是否值236 ? 'selected' : ''}>🇮🇷 فارسی</option>
+                </select>
+            </div>
+            <button type="button" id="cpFxToggle" class="cp-fx-toggle" onclick="window.切换页面特效()" title="${是否值236 ? 'تغییر افکت‌های صفحه' : '切换页面特效'}" aria-label="FX toggle">
+                <span class="cp-fx-dot" aria-hidden="true"></span>
+                <span id="cpFxLabel">FX: ON</span>
+            </button>
+        <div class="container">
+            <div class="header">
+                    <h1 class="title cp-glitch" data-text="${翻译值.title}">${翻译值.title}</h1>
+                    <p class="subtitle">${翻译值.subtitle}</p>
+            </div>
+            <div class="card">
+                    <h2 class="card-title">${翻译值.selectClient}</h2>
+                <div class="client-grid">
+                    <button class="client-btn" onclick="生成客户端链接(atob('Y2xhc2g='), 'CLASH')">CLASH</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('Y2xhc2g='), 'STASH')">STASH</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('c3VyZ2U='), 'SURGE')">SURGE</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('c2luZ2JveA=='), 'SING-BOX')">SING-BOX</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('bG9vbg=='), 'LOON')">LOON</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('cXVhbng='), 'QUANTUMULT X')">QUANTUMULT X</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'V2RAY')">V2RAY</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'V2RAYNG')">V2RAYNG</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'NEKORAY')">NEKORAY</button>
+                    <button class="client-btn" onclick="生成客户端链接(atob('djJyYXk='), 'Shadowrocket')">Shadowrocket</button>
+                    <button class="client-btn" id="jkClientBtn" style="${启用家宽链式 ? '' : 'display: none;'}" onclick="生成客户端链接('vg', '${翻译值.jkClient}')">${翻译值.jkClient}</button>
+                </div>
+                <div class="subscription-url" id="clientSubscriptionUrl"></div>
+            </div>
+            <div class="card">
+                    <h2 class="card-title">${翻译值.systemStatus}</h2>
+                <div id="systemStatus" style="margin: 20px 0; padding: 15px; background: rgba(8, 4, 28, 0.8); border: 2px solid #00f0ff; box-shadow: 0 0 20px rgba(0, 240, 255, 0.3), inset 0 0 15px rgba(0, 240, 255, 0.1); position: relative; overflow: hidden;">
+                        <div style="color: #00f0ff; margin-bottom: 15px; font-weight: bold; text-shadow: 0 0 5px #00f0ff;">[ ${翻译值.checking} ]</div>
+                        <div id="regionStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${翻译值.workerRegion}${翻译值.checking}</div>
+                        <div id="geoInfo" style="margin: 8px 0; color: #7aa9c4; font-family: 'Courier New', monospace; font-size: 0.9rem; text-shadow: 0 0 3px #7aa9c4;">${翻译值.detectionMethod}${翻译值.checking}</div>
+                        <div id="backupStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${翻译值.proxyIPStatus}${翻译值.checking}</div>
+                        <div id="currentIP" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${翻译值.currentIP}${翻译值.checking}</div>
+                        <div id="echStatus" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff; font-size: 0.9rem;">ECH状态: ${翻译值.checking}</div>
+                        <div id="regionMatch" style="margin: 8px 0; color: #00f0ff; font-family: 'Courier New', monospace; text-shadow: 0 0 3px #00f0ff;">${翻译值.regionMatch}${翻译值.checking}</div>
+                        <div id="selectionLogic" style="margin: 8px 0; color: #7aa9c4; font-family: 'Courier New', monospace; font-size: 0.9rem; text-shadow: 0 0 3px #7aa9c4;">${翻译值.selectionLogic}${翻译值.selectionLogicText}</div>
+                </div>
+            </div>
+            <div class="card" id="configCard" style="display: none;">
+                    <h2 class="card-title">${翻译值.configManagement}</h2>
+                <div id="kvStatus" style="margin-bottom: 20px; padding: 10px; background: rgba(8, 4, 28, 0.8); border: 1px solid #00f0ff; color: #00f0ff;">
+                    ${翻译值.kvStatusChecking}
+                </div>
+                <div id="configContent" style="display: none;">
+                    <form id="regionForm" style="margin-bottom: 20px;">
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.specifyRegion}</label>
+                            <select id="wkRegion" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.autoDetect}</option>
+                                    <option value="HK">${翻译值.regionNames.HK}</option>
+                                    <option value="US">${翻译值.regionNames.US}</option>
+                                    <option value="SG">${翻译值.regionNames.SG}</option>
+                                    <option value="JP">${翻译值.regionNames.JP}</option>
+                                    <option value="KR">${翻译值.regionNames.KR}</option>
+                                    <option value="DE">${翻译值.regionNames.DE}</option>
+                                    <option value="SE">${翻译值.regionNames.SE}</option>
+                                    <option value="NL">${翻译值.regionNames.NL}</option>
+                                    <option value="FI">${翻译值.regionNames.FI}</option>
+                                    <option value="GB">${翻译值.regionNames.GB}</option>
+                            </select>
+                                <small id="wkRegionHint" style="color: #7aa9c4; font-size: 0.85rem; display: none;">⚠️ ${翻译值.customIPDisabledHint}</small>
+                        </div>
+                    </form>
+                    <form id="otherConfigForm" style="margin-bottom: 20px;">
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.protocolSelection}</label>
+                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="ev" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enableProtoV}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="et" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enableProtoT}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="ex" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enableXhttp}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 240, 255, 0.3);">
+                                    <div style="margin-bottom: 10px;">
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ech" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                                <span style="font-size: 1.1rem;">${翻译值.enableECH}</span>
+                                        </label>
+                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px; margin-left: 26px;">${翻译值.enableECHHint}</small>
+                                    </div>
+                                    <div style="margin-top: 15px; margin-bottom: 10px;">
+                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${翻译值.customDNS}</label>
+                                        <input type="text" id="customDNS" placeholder="${翻译值.customDNSPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${翻译值.customDNSHint}</small>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${翻译值.customECHDomain}</label>
+                                        <input type="text" id="customECHDomain" placeholder="${翻译值.customECHDomainPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${翻译值.customECHDomainHint}</small>
+                                    </div>
+                                    <div style="margin-bottom: 10px;">
+                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${翻译值.alpn}</label>
+                                        <select id="alpn" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                            <option value="">${翻译值.alpnDefault}</option>
+                                            <option value="h3">h3</option>
+                                            <option value="h2">h2</option>
+                                            <option value="http/1.1">http/1.1</option>
+                                            <option value="h3,h2">h3,h2</option>
+                                            <option value="h2,http/1.1">h2,http/1.1</option>
+                                            <option value="h3,h2,http/1.1">h3,h2,http/1.1</option>
+                                        </select>
+                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${翻译值.alpnHint}</small>
+                                    </div>
+                                </div>
+                                <div style="margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(0, 240, 255, 0.3);">
+                                        <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-size: 0.95rem;">${翻译值.altPassword}</label>
+                                        <input type="text" id="tp" placeholder="${翻译值.altPasswordPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                        <small style="color: #7aa9c4; font-size: 0.8rem; display: block; margin-top: 5px;">${翻译值.altPasswordHint}</small>
+                                </div>
+                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">${翻译值.protocolHint}</small>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.customHomepage}</label>
+                                <input type="text" id="customHomepage" placeholder="${翻译值.customHomepagePlaceholder}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.customHomepageHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.customPath}</label>
+                                <input type="text" id="customPath" placeholder="${是否值236 ? 'مثال: /mypath یا خالی بگذارید تا از UUID استفاده شود' : '例如: /mypath 或留空使用 UUID'}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${是否值236 ? 解码64('2YXYs9uM2LEg2KfYtNiq2LHYp9qpINiz2YHYp9ix2LTbjC4g2Kfar9ixINiu2KfZhNuMINio2q/YsNin2LHbjNivINin2LIgVVVJRCDYqNmHINi52YbZiNin2YYg2YXYs9uM2LEg2KfYs9iq2YHYp9iv2Ycg2YXbjOKAjNi02YjYry4=') : 解码64('6Ieq5a6a5LmJ6K6i6ZiF6Lev5b6E44CC55WZ56m65YiZ5L2/55SoIFVVSUQg5L2c5Li66Lev5b6E44CC')}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.customIP}</label>
+                                <input type="text" id="customIP" placeholder="${是否值236 ? 'مثال: 1.2.3.4:443' : '例如: 1.2.3.4:443'}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${是否值236 ? 解码64('2KLYr9ix2LMg2Ygg2b7ZiNix2KogUHJveHlJUCDYs9mB2KfYsdi024w=') : 解码64('6Ieq5a6a5LmJUHJveHlJUOWcsOWdgOWSjOerr+WPow==')}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.preferredIPs}</label>
+                                <input type="text" id="yx" placeholder="${是否值236 ? 'مثال: 1.2.3.4:443#گره هنگ‌کنگ,5.6.7.8:80#گره آمریکا,example.com:8443#گره سنگاپور' : '例如: 1.2.3.4:443#日本节点,5.6.7.8:80#美国节点,example.com:8443#新加坡节点'}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${是否值236 ? 'فرمت: IP:پورت#نام گره یا IP:پورت (بدون # از نام پیش‌فرض استفاده می‌شود). پشتیبانی از چندین مورد، با کاما جدا می‌شوند. <span style="color: #ffb400;">IP های اضافه شده از طریق API به طور خودکار در اینجا نمایش داده می‌شوند.</span>' : '格式: IP:端口#节点名称 或 IP:端口 (无#则使用默认名称)。支持多个，用逗号分隔。<span style="color: #ffb400;">API添加的IP会自动显示在这里。</span>'}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.preferredIPsURL}</label>
+                                <input type="text" id="yxURL" placeholder="${是否值236 ? 'URL منبع لیست IP ترجیحی را وارد کنید' : '输入优选IP列表来源URL'}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${是否值236 ? 'URL منبع لیست IP ترجیحی سفارشی، اگر خالی بگذارید از آدرس پیش‌فرض استفاده می‌شود' : '自定义优选IP列表来源URL，留空则使用默认地址'}</small>
+                        </div>
+                        
+                        <div style="margin-bottom: 20px; padding: 15px; background: rgba(20, 5, 50, 0.6); border: 2px solid #7aa9c4; border-radius: 8px;">
+                            <h4 style="color: #00f0ff; margin: 0 0 15px 0; font-size: 1.1rem; text-shadow: 0 0 5px #00f0ff;">⚡ ${翻译值.latencyTest}</h4>
+                            <div style="display: flex; gap: 10px; margin-bottom: 12px; flex-wrap: wrap; align-items: center;">
+                                <div style="min-width: 120px;">
+                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${翻译值.ipSource}</label>
+                                    <select id="ipSourceSelect" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px; cursor: pointer;">
+                                        <option value="manual">${翻译值.manualInput}</option>
+                                        <option value="cfRandom">${翻译值.cfRandomIP}</option>
+                                        <option value="urlFetch">${翻译值.urlFetch}</option>
+                                    </select>
+                                </div>
+                                <div style="width: 100px;">
+                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${翻译值.latencyTestPort}</label>
+                                    <input type="number" id="latencyTestPort" value="443" min="1" max="65535" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                </div>
+                                <div id="randomCountDiv" style="width: 100px; display: none;">
+                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${翻译值.randomCount}</label>
+                                    <input type="number" id="randomIPCount" value="20" min="1" max="100" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                </div>
+                                <div style="width: 80px;">
+                                    <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${是否值236 ? 'رشته‌ها' : '线程'}</label>
+                                    <input type="number" id="testThreads" value="5" min="1" max="50" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                </div>
+                            </div>
+                            <div id="manualInputDiv" style="margin-bottom: 10px;">
+                                <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${翻译值.latencyTestIP}</label>
+                                <input type="text" id="latencyTestInput" placeholder="${翻译值.latencyTestIPPlaceholder}" style="width: 100%; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                            </div>
+                            <div id="urlFetchDiv" style="margin-bottom: 10px; display: none;">
+                                <label style="display: block; margin-bottom: 5px; color: #00f0ff; font-size: 0.9rem;">${翻译值.fetchURL}</label>
+                                <div style="display: flex; gap: 8px;">
+                                    <input type="text" id="fetchURLInput" placeholder="${翻译值.fetchURLPlaceholder}" style="flex: 1; padding: 10px; background: rgba(0, 0, 0, 0.8); border: 1px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 13px;">
+                                    <button type="button" id="fetchIPBtn" style="background: rgba(0, 200, 255, 0.2); border: 1px solid #00aaff; padding: 8px 16px; color: #00aaff; font-family: 'Courier New', monospace; cursor: pointer; white-space: nowrap;">⬇ ${翻译值.fetchIP}</button>
+                                </div>
+                            </div>
+                            <div id="cfRandomDiv" style="margin-bottom: 10px; display: none;">
+                                <button type="button" id="generateCFIPBtn" style="background: rgba(0, 240, 255, 0.15); border: 1px solid #00f0ff; padding: 10px 20px; color: #00f0ff; font-family: 'Courier New', monospace; cursor: pointer; width: 100%; transition: all 0.3s;">🎲 ${翻译值.generateIP}</button>
+                            </div>
+                            <div style="display: flex; gap: 10px; margin-bottom: 15px;">
+                                <button type="button" id="startLatencyTest" style="background: rgba(0, 240, 255, 0.2); border: 1px solid #00f0ff; padding: 8px 16px; color: #00f0ff; font-family: 'Courier New', monospace; cursor: pointer; transition: all 0.3s;">▶ ${翻译值.startTest}</button>
+                                <button type="button" id="stopLatencyTest" style="background: rgba(255, 0, 0, 0.2); border: 1px solid #ff3860; padding: 8px 16px; color: #ff3860; font-family: 'Courier New', monospace; cursor: pointer; display: none; transition: all 0.3s;">⏹ ${翻译值.stopTest}</button>
+                            </div>
+                            <div id="latencyTestStatus" style="color: #7aa9c4; font-size: 0.9rem; margin-bottom: 10px; display: none;"></div>
+                            <div id="latencyTestResults" style="max-height: 250px; overflow-y: auto; display: none;">
+                                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px;">
+                                    <span style="color: #00f0ff; font-weight: bold;">${翻译值.testResult}</span>
+                                    <div style="display: flex; gap: 8px;">
+                                        <button type="button" id="selectAllResults" style="background: transparent; border: 1px solid #7aa9c4; padding: 4px 10px; color: #7aa9c4; font-size: 0.8rem; cursor: pointer;">${翻译值.selectAll}</button>
+                                        <button type="button" id="deselectAllResults" style="background: transparent; border: 1px solid #7aa9c4; padding: 4px 10px; color: #7aa9c4; font-size: 0.8rem; cursor: pointer;">${翻译值.deselectAll}</button>
+                                    </div>
+                                </div>
+                                <div id="cityFilterContainer" style="margin-bottom: 10px; padding: 10px; background: rgba(15, 3, 40, 0.6); border: 1px solid #7aa9c4; border-radius: 4px; display: none;">
+                                    <div style="margin-bottom: 8px;">
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.9rem;">
+                                            <input type="radio" name="cityFilterMode" value="all" checked style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
+                                            <span>${是否值236 ? '全部城市' : '全部城市'}</span>
+                                        </label>
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.9rem; margin-left: 15px;">
+                                            <input type="radio" name="cityFilterMode" value="fastest10" style="margin-right: 6px; width: 16px; height: 16px; cursor: pointer;">
+                                            <span>${是否值236 ? '只选择最快的10个' : '只选择最快的10个'}</span>
+                                        </label>
+                                    </div>
+                                    <div id="cityCheckboxesContainer" style="display: flex; flex-wrap: wrap; gap: 8px; max-height: 80px; overflow-y: auto; padding: 5px;"></div>
+                                </div>
+                                <div id="latencyResultsList" style="background: rgba(0, 0, 0, 0.5); border: 1px solid #004400; border-radius: 4px; padding: 10px;"></div>
+                                <div style="margin-top: 10px; display: flex; gap: 10px;">
+                                    <button type="button" id="overwriteSelectedToYx" style="flex: 1; background: rgba(0, 220, 130, 0.3); border: 1px solid #00f0ff; padding: 10px 20px; color: #00f0ff; font-family: 'Courier New', monospace; font-weight: bold; cursor: pointer; transition: all 0.3s;">${是否值236 ? '覆盖添加' : '覆盖添加'}</button>
+                                    <button type="button" id="appendSelectedToYx" style="flex: 1; background: rgba(0, 178, 110, 0.3); border: 1px solid #7aa9c4; padding: 10px 20px; color: #7aa9c4; font-family: 'Courier New', monospace; font-weight: bold; cursor: pointer; transition: all 0.3s;">${是否值236 ? '追加添加' : '追加添加'}</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.socks5Config}</label>
+                                <input type="text" id="socksConfig" placeholder="${是否值236 ? 解码64('2YXYq9in2YQ6IHVzZXI6cGFzc0Bob3N0OnBvcnQg24zYpyBodHRwOi8vdXNlcjpwYXNzQGhvc3Q6cG9ydA==') : 解码64('5L6L5aaCOiB1c2VyOnBhc3NAaG9zdDpwb3J0IOaIliBodHRwOi8vdXNlcjpwYXNzQGhvc3Q6cG9ydA==')}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${是否值236 ? 解码64('2KLYr9ix2LMg2b7YsdmI2qnYs9uMINiu2LHZiNis24wg2KjYsdin24wg2KfZhtiq2YLYp9mEINiq2YXYp9mFINiq2LHYp9mB24zaqSDYrtix2YjYrNuMLiDYqNiv2YjZhiDZvtuM2LTZiNmG2K8g2KjZhyDYtdmI2LHYqiBzNSDYr9ixINmG2LjYsSDar9ix2YHYqtmHINmF24zigIzYtNmI2K8=') : 解码64('5Ye656uZ5Luj55CG5Zyw5Z2A77yM55So5LqO6L2s5Y+R5omA5pyJ5Ye656uZ5rWB6YeP44CC5LiN5YaZ5YmN57yA6buY6K6k5oyJIHM1IOWkhOeQhg==')}</small>
+                        </div>
+                    </form>
+
+                    <h3 style="color: #00f0ff; margin: 20px 0 15px 0; font-size: 1.2rem;">${翻译值.advancedControl}</h3>
+                    <form id="advancedConfigForm" style="margin-bottom: 20px;">
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.subscriptionConverter}</label>
+                                <input type="text" id="scu" placeholder="${翻译值.subscriptionConverterPlaceholder}" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.subscriptionConverterHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.builtinPreferred}</label>
+                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="ena" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enableNativeAddress}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="epd" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enablePreferredDomain}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="epi" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enablePreferredIP}</span>
+                                    </label>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                        <input type="checkbox" id="egi" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1.1rem;">${翻译值.enableGitHubPreferred}</span>
+                                    </label>
+                                </div>
+                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">${翻译值.builtinPreferredHint}</small>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.jkSection}</label>
+                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">
+                                <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                    <input type="checkbox" id="jk" style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                        <span style="font-size: 1.1rem;">${翻译值.jkEnable}</span>
+                                </label>
+                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">${翻译值.jkHint}</small>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">优选IP筛选设置</label>
+                            <div style="padding: 15px; background: rgba(15, 3, 40, 0.6); border: 1px solid #00f0ff; border-radius: 5px;">
+                                <div style="margin-bottom: 15px;">
+                                    <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">IP版本选择</label>
+                                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ipv4Enabled" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1rem;">IPv4</span>
+                                        </label>
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ipv6Enabled" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1rem;">IPv6</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div style="margin-bottom: 10px;">
+                                    <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">运营商选择</label>
+                                    <div style="display: flex; gap: 20px; flex-wrap: wrap;">
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ispMobile" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1rem;">移动</span>
+                                        </label>
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ispUnicom" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1rem;">联通</span>
+                                        </label>
+                                        <label style="display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff;">
+                                            <input type="checkbox" id="ispTelecom" checked style="margin-right: 8px; width: 18px; height: 18px; cursor: pointer;">
+                                            <span style="font-size: 1rem;">电信</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                    <small style="color: #7aa9c4; font-size: 0.85rem; display: block; margin-top: 10px;">选择要使用的IP版本和运营商，未选中的将被过滤</small>
+                            </div>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.allowAPIManagement}</label>
+                            <select id="apiEnabled" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.apiEnabledDefault}</option>
+                                    <option value="yes">${翻译值.apiEnabledYes}</option>
+                            </select>
+                                <small style="color: #ffb400; font-size: 0.85rem;">${翻译值.apiEnabledHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.regionMatching}</label>
+                            <select id="regionMatching" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.regionMatchingDefault}</option>
+                                    <option value="no">${翻译值.regionMatchingNo}</option>
+                            </select>
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.regionMatchingHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.downgradeControl}</label>
+                            <select id="downgradeControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.downgradeControlDefault}</option>
+                                    <option value="no">${翻译值.downgradeControlNo}</option>
+                                    <option value="only">${翻译值.downgradeControlOnly}</option>
+                            </select>
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.downgradeControlHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.tlsControl}</label>
+                            <select id="portControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.tlsControlDefault}</option>
+                                    <option value="yes">${翻译值.tlsControlYes}</option>
+                            </select>
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.tlsControlHint}</small>
+                        </div>
+                        <div style="margin-bottom: 15px;">
+                                <label style="display: block; margin-bottom: 8px; color: #00f0ff; font-weight: bold; text-shadow: 0 0 3px #00f0ff;">${翻译值.preferredControl}</label>
+                            <select id="preferredControl" style="width: 100%; padding: 12px; background: rgba(0, 0, 0, 0.8); border: 2px solid #00f0ff; color: #00f0ff; font-family: 'Courier New', monospace; font-size: 14px;">
+                                    <option value="">${翻译值.preferredControlDefault}</option>
+                                    <option value="yes">${翻译值.preferredControlYes}</option>
+                            </select>
+                                <small style="color: #7aa9c4; font-size: 0.85rem;">${翻译值.preferredControlHint}</small>
+                        </div>
+                    </form>
+                    <div id="currentConfig" style="background: rgba(0, 0, 0, 0.9); border: 1px solid #00f0ff; padding: 15px; margin: 10px 0; font-family: 'Courier New', monospace; color: #00f0ff;">
+                            ${翻译值.loading}
+                    </div>
+                    <div id="pathTypeInfo" style="background: rgba(15, 3, 40, 0.7); border: 1px solid #00f0ff; padding: 15px; margin: 10px 0; font-family: 'Courier New', monospace; color: #00f0ff;">
+                            <div style="font-weight: bold; margin-bottom: 8px; color: #00ff9d; text-shadow: 0 0 5px #00ff9d;">${翻译值.currentConfig}</div>
+                            <div id="pathTypeStatus">${翻译值.checking}</div>
+                    </div>
+                </div>
+                <div id="statusMessage" style="display: none; padding: 10px; margin: 10px 0; border: 1px solid #00f0ff; background: rgba(8, 4, 28, 0.8); color: #00f0ff; text-shadow: 0 0 5px #00f0ff;"></div>
+            </div>
+            
+            <div class="card">
+                    <h2 class="card-title">${翻译值.relatedLinks}</h2>
+                <div style="text-align: center; margin: 20px 0;">
+                        <a href="https://github.com/byJoey/cfnew" target="_blank" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">${翻译值.githubProject}</a>
+                        <a href="https://github.com/byJoey/yx-tools/releases/" target="_blank" rel="noopener noreferrer" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">${翻译值.优选工具}</a>
+                    <a href="https://www.youtube.com/@joeyblog" target="_blank" style="color: #00f0ff; text-decoration: none; margin: 0 20px; font-size: 1.2rem; text-shadow: 0 0 5px #00f0ff;">YouTube @joeyblog</a>
+                </div>
+            </div>
+        </div>
+        <div id="cpToastStack" class="cp-toast-stack" aria-live="polite" aria-atomic="false"></div>
+        <div id="cpActionStatus" class="cp-action-status" role="status" aria-live="polite"></div>
+        <div id="cpActionBar" class="cp-action-bar" role="toolbar" aria-label="${翻译值.configManagement}">
+            <button type="button" id="cpBtnSaveAll" class="cp-fab-save" title="${是否值236 ? 'ذخیره همه تنظیمات' : '保存所有配置 (Ctrl+S)'}">
+                <span class="cp-fab-icon">▣</span>
+                <span>${是否值236 ? 'ذخیره همه' : '保 存 全 部'}</span>
+                <span class="cp-fab-dot" aria-hidden="true"></span>
+            </button>
+            <button type="button" id="cpBtnRefresh" class="cp-action-btn" data-tip="${翻译值.refreshConfig}" aria-label="${翻译值.refreshConfig}">
+                <span aria-hidden="true">↻</span>
+                <span class="cp-btn-label">${翻译值.refreshConfig}</span>
+            </button>
+            <button type="button" id="cpBtnReset" class="cp-action-btn cp-action-btn-danger" data-tip="${翻译值.resetConfig}" aria-label="${翻译值.resetConfig}">
+                <span aria-hidden="true">⌫</span>
+                <span class="cp-btn-label">${翻译值.resetConfig}</span>
+            </button>
+        </div>
+        <script>
+// 地址从服务器配置注入
+var 订阅转换网址 = "${订阅转换接口}";
+// 远程配置URL（硬编码）
+var 远程配置网址 = "${远程配置网址}";
+
+// 翻译对象
+const 本地值20215 = {
+  zh: {
+    subscriptionCopied: '${解码64('6K6i6ZiF6ZO+5o6l5bey5aSN5Yi2')}',
+    autoSubscriptionCopied: '${解码64('6Ieq5Yqo6K+G5Yir6K6i6ZiF6ZO+5o6l5bey5aSN5Yi277yM5a6i5oi356uv6K6/6Zeu5pe25Lya5qC55o2uVXNlci1BZ2VudOiHquWKqOivhuWIq+W5tui/lOWbnuWvueW6lOagvOW8jw==')}'
+  },
+  fa: {
+    subscriptionCopied: 'لینک اشتراک کپی شد',
+    autoSubscriptionCopied: 'لینک اشتراک تشخیص خودکار کپی شد، کلاینت هنگام دسترسی بر اساس User-Agent به طور خودکار تشخیص داده و قالب مربوطه را برمی‌گرداند'
+  }
+};
+function 获取凭据20214(名称20213) {
+  const 值20212 = '; ' + document.cookie;
+  const 部分列表20211 = 值20212.split('; ' + 名称20213 + '=');
+  if (部分列表20211.length === 2) return 部分列表20211.pop().split(';').shift();
+  return null;
+}
+const 浏览器语言20210 = navigator.language || navigator.userLanguage || '';
+const 已保存语言20209 = localStorage.getItem('preferredLanguage') || 获取凭据20214('preferredLanguage');
+let 是否值20208 = false;
+if (已保存语言20209 === 'fa' || 已保存语言20209 === 'fa-IR') {
+  是否值20208 = true;
+} else if (已保存语言20209 === 'zh' || 已保存语言20209 === 'zh-CN') {
+  是否值20208 = false;
+} else {
+  是否值20208 = 浏览器语言20210.includes('fa') || 浏览器语言20210.includes('fa-IR');
+}
+const 翻译值20207 = 本地值20215[是否值20208 ? 'fa' : 'zh'];
+function 切换语言(语言) {
+  localStorage.setItem('preferredLanguage', 语言);
+  // 设置Cookie（有效期1年）
+  const 过期日期20206 = new Date();
+  过期日期20206.setFullYear(过期日期20206.getFullYear() + 1);
+  document.cookie = 'preferredLanguage=' + 语言 + '; path=/; expires=' + 过期日期20206.toUTCString() + '; SameSite=Lax';
+  // 刷新页面，不使用URL参数
+  window.location.reload();
+}
+
+// 页面加载时检查 localStorage 和 Cookie，并清理URL参数
+window.addEventListener('DOMContentLoaded', function () {
+  const 已保存语言20205 = localStorage.getItem('preferredLanguage') || 获取凭据20214('preferredLanguage');
+  const 网址参数 = new URLSearchParams(window.location.search);
+  const 网址语言 = 网址参数.get('lang');
+
+  // 如果URL中有语言参数，移除它并设置Cookie
+  if (网址语言) {
+    const 当前网址20204 = new URL(window.location.href);
+    当前网址20204.searchParams.delete('lang');
+    const 新网址 = 当前网址20204.toString();
+
+    // 设置Cookie
+    const 过期日期20203 = new Date();
+    过期日期20203.setFullYear(过期日期20203.getFullYear() + 1);
+    document.cookie = 'preferredLanguage=' + 网址语言 + '; path=/; expires=' + 过期日期20203.toUTCString() + '; SameSite=Lax';
+    localStorage.setItem('preferredLanguage', 网址语言);
+
+    // 使用history API移除URL参数，不刷新页面
+    window.history.replaceState({}, '', 新网址);
+  } else if (已保存语言20205) {
+    // 如果localStorage中有但Cookie中没有，同步到Cookie
+    const 过期日期 = new Date();
+    过期日期.setFullYear(过期日期.getFullYear() + 1);
+    document.cookie = 'preferredLanguage=' + 已保存语言20205 + '; path=/; expires=' + 过期日期.toUTCString() + '; SameSite=Lax';
+  }
+});
+
+// 赛博朋克风 toast 通知 (替代 alert)
+window.显示提示 = function (消息20202, 类型20201, 本地值20200) {
+  本地值20200 = 本地值20200 || {};
+  var 堆栈 = document.getElementById('cpToastStack');
+  if (!堆栈) return;
+  var 类型映射 = {
+    success: '✓',
+    info: '⌬',
+    warn: '⚠',
+    error: '✕'
+  };
+  var 标题映射 = {
+    success: 'SUCCESS',
+    info: 'INFO',
+    warn: 'WARN',
+    error: 'ERROR'
+  };
+  类型20201 = 类型映射[类型20201] ? 类型20201 : 'success';
+  var 持续时间 = 本地值20200.duration || 3200;
+  var 提示 = document.createElement('div');
+  提示.className = 'cp-toast cp-toast-' + 类型20201;
+  提示.style.setProperty('--cp-toast-dur', 持续时间 + 'ms');
+  var 图标 = document.createElement('span');
+  图标.className = 'cp-toast-icon';
+  图标.textContent = 类型映射[类型20201];
+  var 主体 = document.createElement('div');
+  主体.className = 'cp-toast-body';
+  var 标题 = document.createElement('div');
+  标题.className = 'cp-toast-title';
+  标题.textContent = 本地值20200.title || 标题映射[类型20201];
+  var 消息20199 = document.createElement('div');
+  消息20199.className = 'cp-toast-msg';
+  消息20199.textContent = String(消息20202 == null ? '' : 消息20202);
+  主体.appendChild(标题);
+  主体.appendChild(消息20199);
+  var 关闭 = document.createElement('button');
+  关闭.type = 'button';
+  关闭.className = 'cp-toast-close';
+  关闭.setAttribute('aria-label', 'close');
+  关闭.textContent = '✕';
+  提示.appendChild(图标);
+  提示.appendChild(主体);
+  提示.appendChild(关闭);
+  堆栈.appendChild(提示);
+  requestAnimationFrame(function () {
+    提示.classList.add('cp-show');
+  });
+  var 本地值20198 = false;
+  function 关闭提示() {
+    if (本地值20198) return;
+    本地值20198 = true;
+    提示.classList.remove('cp-show');
+    提示.classList.add('cp-hide');
+    setTimeout(function () {
+      if (提示.parentNode) 提示.parentNode.removeChild(提示);
+    }, 400);
+  }
+  关闭.addEventListener('click', 关闭提示);
+  var 计时器 = setTimeout(关闭提示, 持续时间);
+  提示.addEventListener('mouseenter', function () {
+    clearTimeout(计时器);
+  });
+  提示.addEventListener('mouseleave', function () {
+    计时器 = setTimeout(关闭提示, 1200);
+  });
+  return {
+    dismiss: 关闭提示,
+    element: 提示
+  };
+};
+function 尝试打开应用(方案网址20197, 回退回调, 超时20196) {
+  超时20196 = 超时20196 || 2500;
+  var 应用已打开 = false;
+  var 回调已执行 = false;
+  var 开始值 = Date.now();
+  var 值值20195 = function () {
+    var 耗时20194 = Date.now() - 开始值;
+    if (耗时20194 < 3000 && !回调已执行) {
+      应用已打开 = true;
+    }
+  };
+  window.addEventListener('blur', 值值20195);
+  var 值值20193 = function () {
+    var 耗时 = Date.now() - 开始值;
+    if (耗时 < 3000 && !回调已执行) {
+      应用已打开 = true;
+    }
+  };
+  document.addEventListener('visibilitychange', 值值20193);
+  var 内嵌框架 = document.createElement('iframe');
+  内嵌框架.style.display = 'none';
+  内嵌框架.style.width = '1px';
+  内嵌框架.style.height = '1px';
+  内嵌框架.src = 方案网址20197;
+  document.body.appendChild(内嵌框架);
+  setTimeout(function () {
+    内嵌框架.parentNode && 内嵌框架.parentNode.removeChild(内嵌框架);
+    window.removeEventListener('blur', 值值20195);
+    document.removeEventListener('visibilitychange', 值值20193);
+    if (!回调已执行) {
+      回调已执行 = true;
+      if (!应用已打开 && 回退回调) {
+        回退回调();
+      }
+    }
+  }, 超时20196);
+}
+function 生成客户端链接(客户端类型, 客户端名称) {
+  var 当前网址20192 = window.location.href;
+  var 订阅网址20191 = 当前网址20192 + "/sub";
+  var 方案网址 = '';
+  var 显示名称 = 客户端名称 || '';
+  var 最终网址 = 订阅网址20191;
+  if (客户端类型 === atob('djJyYXk=')) {
+    最终网址 = 订阅网址20191;
+    var 网址值20190 = document.getElementById("clientSubscriptionUrl");
+    网址值20190.textContent = 最终网址;
+    网址值20190.style.display = "block";
+    网址值20190.style.overflowWrap = "break-word";
+    网址值20190.style.wordBreak = "break-all";
+    网址值20190.style.overflowX = "auto";
+    网址值20190.style.maxWidth = "100%";
+    网址值20190.style.boxSizing = "border-box";
+    if (客户端名称 === 'V2RAY') {
+      navigator.clipboard.writeText(最终网址).then(function () {
+        显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+      });
+    } else if (客户端名称 === 'Shadowrocket') {
+      方案网址 = '${解码64('c2hhZG93cm9ja2V0Oi8vYWRkLw==')}' + encodeURIComponent(最终网址);
+      尝试打开应用(方案网址, function () {
+        navigator.clipboard.writeText(最终网址).then(function () {
+          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+        });
+      });
+    } else if (客户端名称 === 'V2RAYNG') {
+      方案网址 = '${解码64('djJyYXluZzovL2luc3RhbGw/dXJsPQ==')}' + encodeURIComponent(最终网址);
+      尝试打开应用(方案网址, function () {
+        navigator.clipboard.writeText(最终网址).then(function () {
+          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+        });
+      });
+    } else if (客户端名称 === 'NEKORAY') {
+      方案网址 = '${解码64('bmVrb3JheTovL2luc3RhbGwtY29uZmlnP3VybD0=')}' + encodeURIComponent(最终网址);
+      尝试打开应用(方案网址, function () {
+        navigator.clipboard.writeText(最终网址).then(function () {
+          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+        });
+      });
+    }
+  } else {
+    // 统一走内部格式转换
+    最终网址 = 订阅网址20191 + (订阅网址20191.includes('?') ? '&' : '?') + "target=" + 客户端类型;
+    var 网址值20190 = document.getElementById("clientSubscriptionUrl");
+    网址值20190.textContent = 最终网址;
+    网址值20190.style.display = "block";
+    网址值20190.style.overflowWrap = "break-word";
+    网址值20190.style.wordBreak = "break-all";
+    网址值20190.style.overflowX = "auto";
+    网址值20190.style.maxWidth = "100%";
+    网址值20190.style.boxSizing = "border-box";
+    if (客户端类型 === 'vg') {
+      方案网址 = '${解码64('Y2xhc2g6Ly9pbnN0YWxsLWNvbmZpZz91cmw9')}' + encodeURIComponent(最终网址);
+    } else if (客户端类型 === atob('Y2xhc2g=')) {
+      if (客户端名称 === 'STASH') {
+        方案网址 = '${解码64('c3Rhc2g6Ly9pbnN0YWxsP3VybD0=')}' + encodeURIComponent(最终网址);
+        显示名称 = 'STASH';
+      } else {
+        方案网址 = '${解码64('Y2xhc2g6Ly9pbnN0YWxsLWNvbmZpZz91cmw9')}' + encodeURIComponent(最终网址);
+        显示名称 = 'CLASH';
+      }
+    } else if (客户端类型 === atob('c3VyZ2U=')) {
+      方案网址 = '${解码64('c3VyZ2U6Ly8vaW5zdGFsbC1jb25maWc/dXJsPQ==')}' + encodeURIComponent(最终网址);
+      显示名称 = 'SURGE';
+    } else if (客户端类型 === atob('c2luZ2JveA==')) {
+      方案网址 = '${解码64('c2luZy1ib3g6Ly9pbnN0YWxsLWNvbmZpZz91cmw9')}' + encodeURIComponent(最终网址);
+      显示名称 = 'SING-BOX';
+    } else if (客户端类型 === atob('bG9vbg==')) {
+      方案网址 = '${解码64('bG9vbjovL2luc3RhbGw/dXJsPQ==')}' + encodeURIComponent(最终网址);
+      显示名称 = 'LOON';
+    } else if (客户端类型 === atob('cXVhbng=')) {
+      方案网址 = '${解码64('cXVhbnR1bXVsdC14Oi8vaW5zdGFsbC1jb25maWc/dXJsPQ==')}' + encodeURIComponent(最终网址);
+      显示名称 = 'QUANTUMULT X';
+    }
+    if (方案网址) {
+      尝试打开应用(方案网址, function () {
+        navigator.clipboard.writeText(最终网址).then(function () {
+          显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+        });
+      });
+    } else {
+      navigator.clipboard.writeText(最终网址).then(function () {
+        显示提示(显示名称 + " " + 翻译值20207.subscriptionCopied, 'success');
+      });
+    }
+  }
+}
+
+// 页面特效图形化开关 (localStorage 持久化)
+window.应用页面特效 = function () {
+  var 本地值20189 = localStorage.getItem('cp-fx-off') === '1';
+  document.body.classList.toggle('fx-off', 本地值20189);
+  var 本地值20188 = document.getElementById('cpFxLabel');
+  if (本地值20188) 本地值20188.textContent = 本地值20189 ? 'FX: OFF' : 'FX: ON';
+  if (本地值20189) {
+    var 本地值20187 = document.getElementById('matrixCodeRain');
+    if (本地值20187) 本地值20187.innerHTML = '';
+  } else if (typeof 创建矩阵雨 === 'function') {
+    var 结果值 = document.getElementById('matrixCodeRain');
+    if (结果值 && !结果值.firstChild) 创建矩阵雨();
+  }
+};
+window.切换页面特效 = function () {
+  var 本地值20186 = localStorage.getItem('cp-fx-off') === '1';
+  localStorage.setItem('cp-fx-off', 本地值20186 ? '0' : '1');
+  window.应用页面特效();
+};
+(function () {
+  if (localStorage.getItem('cp-fx-off') === '1') {
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.classList.add('fx-off');
+      var 本地值20185 = document.getElementById('cpFxLabel');
+      if (本地值20185) 本地值20185.textContent = 'FX: OFF';
+    });
+  }
+})();
+function 创建矩阵雨() {
+  if (document.body && document.body.classList.contains('fx-off')) return;
+  const 矩阵值 = document.getElementById('matrixCodeRain');
+  if (!矩阵值) return;
+  const 赛博字符列表 = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ$%#@!?<>+=ABCDEF';
+  const 调色板 = ['#00f0ff', '#ff2bd6', '#a347ff', '#00ff9d'];
+  const 列数 = Math.floor(window.innerWidth / 20);
+  for (let 索引值20184 = 0; 索引值20184 < 列数; 索引值20184++) {
+    const 列20183 = document.createElement('div');
+    列20183.className = 'matrix-column';
+    列20183.style.left = 索引值20184 * 20 + 'px';
+    列20183.style.animationDelay = -Math.random() * 15 + 's';
+    列20183.style.animationDuration = Math.random() * 14 + 8 + 's';
+    列20183.style.fontSize = Math.random() * 4 + 12 + 'px';
+    列20183.style.opacity = (Math.random() * 0.7 + 0.3).toFixed(2);
+    let 文本20182 = '';
+    const 字符数量 = Math.floor(Math.random() * 30 + 18);
+    for (let 次索引值 = 0; 次索引值 < 字符数量; 次索引值++) {
+      const 字符 = 赛博字符列表[Math.floor(Math.random() * 赛博字符列表.length)];
+      const 值强调 = Math.random() > 0.85;
+      const 颜色 = 值强调 ? 调色板[Math.floor(Math.random() * 调色板.length)] : '';
+      文本20182 += 颜色 ? '<span style="color:' + 颜色 + ';text-shadow:0 0 8px ' + 颜色 + ';">' + 字符 + '</span><br>' : '<span>' + 字符 + '</span><br>';
+    }
+    列20183.innerHTML = 文本20182;
+    矩阵值.appendChild(列20183);
+  }
+  setInterval(function () {
+    const 列列表 = 矩阵值.querySelectorAll('.matrix-column');
+    列列表.forEach(function (列) {
+      if (Math.random() > 0.94) {
+        const 字符列表 = 列.querySelectorAll('span');
+        if (字符列表.length > 0) {
+          const 目标20181 = 字符列表[Math.floor(Math.random() * 字符列表.length)];
+          const 本地值20180 = 目标20181.style.color;
+          目标20181.style.color = '#ffffff';
+          目标20181.style.textShadow = '0 0 10px #ffffff, 0 0 18px #00f0ff';
+          setTimeout(function () {
+            目标20181.style.color = 本地值20180;
+            目标20181.style.textShadow = '';
+          }, 200);
+        }
+      }
+    });
+  }, 110);
+}
+async function 检查系统状态() {
+  try {
+    const 云墙状态 = document.getElementById('cfStatus');
+    const 地区状态 = document.getElementById('regionStatus');
+    const 值值20179 = document.getElementById('geoInfo');
+    const 备用状态 = document.getElementById('backupStatus');
+    const 当前地址 = document.getElementById('currentIP');
+    const 地区值 = document.getElementById('regionMatch');
+
+    // 获取当前语言设置（优先从Cookie/localStorage读取）
+    function 获取凭据20178(名称20177) {
+      const 值20176 = '; ' + document.cookie;
+      const 部分列表20175 = 值20176.split('; ' + 名称20177 + '=');
+      if (部分列表20175.length === 2) return 部分列表20175.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言20174 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言20173 = localStorage.getItem('preferredLanguage') || 获取凭据20178('preferredLanguage');
+    let 是否值20172 = false;
+    if (已保存语言20173 === 'fa' || 已保存语言20173 === 'fa-IR') {
+      是否值20172 = true;
+    } else if (已保存语言20173 === 'zh' || 已保存语言20173 === 'zh-CN') {
+      是否值20172 = false;
+    } else {
+      是否值20172 = 浏览器语言20174.includes('fa') || 浏览器语言20174.includes('fa-IR');
+    }
+    const 本地值20171 = {
+      zh: {
+        workerRegion: 'Worker地区: ',
+        detectionMethod: '检测方式: ',
+        proxyIPStatus: '${解码64('UHJveHlJUOeKtuaAgTog')}',
+        currentIP: '当前使用IP: ',
+        regionMatch: '地区匹配: ',
+        regionNames: {
+          'CF': '${解码64('8J+MkCDlrpjmlrnnm7Tov54=')}',
+          'HK': '🇭🇰 香港',
+          'US': '🇺🇸 美国',
+          'SG': '🇸🇬 新加坡',
+          'JP': '🇯🇵 日本',
+          'KR': '🇰🇷 韩国',
+          'DE': '🇩🇪 德国',
+          'SE': '🇸🇪 瑞典',
+          'NL': '🇳🇱 荷兰',
+          'FI': '🇫🇮 芬兰',
+          'GB': '🇬🇧 英国'
+        },
+        customIPMode: '${解码64('6Ieq5a6a5LmJUHJveHlJUOaooeW8jyAocOWPmOmHj+WQr+eUqCk=')}',
+        customIPModeDesc: '自定义IP模式 (已禁用地区匹配)',
+        usingCustomProxyIP: '${解码64('5L2/55So6Ieq5a6a5LmJUHJveHlJUDog')}',
+        customIPConfig: ' (p变量配置)',
+        customIPModeDisabled: '自定义IP模式，地区选择已禁用',
+        manualRegion: '手动指定地区',
+        manualRegionDesc: ' (手动指定)',
+        proxyIPAvailable: '${解码64('MTAvMTAg5Y+v55SoIChQcm94eUlQ5Z+f5ZCN6aKE6K6+5Y+v55SoKQ==')}',
+        smartSelection: '智能就近选择中',
+        sameRegionIP: '同地区IP可用 (1个)',
+        cloudflareDetection: '${解码64('5a6Y5pa555u06L+e')}',
+        detectionFailed: '检测失败',
+        unknown: '未知'
+      },
+      fa: {
+        workerRegion: 'منطقه Worker: ',
+        detectionMethod: 'روش تشخیص: ',
+        proxyIPStatus: '${解码64('2YjYtti524zYqiBQcm94eUlQOiA=')}',
+        currentIP: 'IP فعلی: ',
+        regionMatch: 'تطبیق منطقه: ',
+        regionNames: {
+          'CF': '🌐 مستقیم رسمی',
+          'HK': '🇭🇰 هنگ کنگ',
+          'US': '🇺🇸 آمریکا',
+          'SG': '🇸🇬 سنگاپور',
+          'JP': '🇯🇵 ژاپن',
+          'KR': '🇰🇷 کره جنوبی',
+          'DE': '🇩🇪 آلمان',
+          'SE': '🇸🇪 سوئد',
+          'NL': '🇳🇱 هلند',
+          'FI': '🇫🇮 فنلاند',
+          'GB': '🇬🇧 بریتانیا'
+        },
+        customIPMode: '${解码64('2K3Yp9mE2KogUHJveHlJUCDYs9mB2KfYsdi024wgKNmF2KrYutuM2LEgcCDZgdi52KfZhCDYp9iz2Kop')}',
+        customIPModeDesc: 'حالت IP سفارشی (تطبیق منطقه غیرفعال است)',
+        usingCustomProxyIP: '${解码64('2KfYs9iq2YHYp9iv2Ycg2KfYsiBQcm94eUlQINiz2YHYp9ix2LTbjDog')}',
+        customIPConfig: ' (پیکربندی متغیر p)',
+        customIPModeDisabled: 'حالت IP سفارشی، انتخاب منطقه غیرفعال است',
+        manualRegion: 'تعیین منطقه دستی',
+        manualRegionDesc: ' (تعیین دستی)',
+        proxyIPAvailable: '${解码64('MTAvMTAg2K/YsSDYr9iz2KrYsdizICjYr9in2YXZhtmHINm+24zYtOKAjNmB2LHYtiBQcm94eUlQINiv2LEg2K/Ys9iq2LHYsyDYp9iz2Kop')}',
+        smartSelection: 'انتخاب هوشمند نزدیک در حال انجام است',
+        sameRegionIP: 'IP هم‌منطقه در دسترس است (1)',
+        cloudflareDetection: 'اتصال مستقیم رسمی',
+        detectionFailed: 'تشخیص ناموفق',
+        unknown: 'ناشناخته'
+      }
+    };
+    const 翻译值20170 = 本地值20171[是否值20172 ? 'fa' : 'zh'];
+    let 值地区20169 = 'US'; // 默认值
+    let 是否自定义地址值 = false;
+    let 是否手动地区值 = false;
+    try {
+      const 响应20168 = await fetch(window.location.pathname + '/region');
+      const 数据20167 = await 响应20168.json();
+      if (数据20167.region === 'CUSTOM') {
+        是否自定义地址值 = true;
+        值地区20169 = 'CUSTOM';
+
+        // 获取自定义IP的详细信息
+        const 自定义地址值 = 数据20167.ci || 翻译值20170.unknown;
+        值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #ffb400;">⚙️ ' + 翻译值20170.customIPMode + '</span>';
+        地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #ffb400;">🔧 ' + 翻译值20170.customIPModeDesc + '</span>';
+
+        // 显示自定义IP配置状态，包含具体IP
+        if (备用状态) 备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #ffb400;">🔧 ' + 翻译值20170.usingCustomProxyIP + 自定义地址值 + '</span>';
+        if (当前地址) 当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #ffb400;">✅ ' + 自定义地址值 + 翻译值20170.customIPConfig + '</span>';
+        if (地区值) 地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #ffb400;">⚠️ ' + 翻译值20170.customIPModeDisabled + '</span>';
+        return; // 提前返回，不执行后续的地区匹配逻辑
+      } else if (数据20167.detectionMethod === '手动指定地区' || 数据20167.detectionMethod === 'تعیین منطقه دستی') {
+        是否手动地区值 = true;
+        值地区20169 = 数据20167.region;
+        值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #00b380;">' + 翻译值20170.manualRegion + '</span>';
+        地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #00ff9d;">🎯 ' + 翻译值20170.regionNames[值地区20169] + 翻译值20170.manualRegionDesc + '</span>';
+
+        // 显示配置状态而不是检测状态
+        if (备用状态) 备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.proxyIPAvailable + '</span>';
+        if (当前地址) 当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.smartSelection + '</span>';
+        if (地区值) 地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.sameRegionIP + '</span>';
+        return; // 提前返回，不执行后续的地区匹配逻辑
+      } else if (数据20167.region && 翻译值20170.regionNames[数据20167.region]) {
+        值地区20169 = 数据20167.region;
+      }
+      值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #00ff9d;">' + 翻译值20170.cloudflareDetection + '</span>';
+    } catch (事件值20166) {
+      值值20179.innerHTML = 翻译值20170.detectionMethod + '<span style="color: #ff3860;">' + 翻译值20170.detectionFailed + '</span>';
+    }
+    地区状态.innerHTML = 翻译值20170.workerRegion + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.regionNames[值地区20169] + '</span>';
+
+    // 直接显示配置状态，不再进行检测
+    if (备用状态) {
+      备用状态.innerHTML = 翻译值20170.proxyIPStatus + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.proxyIPAvailable + '</span>';
+    }
+    if (当前地址) {
+      当前地址.innerHTML = 翻译值20170.currentIP + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.smartSelection + '</span>';
+    }
+    if (地区值) {
+      地区值.innerHTML = 翻译值20170.regionMatch + '<span style="color: #00ff9d;">✅ ' + 翻译值20170.sameRegionIP + '</span>';
+    }
+  } catch (错误20165) {
+    function 获取凭据20164(名称20163) {
+      const 值20162 = '; ' + document.cookie;
+      const 部分列表20161 = 值20162.split('; ' + 名称20163 + '=');
+      if (部分列表20161.length === 2) return 部分列表20161.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言20160 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言20159 = localStorage.getItem('preferredLanguage') || 获取凭据20164('preferredLanguage');
+    let 是否值20158 = false;
+    if (已保存语言20159 === 'fa' || 已保存语言20159 === 'fa-IR') {
+      是否值20158 = true;
+    } else {
+      是否值20158 = 浏览器语言20160.includes('fa') || 浏览器语言20160.includes('fa-IR');
+    }
+    const 本地值20157 = {
+      zh: {
+        workerRegion: 'Worker地区: ',
+        detectionMethod: '检测方式: ',
+        proxyIPStatus: '${解码64('UHJveHlJUOeKtuaAgTog')}',
+        currentIP: '当前使用IP: ',
+        regionMatch: '地区匹配: ',
+        detectionFailed: '检测失败'
+      },
+      fa: {
+        workerRegion: 'منطقه Worker: ',
+        detectionMethod: 'روش تشخیص: ',
+        proxyIPStatus: '${解码64('2YjYtti524zYqiBQcm94eUlQOiA=')}',
+        currentIP: 'IP فعلی: ',
+        regionMatch: 'تطبیق منطقه: ',
+        detectionFailed: 'تشخیص ناموفق'
+      }
+    };
+    const 翻译值20156 = 本地值20157[是否值20158 ? 'fa' : 'zh'];
+    document.getElementById('regionStatus').innerHTML = 翻译值20156.workerRegion + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';
+    document.getElementById('geoInfo').innerHTML = 翻译值20156.detectionMethod + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';
+    document.getElementById('backupStatus').innerHTML = 翻译值20156.proxyIPStatus + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';
+    document.getElementById('currentIP').innerHTML = 翻译值20156.currentIP + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';
+    document.getElementById('regionMatch').innerHTML = 翻译值20156.regionMatch + '<span style="color: #ff3860;">❌ ' + 翻译值20156.detectionFailed + '</span>';
+  }
+}
+async function 测试接口() {
+  try {
+    function 获取凭据20155(名称20154) {
+      const 值20153 = '; ' + document.cookie;
+      const 部分列表20152 = 值20153.split('; ' + 名称20154 + '=');
+      if (部分列表20152.length === 2) return 部分列表20152.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言20151 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言20150 = localStorage.getItem('preferredLanguage') || 获取凭据20155('preferredLanguage');
+    let 是否值20149 = false;
+    if (已保存语言20150 === 'fa' || 已保存语言20150 === 'fa-IR') {
+      是否值20149 = true;
+    } else {
+      是否值20149 = 浏览器语言20151.includes('fa') || 浏览器语言20151.includes('fa-IR');
+    }
+    const 本地值20148 = {
+      zh: {
+        apiTestResult: 'API检测结果: ',
+        apiTestTime: '检测时间: ',
+        apiTestFailed: 'API检测失败: ',
+        unknownError: '未知错误',
+        apiTestError: 'API测试失败: '
+      },
+      fa: {
+        apiTestResult: 'نتیجه تشخیص API: ',
+        apiTestTime: 'زمان تشخیص: ',
+        apiTestFailed: 'تشخیص API ناموفق: ',
+        unknownError: 'خطای ناشناخته',
+        apiTestError: 'تست API ناموفق: '
+      }
+    };
+    const 翻译值20147 = 本地值20148[是否值20149 ? 'fa' : 'zh'];
+    const 响应20146 = await fetch(window.location.pathname + '/test-api');
+    const 数据20145 = await 响应20146.json();
+    if (数据20145.detectedRegion) {
+      显示提示(翻译值20147.apiTestResult + 数据20145.detectedRegion + '\\n' + 翻译值20147.apiTestTime + 数据20145.timestamp, 'info', {
+        duration: 5000
+      });
+    } else {
+      显示提示(翻译值20147.apiTestFailed + (数据20145.error || 翻译值20147.unknownError), 'error', {
+        duration: 4500
+      });
+    }
+  } catch (错误20144) {
+    function 获取凭据20143(名称20142) {
+      const 值20141 = '; ' + document.cookie;
+      const 部分列表20140 = 值20141.split('; ' + 名称20142 + '=');
+      if (部分列表20140.length === 2) return 部分列表20140.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言20139 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言20138 = localStorage.getItem('preferredLanguage') || 获取凭据20143('preferredLanguage');
+    let 是否值20137 = false;
+    if (已保存语言20138 === 'fa' || 已保存语言20138 === 'fa-IR') {
+      是否值20137 = true;
+    } else {
+      是否值20137 = 浏览器语言20139.includes('fa') || 浏览器语言20139.includes('fa-IR');
+    }
+    const 本地值20136 = {
+      zh: {
+        apiTestError: 'API测试失败: '
+      },
+      fa: {
+        apiTestError: 'تست API ناموفق: '
+      }
+    };
+    const 翻译值20135 = 本地值20136[是否值20137 ? 'fa' : 'zh'];
+    显示提示(翻译值20135.apiTestError + 错误20144.message, 'error', {
+      duration: 4500
+    });
+  }
+}
+
+// 配置管理相关函数
+async function 检查键值状态() {
+  const 接口网址20134 = window.location.pathname + '/api/config';
+  try {
+    const 响应20133 = await fetch(接口网址20134);
+    function 获取凭据20132(名称20131) {
+      const 值20130 = '; ' + document.cookie;
+      const 部分列表20129 = 值20130.split('; ' + 名称20131 + '=');
+      if (部分列表20129.length === 2) return 部分列表20129.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言20128 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言20127 = localStorage.getItem('preferredLanguage') || 获取凭据20132('preferredLanguage');
+    let 是否值20126 = false;
+    if (已保存语言20127 === 'fa' || 已保存语言20127 === 'fa-IR') {
+      是否值20126 = true;
+    } else {
+      是否值20126 = 浏览器语言20128.includes('fa') || 浏览器语言20128.includes('fa-IR');
+    }
+    const 本地值20125 = {
+      zh: {
+        kvDisabled: '⚠️ KV存储未启用或未配置',
+        kvNotConfigured: 'KV存储未配置，无法使用配置管理功能。\\n\\n请在Cloudflare Workers中:\\n1. 创建KV命名空间\\n2. 绑定环境变量 C\\n3. 重新部署代码',
+        kvNotEnabled: 'KV存储未配置',
+        kvEnabled: '✅ KV存储已启用，可以使用配置管理功能',
+        kvCheckFailed: '⚠️ KV存储检测失败',
+        kvCheckFailedFormat: 'KV存储检测失败: 响应格式错误',
+        kvCheckFailedStatus: 'KV存储检测失败 - 状态码: ',
+        kvCheckFailedError: 'KV存储检测失败 - 错误: '
+      },
+      fa: {
+        kvDisabled: '⚠️ ذخیره‌سازی KV فعال نیست یا پیکربندی نشده است',
+        kvNotConfigured: 'ذخیره‌سازی KV پیکربندی نشده است، نمی‌توانید از عملکرد مدیریت تنظیمات استفاده کنید.\\n\\nلطفا در Cloudflare Workers:\\n1. فضای نام KV ایجاد کنید\\n2. متغیر محیطی C را پیوند دهید\\n3. کد را دوباره مستقر کنید',
+        kvNotEnabled: 'ذخیره‌سازی KV پیکربندی نشده است',
+        kvEnabled: '✅ ذخیره‌سازی KV فعال است، می‌توانید از مدیریت تنظیمات استفاده کنید',
+        kvCheckFailed: '⚠️ بررسی ذخیره‌سازی KV ناموفق',
+        kvCheckFailedFormat: 'بررسی ذخیره‌سازی KV ناموفق: خطای فرمت پاسخ',
+        kvCheckFailedStatus: 'بررسی ذخیره‌سازی KV ناموفق - کد وضعیت: ',
+        kvCheckFailedError: 'بررسی ذخیره‌سازی KV ناموفق - خطا: '
+      }
+    };
+    const 翻译值20124 = 本地值20125[是否值20126 ? 'fa' : 'zh'];
+    if (响应20133.status === 503) {
+      // KV未配置
+      document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';
+      document.getElementById('configCard').style.display = 'block';
+      document.getElementById('currentConfig').textContent = 翻译值20124.kvNotConfigured;
+    } else if (响应20133.ok) {
+      try {
+        const 数据20123 = await 响应20133.json();
+
+        // 检查响应是否包含KV配置信息
+        if (数据20123 && 数据20123.kvEnabled === true) {
+          document.getElementById('kvStatus').innerHTML = '<span style="color: #00ff9d;">' + 翻译值20124.kvEnabled + '</span>';
+          document.getElementById('configContent').style.display = 'block';
+          document.getElementById('configCard').style.display = 'block';
+          await 加载当前配置();
+        } else {
+          document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';
+          document.getElementById('configCard').style.display = 'block';
+          document.getElementById('currentConfig').textContent = 翻译值20124.kvNotEnabled;
+        }
+      } catch (数据对象错误) {
+        document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvCheckFailed + '</span>';
+        document.getElementById('configCard').style.display = 'block';
+        document.getElementById('currentConfig').textContent = 翻译值20124.kvCheckFailedFormat;
+      }
+    } else {
+      document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20124.kvDisabled + '</span>';
+      document.getElementById('configCard').style.display = 'block';
+      document.getElementById('currentConfig').textContent = 翻译值20124.kvCheckFailedStatus + 响应20133.status;
+    }
+  } catch (错误20122) {
+    function 获取凭据(名称) {
+      const 值20121 = '; ' + document.cookie;
+      const 部分列表20120 = 值20121.split('; ' + 名称 + '=');
+      if (部分列表20120.length === 2) return 部分列表20120.pop().split(';').shift();
+      return null;
+    }
+    const 浏览器语言 = navigator.language || navigator.userLanguage || '';
+    const 已保存语言 = localStorage.getItem('preferredLanguage') || 获取凭据('preferredLanguage');
+    let 是否值 = false;
+    if (已保存语言 === 'fa' || 已保存语言 === 'fa-IR') {
+      是否值 = true;
+    } else {
+      是否值 = 浏览器语言.includes('fa') || 浏览器语言.includes('fa-IR');
+    }
+    const 本地值20119 = {
+      zh: {
+        kvDisabled: '⚠️ KV存储未启用或未配置',
+        kvCheckFailedError: 'KV存储检测失败 - 错误: '
+      },
+      fa: {
+        kvDisabled: '⚠️ ذخیره‌سازی KV فعال نیست یا پیکربندی نشده است',
+        kvCheckFailedError: 'بررسی ذخیره‌سازی KV ناموفق - خطا: '
+      }
+    };
+    const 翻译值20118 = 本地值20119[是否值 ? 'fa' : 'zh'];
+    document.getElementById('kvStatus').innerHTML = '<span style="color: #ffb400;">' + 翻译值20118.kvDisabled + '</span>';
+    document.getElementById('configCard').style.display = 'block';
+    document.getElementById('currentConfig').textContent = 翻译值20118.kvCheckFailedError + 错误20122.message;
+  }
+}
+function 读取字段值(标识) {
+  const 元素 = document.getElementById(标识);
+  return 元素 ? 元素.value : '';
+}
+
+function 写入字段值(标识, 值 = '') {
+  const 元素 = document.getElementById(标识);
+  if (元素) 元素.value = 值 || '';
+}
+
+function 是否开关启用(值, 默认启用 = false) {
+  if (值 === undefined || 值 === null || 值 === '') return 默认启用;
+  if (值 === true || 值 === false) return 值;
+  const 文本 = String(值).trim().toLowerCase();
+  if (文本 === 'yes' || 文本 === 'true' || 文本 === '1' || 文本 === 'on') return true;
+  if (文本 === 'no' || 文本 === 'false' || 文本 === '0' || 文本 === 'off') return false;
+  return 默认启用;
+}
+
+function 写入开关值(标识, 值, 默认启用 = false) {
+  const 元素 = document.getElementById(标识);
+  if (元素) 元素.checked = 是否开关启用(值, 默认启用);
+}
+
+function 读取开关值(标识, 默认启用 = false) {
+  const 元素 = document.getElementById(标识);
+  if (!元素) return 默认启用 ? 'yes' : 'no';
+  return 元素.checked ? 'yes' : 'no';
+}
+
+function 同步协议界面状态() {
+  const 明文开关 = document.getElementById('ev');
+  const 木马开关 = document.getElementById('et');
+  const 扩展开关 = document.getElementById('ex');
+  if (明文开关 && 木马开关 && 扩展开关 && !明文开关.checked && !木马开关.checked && !扩展开关.checked) {
+    明文开关.checked = true;
+  }
+}
+
+function 同步联动界面状态() {
+  同步协议界面状态();
+  const 加密客户端问候复选框 = document.getElementById('ech');
+  const 端口控制 = document.getElementById('portControl');
+  if (加密客户端问候复选框 && 端口控制 && 加密客户端问候复选框.checked) {
+    端口控制.value = 'yes';
+  }
+  更新路径类型状态(读取字段值('customPath'));
+  更新工作器地区状态();
+}
+
+function 应用配置到界面(配置) {
+  写入字段值('wkRegion', 配置.wk);
+  写入开关值('ev', 配置.ev, true);
+  写入开关值('et', 配置.et, false);
+  写入开关值('ex', 配置.ex, false);
+  写入开关值('ech', 配置.ech, false);
+  写入字段值('tp', 配置.tp);
+  写入字段值('customDNS', 配置.customDNS);
+  写入字段值('customECHDomain', 配置.customECHDomain);
+  写入字段值('alpn', 配置.alpn);
+  写入字段值('scu', 配置.scu);
+  写入开关值('ena', 配置.ena, false);
+  写入开关值('jk', 配置.jk, false);
+  const 家宽按钮 = document.getElementById('jkClientBtn');
+  if (家宽按钮) 家宽按钮.style.display = 是否开关启用(配置.jk, false) ? '' : 'none';
+  写入开关值('epd', 配置.epd, true);
+  写入开关值('epi', 配置.epi, true);
+  写入开关值('egi', 配置.egi, true);
+  写入开关值('ipv4Enabled', 配置.ipv4, true);
+  写入开关值('ipv6Enabled', 配置.ipv6, true);
+  写入开关值('ispMobile', 配置.ispMobile, true);
+  写入开关值('ispUnicom', 配置.ispUnicom, true);
+  写入开关值('ispTelecom', 配置.ispTelecom, true);
+  写入字段值('customPath', 配置.d);
+  写入字段值('customIP', 配置.p);
+  写入字段值('yx', 配置.yx);
+  写入字段值('yxURL', 配置.yxURL);
+  写入字段值('socksConfig', 配置.s);
+  写入字段值('customHomepage', 配置.homepage);
+  写入字段值('apiEnabled', 配置.ae);
+  写入字段值('regionMatching', 配置.rm);
+  写入字段值('downgradeControl', 配置.qj);
+  写入字段值('portControl', 配置.dkby);
+  写入字段值('preferredControl', 配置.yxby);
+  同步联动界面状态();
+}
+
+function 收集界面配置() {
+  const 配置 = {
+    wk: 读取字段值('wkRegion'),
+    ev: 读取开关值('ev', true),
+    et: 读取开关值('et', false),
+    ex: 读取开关值('ex', false),
+    ech: 读取开关值('ech', false),
+    tp: 读取字段值('tp'),
+    customDNS: 读取字段值('customDNS'),
+    customECHDomain: 读取字段值('customECHDomain'),
+    alpn: 读取字段值('alpn'),
+    d: 读取字段值('customPath'),
+    p: 读取字段值('customIP'),
+    yx: 读取字段值('yx'),
+    yxURL: 读取字段值('yxURL'),
+    s: 读取字段值('socksConfig'),
+    homepage: 读取字段值('customHomepage'),
+    scu: 读取字段值('scu'),
+    ena: 读取开关值('ena', false),
+    jk: 读取开关值('jk', false),
+    epd: 读取开关值('epd', true),
+    epi: 读取开关值('epi', true),
+    egi: 读取开关值('egi', true),
+    ae: 读取字段值('apiEnabled'),
+    rm: 读取字段值('regionMatching'),
+    qj: 读取字段值('downgradeControl'),
+    dkby: 读取字段值('portControl'),
+    yxby: 读取字段值('preferredControl'),
+    ipv4: 读取开关值('ipv4Enabled', true),
+    ipv6: 读取开关值('ipv6Enabled', true),
+    ispMobile: 读取开关值('ispMobile', true),
+    ispUnicom: 读取开关值('ispUnicom', true),
+    ispTelecom: 读取开关值('ispTelecom', true)
+  };
+  if (配置.ev === 'no' && 配置.et === 'no' && 配置.ex === 'no') {
+    配置.ev = 'yes';
+    写入开关值('ev', 'yes', true);
+  }
+  if (配置.ech === 'yes') {
+    配置.dkby = 'yes';
+    写入字段值('portControl', 'yes');
+  }
+  return 配置;
+}
+
+async function 加载当前配置() {
+  const 接口网址20117 = window.location.pathname + '/api/config';
+  try {
+    const 响应20116 = await fetch(接口网址20117);
+    if (响应20116.status === 503) {
+      document.getElementById('currentConfig').textContent = 'KV存储未配置，无法加载配置';
+      return;
+    }
+    if (!响应20116.ok) {
+      const 错误文本20115 = await 响应20116.text();
+      document.getElementById('currentConfig').textContent = '加载配置失败: ' + 错误文本20115;
+      return;
+    }
+    const 配置 = await 响应20116.json();
+
+    // 过滤掉内部字段 kvEnabled
+    const 显示配置 = {};
+    for (const [键20114, 值20113] of Object.entries(配置)) {
+      if (键20114 !== 'kvEnabled') {
+        显示配置[键20114] = 值20113;
+      }
+    }
+    let 配置文本 = '当前配置:\\n';
+    if (Object.keys(显示配置).length === 0) {
+      配置文本 += '(暂无配置)';
+    } else {
+      for (const [键, 值20112] of Object.entries(显示配置)) {
+        配置文本 += 键 + ': ' + (值20112 || '(未设置)') + '\\n';
+      }
+    }
+    document.getElementById('currentConfig').textContent = 配置文本;
+
+    应用配置到界面(配置);
+  } catch (错误20111) {
+    document.getElementById('currentConfig').textContent = '加载配置失败: ' + 错误20111.message;
+  }
+}
+
+// 更新路径类型显示
+function 更新路径类型状态(自定义路径) {
+  const 路径类型状态 = document.getElementById('pathTypeStatus');
+  const 当前网址20110 = window.location.href;
+  const 路径部分列表 = window.location.pathname.split('/').filter(参数值20109 => 参数值20109);
+  const 当前路径 = 路径部分列表.length > 0 ? 路径部分列表[0] : '';
+  if (自定义路径 && 自定义路径.trim()) {
+    // 使用自定义路径 (d)
+    路径类型状态.innerHTML = '<div style="color: #00ff9d;">使用类型: <strong>自定义路径 (d)</strong></div>' + '<div style="margin-top: 5px; color: #00f0ff;">当前路径: <span style="color: #ffb400;">' + 自定义路径 + '</span></div>' + '<div style="margin-top: 5px; font-size: 0.9rem; color: #7aa9c4;">访问地址: ' + (当前网址20110.split('/')[0] + '//' + 当前网址20110.split('/')[2]) + 自定义路径 + '/sub</div>';
+  } else {
+    // 使用 UUID (u)
+    路径类型状态.innerHTML = '<div style="color: #00ff9d;">使用类型: <strong>UUID 路径 (u)</strong></div>' + '<div style="margin-top: 5px; color: #00f0ff;">当前路径: <span style="color: #ffb400;">' + (当前路径 || '(UUID)') + '</span></div>' + '<div style="margin-top: 5px; font-size: 0.9rem; color: #7aa9c4;">访问地址: ' + 当前网址20110.split('/sub')[0] + '/sub</div>';
+  }
+}
+
+// 更新wk地区选择的启用/禁用状态
+function 更新工作器地区状态() {
+  const 自定义地址输入20108 = document.getElementById('customIP');
+  const 值地区 = document.getElementById('wkRegion');
+  const 值地区值 = document.getElementById('wkRegionHint');
+  if (自定义地址输入20108 && 值地区) {
+    const 是否有自定义地址 = 自定义地址输入20108.value.trim() !== '';
+    值地区.disabled = 是否有自定义地址;
+
+    // 添加视觉反馈
+    if (是否有自定义地址) {
+      值地区.style.opacity = '0.5';
+      值地区.style.cursor = 'not-allowed';
+      值地区.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+      // 显示提示信息
+      if (值地区值) {
+        值地区值.style.display = 'block';
+        值地区值.style.color = '#ffb400';
+      }
+    } else {
+      值地区.style.opacity = '1';
+      值地区.style.cursor = 'pointer';
+      值地区.style.backgroundColor = 'rgba(0, 0, 0, 0.8)';
+      // 隐藏提示信息
+      if (值地区值) {
+        值地区值.style.display = 'none';
+      }
+    }
+  }
+}
+async function 保存配置(配置数据20107) {
+  const 接口网址 = window.location.pathname + '/api/config';
+  try {
+    const 响应20106 = await fetch(接口网址, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(配置数据20107)
+    });
+    if (响应20106.status === 503) {
+      显示状态('KV存储未配置，无法保存配置。请先在Cloudflare Workers中配置KV存储。', 'error');
+      return;
+    }
+    if (!响应20106.ok) {
+      const 错误文本20105 = await 响应20106.text();
+
+      // 尝试解析 JSON 错误信息
+      try {
+        const 错误数据20104 = JSON.parse(错误文本20105);
+        显示状态(错误数据20104.message || '保存失败', 'error');
+      } catch (解析错误20103) {
+        // 如果不是 JSON，直接显示文本
+        显示状态('保存失败: ' + 错误文本20105, 'error');
+      }
+      return;
+    }
+    const 结果20102 = await 响应20106.json();
+    显示状态(结果20102.message, 结果20102.success ? 'success' : 'error');
+    if (结果20102.success) {
+      await 加载当前配置();
+      // 更新wk地区选择状态
+      更新工作器地区状态();
+      // 保存成功后刷新页面以更新系统状态
+      setTimeout(function () {
+        window.location.reload();
+      }, 1500);
+    } else {}
+  } catch (错误20101) {
+    显示状态('保存失败: ' + 错误20101.message, 'error');
+  }
+}
+function 显示状态(消息20100, 类型20099) {
+  const 状态值 = document.getElementById('statusMessage');
+  if (状态值) {
+    状态值.textContent = 消息20100;
+    状态值.style.display = 'block';
+    状态值.style.color = 类型20099 === 'success' ? '#00f0ff' : '#ff3860';
+    状态值.style.borderColor = 类型20099 === 'success' ? '#00f0ff' : '#ff3860';
+    setTimeout(function () {
+      状态值.style.display = 'none';
+    }, 3000);
+  }
+  // 同步在底部操作条上方弹出霓虹反馈
+  if (typeof window.显示操作状态 === 'function') {
+    window.显示操作状态(消息20100, 类型20099 === 'success' ? 'ok' : 'err');
+  }
+}
+async function 重置全部配置() {
+  if (confirm('确定要重置所有配置吗？这将清空所有KV配置，恢复为环境变量设置。')) {
+    try {
+      const 响应20098 = await fetch(window.location.pathname + '/api/config', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          wk: '',
+          d: '',
+          p: '',
+          yx: '',
+          yxURL: '',
+          s: '',
+          ae: '',
+          rm: '',
+          qj: '',
+          dkby: '',
+          yxby: '',
+          ev: '',
+          et: '',
+          ex: '',
+          ech: '',
+          tp: '',
+          customDNS: '',
+          customECHDomain: '',
+          scu: '',
+          epd: '',
+          epi: '',
+          egi: '',
+          ipv4: '',
+          ipv6: '',
+          ispMobile: '',
+          ispUnicom: '',
+          ispTelecom: '',
+          homepage: '',
+          alpn: ''
+        })
+      });
+      if (响应20098.status === 503) {
+        显示状态('KV存储未配置，无法重置配置。', 'error');
+        return;
+      }
+      if (!响应20098.ok) {
+        const 错误文本 = await 响应20098.text();
+
+        // 尝试解析 JSON 错误信息
+        try {
+          const 错误数据 = JSON.parse(错误文本);
+          显示状态(错误数据.message || '重置失败', 'error');
+        } catch (解析错误) {
+          // 如果不是 JSON，直接显示文本
+          显示状态('重置失败: ' + 错误文本, 'error');
+        }
+        return;
+      }
+      const 结果20097 = await 响应20098.json();
+      显示状态(结果20097.message || '配置已重置', 结果20097.success ? 'success' : 'error');
+      if (结果20097.success) {
+        await 加载当前配置();
+        // 更新wk地区选择状态
+        更新工作器地区状态();
+        // 刷新页面以更新系统状态
+        setTimeout(function () {
+          window.location.reload();
+        }, 1500);
+      }
+    } catch (错误20096) {
+      显示状态('重置失败: ' + 错误20096.message, 'error');
+    }
+  }
+}
+async function 检查加密问候状态() {
+  const 加密客户端问候状态值 = document.getElementById('echStatus');
+  if (!加密客户端问候状态值) return;
+  try {
+    const 当前网址 = window.location.href;
+    const 订阅网址 = 当前网址 + '/sub';
+    加密客户端问候状态值.innerHTML = 'ECH状态: <span style="color: #ffb400;">检测中...</span>';
+    const 响应20095 = await fetch(订阅网址, {
+      method: 'GET',
+      headers: {
+        'Accept': 'text/plain'
+      }
+    });
+    const 加密客户端问候状态头部 = 响应20095.headers.get('X-ECH-Status');
+    const 加密客户端问候配置长度 = 响应20095.headers.get('X-ECH-Config-Length');
+    if (加密客户端问候状态头部 === 'ENABLED') {
+      加密客户端问候状态值.innerHTML = 'ECH状态: <span style="color: #00ff9d;">✅ 已启用' + (加密客户端问候配置长度 ? ' (配置长度: ' + 加密客户端问候配置长度 + ')' : '') + '</span>';
+    } else {
+      加密客户端问候状态值.innerHTML = 'ECH状态: <span style="color: #ffb400;">⚠️ 未启用</span>';
+    }
+  } catch (错误20094) {
+    加密客户端问候状态值.innerHTML = 'ECH状态: <span style="color: #ff3860;">❌ 检测失败: ' + 错误20094.message + '</span>';
+  }
+}
+document.addEventListener('DOMContentLoaded', function () {
+  创建矩阵雨();
+  检查系统状态();
+  检查键值状态();
+  检查加密问候状态();
+
+  // ECH 开启时自动联动开启仅TLS
+  const 加密客户端问候复选框 = document.getElementById('ech');
+  const 端口控制 = document.getElementById('portControl');
+  if (加密客户端问候复选框 && 端口控制) {
+    加密客户端问候复选框.addEventListener('change', function () {
+      if (this.checked) {
+        // ECH 开启时，自动设置仅TLS为 yes
+        端口控制.value = 'yes';
+      }
+      同步联动界面状态();
+    });
+
+    // 页面加载时，如果 ECH 已勾选，也自动设置仅TLS
+    if (加密客户端问候复选框.checked) {
+      端口控制.value = 'yes';
+    }
+  }
+
+  // 监听customIP输入框变化，实时更新wk地区选择状态
+  const 自定义地址输入 = document.getElementById('customIP');
+  if (自定义地址输入) {
+    自定义地址输入.addEventListener('input', function () {
+      同步联动界面状态();
+    });
+  }
+
+
+  const 自定义路径输入 = document.getElementById('customPath');
+  if (自定义路径输入) {
+    自定义路径输入.addEventListener('input', function () {
+      同步联动界面状态();
+    });
+  }
+
+  ['ev', 'et', 'ex'].forEach(function (协议标识) {
+    const 协议开关 = document.getElementById(协议标识);
+    if (协议开关) {
+      协议开关.addEventListener('change', function () {
+        同步联动界面状态();
+      });
+    }
+  });
+
+  // 阻止表单默认提交（保存按钮已统一到底部操作条）
+  ['regionForm', 'otherConfigForm', 'advancedConfigForm'].forEach(function (本地值20093) {
+    const 表单值 = document.getElementById(本地值20093);
+    if (表单值) 表单值.addEventListener('submit', function (事件值20092) {
+      事件值20092.preventDefault();
+    });
+  });
+
+  // 在任意输入框按下回车，触发统一保存
+  document.querySelectorAll('#configContent input[type="text"], #configContent input[type="number"]').forEach(function (本地值20091) {
+    本地值20091.addEventListener('keydown', function (事件值20090) {
+      if (事件值20090.key === 'Enter') {
+        事件值20090.preventDefault();
+        保存全部配置();
+      }
+    });
+  });
+
+  // 统一保存：一次性收齐所有字段
+  function 收集全部配置() {
+    return 收集界面配置();
+  }
+  async function 保存全部配置() {
+    // 至少启用一个通道
+    const 值值20085 = document.getElementById('ev'),
+      值值20084 = document.getElementById('et'),
+      值值20083 = document.getElementById('ex');
+    if (值值20085 && 值值20084 && 值值20083 && !值值20085.checked && !值值20084.checked && !值值20083.checked) {
+      显示操作状态('${是否值236 ? 解码64('2K3Yr9in2YLZhCDbjNqpINm+2LHZiNiq2qnZhCDYsdinINmB2LnYp9mEINqp2YbbjNivIQ==') : 解码64('6Iez5bCR6ZyA6KaB5ZCv55So5LiA5Liq5Y2P6K6u77yB')}', 'err');
+      显示提示('${是否值236 ? 解码64('2K3Yr9in2YLZhCDbjNqpINm+2LHZiNiq2qnZhCDYsdinINmB2LnYp9mEINqp2YbbjNivIQ==') : 解码64('6Iez5bCR6ZyA6KaB5ZCv55So5LiA5Liq5Y2P6K6u77yB')}', 'warn');
+      return;
+    }
+    const 本地值20082 = document.getElementById('cpBtnSaveAll');
+    if (本地值20082) {
+      本地值20082.classList.add('cp-action-btn-saving');
+      本地值20082.disabled = true;
+    }
+    try {
+      await 保存配置(收集全部配置());
+    } finally {
+      if (本地值20082) {
+        本地值20082.classList.remove('cp-action-btn-saving');
+        本地值20082.disabled = false;
+      }
+    }
+  }
+  window.保存全部配置 = 保存全部配置;
+  function 显示操作状态(消息, 类型) {
+    const 本地值20081 = document.getElementById('cpActionStatus');
+    if (!本地值20081) return;
+    本地值20081.textContent = 消息;
+    本地值20081.classList.toggle('cp-err', 类型 === 'err');
+    本地值20081.classList.add('cp-show');
+    clearTimeout(显示操作状态._t);
+    显示操作状态._t = setTimeout(function () {
+      本地值20081.classList.remove('cp-show');
+    }, 2400);
+  }
+  window.显示操作状态 = 显示操作状态;
+
+  // 绑定底部统一操作条
+  const 值操作值 = document.getElementById('cpActionBar');
+  const 值值保存值 = document.getElementById('cpBtnSaveAll');
+  if (值值保存值) 值值保存值.addEventListener('click', async function () {
+    值值保存值.classList.add('cp-action-btn-saving');
+    try {
+      await 保存全部配置();
+      if (值操作值) 值操作值.classList.remove('cp-dirty');
+    } finally {
+      值值保存值.classList.remove('cp-action-btn-saving');
+    }
+  });
+  const 值值值20080 = document.getElementById('cpBtnRefresh');
+  if (值值值20080) 值值值20080.addEventListener('click', async function () {
+    值值值20080.classList.add('cp-action-btn-saving');
+    try {
+      await 加载当前配置();
+      if (值操作值) 值操作值.classList.remove('cp-dirty');
+      显示操作状态('${是否值236 ? 'تنظیمات تازه‌سازی شد' : '配置已刷新'}');
+    } finally {
+      值值值20080.classList.remove('cp-action-btn-saving');
+    }
+  });
+  const 值值重置 = document.getElementById('cpBtnReset');
+  if (值值重置) 值值重置.addEventListener('click', 重置全部配置);
+
+  // 修改字段时把 FAB 标记为 "未保存"
+  function 标记已修改() {
+    if (值操作值) 值操作值.classList.add('cp-dirty');
+  }
+  const 已修改范围 = document.getElementById('configContent') || document;
+  ['input', 'change'].forEach(function (本地值20079) {
+    已修改范围.addEventListener(本地值20079, function (事件值20078) {
+      const 本地值20077 = 事件值20078.target;
+      if (!本地值20077 || !本地值20077.tagName) return;
+      const 本地值20076 = 本地值20077.tagName.toLowerCase();
+      if (本地值20076 === 'input' || 本地值20076 === 'select' || 本地值20076 === 'textarea') {
+        // 跳过延迟测试相关输入，避免误触
+        if (本地值20077.id && /^(latencyTestInput|fetchURLInput|latencyTestPort|randomIPCount|testThreads|ipSourceSelect)$/.test(本地值20077.id)) return;
+        标记已修改();
+      }
+    });
+  });
+
+  // Ctrl+S / Cmd+S 触发保存
+  window.addEventListener('keydown', function (事件值20075) {
+    if ((事件值20075.ctrlKey || 事件值20075.metaKey) && (事件值20075.key === 's' || 事件值20075.key === 'S')) {
+      事件值20075.preventDefault();
+      if (值值保存值 && !值值保存值.classList.contains('cp-action-btn-saving')) {
+        值值保存值.click();
+      }
+    }
+  });
+  let 测试值控制器 = null;
+  let 测试结果列表 = [];
+  const 开始测试值 = document.getElementById('startLatencyTest');
+  const 值测试值 = document.getElementById('stopLatencyTest');
+  const 测试状态 = document.getElementById('latencyTestStatus');
+  const 测试结果列表值 = document.getElementById('latencyTestResults');
+  const 结果列表列表 = document.getElementById('latencyResultsList');
+  const 覆盖已选值 = document.getElementById('overwriteSelectedToYx');
+  const 追加已选值 = document.getElementById('appendSelectedToYx');
+  const 选择值值 = document.getElementById('selectAllResults');
+  const 值值值 = document.getElementById('deselectAllResults');
+  const 地址源选择 = document.getElementById('ipSourceSelect');
+  const 手动输入值 = document.getElementById('manualInputDiv');
+  const 网址获取值 = document.getElementById('urlFetchDiv');
+  const 延迟测试输入 = document.getElementById('latencyTestInput');
+  const 获取网址输入 = document.getElementById('fetchURLInput');
+  const 延迟测试端口 = document.getElementById('latencyTestPort');
+  const 随机地址数量 = document.getElementById('randomIPCount');
+  const 云墙随机值 = document.getElementById('cfRandomDiv');
+  const 随机数量值 = document.getElementById('randomCountDiv');
+  const 生成云墙地址值 = document.getElementById('generateCFIPBtn');
+  const 获取地址值 = document.getElementById('fetchIPBtn');
+  if (延迟测试输入) {
+    const 已保存测试输入 = localStorage.getItem('latencyTestInput');
+    if (已保存测试输入) 延迟测试输入.value = 已保存测试输入;
+    延迟测试输入.addEventListener('input', function () {
+      localStorage.setItem('latencyTestInput', this.value);
+    });
+  }
+  if (获取网址输入) {
+    const 已保存获取网址 = localStorage.getItem('fetchURLInput');
+    if (已保存获取网址) 获取网址输入.value = 已保存获取网址;
+    获取网址输入.addEventListener('input', function () {
+      localStorage.setItem('fetchURLInput', this.value);
+    });
+  }
+  if (延迟测试端口) {
+    const 已保存端口 = localStorage.getItem('latencyTestPort');
+    if (已保存端口) 延迟测试端口.value = 已保存端口;
+    延迟测试端口.addEventListener('input', function () {
+      localStorage.setItem('latencyTestPort', this.value);
+    });
+  }
+  if (随机地址数量) {
+    const 已保存数量 = localStorage.getItem('randomIPCount');
+    if (已保存数量) 随机地址数量.value = 已保存数量;
+    随机地址数量.addEventListener('input', function () {
+      localStorage.setItem('randomIPCount', this.value);
+    });
+    // 初始化时，如果默认是隐藏的，则禁用输入框
+    if (随机数量值 && 随机数量值.style.display === 'none') {
+      随机地址数量.disabled = true;
+    }
+  }
+  const 测试线程数输入 = document.getElementById('testThreads');
+  if (测试线程数输入) {
+    const 已保存线程数 = localStorage.getItem('testThreads');
+    if (已保存线程数) 测试线程数输入.value = 已保存线程数;
+    测试线程数输入.addEventListener('input', function () {
+      localStorage.setItem('testThreads', this.value);
+    });
+  }
+  if (地址源选择) {
+    const 已保存源 = localStorage.getItem('ipSourceSelect');
+    const 当前源 = 已保存源 || 地址源选择.value || 'manual';
+    if (已保存源) {
+      地址源选择.value = 已保存源;
+    }
+    手动输入值.style.display = 当前源 === 'manual' ? 'block' : 'none';
+    网址获取值.style.display = 当前源 === 'urlFetch' ? 'block' : 'none';
+    云墙随机值.style.display = 当前源 === 'cfRandom' ? 'block' : 'none';
+    随机数量值.style.display = 当前源 === 'cfRandom' ? 'block' : 'none';
+    // 当隐藏时禁用输入框，避免表单验证错误
+    if (随机地址数量) {
+      随机地址数量.disabled = 当前源 !== 'cfRandom';
+    }
+  }
+  const 云墙网段列表 = ['173.245.48.0/20', '103.21.244.0/22', '103.22.200.0/22', '103.31.4.0/22', '141.101.64.0/18', '108.162.192.0/18', '190.93.240.0/20', '188.114.96.0/20', '197.234.240.0/22', '198.41.128.0/17', '162.158.0.0/15', '104.16.0.0/13', '104.24.0.0/14', '172.64.0.0/13', '131.0.72.0/22'];
+  function 从网段生成随机地址(网段20074) {
+    const [基础地址, 前缀长度] = 网段20074.split('/');
+    const 前缀 = parseInt(前缀长度);
+    const 主机值 = 32 - 前缀;
+    const 地址部分列表 = 基础地址.split('.').map(参数值20073 => parseInt(参数值20073));
+    const 地址值 = 地址部分列表[0] << 24 | 地址部分列表[1] << 16 | 地址部分列表[2] << 8 | 地址部分列表[3];
+    const 随机偏移 = Math.floor(Math.random() * Math.pow(2, 主机值));
+    const 掩码 = 0xFFFFFFFF << 主机值 >>> 0;
+    const 随机地址 = ((地址值 & 掩码) >>> 0) + 随机偏移 >>> 0;
+    return [随机地址 >>> 24 & 0xFF, 随机地址 >>> 16 & 0xFF, 随机地址 >>> 8 & 0xFF, 随机地址 & 0xFF].join('.');
+  }
+  function 生成云墙随机地址(数量20072, 端口20071) {
+    const 地址列表20070 = [];
+    for (let 索引值20069 = 0; 索引值20069 < 数量20072; 索引值20069++) {
+      const 网段 = 云墙网段列表[Math.floor(Math.random() * 云墙网段列表.length)];
+      const 地址20068 = 从网段生成随机地址(网段);
+      地址列表20070.push(地址20068 + ':' + 端口20071);
+    }
+    return 地址列表20070;
+  }
+  if (地址源选择) {
+    地址源选择.addEventListener('change', function () {
+      const 值 = this.value;
+      localStorage.setItem('ipSourceSelect', 值);
+      手动输入值.style.display = 值 === 'manual' ? 'block' : 'none';
+      网址获取值.style.display = 值 === 'urlFetch' ? 'block' : 'none';
+      云墙随机值.style.display = 值 === 'cfRandom' ? 'block' : 'none';
+      随机数量值.style.display = 值 === 'cfRandom' ? 'block' : 'none';
+      // 当隐藏时禁用输入框，避免表单验证错误
+      if (随机地址数量) {
+        随机地址数量.disabled = 值 !== 'cfRandom';
+      }
+    });
+  }
+  if (生成云墙地址值) {
+    生成云墙地址值.addEventListener('click', function () {
+      const 数量 = parseInt(document.getElementById('randomIPCount').value) || 20;
+      const 端口20067 = document.getElementById('latencyTestPort').value || '443';
+      const 地址列表 = 生成云墙随机地址(数量, 端口20067);
+      document.getElementById('latencyTestInput').value = 地址列表.join(',');
+      手动输入值.style.display = 'block';
+      显示状态('${是否值236 ? 'تولید شد' : '已生成'} ' + 数量 + ' ${是否值236 ? 'IP تصادفی CF' : '个CF随机IP'}', 'success');
+    });
+  }
+  if (获取地址值) {
+    获取地址值.addEventListener('click', async function () {
+      const 网址输入 = document.getElementById('fetchURLInput');
+      const 获取网址 = 网址输入.value.trim();
+      if (!获取网址) {
+        显示提示('${是否值236 ? 'لطفا URL را وارد کنید' : '请输入URL'}', 'warn');
+        return;
+      }
+      获取地址值.disabled = true;
+      获取地址值.textContent = '${是否值236 ? 'در حال دریافت...' : '获取中...'}';
+      try {
+        // 支持多个 URL（逗号分隔）以及返回内容中逗号分隔的多个 IP/节点
+        const 网址列表 = Array.from(new Set(获取网址.split(',').map(网址值20066 => 网址值20066.trim()).filter(网址值20065 => 网址值20065)));
+        const 值项目列表 = [];
+        for (const 网址值 of 网址列表) {
+          const 响应 = await fetch(网址值);
+          if (!响应.ok) {
+            throw new Error('HTTP ' + 响应.status + ' @ ' + 网址值);
+          }
+          const 文本20064 = await 响应.text();
+
+          // 先按行分割，再在每行内按逗号分割，兼容“多行 + 逗号分隔”两种格式
+          const 值网址项目列表 = 文本20064.split(/\\r?\\n/).map(行值20063 => 行值20063.trim()).filter(行值20062 => 行值20062 && !行值20062.startsWith('#')).flatMap(行值 => 行值.split(',').map(参数值20061 => 参数值20061.trim()).filter(参数值 => 参数值));
+          值项目列表.push(...值网址项目列表);
+        }
+        if (值项目列表.length > 0) {
+          document.getElementById('latencyTestInput').value = 值项目列表.join(',');
+          手动输入值.style.display = 'block';
+          显示状态('${是否值236 ? 'دریافت شد' : '已获取'} ' + 值项目列表.length + ' ${是否值236 ? 'IP' : '个IP'}', 'success');
+        } else {
+          显示状态('${是否值236 ? 'داده‌ای یافت نشد' : '未获取到数据'}', 'error');
+        }
+      } catch (错误20060) {
+        显示状态('${是否值236 ? 'خطا در دریافت' : '获取失败'}: ' + 错误20060.message, 'error');
+      } finally {
+        获取地址值.disabled = false;
+        获取地址值.textContent = '⬇ ${是否值236 ? 'دریافت IP' : '获取IP'}';
+      }
+    });
+  }
+  if (开始测试值) {
+    开始测试值.addEventListener('click', async function () {
+      const 输入值20059 = document.getElementById('latencyTestInput');
+      const 端口值 = document.getElementById('latencyTestPort');
+      const 线程数值 = document.getElementById('testThreads');
+      const 输入值 = 输入值20059.value.trim();
+      const 默认端口 = 端口值.value || '443';
+      const 线程数 = parseInt(线程数值.value) || 5;
+      if (!输入值) {
+        显示状态('${是否值236 ? 'لطفا IP یا دامنه وارد کنید' : '请输入IP或域名'}', 'error');
+        return;
+      }
+      const 本地值20058 = 输入值.split(',').map(翻译值20057 => 翻译值20057.trim()).filter(翻译值20056 => 翻译值20056);
+      if (本地值20058.length === 0) return;
+      开始测试值.style.display = 'none';
+      值测试值.style.display = 'inline-block';
+      测试状态.style.display = 'block';
+      测试结果列表值.style.display = 'block';
+      结果列表列表.innerHTML = '';
+      测试结果列表 = [];
+      if (城市筛选值) {
+        城市筛选值.style.display = 'none';
+      }
+      测试值控制器 = new AbortController();
+      let 本地值20055 = 0;
+      const 本地值20054 = 本地值20058.length;
+      function 解析目标(目标20053) {
+        let 主机20052 = 目标20053;
+        let 端口20051 = 默认端口;
+        let 节点名称20050 = '';
+        if (目标20053.includes('#')) {
+          const 部分列表20049 = 目标20053.split('#');
+          节点名称20050 = 部分列表20049[1] || '';
+          主机20052 = 部分列表20049[0];
+        }
+        if (主机20052.includes(':') && !主机20052.startsWith('[')) {
+          const 值值20048 = 主机20052.lastIndexOf(':');
+          const 值端口 = 主机20052.substring(值值20048 + 1);
+          if (/^[0-9]+$/.test(值端口)) {
+            端口20051 = 值端口;
+            主机20052 = 主机20052.substring(0, 值值20048);
+          }
+        } else if (主机20052.includes(']:')) {
+          const 部分列表20047 = 主机20052.split(']:');
+          主机20052 = 部分列表20047[0] + ']';
+          端口20051 = 部分列表20047[1];
+        }
+        return {
+          host: 主机20052,
+          port: 端口20051,
+          nodeName: 节点名称20050
+        };
+      }
+      function 渲染结果(结果20046, 索引20045, 值值20044 = true) {
+        // 只展示在线优选成功的结果，失败/超时的不再显示
+        if (!结果20046.success) {
+          return null;
+        }
+        const 结果项目 = document.createElement('div');
+        结果项目.style.cssText = 'display: flex; align-items: center; padding: 8px; border-bottom: 1px solid #003300; gap: 10px;';
+        结果项目.dataset.index = 索引20045;
+        结果项目.dataset.colo = 结果20046.colo || '';
+        if (!值值20044) {
+          结果项目.style.display = 'none';
+        }
+        const 复选框20043 = document.createElement('input');
+        复选框20043.type = 'checkbox';
+        复选框20043.checked = true;
+        复选框20043.disabled = false;
+        复选框20043.dataset.index = 索引20045;
+        复选框20043.style.cssText = 'width: 18px; height: 18px; cursor: pointer;';
+        const 本地值20042 = document.createElement('div');
+        本地值20042.style.cssText = 'flex: 1; font-family: monospace; font-size: 13px;';
+        const 机房名称20041 = 结果20046.colo ? 获取机房名称(结果20046.colo) : '';
+        const 机房显示 = 机房名称20041 ? ' <span style="color: #00aaff;">[' + 机房名称20041 + ']</span>' : '';
+        本地值20042.innerHTML = '<span style="color: #00f0ff;">' + 结果20046.host + ':' + 结果20046.port + '</span>' + 机房显示 + ' <span style="color: #ffff00;">' + 结果20046.latency + 'ms</span>';
+        结果项目.appendChild(复选框20043);
+        结果项目.appendChild(本地值20042);
+        结果列表列表.appendChild(结果项目);
+        return 结果项目;
+      }
+      async function 测试单项(目标) {
+        if (测试值控制器.signal.aborted) return null;
+        const {
+          host: 主机20040,
+          port: 端口20039,
+          nodeName: 节点名称
+        } = 解析目标(目标);
+        const 结果20038 = await 测试延迟(主机20040, 端口20039, 测试值控制器.signal);
+        结果20038.host = 主机20040;
+        结果20038.port = 端口20039;
+        结果20038.nodeName = 结果20038.success && 结果20038.colo ? 节点名称 || 'CF-' + 结果20038.colo : 节点名称 || 主机20040;
+        return 结果20038;
+      }
+      for (let 索引值20037 = 0; 索引值20037 < 本地值20054; 索引值20037 += 线程数) {
+        if (测试值控制器.signal.aborted) break;
+        const 本地值20036 = 本地值20058.slice(索引值20037, Math.min(索引值20037 + 线程数, 本地值20054));
+        测试状态.textContent = '${是否值236 ? 'در حال تست' : '测试中'}: ' + (索引值20037 + 1) + '-' + Math.min(索引值20037 + 线程数, 本地值20054) + '/' + 本地值20054 + ' (${是否值236 ? 'رشته‌ها' : '线程'}: ' + 线程数 + ')';
+        const 结果列表 = await Promise.all(本地值20036.map(翻译值 => 测试单项(翻译值)));
+        for (const 结果20035 of 结果列表) {
+          if (结果20035) {
+            const 索引20034 = 测试结果列表.length;
+            测试结果列表.push(结果20035);
+            渲染结果(结果20035, 索引20034);
+            本地值20055++;
+          }
+        }
+      }
+      测试状态.textContent = '${是否值236 ? 'تست کامل شد' : '测试完成'}: ' + 本地值20055 + '/' + 本地值20054;
+      开始测试值.style.display = 'inline-block';
+      值测试值.style.display = 'none';
+
+      // 更新城市选择器
+      更新城市筛选();
+    });
+  }
+  if (值测试值) {
+    值测试值.addEventListener('click', function () {
+      if (测试值控制器) {
+        测试值控制器.abort();
+      }
+      开始测试值.style.display = 'inline-block';
+      值测试值.style.display = 'none';
+      测试状态.textContent = '${是否值236 ? 'تست متوقف شد' : '测试已停止'}';
+    });
+  }
+  if (选择值值) {
+    选择值值.addEventListener('click', function () {
+      const 本地值20033 = 结果列表列表.querySelectorAll('input[type="checkbox"]:not(:disabled)');
+      本地值20033.forEach(本地值20032 => 本地值20032.checked = true);
+    });
+  }
+  if (值值值) {
+    值值值.addEventListener('click', function () {
+      const 本地值20031 = 结果列表列表.querySelectorAll('input[type="checkbox"]');
+      本地值20031.forEach(本地值20030 => 本地值20030.checked = false);
+    });
+  }
+
+  // 获取选中项的通用函数
+  function 获取已选项目() {
+    const 本地值20029 = 结果列表列表.querySelectorAll('input[type="checkbox"]:checked');
+    if (本地值20029.length === 0) {
+      显示状态('${是否值236 ? 'لطفا حداقل یک مورد انتخاب کنید' : '请至少选择一项'}', 'error');
+      return null;
+    }
+    const 已选项目列表20028 = [];
+    本地值20029.forEach(本地值20027 => {
+      const 索引20026 = parseInt(本地值20027.dataset.index);
+      const 结果20025 = 测试结果列表[索引20026];
+      if (结果20025 && 结果20025.success) {
+        const 机房名称 = 结果20025.colo ? 获取机房名称(结果20025.colo) : 结果20025.nodeName;
+        const 项目字符串 = 结果20025.host + ':' + 结果20025.port + '#' + 机房名称;
+        已选项目列表20028.push(项目字符串);
+      }
+    });
+    return 已选项目列表20028;
+  }
+
+  // 覆盖添加
+  if (覆盖已选值) {
+    覆盖已选值.addEventListener('click', async function () {
+      const 已选项目列表20024 = 获取已选项目();
+      if (!已选项目列表20024 || 已选项目列表20024.length === 0) return;
+      const 值输入20023 = document.getElementById('yx');
+      const 新值20022 = 已选项目列表20024.join(',');
+      值输入20023.value = 新值20022;
+      覆盖已选值.disabled = true;
+      追加已选值.disabled = true;
+      覆盖已选值.textContent = '${是否值236 ? 'در حال ذخیره...' : '保存中...'}';
+      try {
+        const 配置数据20021 = {
+          customIP: document.getElementById('customIP').value,
+          yx: 新值20022,
+          yxURL: document.getElementById('yxURL').value,
+          s: document.getElementById('socksConfig').value
+        };
+        await 保存配置(配置数据20021);
+        显示状态('${是否值236 ? 'موفقیت‌آمیز بود' : '已覆盖'} ' + 已选项目列表20024.length + ' ${是否值236 ? 'مورد و ذخیره شد' : '项并已保存'}', 'success');
+      } catch (错误20020) {
+        显示状态('${是否值236 ? 'خطا در ذخیره' : '保存失败'}: ' + 错误20020.message, 'error');
+      } finally {
+        覆盖已选值.disabled = false;
+        追加已选值.disabled = false;
+        覆盖已选值.textContent = '${是否值236 ? '覆盖添加' : '覆盖添加'}';
+      }
+    });
+  }
+
+  // 追加添加
+  if (追加已选值) {
+    追加已选值.addEventListener('click', async function () {
+      const 已选项目列表 = 获取已选项目();
+      if (!已选项目列表 || 已选项目列表.length === 0) return;
+      const 值输入 = document.getElementById('yx');
+      const 当前值 = 值输入.value.trim();
+      const 新项目列表 = 已选项目列表.join(',');
+      const 新值 = 当前值 ? 当前值 + ',' + 新项目列表 : 新项目列表;
+      值输入.value = 新值;
+      覆盖已选值.disabled = true;
+      追加已选值.disabled = true;
+      追加已选值.textContent = '${是否值236 ? 'در حال ذخیره...' : '保存中...'}';
+      try {
+        const 配置数据 = {
+          customIP: document.getElementById('customIP').value,
+          yx: 新值,
+          yxURL: document.getElementById('yxURL').value,
+          s: document.getElementById('socksConfig').value
+        };
+        await 保存配置(配置数据);
+        显示状态('${是否值236 ? 'موفقیت‌آمیز بود' : '已追加'} ' + 已选项目列表.length + ' ${是否值236 ? 'مورد و ذخیره شد' : '项并已保存'}', 'success');
+      } catch (错误20019) {
+        显示状态('${是否值236 ? 'خطا در ذخیره' : '保存失败'}: ' + 错误20019.message, 'error');
+      } finally {
+        覆盖已选值.disabled = false;
+        追加已选值.disabled = false;
+        追加已选值.textContent = '${是否值236 ? '追加添加' : '追加添加'}';
+      }
+    });
+  }
+  function 地址转十六进制(地址) {
+    const 部分列表 = 地址.split('.');
+    if (部分列表.length !== 4) return null;
+    let 十六进制 = '';
+    for (let 索引值 = 0; 索引值 < 4; 索引值++) {
+      const 数字 = parseInt(部分列表[索引值]);
+      if (isNaN(数字) || 数字 < 0 || 数字 > 255) return null;
+      十六进制 += 数字.toString(16).padStart(2, '0');
+    }
+    return 十六进制;
+  }
+  const 机房映射 = {
+    'SJC': '🇺🇸 圣何塞',
+    'LAX': '🇺🇸 洛杉矶',
+    'SEA': '🇺🇸 西雅图',
+    'SFO': '🇺🇸 旧金山',
+    'DFW': '🇺🇸 达拉斯',
+    'ORD': '🇺🇸 芝加哥',
+    'IAD': '🇺🇸 华盛顿',
+    'ATL': '🇺🇸 亚特兰大',
+    'MIA': '🇺🇸 迈阿密',
+    'DEN': '🇺🇸 丹佛',
+    'PHX': '🇺🇸 凤凰城',
+    'BOS': '🇺🇸 波士顿',
+    'EWR': '🇺🇸 纽瓦克',
+    'JFK': '🇺🇸 纽约',
+    'LAS': '🇺🇸 拉斯维加斯',
+    'MSP': '🇺🇸 明尼阿波利斯',
+    'DTW': '🇺🇸 底特律',
+    'PHL': '🇺🇸 费城',
+    'CLT': '🇺🇸 夏洛特',
+    'SLC': '🇺🇸 盐湖城',
+    'PDX': '🇺🇸 波特兰',
+    'SAN': '🇺🇸 圣地亚哥',
+    'TPA': '🇺🇸 坦帕',
+    'IAH': '🇺🇸 休斯顿',
+    'MCO': '🇺🇸 奥兰多',
+    'AUS': '🇺🇸 奥斯汀',
+    'BNA': '🇺🇸 纳什维尔',
+    'RDU': '🇺🇸 罗利',
+    'IND': '🇺🇸 印第安纳波利斯',
+    'CMH': '🇺🇸 哥伦布',
+    'MCI': '🇺🇸 堪萨斯城',
+    'OMA': '🇺🇸 奥马哈',
+    'ABQ': '🇺🇸 阿尔伯克基',
+    'OKC': '🇺🇸 俄克拉荷马城',
+    'MEM': '🇺🇸 孟菲斯',
+    'JAX': '🇺🇸 杰克逊维尔',
+    'RIC': '🇺🇸 里士满',
+    'BUF': '🇺🇸 布法罗',
+    'PIT': '🇺🇸 匹兹堡',
+    'CLE': '🇺🇸 克利夫兰',
+    'CVG': '🇺🇸 辛辛那提',
+    'MKE': '🇺🇸 密尔沃基',
+    'STL': '🇺🇸 圣路易斯',
+    'SAT': '🇺🇸 圣安东尼奥',
+    'HNL': '🇺🇸 檀香山',
+    'ANC': '🇺🇸 安克雷奇',
+    'SMF': '🇺🇸 萨克拉门托',
+    'ONT': '🇺🇸 安大略',
+    'OAK': '🇺🇸 奥克兰',
+    'HKG': '🇭🇰 香港',
+    'TPE': '🇹🇼 台北',
+    'TSA': '🇹🇼 台北松山',
+    'KHH': '🇹🇼 高雄',
+    'NRT': '🇯🇵 东京成田',
+    'HND': '🇯🇵 东京羽田',
+    'KIX': '🇯🇵 大阪关西',
+    'ITM': '🇯🇵 大阪伊丹',
+    'NGO': '🇯🇵 名古屋',
+    'FUK': '🇯🇵 福冈',
+    'CTS': '🇯🇵 札幌',
+    'OKA': '🇯🇵 冲绳',
+    'ICN': '🇰🇷 首尔仁川',
+    'GMP': '🇰🇷 首尔金浦',
+    'PUS': '🇰🇷 釜山',
+    'SIN': '🇸🇬 新加坡',
+    'BKK': '🇹🇭 曼谷',
+    'DMK': '🇹🇭 曼谷廊曼',
+    'KUL': '🇲🇾 吉隆坡',
+    'CGK': '🇮🇩 雅加达',
+    'MNL': '🇵🇭 马尼拉',
+    'CEB': '🇵🇭 宿务',
+    'HAN': '🇻🇳 河内',
+    'SGN': '🇻🇳 胡志明',
+    'DAD': '🇻🇳 岘港',
+    'RGN': '🇲🇲 仰光',
+    'PNH': '🇰🇭 金边',
+    'REP': '🇰🇭 暹粒',
+    'VTE': '🇱🇦 万象',
+    'BOM': '🇮🇳 孟买',
+    'DEL': '🇮🇳 新德里',
+    'MAA': '🇮🇳 金奈',
+    'BLR': '🇮🇳 班加罗尔',
+    'CCU': '🇮🇳 加尔各答',
+    'HYD': '🇮🇳 海得拉巴',
+    'AMD': '🇮🇳 艾哈迈达巴德',
+    'COK': '🇮🇳 科钦',
+    'PNQ': '🇮🇳 浦那',
+    'GOI': '🇮🇳 果阿',
+    'CMB': '🇱🇰 科伦坡',
+    'DAC': '🇧🇩 达卡',
+    'KTM': '🇳🇵 加德满都',
+    'ISB': '🇵🇰 伊斯兰堡',
+    'KHI': '🇵🇰 卡拉奇',
+    'LHE': '🇵🇰 拉合尔',
+    'LHR': '🇬🇧 伦敦希思罗',
+    'LGW': '🇬🇧 伦敦盖特威克',
+    'STN': '🇬🇧 伦敦斯坦斯特德',
+    'LTN': '🇬🇧 伦敦卢顿',
+    'MAN': '🇬🇧 曼彻斯特',
+    'EDI': '🇬🇧 爱丁堡',
+    'BHX': '🇬🇧 伯明翰',
+    'CDG': '🇫🇷 巴黎戴高乐',
+    'ORY': '🇫🇷 巴黎奥利',
+    'MRS': '🇫🇷 马赛',
+    'LYS': '🇫🇷 里昂',
+    'NCE': '🇫🇷 尼斯',
+    'FRA': '🇩🇪 法兰克福',
+    'MUC': '🇩🇪 慕尼黑',
+    'TXL': '🇩🇪 柏林',
+    'BER': '🇩🇪 柏林勃兰登堡',
+    'HAM': '🇩🇪 汉堡',
+    'DUS': '🇩🇪 杜塞尔多夫',
+    'CGN': '🇩🇪 科隆',
+    'STR': '🇩🇪 斯图加特',
+    'AMS': '🇳🇱 阿姆斯特丹',
+    'BRU': '🇧🇪 布鲁塞尔',
+    'LUX': '🇱🇺 卢森堡',
+    'ZRH': '🇨🇭 苏黎世',
+    'GVA': '🇨🇭 日内瓦',
+    'BSL': '🇨🇭 巴塞尔',
+    'VIE': '🇦🇹 维也纳',
+    'PRG': '🇨🇿 布拉格',
+    'BUD': '🇭🇺 布达佩斯',
+    'WAW': '🇵🇱 华沙',
+    'KRK': '🇵🇱 克拉科夫',
+    'MXP': '🇮🇹 米兰马尔彭萨',
+    'LIN': '🇮🇹 米兰利纳特',
+    'FCO': '🇮🇹 罗马',
+    'VCE': '🇮🇹 威尼斯',
+    'NAP': '🇮🇹 那不勒斯',
+    'FLR': '🇮🇹 佛罗伦萨',
+    'BGY': '🇮🇹 贝加莫',
+    'MAD': '🇪🇸 马德里',
+    'BCN': '🇪🇸 巴塞罗那',
+    'PMI': '🇪🇸 帕尔马',
+    'AGP': '🇪🇸 马拉加',
+    'VLC': '🇪🇸 瓦伦西亚',
+    'SVQ': '🇪🇸 塞维利亚',
+    'BIO': '🇪🇸 毕尔巴鄂',
+    'LIS': '🇵🇹 里斯本',
+    'OPO': '🇵🇹 波尔图',
+    'FAO': '🇵🇹 法鲁',
+    'DUB': '🇮🇪 都柏林',
+    'CPH': '🇩🇰 哥本哈根',
+    'ARN': '🇸🇪 斯德哥尔摩',
+    'GOT': '🇸🇪 哥德堡',
+    'OSL': '🇳🇴 奥斯陆',
+    'BGO': '🇳🇴 卑尔根',
+    'HEL': '🇫🇮 赫尔辛基',
+    'RIX': '🇱🇻 里加',
+    'TLL': '🇪🇪 塔林',
+    'VNO': '🇱🇹 维尔纽斯',
+    'ATH': '🇬🇷 雅典',
+    'SKG': '🇬🇷 塞萨洛尼基',
+    'SOF': '🇧🇬 索非亚',
+    'OTP': '🇷🇴 布加勒斯特',
+    'BEG': '🇷🇸 贝尔格莱德',
+    'ZAG': '🇭🇷 萨格勒布',
+    'LJU': '🇸🇮 卢布尔雅那',
+    'KBP': '🇺🇦 基辅',
+    'IEV': '🇺🇦 基辅茹良尼',
+    'ODS': '🇺🇦 敖德萨',
+    'SVO': '🇷🇺 莫斯科谢列梅捷沃',
+    'DME': '🇷🇺 莫斯科多莫杰多沃',
+    'VKO': '🇷🇺 莫斯科伏努科沃',
+    'LED': '🇷🇺 圣彼得堡',
+    'IST': '🇹🇷 伊斯坦布尔',
+    'SAW': '🇹🇷 伊斯坦布尔萨比哈',
+    'ESB': '🇹🇷 安卡拉',
+    'AYT': '🇹🇷 安塔利亚',
+    'ADB': '🇹🇷 伊兹密尔',
+    'TLV': '🇮🇱 特拉维夫',
+    'AMM': '🇯🇴 安曼',
+    'BEY': '🇱🇧 贝鲁特',
+    'BAH': '🇧🇭 巴林',
+    'KWI': '🇰🇼 科威特',
+    'DXB': '🇦🇪 迪拜',
+    'AUH': '🇦🇪 阿布扎比',
+    'SHJ': '🇦🇪 沙迦',
+    'DOH': '🇶🇦 多哈',
+    'MCT': '🇴🇲 马斯喀特',
+    'RUH': '🇸🇦 利雅得',
+    'JED': '🇸🇦 吉达',
+    'DMM': '🇸🇦 达曼',
+    'CAI': '🇪🇬 开罗',
+    'HBE': '🇪🇬 亚历山大',
+    'SSH': '🇪🇬 沙姆沙伊赫',
+    'CMN': '🇲🇦 卡萨布兰卡',
+    'RAK': '🇲🇦 马拉喀什',
+    'TUN': '🇹🇳 突尼斯',
+    'ALG': '🇩🇿 阿尔及尔',
+    'LOS': '🇳🇬 拉各斯',
+    'ABV': '🇳🇬 阿布贾',
+    'ACC': '🇬🇭 阿克拉',
+    'NBO': '🇰🇪 内罗毕',
+    'MBA': '🇰🇪 蒙巴萨',
+    'ADD': '🇪🇹 亚的斯亚贝巴',
+    'DAR': '🇹🇿 达累斯萨拉姆',
+    'JNB': '🇿🇦 约翰内斯堡',
+    'CPT': '🇿🇦 开普敦',
+    'DUR': '🇿🇦 德班',
+    'HRE': '🇿🇼 哈拉雷',
+    'LUN': '🇿🇲 卢萨卡',
+    'MRU': '🇲🇺 毛里求斯',
+    'SEZ': '🇸🇨 塞舌尔',
+    'SYD': '🇦🇺 悉尼',
+    'MEL': '🇦🇺 墨尔本',
+    'BNE': '🇦🇺 布里斯班',
+    'PER': '🇦🇺 珀斯',
+    'ADL': '🇦🇺 阿德莱德',
+    'CBR': '🇦🇺 堪培拉',
+    'OOL': '🇦🇺 黄金海岸',
+    'CNS': '🇦🇺 凯恩斯',
+    'AKL': '🇳🇿 奥克兰',
+    'WLG': '🇳🇿 惠灵顿',
+    'CHC': '🇳🇿 基督城',
+    'ZQN': '🇳🇿 皇后镇',
+    'NAN': '🇫🇯 楠迪',
+    'PPT': '🇵🇫 帕皮提',
+    'GUM': '🇬🇺 关岛',
+    'GRU': '🇧🇷 圣保罗瓜鲁柳斯',
+    'CGH': '🇧🇷 圣保罗孔戈尼亚斯',
+    'GIG': '🇧🇷 里约热内卢',
+    'BSB': '🇧🇷 巴西利亚',
+    'CNF': '🇧🇷 贝洛奥里藏特',
+    'POA': '🇧🇷 阿雷格里港',
+    'CWB': '🇧🇷 库里蒂巴',
+    'FOR': '🇧🇷 福塔莱萨',
+    'REC': '🇧🇷 累西腓',
+    'SSA': '🇧🇷 萨尔瓦多',
+    'EZE': '🇦🇷 布宜诺斯艾利斯',
+    'AEP': '🇦🇷 布宜诺斯艾利斯城',
+    'COR': '🇦🇷 科尔多瓦',
+    'MDZ': '🇦🇷 门多萨',
+    'SCL': '🇨🇱 圣地亚哥',
+    'LIM': '🇵🇪 利马',
+    'BOG': '🇨🇴 波哥大',
+    'MDE': '🇨🇴 麦德林',
+    'CLO': '🇨🇴 卡利',
+    'UIO': '🇪🇨 基多',
+    'GYE': '🇪🇨 瓜亚基尔',
+    'CCS': '🇻🇪 加拉加斯',
+    'MVD': '🇺🇾 蒙得维的亚',
+    'ASU': '🇵🇾 亚松森',
+    'PTY': '🇵🇦 巴拿马城',
+    'SJO': '🇨🇷 圣何塞',
+    'GUA': '🇬🇹 危地马拉城',
+    'SAL': '🇸🇻 圣萨尔瓦多',
+    'TGU': '🇭🇳 特古西加尔巴',
+    'MGA': '🇳🇮 马那瓜',
+    'BZE': '🇧🇿 伯利兹城',
+    'MEX': '🇲🇽 墨西哥城',
+    'GDL': '🇲🇽 瓜达拉哈拉',
+    'MTY': '🇲🇽 蒙特雷',
+    'CUN': '🇲🇽 坎昆',
+    'TIJ': '🇲🇽 蒂华纳',
+    'SJD': '🇲🇽 圣何塞德尔卡沃',
+    'YYZ': '🇨🇦 多伦多',
+    'YVR': '🇨🇦 温哥华',
+    'YUL': '🇨🇦 蒙特利尔',
+    'YYC': '🇨🇦 卡尔加里',
+    'YEG': '🇨🇦 埃德蒙顿',
+    'YOW': '🇨🇦 渥太华',
+    'YWG': '🇨🇦 温尼伯',
+    'YHZ': '🇨🇦 哈利法克斯',
+    'HAV': '🇨🇺 哈瓦那',
+    'SJU': '🇵🇷 圣胡安',
+    'SDQ': '🇩🇴 圣多明各',
+    'PAP': '🇭🇹 太子港',
+    'KIN': '🇯🇲 金斯顿',
+    'NAS': '🇧🇸 拿骚',
+    'MBJ': '🇯🇲 蒙特哥贝'
+  };
+  function 获取机房名称(机房20018) {
+    return 机房映射[机房20018] || 机房20018;
+  }
+
+  // 城市筛选相关函数
+  const 城市筛选值 = document.getElementById('cityFilterContainer');
+  const 城市值值 = document.getElementById('cityCheckboxesContainer');
+  function 更新城市筛选() {
+    if (!城市筛选值 || !城市值值) return;
+
+    // 从测试结果中提取所有可用的城市
+    const 城市映射 = new Map();
+    测试结果列表.forEach((结果20017, 索引20016) => {
+      if (结果20017.success && 结果20017.colo) {
+        const 机房20015 = 结果20017.colo;
+        if (!城市映射.has(机房20015)) {
+          城市映射.set(机房20015, {
+            colo: 机房20015,
+            name: 获取机房名称(机房20015),
+            count: 0
+          });
+        }
+        城市映射.get(机房20015).count++;
+      }
+    });
+    if (城市映射.size === 0) {
+      城市筛选值.style.display = 'none';
+      return;
+    }
+    城市筛选值.style.display = 'block';
+    城市值值.innerHTML = '';
+
+    // 按城市名称排序
+    const 城市列表 = Array.from(城市映射.values()).sort((甲值20014, 乙值20013) => 甲值20014.name.localeCompare(乙值20013.name));
+    城市列表.forEach(城市 => {
+      const 标签 = document.createElement('label');
+      标签.style.cssText = 'display: inline-flex; align-items: center; cursor: pointer; color: #00f0ff; font-size: 0.85rem; padding: 4px 8px; background: rgba(20, 5, 50, 0.4); border: 1px solid #7aa9c4; border-radius: 4px;';
+      const 复选框20012 = document.createElement('input');
+      复选框20012.type = 'checkbox';
+      复选框20012.value = 城市.colo;
+      复选框20012.checked = true;
+      复选框20012.dataset.colo = 城市.colo;
+      复选框20012.style.cssText = 'margin-right: 6px; width: 16px; height: 16px; cursor: pointer;';
+      const 本地值20011 = document.createElement('span');
+      本地值20011.textContent = 城市.name + ' (' + 城市.count + ')';
+      标签.appendChild(复选框20012);
+      标签.appendChild(本地值20011);
+      城市值值.appendChild(标签);
+      复选框20012.addEventListener('change', 按城市筛选结果);
+    });
+
+    // 监听筛选模式变化
+    const 筛选值值 = document.querySelectorAll('input[name="cityFilterMode"]');
+    筛选值值.forEach(单选框 => {
+      单选框.addEventListener('change', function () {
+        if (this.value === 'all') {
+          // 切换到"全部城市"模式时，自动选中所有城市复选框
+          const 城市值20010 = 城市值值.querySelectorAll('input[type="checkbox"]');
+          城市值20010.forEach(本地值20009 => {
+            本地值20009.checked = true;
+            本地值20009.disabled = false;
+          });
+        }
+        按城市筛选结果();
+      });
+    });
+  }
+  function 按城市筛选结果() {
+    if (!结果列表列表 || !城市值值) return;
+    const 筛选值 = document.querySelector('input[name="cityFilterMode"]:checked')?.value || 'all';
+    const 结果项目列表 = 结果列表列表.querySelectorAll('[data-index]');
+    const 城市值 = 城市值值.querySelectorAll('input[type="checkbox"]');
+    if (筛选值 === 'fastest10') {
+      // 只选择最快的10个
+      const 值结果列表 = 测试结果列表.map((结果, 索引20008) => ({
+        result: 结果,
+        index: 索引20008
+      })).filter(项目20007 => 项目20007.result.success).sort((甲值, 乙值) => 甲值.result.latency - 乙值.result.latency).slice(0, 10);
+      const 最快索引集合 = new Set(值结果列表.map(项目20006 => 项目20006.index));
+      结果项目列表.forEach(项目20005 => {
+        const 索引 = parseInt(项目20005.dataset.index);
+        const 复选框20004 = 项目20005.querySelector('input[type="checkbox"]');
+        if (最快索引集合.has(索引)) {
+          项目20005.style.display = 'flex';
+          if (复选框20004) 复选框20004.checked = true;
+        } else {
+          项目20005.style.display = 'none';
+          if (复选框20004) 复选框20004.checked = false;
+        }
+      });
+
+      // 禁用城市复选框
+      城市值.forEach(本地值20003 => 本地值20003.disabled = true);
+    } else {
+      // 根据选中的城市筛选
+      const 已选城市列表 = new Set();
+      城市值.forEach(本地值20002 => {
+        if (本地值20002.checked) {
+          已选城市列表.add(本地值20002.value);
+        }
+      });
+
+      // 如果所有城市都被选中（或没有选中任何城市），显示所有结果
+      const 值值20001 = 城市值.length > 0 && 已选城市列表.size === 城市值.length;
+      const 值值 = 已选城市列表.size === 0;
+      结果项目列表.forEach(项目 => {
+        const 机房20000 = 项目.dataset.colo || '';
+        const 复选框 = 项目.querySelector('input[type="checkbox"]');
+        if (值值20001 || 值值 || 已选城市列表.has(机房20000)) {
+          项目.style.display = 'flex';
+          // 同步更新结果项复选框的选中状态
+          if (复选框) {
+            if (值值20001) {
+              // 所有城市都选中时，所有结果项复选框都选中
+              复选框.checked = true;
+            } else if (值值) {
+              // 没有选中任何城市时，所有结果项复选框都取消选中
+              复选框.checked = false;
+            } else {
+              // 根据城市选择状态同步复选框
+              复选框.checked = 已选城市列表.has(机房20000);
+            }
+          }
+        } else {
+          项目.style.display = 'none';
+          // 取消选中隐藏的结果项复选框
+          if (复选框) {
+            复选框.checked = false;
+          }
+        }
+      });
+
+      // 启用城市复选框
+      城市值.forEach(本地值 => 本地值.disabled = false);
+    }
+  }
+  async function 测试延迟(主机, 端口, 信号) {
+    const 超时 = 8000;
+    let 机房 = '';
+    let 测试网址 = '';
+    try {
+      const 控制器 = new AbortController();
+      const 超时标识 = setTimeout(() => 控制器.abort(), 超时);
+      if (信号) {
+        信号.addEventListener('abort', () => 控制器.abort());
+      }
+      const 清理主机 = 主机.replace(/^\\[|\\]$/g, '');
+      const 十六进制地址 = 地址转十六进制(清理主机);
+      const 测试域名 = 十六进制地址 ? 十六进制地址 + '.nip.lfree.org' : 清理主机 + '.nip.lfree.org';
+      测试网址 = 'https://' + 测试域名 + ':' + 端口 + '/';
+      console.log('[LatencyTest] Testing:', 测试网址, 'Original:', 主机 + ':' + 端口, 'HexIP:', 十六进制地址);
+      const 首次开始 = Date.now();
+      const 响应1 = await fetch(测试网址, {
+        signal: 控制器.signal
+      });
+      const 首次值 = Date.now() - 首次开始;
+      if (!响应1.ok) {
+        clearTimeout(超时标识);
+        return {
+          success: false,
+          latency: 首次值,
+          error: 'HTTP ' + 响应1.status + ' ' + 响应1.statusText,
+          colo: '',
+          testUrl: 测试网址
+        };
+      }
+      try {
+        const 文本 = await 响应1.text();
+        console.log('[LatencyTest] Response body:', 文本.substring(0, 200));
+        const 数据 = JSON.parse(文本);
+        if (数据.colo) {
+          机房 = 数据.colo;
+        }
+      } catch (事件值) {
+        console.log('[LatencyTest] Parse error:', 事件值.message);
+      }
+      const 值开始 = Date.now();
+      const 响应2 = await fetch(测试网址, {
+        signal: 控制器.signal
+      });
+      await 响应2.text();
+      const 延迟 = Date.now() - 值开始;
+      clearTimeout(超时标识);
+      console.log('[LatencyTest] First:', 首次值 + 'ms (DNS+TLS+RTT)', 'Second:', 延迟 + 'ms (RTT only)');
+      return {
+        success: true,
+        latency: 延迟,
+        colo: 机房,
+        testUrl: 测试网址
+      };
+    } catch (错误) {
+      const 错误消息 = 错误.name === 'AbortError' ? '${是否值236 ? 'زمان تمام شد' : '超时'}' : 错误.message;
+      console.log('[LatencyTest] Error:', 错误消息, 'URL:', 测试网址);
+      return {
+        success: false,
+        latency: -1,
+        error: 错误消息,
+        colo: '',
+        testUrl: 测试网址
+      };
+    }
+  }
+});
+</script>
+    </body>
+    </html>`;
+  return new Response(值页面, {
+    status: 200,
+    headers: {
+      'Content-Type': 'text/html; charset=utf-8'
+    }
+  });
+}
+async function 解析木马头部(缓冲234, 本地值233) {
+  const 字节 = 处理值值8数组(缓冲234);
+  const 密码值井号 = 传输路径 || 本地值233;
+  const 值224密码 = await 处理值224井号(密码值井号);
+  if (字节.byteLength < 56) {
+    return {
+      hasError: true,
+      message: "invalid " + atob('dHJvamFu') + " data - too short"
+    };
+  }
+  let 值值索引 = 56;
+  if (字节[56] !== 0x0d || 字节[57] !== 0x0a) {
+    return {
+      hasError: true,
+      message: "invalid " + atob('dHJvamFu') + " header format (missing CR LF)"
+    };
+  }
+  const 密码232 = 共享解码器.decode(字节.subarray(0, 值值索引));
+  if (密码232 !== 值224密码) {
+    return {
+      hasError: true,
+      message: "invalid " + atob('dHJvamFu') + " password"
+    };
+  }
+  const 代理5数据缓冲 = 字节.subarray(值值索引 + 2);
+  if (代理5数据缓冲.byteLength < 6) {
+    return {
+      hasError: true,
+      message: atob('aW52YWxpZCBTT0NLUzUgcmVxdWVzdCBkYXRh')
+    };
+  }
+  const 视图231 = new DataView(代理5数据缓冲.buffer, 代理5数据缓冲.byteOffset, 代理5数据缓冲.byteLength);
+  const 命令230 = 视图231.getUint8(0);
+  if (命令230 !== 1) {
+    return {
+      hasError: true,
+      message: "unsupported command, only TCP (CONNECT) is allowed"
+    };
+  }
+  const 本地值229 = 视图231.getUint8(1);
+  let 地址长度 = 0;
+  let 地址索引228 = 2;
+  let 地址227 = "";
+  switch (本地值229) {
+    case 1:
+      地址长度 = 4;
+      地址227 = 代理5数据缓冲.subarray(地址索引228, 地址索引228 + 地址长度).join(".");
+      break;
+    case 3:
+      地址长度 = 代理5数据缓冲[地址索引228];
+      地址索引228 += 1;
+      地址227 = 共享解码器.decode(代理5数据缓冲.subarray(地址索引228, 地址索引228 + 地址长度));
+      break;
+    case 4:
+      地址长度 = 16;
+      const 数据视图 = new DataView(代理5数据缓冲.buffer, 代理5数据缓冲.byteOffset + 地址索引228, 地址长度);
+      const 值6 = [];
+      for (let 索引值226 = 0; 索引值226 < 8; 索引值226++) {
+        值6.push(数据视图.getUint16(索引值226 * 2).toString(16));
+      }
+      地址227 = 值6.join(":");
+      break;
+    default:
+      return {
+        hasError: true,
+        message: `invalid addressType is ${本地值229}`
+      };
+  }
+  if (!地址227) {
+    return {
+      hasError: true,
+      message: `address is empty, addressType is ${本地值229}`
+    };
+  }
+  const 端口索引225 = 地址索引228 + 地址长度;
+  const 端口远程 = new DataView(代理5数据缓冲.buffer, 代理5数据缓冲.byteOffset + 端口索引225, 2).getUint16(0);
+  return {
+    hasError: false,
+    addressRemote: 地址227,
+    addressType: 本地值229,
+    port: 端口远程,
+    hostname: 地址227,
+    rawClientData: 代理5数据缓冲.subarray(端口索引225 + 4)
+  };
+}
+async function 处理值224井号(文本224) {
+  const 编码器 = new TextEncoder();
+  const 数据223 = 编码器.encode(文本224);
+  const 本地值222 = [0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5, 0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174, 0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da, 0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967, 0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85, 0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070, 0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3, 0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2];
+  let 头部游标 = [0xc1059ed8, 0x367cd507, 0x3070dd17, 0xf70e5939, 0xffc00b31, 0x68581511, 0x64f98fa7, 0xbefa4fa4];
+  const 消息长度 = 数据223.length;
+  const 值长度221 = 消息长度 * 8;
+  const 值长度220 = Math.ceil((消息长度 + 9) / 64) * 64;
+  const 本地值219 = new Uint8Array(值长度220);
+  本地值219.set(数据223);
+  本地值219[消息长度] = 0x80;
+  const 视图 = new DataView(本地值219.buffer);
+  视图.setUint32(值长度220 - 4, 值长度221, false);
+  for (let 块218 = 0; 块218 < 值长度220; 块218 += 64) {
+    const 写入器包装 = new Uint32Array(64);
+    for (let 索引值217 = 0; 索引值217 < 16; 索引值217++) {
+      写入器包装[索引值217] = 视图.getUint32(块218 + 索引值217 * 4, false);
+    }
+    for (let 索引值216 = 16; 索引值216 < 64; 索引值216++) {
+      const 值0215 = 处理值值200(写入器包装[索引值216 - 15], 7) ^ 处理值值200(写入器包装[索引值216 - 15], 18) ^ 写入器包装[索引值216 - 15] >>> 3;
+      const 值1214 = 处理值值200(写入器包装[索引值216 - 2], 17) ^ 处理值值200(写入器包装[索引值216 - 2], 19) ^ 写入器包装[索引值216 - 2] >>> 10;
+      写入器包装[索引值216] = 写入器包装[索引值216 - 16] + 值0215 + 写入器包装[索引值216 - 7] + 值1214 >>> 0;
+    }
+    let [甲值213, 乙值, 丙值212, 丁值211, 事件值210, 表单值, 本地值209, 头值208] = 头部游标;
+    for (let 索引值207 = 0; 索引值207 < 64; 索引值207++) {
+      const 值1206 = 处理值值200(事件值210, 6) ^ 处理值值200(事件值210, 11) ^ 处理值值200(事件值210, 25);
+      const 本地值205 = 事件值210 & 表单值 ^ ~事件值210 & 本地值209;
+      const 值1 = 头值208 + 值1206 + 本地值205 + 本地值222[索引值207] + 写入器包装[索引值207] >>> 0;
+      const 值0 = 处理值值200(甲值213, 2) ^ 处理值值200(甲值213, 13) ^ 处理值值200(甲值213, 22);
+      const 本地值204 = 甲值213 & 乙值 ^ 甲值213 & 丙值212 ^ 乙值 & 丙值212;
+      const 值2203 = 值0 + 本地值204 >>> 0;
+      头值208 = 本地值209;
+      本地值209 = 表单值;
+      表单值 = 事件值210;
+      事件值210 = 丁值211 + 值1 >>> 0;
+      丁值211 = 丙值212;
+      丙值212 = 乙值;
+      乙值 = 甲值213;
+      甲值213 = 值1 + 值2203 >>> 0;
+    }
+    头部游标[0] = 头部游标[0] + 甲值213 >>> 0;
+    头部游标[1] = 头部游标[1] + 乙值 >>> 0;
+    头部游标[2] = 头部游标[2] + 丙值212 >>> 0;
+    头部游标[3] = 头部游标[3] + 丁值211 >>> 0;
+    头部游标[4] = 头部游标[4] + 事件值210 >>> 0;
+    头部游标[5] = 头部游标[5] + 表单值 >>> 0;
+    头部游标[6] = 头部游标[6] + 本地值209 >>> 0;
+    头部游标[7] = 头部游标[7] + 头值208 >>> 0;
+  }
+  const 结果202 = [];
+  for (let 索引值201 = 0; 索引值201 < 7; 索引值201++) {
+    结果202.push((头部游标[索引值201] >>> 24 & 0xff).toString(16).padStart(2, '0'), (头部游标[索引值201] >>> 16 & 0xff).toString(16).padStart(2, '0'), (头部游标[索引值201] >>> 8 & 0xff).toString(16).padStart(2, '0'), (头部游标[索引值201] & 0xff).toString(16).padStart(2, '0'));
+  }
+  return 结果202.join('');
+}
+function 处理值值200(值199, 本地值198) {
+  return 值199 >>> 本地值198 | 值199 << 32 - 本地值198;
+}
+let 值值197 = 0;
+const 值超文本缓冲大小 = 128 * 1024;
+const 连接超时值 = 5000;
+const 值超时值 = 45000;
+const 上限值196 = 2;
+const 上限值 = 32;
+const 叉HTTP霍夫曼码长 = [
+13, 23, 28, 28, 28, 28, 28, 28, 28, 24, 30, 28, 28, 30, 28, 28,
+	28, 28, 28, 28, 28, 28, 30, 28, 28, 28, 28, 28, 28, 28, 28, 28,
+	6, 10, 10, 12, 13, 6, 8, 11, 10, 10, 8, 11, 8, 6, 6, 6,
+	5, 5, 5, 6, 6, 6, 6, 6, 6, 6, 7, 8, 15, 6, 12, 10,
+	13, 6, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7, 7,
+	7, 7, 7, 7, 7, 7, 7, 7, 8, 7, 8, 13, 19, 13, 14, 6,
+	15, 5, 6, 5, 6, 5, 6, 6, 6, 5, 7, 7, 6, 6, 6, 5,
+	6, 7, 6, 5, 5, 6, 7, 7, 7, 7, 7, 15, 11, 14, 13, 28,
+	20, 22, 20, 20, 22, 22, 22, 23, 22, 23, 23, 23, 23, 23, 24, 23,
+	24, 24, 22, 23, 24, 23, 23, 23, 23, 21, 22, 23, 22, 23, 23, 24,
+	22, 21, 20, 22, 22, 23, 23, 21, 23, 22, 22, 24, 21, 22, 23, 23,
+	21, 21, 22, 21, 23, 22, 23, 23, 20, 22, 22, 22, 23, 22, 22, 23,
+	26, 26, 20, 19, 22, 23, 22, 25, 26, 26, 26, 27, 27, 26, 24, 25,
+	19, 21, 26, 27, 27, 26, 27, 24, 21, 21, 26, 26, 28, 27, 27, 27,
+	20, 24, 20, 21, 22, 21, 21, 23, 22, 22, 25, 25, 24, 24, 26, 23,
+	26, 27, 26, 26, 27, 27, 27, 27, 27, 28, 27, 27, 27, 27, 27, 26,
+	30
+];
+// xhttp 抗指纹填充：从 UUID 派生隐蔽的头名/键名，与订阅侧 extra 约定一致
+function 获取叉HTTP填充标识(标识串) {
+  return { 头: 标识串.slice(1, 7), 键: '_' + 标识串.slice(25, 31) };
+}
+function 计算叉HTTP霍夫曼字节长度(字符串) {
+  const 字节 = new TextEncoder().encode(字符串);
+  let 总位数 = 0;
+  for (let 索引 = 0; 索引 < 字节.length; 索引++) 总位数 += 叉HTTP霍夫曼码长[字节[索引]];
+  return Math.ceil(总位数 / 8);
+}
+function 提取叉HTTP填充值(请求, 填充头, 填充键) {
+  const 头值 = 请求.headers.get(填充头);
+  if (头值) {
+    try {
+      const 解析 = new URL(头值, 'https://x.invalid');
+      const 查询值 = 解析.searchParams.get(填充键);
+      if (查询值) return 查询值;
+    } catch (忽略) {}
+    return 头值;
+  }
+  try {
+    return new URL(请求.url).searchParams.get(填充键) || '';
+  } catch (忽略) {
+    return '';
+  }
+}
+function 校验叉HTTP填充(请求, 填充头, 填充键) {
+  const 填充 = 提取叉HTTP填充值(请求, 填充头, 填充键);
+  if (!填充) return true;
+  const 长度 = 计算叉HTTP霍夫曼字节长度(填充);
+  return 长度 >= 98 && 长度 <= 1002;
+}
+const 叉HTTP填充字符集 = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+function 生成叉HTTP填充串(长度) {
+  const 字符集长度 = 叉HTTP填充字符集.length;
+  let 结果 = '';
+  for (let 索引 = 0; 索引 < 长度; 索引++) 结果 += 叉HTTP填充字符集[Math.floor(Math.random() * 字符集长度)];
+  return 结果;
+}
+function 处理扩展超文本值195(本地值194) {
+  return new Promise(结果值193 => setTimeout(结果值193, 本地值194));
+}
+function 验证唯一标识扩展超文本(标识192, 唯一标识191) {
+  for (let 索引190 = 0; 索引190 < 16; 索引190++) {
+    if (标识192[索引190] !== 唯一标识191[索引190]) {
+      return false;
+    }
+  }
+  return true;
+}
+class 扩展超文本计数器 {
+  #total;
+  constructor() {
+    this.#total = 0;
+  }
+  get() {
+    return this.#total;
+  }
+  add(大小189) {
+    this.#total += 大小189;
+  }
+}
+function 处理值值值(首次, ...本地值188) {
+  let 长度 = 首次.length;
+  for (let 甲值187 of 本地值188) {
+    长度 += 甲值187.length;
+  }
+  const 结果值186 = new 首次.constructor(长度);
+  结果值186.set(首次, 0);
+  长度 = 首次.length;
+  for (let 甲值185 of 本地值188) {
+    结果值186.set(甲值185, 长度);
+    长度 += 甲值185.length;
+  }
+  return 结果值186;
+}
+function 解析唯一标识扩展超文本(唯一标识184) {
+  唯一标识184 = 唯一标识184.replaceAll('-', '');
+  const 结果值183 = [];
+  for (let 索引182 = 0; 索引182 < 16; 索引182++) {
+    const 取值181 = parseInt(唯一标识184.substr(索引182 * 2, 2), 16);
+    结果值183.push(取值181);
+  }
+  return 结果值183;
+}
+function 获取扩展超文本缓冲(大小) {
+  return new Uint8Array(new ArrayBuffer(大小 || 值超文本缓冲大小));
+}
+async function 读取扩展超文本头部(本地值180, 唯一标识字符串) {
+  const 读取器179 = 本地值180.getReader({
+    mode: 'byob'
+  });
+  try {
+    let 结果值178 = await 读取器179.readAtLeast(1 + 16 + 1, 获取扩展超文本缓冲());
+    let 本地值177 = 0;
+    let 索引 = 0;
+    let 缓存 = 结果值178.value;
+    本地值177 += 结果值178.value.length;
+    const 本地值176 = 缓存[0];
+    const 标识175 = 缓存.slice(1, 1 + 16);
+    const 唯一标识174 = 解析唯一标识扩展超文本(唯一标识字符串);
+    if (!验证唯一标识扩展超文本(标识175, 唯一标识174)) {
+      return `invalid UUID`;
+    }
+    const 值长度173 = 缓存[1 + 16];
+    const 地址值1 = 1 + 16 + 1 + 值长度173 + 1 + 2 + 1;
+    if (地址值1 + 1 > 本地值177) {
+      if (结果值178.done) {
+        return `header too short`;
+      }
+      索引 = 地址值1 + 1 - 本地值177;
+      结果值178 = await 读取器179.readAtLeast(索引, 获取扩展超文本缓冲());
+      本地值177 += 结果值178.value.length;
+      缓存 = 处理值值值(缓存, 结果值178.value);
+    }
+    const 命令 = 缓存[1 + 16 + 1 + 值长度173];
+    if (命令 !== 1) {
+      return `unsupported command: ${命令}`;
+    }
+    const 端口172 = (缓存[地址值1 - 1 - 2] << 8) + 缓存[地址值1 - 1 - 1];
+    const 本地值171 = 缓存[地址值1 - 1];
+    let 头部长度 = -1;
+    if (本地值171 === 地址类型_四版) {
+      头部长度 = 地址值1 + 4;
+    } else if (本地值171 === 地址类型_六版) {
+      头部长度 = 地址值1 + 16;
+    } else if (本地值171 === 地址类型_网址) {
+      头部长度 = 地址值1 + 1 + 缓存[地址值1];
+    }
+    if (头部长度 < 0) {
+      return 'read address type failed';
+    }
+    索引 = 头部长度 - 本地值177;
+    if (索引 > 0) {
+      if (结果值178.done) {
+        return `read address failed`;
+      }
+      结果值178 = await 读取器179.readAtLeast(索引, 获取扩展超文本缓冲());
+      本地值177 += 结果值178.value.length;
+      缓存 = 处理值值值(缓存, 结果值178.value);
+    }
+    let 主机名170 = '';
+    索引 = 地址值1;
+    switch (本地值171) {
+      case 地址类型_四版:
+        主机名170 = 缓存.slice(索引, 索引 + 4).join('.');
+        break;
+      case 地址类型_网址:
+        主机名170 = new TextDecoder().decode(缓存.slice(索引 + 1, 索引 + 1 + 缓存[索引]));
+        break;
+      case 地址类型_六版:
+        主机名170 = 缓存.slice(索引, 索引 + 16).reduce((字符串值, 值2169, 值2, 甲值) => 值2 % 2 ? 字符串值.concat(((甲值[值2 - 1] << 8) + 值2169).toString(16)) : 字符串值, []).join(':');
+        break;
+    }
+    if (主机名170.length < 1) {
+      return 'failed to parse hostname';
+    }
+    const 数据 = 缓存.slice(头部长度);
+    return {
+      hostname: 主机名170,
+      port: 端口172,
+      data: 数据,
+      resp: new Uint8Array([本地值176, 0]),
+      reader: 读取器179,
+      done: 结果值178.done
+    };
+  } catch (错误168) {
+    try {
+      读取器179.releaseLock();
+    } catch (忽略值167) {}
+    throw 错误168;
+  }
+}
+async function 处理值值远程扩展超文本(计数器166, 写入器165, 本地值164) {
+  async function 处理值值(丁值) {
+    if (!丁值 || 丁值.length === 0) {
+      return;
+    }
+    计数器166.add(丁值.length);
+    try {
+      await 写入器165.write(丁值);
+    } catch (错误163) {
+      throw 错误163;
+    }
+  }
+  try {
+    await 处理值值(本地值164.data);
+    let 块数量162 = 0;
+    while (!本地值164.done) {
+      const 结果值161 = await 本地值164.reader.read(获取扩展超文本缓冲());
+      if (结果值161.done) break;
+      await 处理值值(结果值161.value);
+      本地值164.done = 结果值161.done;
+      块数量162++;
+      if (块数量162 % 10 === 0) {
+        await 处理扩展超文本值195(0);
+      }
+      if (!结果值161.value || 结果值161.value.length === 0) {
+        await 处理扩展超文本值195(2);
+      }
+    }
+  } catch (错误160) {
+    throw 错误160;
+  }
+}
+function 创建扩展超文本值159(本地值158, 本地值157) {
+  const 计数器156 = new 扩展超文本计数器();
+  const 写入器155 = 本地值157.getWriter();
+  const 本地值154 = (async () => {
+    try {
+      await 处理值值远程扩展超文本(计数器156, 写入器155, 本地值158);
+    } catch (错误153) {
+      throw 错误153;
+    } finally {
+      try {
+        await 写入器155.close();
+      } catch (错误152) {}
+    }
+  })();
+  return {
+    counter: 计数器156,
+    done: 本地值154,
+    abort: () => {
+      try {
+        写入器155.abort();
+      } catch (忽略值151) {}
+    }
+  };
+}
+function 创建扩展超文本值(本地值150, 远程值) {
+  const 计数器 = new 扩展超文本计数器();
+  let 流;
+  const 本地值149 = new Promise((本地值148, 本地值147) => {
+    流 = new TransformStream({
+      start(控制器146) {
+        计数器.add(本地值150.length);
+        控制器146.enqueue(本地值150);
+      },
+      transform(块, 控制器145) {
+        计数器.add(块.length);
+        控制器145.enqueue(块);
+      },
+      cancel(本地值144) {
+        本地值147(`download cancelled: ${本地值144}`);
+      }
+    }, null, new ByteLengthQueuingStrategy({
+      highWaterMark: 值超文本缓冲大小
+    }));
+    let 值值143 = Date.now();
+    const 值计时器 = setInterval(() => {
+      if (Date.now() - 值值143 > 值超时值) {
+        try {
+          流.writable.abort?.('idle timeout');
+        } catch (忽略值142) {}
+        clearInterval(值计时器);
+        本地值147('idle timeout');
+      }
+    }, 5000);
+    const 读取器 = 远程值.getReader();
+    const 写入器 = 流.writable.getWriter();
+    ;
+    (async () => {
+      try {
+        let 块数量 = 0;
+        while (true) {
+          const 结果值141 = await 读取器.read();
+          if (结果值141.done) {
+            break;
+          }
+          值值143 = Date.now();
+          await 写入器.write(结果值141.value);
+          块数量++;
+          if (块数量 % 5 === 0) {
+            await 处理扩展超文本值195(0);
+          }
+        }
+        await 写入器.close();
+        本地值148();
+      } catch (错误140) {
+        本地值147(错误140);
+      } finally {
+        try {
+          读取器.releaseLock();
+        } catch (忽略值139) {}
+        try {
+          写入器.releaseLock();
+        } catch (忽略值138) {}
+        clearInterval(值计时器);
+      }
+    })();
+  });
+  return {
+    readable: 流.readable,
+    counter: 计数器,
+    done: 本地值149,
+    abort: () => {
+      try {
+        流.readable.cancel();
+      } catch (忽略值137) {}
+      try {
+        流.writable.abort();
+      } catch (忽略值136) {}
+    }
+  };
+}
+// 用一个远程套接字装配上下行器：uploader 负责写 vless 首包与后续上行，downloader 回灌 resp+下行
+function 装配扩展超文本连接(首包, 远程套接字) {
+  const uploader = 创建扩展超文本值159(首包, 远程套接字.writable);
+  const downloader = 创建扩展超文本值(首包.resp, 远程套接字.readable);
+  return {
+    downloader,
+    uploader,
+    close: () => {
+      try {
+        远程套接字.close();
+      } catch (忽略关闭) {}
+    }
+  };
+}
+// 出站决策与 ws 的 处理值值384 对齐：接入 s（代理）、wk/rm（地区匹配备用地址）、qj（代理降级/仅走代理）
+async function 连接值远程扩展超文本(首包, 请求值扩展 = null) {
+  const 主机 = 首包.hostname;
+  const 端口 = 首包.port;
+  const 直连 = async (地址, 端口值) => 连接值套接字(地址, 端口值, 请求值扩展, 传输连接竞速数);
+  const 走代理 = async (地址, 端口值) => 处理值代理连接(地址类型_网址, 地址, 端口值, 已解析代理5配置, 请求值扩展, null);
+  // 计算回退目标：优先 p（回退地址），否则按 wk/rm 取地区匹配备用地址
+  const 取回退目标 = async () => {
+    if (回退地址 && 回退地址.trim()) {
+      const 已解析 = 解析地址值端口(回退地址);
+      return {
+        address: 已解析.address,
+        port: 已解析.port || 端口
+      };
+    }
+    const 备用 = await 获取值备用地址(当前工作器地区, 启用地区匹配);
+    return 备用 ? {
+      address: 备用.domain,
+      port: 备用.port
+    } : {
+      address: 主机,
+      port: 端口
+    };
+  };
+  const 首跳走代理 = 仅走代理 && 是否代理已启用 ? true : 启用代理降级 ? false : 是否代理已启用;
+  try {
+    const 套接字 = 首跳走代理 ? await 走代理(主机, 端口) : await 直连(主机, 端口);
+    return 装配扩展超文本连接(首包, 套接字);
+  } catch (首跳错误) {
+    // 只走代理：首跳失败不回落直连，避免出口 IP 泄漏
+    if (仅走代理 && 是否代理已启用) return null;
+    try {
+      if (启用代理降级 && 是否代理已启用) {
+        try {
+          const 代理套接字 = await 走代理(主机, 端口);
+          return 装配扩展超文本连接(首包, 代理套接字);
+        } catch (代理错误) {
+          const 回退 = await 取回退目标();
+          const 回退套接字 = await 直连(回退.address, 回退.port);
+          return 装配扩展超文本连接(首包, 回退套接字);
+        }
+      }
+      const 回退 = await 取回退目标();
+      const 回退套接字 = 是否代理已启用 ? await 走代理(回退.address, 回退.port) : await 直连(回退.address, 回退.port);
+      return 装配扩展超文本连接(首包, 回退套接字);
+    } catch (回退错误) {
+      return null;
+    }
+  }
+}
+async function 处理扩展超文本客户端(主体128, 唯一标识, 请求值扩展 = null) {
+  if (值值197 >= 上限值) {
+    return new Response('Too many connections', {
+      status: 429
+    });
+  }
+  值值197++;
+  let 本地值127 = false;
+  const 本地值126 = () => {
+    if (!本地值127) {
+      值值197 = Math.max(0, 值值197 - 1);
+      本地值127 = true;
+    }
+  };
+  try {
+    const 本地值125 = await 读取扩展超文本头部(主体128, 唯一标识);
+    if (typeof 本地值125 !== 'object' || !本地值125) {
+      return null;
+    }
+    const 远程连接 = await 连接值远程扩展超文本(本地值125, 请求值扩展);
+    if (远程连接 === null) {
+      return null;
+    }
+    const 连接值 = Promise.race([(async () => {
+      try {
+        await 远程连接.downloader.done;
+      } catch (错误124) {}
+    })(), (async () => {
+      try {
+        await 远程连接.uploader.done;
+      } catch (错误123) {}
+    })(), 处理扩展超文本值195(值超时值).then(() => {})]).finally(() => {
+      try {
+        远程连接.close();
+      } catch (忽略值122) {}
+      try {
+        远程连接.downloader.abort();
+      } catch (忽略值121) {}
+      try {
+        远程连接.uploader.abort();
+      } catch (忽略值) {}
+      本地值126();
+    });
+    return {
+      readable: 远程连接.downloader.readable,
+      closed: 连接值
+    };
+  } catch (错误120) {
+    本地值126();
+    return null;
+  }
+}
+async function 处理扩展超文本值(请求119) {
+  try {
+    return await 处理扩展超文本客户端(请求119.body, 认证令牌, 请求119.fetcher);
+  } catch (错误118) {
+    return null;
+  }
+}
+function 处理基础64值数组(值64字符串) {
+  if (!值64字符串) return {
+    error: null
+  };
+  try {
+    值64字符串 = 值64字符串.replace(/-/g, '+').replace(/_/g, '/');
+    return {
+      earlyData: Uint8Array.from(atob(值64字符串), 丙值117 => 丙值117.charCodeAt(0)).buffer,
+      error: null
+    };
+  } catch (错误116) {
+    return {
+      error: 错误116
+    };
+  }
+}
+function 关闭套接字值(套接字) {
+  try {
+    if (套接字.readyState === 1 || 套接字.readyState === 2) 套接字.close();
+  } catch (错误115) {}
+}
+const 十六进制值 = Array.from({
+  length: 256
+}, (取值, 索引值) => (索引值 + 256).toString(16).slice(1));
+function 处理格式值(本地值114, 偏移 = 0) {
+  const 标识 = (十六进制值[本地值114[偏移]] + 十六进制值[本地值114[偏移 + 1]] + 十六进制值[本地值114[偏移 + 2]] + 十六进制值[本地值114[偏移 + 3]] + "-" + 十六进制值[本地值114[偏移 + 4]] + 十六进制值[本地值114[偏移 + 5]] + "-" + 十六进制值[本地值114[偏移 + 6]] + 十六进制值[本地值114[偏移 + 7]] + "-" + 十六进制值[本地值114[偏移 + 8]] + 十六进制值[本地值114[偏移 + 9]] + "-" + 十六进制值[本地值114[偏移 + 10]] + 十六进制值[本地值114[偏移 + 11]] + 十六进制值[本地值114[偏移 + 12]] + 十六进制值[本地值114[偏移 + 13]] + 十六进制值[本地值114[偏移 + 14]] + 十六进制值[本地值114[偏移 + 15]]).toLowerCase();
+  if (!是否有效格式(标识)) throw new TypeError(错误_无效标识字符串);
+  return 标识;
+}
+async function 获取值解析新地址列表() {
+  const 网址113 = 优选地址源;
+  try {
+    const 网址列表112 = 网址113.includes(',') ? 网址113.split(',').map(网址值111 => 网址值111.trim()).filter(网址值 => 网址值) : [网址113];
+    const 接口结果列表 = await 获取优选接口(网址列表112, '443', 5000);
+    if (接口结果列表.length > 0) {
+      const 结果列表110 = [];
+      const 正则 = /^(\[[\da-fA-F:]+\]|[\d.]+|[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?)*)(?::(\d+))?(?:#(.+))?$/;
+      for (const 项目109 of 接口结果列表) {
+        const 本地值108 = 项目109.match(正则);
+        if (本地值108) {
+          结果列表110.push({
+            ip: 规范化节点主机(本地值108[1]),
+            port: parseInt(本地值108[2] || '443', 10),
+            name: 本地值108[3]?.trim() || 本地值108[1]
+          });
+        }
+      }
+      return 结果列表110;
+    }
+    const 响应107 = await fetch(网址113);
+    if (!响应107.ok) return [];
+    const 文本106 = await 响应107.text();
+    const 结果列表105 = [];
+    const 行列表104 = 文本106.trim().replace(/\r/g, "").split('\n');
+    const 值正则 = /^([^:]+):(\d+)#(.*)$/;
+    for (const 行103 of 行列表104) {
+      const 值行 = 行103.trim();
+      if (!值行) continue;
+      const 本地值102 = 值行.match(值正则);
+      if (本地值102) {
+        结果列表105.push({
+          ip: 本地值102[1],
+          port: parseInt(本地值102[2], 10),
+          name: 本地值102[3].trim() || 本地值102[1]
+        });
+      }
+    }
+    return 结果列表105;
+  } catch (错误101) {
+    return [];
+  }
+}
+function 生成链接列表来源新地址列表(列表100, 用户99, 工作器域名98, 加密客户端问候配置97 = null, 跳过编号96 = false, 别名命名器95 = null) {
+  const 云墙超文本端口94 = [80, 8080, 8880, 2052, 2082, 2086, 2095];
+  const 云墙安全超文本端口93 = [443, 2053, 2083, 2087, 2096, 8443];
+  const 链接列表92 = [];
+  const 网页套接字路径91 = '/?ed=2048';
+  const 协议 = atob('dmxlc3M=');
+  const 制作节点名称90 = 别名命名器95 || 创建值节点命名器(跳过编号96);
+  for (const 项目89 of 列表100) {
+    const 端口88 = 项目89.port;
+    const 安全地址87 = 项目89.ip.includes(':') ? `[${项目89.ip}]` : 项目89.ip;
+    if (云墙安全超文本端口93.includes(端口88)) {
+      const 网页套接字节点名称86 = 制作节点名称90(项目89);
+      let 链接85 = `${协议}://${用户99}@${安全地址87}:${端口88}?encryption=none&security=tls&sni=${工作器域名98}&fp=chrome&type=ws&host=${工作器域名98}&path=${网页套接字路径91}`;
+      if (自定义应用层协议协商) 链接85 += `&alpn=${encodeURIComponent(自定义应用层协议协商)}`;
+
+      // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+      if (启用加密客户端问候) {
+        const 域名系统值84 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+        const 加密客户端问候域名83 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        链接85 += `&ech=${encodeURIComponent(`${加密客户端问候域名83}+${域名系统值84}`)}`;
+      }
+      链接85 += `#${encodeURIComponent(网页套接字节点名称86)}`;
+      链接列表92.push(链接85);
+    } else if (云墙超文本端口94.includes(端口88)) {
+      if (!禁用非传输层安全) {
+        const 网页套接字节点名称82 = 制作节点名称90(项目89);
+        const 链接81 = `${协议}://${用户99}@${安全地址87}:${端口88}?encryption=none&security=none&type=ws&host=${工作器域名98}&path=${网页套接字路径91}#${encodeURIComponent(网页套接字节点名称82)}`;
+        链接列表92.push(链接81);
+      }
+    } else {
+      const 网页套接字节点名称80 = 制作节点名称90(项目89);
+      let 链接79 = `${协议}://${用户99}@${安全地址87}:${端口88}?encryption=none&security=tls&sni=${工作器域名98}&fp=chrome&type=ws&host=${工作器域名98}&path=${网页套接字路径91}`;
+      if (自定义应用层协议协商) 链接79 += `&alpn=${encodeURIComponent(自定义应用层协议协商)}`;
+
+      // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+      if (启用加密客户端问候) {
+        const 域名系统值78 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+        const 加密客户端问候域名77 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        链接79 += `&ech=${encodeURIComponent(`${加密客户端问候域名77}+${域名系统值78}`)}`;
+      }
+      链接79 += `#${encodeURIComponent(网页套接字节点名称80)}`;
+      链接列表92.push(链接79);
+    }
+  }
+  return 链接列表92;
+}
+function 生成扩展超文本链接列表来源源(列表76, 用户75, 工作器域名74, 加密客户端问候配置73 = null, 跳过编号72 = false, 别名命名器71 = null) {
+  const 链接列表70 = [];
+  const 节点路径 = 用户75.substring(0, 8);
+  const 制作节点名称69 = 别名命名器71 || 创建值节点命名器(跳过编号72);
+  for (const 项目68 of 列表76) {
+    const 安全地址67 = 项目68.ip.includes(':') ? `[${项目68.ip}]` : 项目68.ip;
+    const 端口66 = 项目68.port || 443;
+    const 网页套接字节点名称65 = 制作节点名称69(项目68);
+    const 参数 = new URLSearchParams({
+      encryption: 'none',
+      security: 'tls',
+      sni: 工作器域名74,
+      fp: 'chrome',
+      type: 'xhttp',
+      host: 工作器域名74,
+      path: `/${节点路径}`,
+      mode: 'stream-one'
+    });
+    const { 头: 叉填充头65, 键: 叉填充键65 } = 获取叉HTTP填充标识(用户75);
+    参数.set('extra', JSON.stringify({
+      xPaddingObfsMode: true,
+      xPaddingMethod: 'tokenish',
+      xPaddingPlacement: 'queryInHeader',
+      xPaddingHeader: 叉填充头65,
+      xPaddingKey: 叉填充键65
+    }));
+    处理值应用层协议协商值(参数);
+    if (启用加密客户端问候) {
+      const 域名系统值64 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+      const 加密客户端问候域名63 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+      参数.set('ech', `${加密客户端问候域名63}+${域名系统值64}`);
+    }
+    链接列表70.push(`${解码64('dmxlc3M6Ly8=')}${用户75}@${安全地址67}:${端口66}?${参数.toString()}#${encodeURIComponent(网页套接字节点名称65)}`);
+  }
+  return 链接列表70;
+}
+async function 生成木马链接列表来源新地址列表(列表, 用户, 工作器域名, 加密客户端问候配置 = null, 跳过编号 = false, 别名命名器 = null) {
+  const 云墙超文本端口 = [80, 8080, 8880, 2052, 2082, 2086, 2095];
+  const 云墙安全超文本端口 = [443, 2053, 2083, 2087, 2096, 8443];
+  const 链接列表 = [];
+  const 网页套接字路径 = '/?ed=2048';
+  const 密码 = 传输路径 || 用户;
+  const 制作节点名称 = 别名命名器 || 创建值节点命名器(跳过编号);
+  for (const 项目62 of 列表) {
+    const 端口61 = 项目62.port;
+    const 安全地址 = 项目62.ip.includes(':') ? `[${项目62.ip}]` : 项目62.ip;
+    if (云墙安全超文本端口.includes(端口61)) {
+      const 网页套接字节点名称60 = 制作节点名称(项目62);
+      let 链接59 = `${atob('dHJvamFuOi8v')}${密码}@${安全地址}:${端口61}?security=tls&sni=${工作器域名}&fp=chrome&type=ws&host=${工作器域名}&path=${网页套接字路径}`;
+      if (自定义应用层协议协商) 链接59 += `&alpn=${encodeURIComponent(自定义应用层协议协商)}`;
+
+      // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+      if (启用加密客户端问候) {
+        const 域名系统值58 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+        const 加密客户端问候域名57 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        链接59 += `&ech=${encodeURIComponent(`${加密客户端问候域名57}+${域名系统值58}`)}`;
+      }
+      链接59 += `#${encodeURIComponent(网页套接字节点名称60)}`;
+      链接列表.push(链接59);
+    } else if (云墙超文本端口.includes(端口61)) {
+      if (!禁用非传输层安全) {
+        const 网页套接字节点名称56 = 制作节点名称(项目62);
+        const 链接55 = `${atob('dHJvamFuOi8v')}${密码}@${安全地址}:${端口61}?security=none&type=ws&host=${工作器域名}&path=${网页套接字路径}#${encodeURIComponent(网页套接字节点名称56)}`;
+        链接列表.push(链接55);
+      }
+    } else {
+      const 网页套接字节点名称 = 制作节点名称(项目62);
+      let 链接 = `${atob('dHJvamFuOi8v')}${密码}@${安全地址}:${端口61}?security=tls&sni=${工作器域名}&fp=chrome&type=ws&host=${工作器域名}&path=${网页套接字路径}`;
+      if (自定义应用层协议协商) 链接 += `&alpn=${encodeURIComponent(自定义应用层协议协商)}`;
+
+      // 如果启用了ECH，添加ech参数（ECH需要伪装成Chrome浏览器）
+      if (启用加密客户端问候) {
+        const 域名系统值 = 自定义域名系统 || 'https://223.5.5.5/dns-query';
+        const 加密客户端问候域名 = 自定义加密客户端问候域名 || 'cloudflare-ech.com';
+        链接 += `&ech=${encodeURIComponent(`${加密客户端问候域名}+${域名系统值}`)}`;
+      }
+      链接 += `#${encodeURIComponent(网页套接字节点名称)}`;
+      链接列表.push(链接);
+    }
+  }
+  return 链接列表;
+}
+async function 处理配置接口(请求54, 环境值 = {}) {
+  if (请求54.method === 'GET') {
+    if (!键值存储) {
+      return new Response(JSON.stringify({
+        error: 'KV存储未配置',
+        kvEnabled: false
+      }), {
+        status: 503,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+    return new Response(JSON.stringify({
+      ...获取有效配置快照(环境值),
+      kvEnabled: true
+    }), {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  } else if (请求54.method === 'POST') {
+    if (!键值存储) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: 'KV存储未配置，无法保存配置'
+      }), {
+        status: 503,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+    try {
+      const 新配置 = await 请求54.json();
+      for (const [键, 值] of Object.entries(新配置)) {
+        if (值 === '' || 值 === null || 值 === undefined) {
+          delete 键值配置[键];
+        } else {
+          键值配置[键] = 值;
+        }
+      }
+      await 保存键值配置();
+      更新配置值();
+      if (新配置.yx !== undefined) {
+        更新自定义优选来源值();
+      }
+      return new Response(JSON.stringify({
+        success: true,
+        message: '配置已保存',
+        config: 获取有效配置快照(环境值)
+      }), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } catch (错误53) {
+      return new Response(JSON.stringify({
+        success: false,
+        message: '保存配置失败: ' + 错误53.message
+      }), {
+        status: 500,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+  }
+  return new Response(JSON.stringify({
+    error: 'Method not allowed'
+  }), {
+    status: 405,
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  });
+}
+async function 处理优选地址列表接口(请求) {
+  if (!键值存储) {
+    return new Response(JSON.stringify({
+      success: false,
+      error: 'KV存储未配置',
+      message: '需要配置KV存储才能使用此功能'
+    }), {
+      status: 503,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+  const 本地值52 = 获取配置值('ae', '') === 'yes';
+  if (!本地值52) {
+    return new Response(JSON.stringify({
+      success: false,
+      error: 'API功能未启用',
+      message: '出于安全考虑，优选IP API功能默认关闭。请在配置管理页面开启"允许API管理"选项后使用。'
+    }), {
+      status: 403,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+  try {
+    if (请求.method === 'GET') {
+      const 值值51 = 获取配置值('yx', '');
+      const 本地值50 = 解析值值数组(值值51);
+      return new Response(JSON.stringify({
+        success: true,
+        count: 本地值50.length,
+        data: 本地值50
+      }), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } else if (请求.method === 'POST') {
+      const 主体49 = await 请求.json();
+      const 地址列表值添加 = Array.isArray(主体49) ? 主体49 : [主体49];
+      if (地址列表值添加.length === 0) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: '请求数据为空',
+          message: '请提供IP数据'
+        }), {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      const 值值48 = 获取配置值('yx', '');
+      let 本地值47 = 解析值值数组(值值48);
+      const 值地址列表46 = [];
+      const 值地址列表45 = [];
+      const 错误列表 = [];
+      for (const 项目44 of 地址列表值添加) {
+        if (!项目44.ip) {
+          错误列表.push({
+            ip: '未知',
+            reason: 'IP地址是必需的'
+          });
+          continue;
+        }
+        const 端口43 = 项目44.port || 443;
+        const 名称 = 项目44.name || `API优选-${项目44.ip}:${端口43}`;
+        if (!是否有效地址(项目44.ip) && !是否有效域名(项目44.ip)) {
+          错误列表.push({
+            ip: 项目44.ip,
+            reason: '无效的IP或域名格式'
+          });
+          continue;
+        }
+        const 本地值42 = 本地值47.some(值项目 => 值项目.ip === 项目44.ip && 值项目.port === 端口43);
+        if (本地值42) {
+          值地址列表45.push({
+            ip: 项目44.ip,
+            port: 端口43,
+            reason: '已存在'
+          });
+          continue;
+        }
+        const 新地址 = {
+          ip: 项目44.ip,
+          port: 端口43,
+          name: 名称,
+          addedAt: new Date().toISOString()
+        };
+        本地值47.push(新地址);
+        值地址列表46.push(新地址);
+      }
+      if (值地址列表46.length > 0) {
+        const 新值值41 = 处理数组值值(本地值47);
+        await 设置配置值('yx', 新值值41);
+        更新自定义优选来源值();
+      }
+      return new Response(JSON.stringify({
+        success: 值地址列表46.length > 0,
+        message: `成功添加 ${值地址列表46.length} 个IP`,
+        added: 值地址列表46.length,
+        skipped: 值地址列表45.length,
+        errors: 错误列表.length,
+        data: {
+          addedIPs: 值地址列表46,
+          skippedIPs: 值地址列表45.length > 0 ? 值地址列表45 : undefined,
+          errors: 错误列表.length > 0 ? 错误列表 : undefined
+        }
+      }), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } else if (请求.method === 'DELETE') {
+      const 主体 = await 请求.json();
+      if (主体.all === true) {
+        const 值值40 = 获取配置值('yx', '');
+        const 本地值39 = 解析值值数组(值值40);
+        const 值数量 = 本地值39.length;
+        await 设置配置值('yx', '');
+        更新自定义优选来源值();
+        return new Response(JSON.stringify({
+          success: true,
+          message: `已清空所有优选IP，共删除 ${值数量} 个`,
+          deletedCount: 值数量
+        }), {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      if (!主体.ip) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: 'IP地址是必需的',
+          message: '请提供要删除的ip字段，或使用 {"all": true} 清空所有'
+        }), {
+          status: 400,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      const 端口38 = 主体.port || 443;
+      const 值值37 = 获取配置值('yx', '');
+      let 本地值36 = 解析值值数组(值值37);
+      const 值长度 = 本地值36.length;
+      const 值地址列表 = 本地值36.filter(项目35 => !(项目35.ip === 主体.ip && 项目35.port === 端口38));
+      if (值地址列表.length === 值长度) {
+        return new Response(JSON.stringify({
+          success: false,
+          error: '优选IP不存在',
+          message: `${主体.ip}:${端口38} 未找到`
+        }), {
+          status: 404,
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+      }
+      const 新值值 = 处理数组值值(值地址列表);
+      await 设置配置值('yx', 新值值);
+      更新自定义优选来源值();
+      return new Response(JSON.stringify({
+        success: true,
+        message: '优选IP已删除',
+        deleted: {
+          ip: 主体.ip,
+          port: 端口38
+        }
+      }), {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    } else {
+      return new Response(JSON.stringify({
+        success: false,
+        error: '不支持的请求方法',
+        message: '支持的方法: GET, POST, DELETE'
+      }), {
+        status: 405,
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+  } catch (错误34) {
+    return new Response(JSON.stringify({
+      success: false,
+      error: '处理请求失败',
+      message: 错误34.message
+    }), {
+      status: 500,
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+  }
+}
+function 更新配置值() {
+  const 有效配置 = 获取有效配置快照();
+  const 手动地区 = 有效配置.wk;
+  if (手动地区 && 手动地区.trim()) {
+    手动工作器地区 = 手动地区.trim().toUpperCase();
+    当前工作器地区 = 手动工作器地区;
+  } else {
+    const 本地值 = 有效配置.p;
+    if (本地值 && 本地值.trim()) {
+      当前工作器地区 = 'CUSTOM';
+    } else {
+      手动工作器地区 = '';
+      当前工作器地区 = '';
+    }
+  }
+  启用地区匹配 = !(有效配置.rm && 有效配置.rm.toLowerCase() === 'no');
+  启用明文 = 有效配置.ev === 'yes';
+  启用木马 = 有效配置.et === 'yes';
+  启用扩展传输 = 有效配置.ex === 'yes';
+  传输路径 = 有效配置.tp || '';
+  订阅转换接口 = 有效配置.scu || 配置默认值.scu;
+  启用优选域名 = 有效配置.epd === 'yes';
+  启用优选地址 = 有效配置.epi === 'yes';
+  启用仓库优选 = 有效配置.egi === 'yes';
+  启用原生地址 = 有效配置.ena === 'yes';
+  启用家宽链式 = 有效配置.jk === 'yes';
+  启用加密客户端问候 = 有效配置.ech === 'yes';
+  自定义域名系统 = 有效配置.customDNS || 配置默认值.customDNS;
+  自定义加密客户端问候域名 = 有效配置.customECHDomain || 配置默认值.customECHDomain;
+  自定义应用层协议协商 = 规范化应用层协议协商(有效配置.alpn || '');
+  禁用非传输层安全 = 有效配置.dkby === 'yes' || 启用加密客户端问候;
+  const 降级控制值 = (有效配置.qj || '').toLowerCase();
+  启用代理降级 = 降级控制值 === 'no';
+  仅走代理 = 降级控制值 === 'only';
+  自定义路径 = 有效配置.d || '';
+  优选地址源 = 有效配置.yxURL || '';
+  回退地址 = 有效配置.p ? 有效配置.p.trim() : '';
+  代理5配置 = 有效配置.s || '';
+  if (代理5配置) {
+    try {
+      已解析代理5配置 = 解析代理配置(代理5配置);
+      是否代理已启用 = true;
+    } catch (错误31) {
+      是否代理已启用 = false;
+    }
+  } else {
+    已解析代理5配置 = {};
+    是否代理已启用 = false;
+  }
+  禁用优选 = !!(有效配置.yxby && 有效配置.yxby.toLowerCase() === 'yes');
+}
+function 更新自定义优选来源值() {
+  const 值值30 = 获取配置值('yx', '');
+  if (值值30) {
+    try {
+      const 优选列表 = 值值30.split(',').map(项目29 => 项目29.trim()).filter(项目28 => 项目28);
+      自定义优选地址列表 = [];
+      自定义优选域名列表 = [];
+      优选列表.forEach(项目27 => {
+        let 节点名称26 = '';
+        let 地址部分25 = 项目27;
+        if (项目27.includes('#')) {
+          const 部分列表24 = 项目27.split('#');
+          地址部分25 = 部分列表24[0].trim();
+          节点名称26 = 部分列表24[1].trim();
+        }
+        const {
+          address: 地址23,
+          port: 端口22
+        } = 解析地址值端口(地址部分25);
+        if (!节点名称26) {
+          节点名称26 = '自定义优选-' + 地址23 + (端口22 ? ':' + 端口22 : '');
+        }
+        if (是否有效地址(地址23)) {
+          自定义优选地址列表.push({
+            ip: 地址23,
+            port: 端口22,
+            isp: 节点名称26
+          });
+        } else {
+          自定义优选域名列表.push({
+            domain: 地址23,
+            port: 端口22,
+            name: 节点名称26
+          });
+        }
+      });
+    } catch (错误) {
+      自定义优选地址列表 = [];
+      自定义优选域名列表 = [];
+    }
+  } else {
+    自定义优选地址列表 = [];
+    自定义优选域名列表 = [];
+  }
+}
+function 解析值值数组(值值) {
+  if (!值值 || !值值.trim()) return [];
+  const 项目列表 = 值值.split(',').map(项目21 => 项目21.trim()).filter(项目20 => 项目20);
+  const 结果 = [];
+  for (const 项目19 of 项目列表) {
+    let 节点名称 = '';
+    let 地址部分 = 项目19;
+    if (项目19.includes('#')) {
+      const 部分列表 = 项目19.split('#');
+      地址部分 = 部分列表[0].trim();
+      节点名称 = 部分列表[1].trim();
+    }
+    const {
+      address: 地址,
+      port: 端口18
+    } = 解析地址值端口(地址部分);
+    if (!节点名称) {
+      节点名称 = 地址 + (端口18 ? ':' + 端口18 : '');
+    }
+    结果.push({
+      ip: 地址,
+      port: 端口18 || 443,
+      name: 节点名称,
+      addedAt: new Date().toISOString()
+    });
+  }
+  return 结果;
+}
+function 处理数组值值(数组) {
+  if (!数组 || 数组.length === 0) return '';
+  return 数组.map(项目 => {
+    const 端口17 = 项目.port || 443;
+    return `${项目.ip}:${端口17}#${项目.name}`;
+  }).join(',');
+}
+function 是否有效域名(域名) {
+  const 域名正则 = /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
+  return 域名正则.test(域名);
+}
+async function 解析文本值数组(内容) {
+  var 已处理 = 内容.replace(/[	"'\r\n]+/g, ',').replace(/,+/g, ',');
+  if (已处理.charAt(0) == ',') 已处理 = 已处理.slice(1);
+  if (已处理.charAt(已处理.length - 1) == ',') 已处理 = 已处理.slice(0, 已处理.length - 1);
+  return 已处理.split(',');
+}
+async function 获取优选接口(网址列表, 默认端口 = '443', 超时 = 3000) {
+  if (!网址列表?.length) return [];
+  const 结果列表 = new Set();
+  await Promise.allSettled(网址列表.map(async 网址 => {
+    try {
+      const 控制器 = new AbortController();
+      const 超时标识 = setTimeout(() => 控制器.abort(), 超时);
+      const 响应 = await fetch(网址, {
+        signal: 控制器.signal
+      });
+      clearTimeout(超时标识);
+      let 文本 = '';
+      try {
+        const 缓冲 = await 响应.arrayBuffer();
+        const 内容类型 = (响应.headers.get('content-type') || '').toLowerCase();
+        const 字符集 = 内容类型.match(/charset=([^\s;]+)/i)?.[1]?.toLowerCase() || '';
+        let 解码器列表 = ['utf-8', 'gb2312'];
+        if (字符集.includes('gb') || 字符集.includes('gbk') || 字符集.includes('gb2312')) {
+          解码器列表 = ['gb2312', 'utf-8'];
+        }
+        let 解码成功 = false;
+        for (const 解码器 of 解码器列表) {
+          try {
+            const 已解码 = new TextDecoder(解码器).decode(缓冲);
+            if (已解码 && 已解码.length > 0 && !已解码.includes('\ufffd')) {
+              文本 = 已解码;
+              解码成功 = true;
+              break;
+            } else if (已解码 && 已解码.length > 0) {
+              continue;
+            }
+          } catch (事件值16) {
+            continue;
+          }
+        }
+        if (!解码成功) {
+          文本 = await 响应.text();
+        }
+        if (!文本 || 文本.trim().length === 0) {
+          return;
+        }
+      } catch (事件值15) {
+        return;
+      }
+      const 行列表 = 文本.trim().split('\n').map(行值14 => 行值14.trim()).filter(行值 => 行值);
+      const 是否值 = 行列表.length > 1 && 行列表[0].includes(',');
+      const 六版地址模式 = /^[^\[\]]*:[^\[\]]*:[^\[\]]/;
+      if (!是否值) {
+        行列表.forEach(行13 => {
+          const 井号索引 = 行13.indexOf('#');
+          const [主机部分, 备注] = 井号索引 > -1 ? [行13.substring(0, 井号索引), 行13.substring(井号索引)] : [行13, ''];
+          let 是否有端口 = false;
+          if (主机部分.startsWith('[')) {
+            是否有端口 = /\]:(\d+)$/.test(主机部分);
+          } else {
+            const 值索引 = 主机部分.lastIndexOf(':');
+            是否有端口 = 值索引 > -1 && /^\d+$/.test(主机部分.substring(值索引 + 1));
+          }
+          const 端口12 = new URL(网址).searchParams.get('port') || 默认端口;
+          结果列表.add(是否有端口 ? 行13 : `${主机部分}:${端口12}${备注}`);
+        });
+      } else {
+        const 头部列表 = 行列表[0].split(',').map(头值11 => 头值11.trim());
+        const 数据行列表 = 行列表.slice(1);
+        if (头部列表.includes('IP地址') && 头部列表.includes('端口') && 头部列表.includes('数据中心')) {
+          const 地址索引10 = 头部列表.indexOf('IP地址'),
+            端口索引 = 头部列表.indexOf('端口');
+          const 备注索引 = 头部列表.indexOf('国家') > -1 ? 头部列表.indexOf('国家') : 头部列表.indexOf('城市') > -1 ? 头部列表.indexOf('城市') : 头部列表.indexOf('数据中心');
+          const 传输层安全索引 = 头部列表.indexOf('TLS');
+          数据行列表.forEach(行9 => {
+            const 列列表8 = 行9.split(',').map(丙值7 => 丙值7.trim());
+            if (传输层安全索引 !== -1 && 列列表8[传输层安全索引]?.toLowerCase() !== 'true') return;
+            const 包裹地址6 = 六版地址模式.test(列列表8[地址索引10]) ? `[${列列表8[地址索引10]}]` : 列列表8[地址索引10];
+            结果列表.add(`${包裹地址6}:${列列表8[端口索引]}#${列列表8[备注索引]}`);
+          });
+        } else if (头部列表.some(头值5 => 头值5.includes('IP')) && 头部列表.some(头值4 => 头值4.includes('延迟')) && 头部列表.some(头值3 => 头值3.includes('下载速度'))) {
+          const 地址索引 = 头部列表.findIndex(头值2 => 头值2.includes('IP'));
+          const 延迟索引 = 头部列表.findIndex(头值1 => 头值1.includes('延迟'));
+          const 速度索引 = 头部列表.findIndex(头值 => 头值.includes('下载速度'));
+          const 端口 = new URL(网址).searchParams.get('port') || 默认端口;
+          数据行列表.forEach(行 => {
+            const 列列表 = 行.split(',').map(丙值 => 丙值.trim());
+            const 包裹地址 = 六版地址模式.test(列列表[地址索引]) ? `[${列列表[地址索引]}]` : 列列表[地址索引];
+            结果列表.add(`${包裹地址}:${端口}#CF优选 ${列列表[延迟索引]}ms ${列列表[速度索引]}MB/s`);
+          });
+        }
+      }
+    } catch (事件值) {}
+  }));
+  return Array.from(结果列表);
+}
